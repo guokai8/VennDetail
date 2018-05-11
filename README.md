@@ -8,7 +8,8 @@ VennDetail is a package can be used for Extract detail information from venndiag
 
 ## Dependencies
 
-R>2.15 VennDiagrm
+R>2.15  
+VennDiagrm
 
 ## Installation
 
