@@ -1,0 +1,22 @@
+Package: VennDetail
+Type: Package
+Title: VennDetail package used for extract information from venndiagram plot
+Version: 0.0.1
+Author: Kai Guo
+Maintainer: Kai Guo <guokai8@gmail.com>
+Description: VennDetail package used for extract information from venndiagram plot
+License: GPL-2
+Encoding: UTF-8
+LazyData: True
+Imports:
+    dplyr,
+    ggplot2,
+    VennDiagram,
+    grid
+LinkingTo: Rcpp
+Suggests:
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+RoxygenNote: 6.0.1
+biocViews:
