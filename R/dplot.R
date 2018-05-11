@@ -20,8 +20,8 @@
 ##' }
 setMethod("dplot",signature = (object="venn"),function(object,...){
   df<-data.frame(Group=names(object@detail),Detail=object@detail)
-  p<-ggplot(df,aes(Group,Detail,fill=Group))+geom_bar(stat="identity")+theme_light(base_size = 12)+theme(axis.text.x=element_text(angle=90))
-  p+geom_text(aes(label=Detail),vjust=-0.3,size=5)
+  p<-ggplot(df,aes(Group,Detail,fill=Group))+geom_bar(stat="identity")+theme_light(base_size = 12)+theme(axis.text.x=element_text(angle=90))+
+  geom_text(aes(label=Detail),vjust=-0.3,size=5)
 })
 ##' @name get
 ##' @rdname get-methods
