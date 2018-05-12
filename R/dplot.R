@@ -17,7 +17,7 @@
 ##' B <- sample(1:100, 60, replace = FALSE);
 ##' C <- sample(1:100, 40, replace = FALSE);
 ##' res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
-##' dplot(res)
+##' dplot(res,order=T,textsize=3)
 ##' }
 setMethod("dplot",signature = (object="venn"),function(object,order=FALSE,textsize=5,...){
   df<-data.frame(Group=names(object@detail),Detail=object@detail)
