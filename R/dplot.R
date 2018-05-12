@@ -27,7 +27,7 @@ setMethod("dplot",signature = (object="venn"),function(object,...){
 ##' @name get
 ##' @rdname get-methods
 ##' @importFrom dplyr filter
-##' @importFrom dplyr %>%
+##' @importFrom tidyr %>%
 ##' @param object venn object
 ##' @param group group you want extract
 ##' @export
