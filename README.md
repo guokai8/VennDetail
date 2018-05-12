@@ -4,7 +4,7 @@ Extract detail information from venndiagram
 
 ## Description
 
-VennDetail is a package can be used for Extract detail information from venndiagram
+VennDetail is a package can be used for extracting details(shared,unique sets) from venndiagram
 
 ## Dependencies
 
