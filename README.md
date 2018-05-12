@@ -28,13 +28,14 @@ res<-venndetail(list(A=A,B=B,C=C,D=D),plot=TRUE)
 result<-result(res)
 head(res);
 ```  
-Some useful commands
+#### Some useful commands
 ```  
 get(res,"A")
 detail(res)
 dplot(res)
 
-```  
+``` 
+** PS: For five-way venndiagram, the package just support extract all shared, unique part and four group shared part.
 ### Contact information
 
 I still working on this package and will add more functions here. 
