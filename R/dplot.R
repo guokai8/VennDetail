@@ -25,7 +25,7 @@ setMethod("dplot",signature = (object="venn"),function(object,order=FALSE,textsi
   df$Group<-factor(df$Group, levels = df$Group[order(df$Detail)])
   }
   p<-ggplot(df,aes(Group,Detail,fill=Group))+geom_bar(stat="identity")+theme_light(base_size = 12)+theme(axis.text.x=element_text(angle=90))+
-  ggplot2::geom_text(aes(label=Detail),vjust=-0.3,size=textsize)+ylim(0,max(df$Detail)+1)
+  ggplot2::geom_text(aes(label=Detail),vjust=-0.3,size=textsize)+ggplot2::ylim(0,max(df$Detail)+1)
   p
 })
 ##' @name get
