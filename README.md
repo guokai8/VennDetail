@@ -16,7 +16,7 @@ VennDiagrm
 library(devtools)    
 install_github("guokai8/VennDetail")
 ``` 
-Suggest use RStudio to run the command if you want to use build_vignettes
+Suggest use RStudio to run the command.
 ### Getting started
 ```  
 library(VennDetail)
