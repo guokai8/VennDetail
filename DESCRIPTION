@@ -16,6 +16,7 @@ Imports:
 LinkingTo: Rcpp
 Suggests:
     knitr,
+    dplyr,
     rmarkdown
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1
