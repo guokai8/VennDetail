@@ -17,7 +17,7 @@ library(devtools)
 install_github("guokai8/VennDetail")
 ``` 
 Suggest use RStudio to run the command.
-### Getting started
+## Getting started
 ```  
 library(VennDetail)
 A <- sample(1:1000, 400, replace = FALSE);
@@ -28,7 +28,7 @@ res<-venndetail(list(A=A,B=B,C=C,D=D),plot=TRUE);
 result<-result(res);
 head(res);
 ```  
-#### Some useful commands
+### Some useful commands
 ```  
 get(res,"A"); #get sets unique in A
 detail(res); #show detail for groups 
@@ -36,7 +36,7 @@ dplot(res); #make a detail barplot
 
 ``` 
 ** PS: For five-way venndiagram, the package just support extract all shared, unique and four group shared part.
-### Contact information
+## Contact information
 
 I still working on this package and will add more functions here. 
 For any questions please contact guokai8@gmail.com
