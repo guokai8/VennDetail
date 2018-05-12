@@ -28,7 +28,6 @@ setGeneric("dplot",function(object,...){
 })
 ##' get generic
 ##'
-##' @docType method
 ##' @name get
 ##' @rdname get-methods
 ##' @title get detail
