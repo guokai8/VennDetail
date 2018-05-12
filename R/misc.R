@@ -13,7 +13,7 @@ tail.venn<-function(x,n=6L,...){
 ##' @method dim venn
 ##' @export
 dim.venn <- function(x) {
-  dim(x@venn)
+  dim(x@result)
 }
 ##' @method [ venn
 ##' @export
