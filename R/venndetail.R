@@ -23,7 +23,7 @@ venndetail<-function(x,plot=TRUE,filename=NULL,col="black",mycol=c("dodgerblue",
   }
   GroupNames=names(x)
   if(length(x)==1){
-    cat("Only one sets find!")
+    cat("Only one sets find!\n")
     return(NULL)
   }
   else if(length(x)==2){
