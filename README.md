@@ -35,7 +35,7 @@ detail(res)
 dplot(res)
 
 ``` 
-** PS: For five-way venndiagram, the package just support extract all shared, unique part and four group shared part.
+** PS: For five-way venndiagram, the package just support extract all shared, unique and four group shared part.
 ### Contact information
 
 I still working on this package and will add more functions here. 
