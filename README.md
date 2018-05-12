@@ -24,15 +24,15 @@ A <- sample(1:1000, 400, replace = FALSE);
 B <- sample(1:1000, 600, replace = FALSE);
 C <- sample(1:1000, 350, replace = FALSE);
 D <- sample(1:1000, 550, replace = FALSE);
-res<-venndetail(list(A=A,B=B,C=C,D=D),plot=TRUE)
-result<-result(res)
+res<-venndetail(list(A=A,B=B,C=C,D=D),plot=TRUE);
+result<-result(res);
 head(res);
 ```  
 #### Some useful commands
 ```  
-get(res,"A")
-detail(res)
-dplot(res)
+get(res,"A"); #get sets unique in A
+detail(res); #show detail for groups 
+dplot(res); #make a detail barplot
 
 ``` 
 ** PS: For five-way venndiagram, the package just support extract all shared, unique and four group shared part.
