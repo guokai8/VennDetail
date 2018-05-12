@@ -10,6 +10,7 @@ Encoding: UTF-8
 LazyData: True
 Imports:
     dplyr,
+    tidyr,
     ggplot2,
     VennDiagram,
     grid
@@ -17,6 +18,7 @@ LinkingTo: Rcpp
 Suggests:
     knitr,
     dplyr,
+    tidyr,
     rmarkdown
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1
