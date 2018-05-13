@@ -87,10 +87,10 @@ venndetail<-function(x,plot=TRUE,filename=NULL,col="black",mycol=c("dodgerblue",
              paste(names(x)[c(2,4)],sep="",collapse = "_"),
              paste(names(x)[3:4],sep="",collapse = "_"),
              names(x))
-    detail<-unlist(lapply(list(nABCD,nABC,nACD,nABD,nBCD,nAB,nAC,nAD,nBC,nBD,nCD,nA,nB,nC,nD), function(x)length(x)))
+    detail<-unlist(lapply(list(nABCD,nABC,nABD,nACD,nBCD,nAB,nAC,nAD,nBC,nBD,nCD,nA,nB,nC,nD), function(x)length(x)))
     names(detail)<-ggname
     gname=rep(ggname,times=detail)
-    res=data.frame(Group=gname,Detail=c(nABCD,nABC,nACD,nABD,nBCD,nAB,nAC,nAD,nBC,nBD,nCD,nA,nB,nC,nD))
+    res=data.frame(Group=gname,Detail=c(nABCD,nABC,nABD,nACD,nBCD,nAB,nAC,nAD,nBC,nBD,nCD,nA,nB,nC,nD))
   }
   else if(length(x)==5){
     A=x[[1]]
