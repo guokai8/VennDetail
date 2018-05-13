@@ -49,3 +49,14 @@ setMethod("get",signature = (object="venn"),function(object,group,...){
   head(lhs)
   return(lhs)
 })
+##' @name show
+##' @rdname show-methods
+##' @param object venn object
+##' @export
+setMethod("show",signature = (object="venn"),function(object){
+  cat("=== Here is the detail of Venndiagram===\n");
+  cat("Total results: ",nrow(object@result),"x",ncol(object@result),"\n")
+  cat("Total sets is:",length(unique(object@result$Group)),"\n")
+  print(object@result[1:6,],quote=FALSE)
+  cat("... with",nrow(object@result)-6,"more rows\n")
+})
