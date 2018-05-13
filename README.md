@@ -35,7 +35,7 @@ detail(res); #show detail for groups
 dplot(res); #make a detail barplot
 
 ``` 
-** PS: For five-way venndiagram, the package just support extract all shared, unique and four group shared part.
+** PS: Support up to five-way venndiagram
 ## Contact information
 
 I still working on this package and will add more functions here. 
