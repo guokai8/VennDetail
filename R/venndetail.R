@@ -98,12 +98,32 @@ venndetail<-function(x,plot=TRUE,filename=NULL,col="black",mycol=c("dodgerblue",
     C=x[[3]]
     D=x[[4]]
     E=x[[5]]
-    nABCDE=Reduce(iintersect,x)
+    nABCDE=Reduce(intersect,x)
     nABCD=setdiff(Reduce(intersect,list(A,B,C,D)),nABCDE)
     nABCE=setdiff(Reduce(intersect,list(A,B,C,E)),nABCDE)
     nABDE=setdiff(Reduce(intersect,list(A,B,D,E)),nABCDE)
     nACDE=setdiff(Reduce(intersect,list(A,C,D,E)),nABCDE)
     nBCDE=setdiff(Reduce(intersect,list(B,C,D,E)),nABCDE)
+    nABC=Reduce(setdiff,list(Reduce(intersect,list(A,B,C)),nABCD,nABCE,nABCDE))
+    nABD=Reduce(setdiff,list(Reduce(intersect,list(A,B,D)),nABCD,nABDE,nABCDE))
+    nABE=Reduce(setdiff,list(Reduce(intersect,list(A,B,E)),nABDE,nABCE,nABCDE))
+    nACD=Reduce(setdiff,list(Reduce(intersect,list(A,C,D)),nACDE,nABCD,nABCDE))
+    nADE=Reduce(setdiff,list(Reduce(intersect,list(A,D,E)),nACDE,nABDE,nABCDE))
+    nACE=Reduce(setdiff,list(Reduce(intersect,list(A,C,E)),nACDE,nABCE,nABCDE))
+    nBCD=Reduce(setdiff,list(Reduce(intersect,list(B,C,D)),nABCD,nBCDE,nABCDE))
+    nBCE=Reduce(setdiff,list(Reduce(intersect,list(B,C,E)),nABCE,nBCDE,nABCDE))
+    nBDE=Reduce(setdiff,list(Reduce(intersect,list(B,D,E)),nBCDE,nABDE,nABCDE))
+    nCDE=Reduce(setdiff,list(Reduce(intersect,list(C,D,E)),nACDE,nBCDE,nABCDE))
+    nAB=setdiff(intersect(A,B),Reduce(union,list(C,D,E)))
+    nAC=setdiff(intersect(A,C),Reduce(union,list(B,D,E)))
+    nAD=setdiff(intersect(A,D),Reduce(union,list(B,C,E)))
+    nAE=setdiff(intersect(A,E),Reduce(union,list(C,D,B)))
+    nBC=setdiff(intersect(C,B),Reduce(union,list(A,D,E)))
+    nBD=setdiff(intersect(D,B),Reduce(union,list(A,C,E)))
+    nBE=setdiff(intersect(E,B),Reduce(union,list(A,D,C)))
+    nCD=setdiff(intersect(C,D),Reduce(union,list(A,B,E)))
+    nCE=setdiff(intersect(C,E),Reduce(union,list(A,B,D)))
+    nDE=setdiff(intersect(E,D),Reduce(union,list(A,B,C)))
     nA=Reduce(setdiff,list(A,B,C,D,E))
     nB=Reduce(setdiff,list(B,C,D,E,A))
     nC=Reduce(setdiff,list(C,D,E,A,B))
@@ -112,12 +132,36 @@ venndetail<-function(x,plot=TRUE,filename=NULL,col="black",mycol=c("dodgerblue",
     ggname=c("Shared",paste(names(x)[1:4],sep="",collapse = "_"),
              paste(names(x)[c(1,2,3,5)],sep="",collapse = "_"),
              paste(names(x)[c(1,2,4,5)],sep="",collapse = "_"),
-             paste(names(x)[1,3,4,5],sep="",collapse = "_"),
+             paste(names(x)[c(1,3,4,5)],sep="",collapse = "_"),
              paste(names(x)[2:5],sep="",collapse = "_"),
+             paste(names(x)[1:3],sep="",collapse = "_"),
+             paste(names(x)[c(1,2,4)],sep="",collapse = "_"),
+             paste(names(x)[c(1,2,5)],sep="",collapse = "_"),
+             paste(names(x)[c(1,3,4)],sep="",collapse = "_"),
+             paste(names(x)[c(1,4,5)],sep="",collapse = "_"),
+             paste(names(x)[c(1,3,5)],sep="",collapse = "_"),
+             paste(names(x)[c(2,3,4)],sep="",collapse = "_"),
+             paste(names(x)[c(2,3,5)],sep="",collapse = "_"),
+             paste(names(x)[c(2,4,5)],sep="",collapse = "_"),
+             paste(names(x)[3:5],sep="",collapse = "_"),
+             paste(names(x)[c(1,2)],sep="",collapse = "_"),
+             paste(names(x)[c(1,3)],sep="",collapse = "_"),
+             paste(names(x)[c(1,4)],sep="",collapse = "_"),
+             paste(names(x)[c(1,5)],sep="",collapse = "_"),
+             paste(names(x)[c(2,3)],sep="",collapse = "_"),
+             paste(names(x)[c(2,4)],sep="",collapse = "_"),
+             paste(names(x)[c(2,5)],sep="",collapse = "_"),
+             paste(names(x)[c(3,4)],sep="",collapse = "_"),
+             paste(names(x)[c(3,5)],sep="",collapse = "_"),
+             paste(names(x)[c(4,5)],sep="",collapse = "_"),
              names(x))
-    detail<-unlist(lapply(list(nABCDE,nABCD,nABCE,nABDE,nACDE,nBCDE,nA,nB,nC,nD,nE), function(x)length(x)))
+    detail<-unlist(lapply(list(nABCDE,nABCD,nABCE,nABDE,nACDE,nBCDE,nABC,nABD,nABE,nACD,nADE,
+                               nACE,nBCD,nBCE,nBDE,nCDE,nAB,nAC,nAD,nAE,nBC,nBD,nBE,nCD,nCE,
+                               nDE,nA,nB,nC,nD,nE), function(x)length(x)))
+
     gname=rep(ggname,times=detail)
-    res=data.frame(Group=gname,Detail=c(nABCDE,nABCD,nABCE,nABDE,nACDE,nBCDE,nA,nB,nC,nD,nE))
+    names(detail)<-ggname
+    res=data.frame(Group=gname,Detail=c(nABCDE,nABCD,nABCE,nABDE,nACDE,nBCDE,nABC,nABD,nABE,nACD,nADE,nACE,nBCD,nBCE,nBDE,nCDE,nAB,nAC,nAD,nAE,nBC,nBD,nBE,nCD,nCE,nDE,nA,nB,nC,nD,nE))
   }
   result<-new("venn",
               GroupNames=GroupNames,
