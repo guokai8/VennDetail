@@ -49,7 +49,7 @@ setGeneric("get",function(object,...){
 ##' @return dataframe with join results
 ##' @export
 ##' @author Kai Guo
-setGeneric("rowjoin",function(x,y,...){
+setGeneric("rowjoin",function(x,y,fun,...){
   standardGeneric("rowjoin")
 })
 ##' getFeature generic
