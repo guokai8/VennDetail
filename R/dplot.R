@@ -50,6 +50,7 @@ setMethod("get",signature = (object="venn"),function(object,group,...){
   return(lhs)
 })
 ##' @name show
+##' @title show detail of venn object
 ##' @rdname show-methods
 ##' @param object venn object
 ##' @export
