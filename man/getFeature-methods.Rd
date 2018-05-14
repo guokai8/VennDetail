@@ -6,7 +6,7 @@
 \alias{getFeature}
 \title{get feature based on venn results}
 \usage{
-getFeature(object, ...)
+getFeature(object, group, rlist, userowname, gind, sep, ...)
 
 \S4method{getFeature}{venn}(object, group, rlist, userowname = TRUE,
   gind = NULL, sep = "_", ...)
@@ -17,6 +17,10 @@ getFeature(object, ...)
 \item{group}{group you want used}
 
 \item{rlist}{detail information you want extract}
+
+\item{userowname}{use rowname to join dataframe or not}
+
+\item{gind}{id name for each data.frame (set if userowname=F)}
 
 \item{sep}{separate for new colnames}
 }
