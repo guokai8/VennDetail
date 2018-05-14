@@ -33,7 +33,11 @@ head(res);
 get(res,"A"); #get sets unique in A
 detail(res); #show detail for groups 
 dplot(res); #make a detail barplot
-
+dA=data.frame(A=A,"FC"=rnorm(400))
+dB=data.frame(B=B,"FC"=rnorm(600))
+dC=data.frame(C=C,"FC"=rnorm(350))
+dD=data.frame(D=D,"FC"=rnorm(550))
+getFeature(res,group="Shared",rlist=list(dA,dB,dC,dD))
 ``` 
 ** PS: Support up to five-way venndiagram
 ## Contact information
