@@ -18,12 +18,10 @@ detail<-function(x){
 ##' @name dplot
 ##' @rdname dplot-methods
 ##' @title detail plot
-##' @param object venn results
-##' @param ... addtional parameters
 ##' @return plot
 ##' @export
 ##' @author Kai Guo
-setGeneric("dplot",function(object,...){
+setGeneric("dplot",function(object,order,...){
   standardGeneric("dplot")
 })
 ##' get generic
@@ -31,12 +29,10 @@ setGeneric("dplot",function(object,...){
 ##' @name get
 ##' @rdname get-methods
 ##' @title get detail
-##' @param object venn object
-##' @param ... additional parameters
 ##' @return return dataframe and print the header of dataframe
 ##' @export
 ##' @author Kai Guo
-setGeneric("get",function(object,...){
+setGeneric("get",function(object,group,...){
   standardGeneric("get")
 })
 ##' rowjoin generic
@@ -57,11 +53,9 @@ setGeneric("rowjoin",function(x,y,fun,...){
 ##' @name getFeature
 ##' @rdname getFeature-methods
 ##' @title get feature based on venn results
-##' @param object venn object
-##' @param ... additional parameters
 ##' @return dataframe with all venn information and details from input
 ##' @export
 ##' @author Kai Guo
-setGeneric("getFeature",function(object,...){
+setGeneric("getFeature",function(object,group, rlist, userowname,gind,sep,...){
   standardGeneric("getFeature")
 })
