@@ -1,5 +1,4 @@
 ##' Extract shared and unique sets
-##' @docType method
 ##' @name venndetail
 ##' @rdname venndetail-methods
 ##' @title venn detail information
