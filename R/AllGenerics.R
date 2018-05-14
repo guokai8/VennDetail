@@ -31,7 +31,7 @@ setGeneric("dplot",function(object,...){
 ##' @name get
 ##' @rdname get-methods
 ##' @title get detail
-##' @param x venn object
+##' @param object venn object
 ##' @param ... additional parameters
 ##' @return return dataframe and print the header of dataframe
 ##' @export
