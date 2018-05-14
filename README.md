@@ -4,7 +4,7 @@ Extract detail information from venndiagram
 
 ## Description
 
-__VennDetail__ is a package can be used for extracting details(shared,unique sets) from venndiagram    
+__VennDetail__ is a package can be used for extracting details(shared,unique sets) shown in the venn plot    
 
 *** PS: Supports up to five-way Venn diagrams
 
