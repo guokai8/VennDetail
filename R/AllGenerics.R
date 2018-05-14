@@ -52,6 +52,7 @@ setGeneric("rowjoin",function(x,y,...){
 ##' getFeature generic
 ##'
 ##' @name getFeature
+##' @rdname getFeature-methods
 ##' @title get feature based on venn results
 ##' @param object venn object
 ##' @param ... additional parameters
