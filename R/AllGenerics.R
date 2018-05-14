@@ -21,7 +21,7 @@ detail<-function(x){
 ##' @return plot
 ##' @export
 ##' @author Kai Guo
-setGeneric("dplot",function(object,order,...){
+setGeneric("dplot",function(object,order=FALSE,...){
   standardGeneric("dplot")
 })
 ##' get generic
