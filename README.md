@@ -4,7 +4,9 @@ Extract detail information from venndiagram
 
 ## Description
 
-__VennDetail__ is a package can be used for extracting details(shared,unique sets) from venndiagram
+__VennDetail__ is a package can be used for extracting details(shared,unique sets) from venndiagram    
+
+*** PS: Supports up to five-way Venn diagrams
 
 ## Dependencies
 
@@ -16,7 +18,6 @@ VennDiagrm
 library(devtools)    
 install_github("guokai8/VennDetail")
 ``` 
-** Recommand: Use RStudio to run the command.
 ## Getting started
 ```  
 library(VennDetail)
@@ -30,18 +31,17 @@ head(res);
 ```  
 ### Some useful commands
 ```  
-get(res,"A"); #get sets unique in A
-detail(res); #show detail for groups 
-dplot(res); #make a detail barplot
+get(res,"A"); # get unique elements in A
+detail(res); #show overlap 'details' of all groups
+dplot(res); #make a bargraph for 'details'
 dA=data.frame(A=A,"FC"=rnorm(400))
 dB=data.frame(B=B,"FC"=rnorm(600))
 dC=data.frame(C=C,"FC"=rnorm(350))
 dD=data.frame(D=D,"FC"=rnorm(550))
 getFeature(res,group="Shared",rlist=list(dA,dB,dC,dD),userowname=F)
-###As all this four dataframe don't have rownames we choose userownames=F 
+###As all these four dataframes don't have row names, we set useownames to be FALSE
 ``` 
 ** PS: Support up to five-way venndiagram
 ## Contact information
 
-I still working on this package and will add more functions here. 
 For any questions please contact guokai8@gmail.com
