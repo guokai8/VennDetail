@@ -8,7 +8,7 @@
 \usage{
 dplot(object, ...)
 
-\S4method{dplot}{venn}(object, ...)
+\S4method{dplot}{venn}(object, order = FALSE, textsize = 5, ...)
 }
 \arguments{
 \item{object}{venn results}
@@ -29,7 +29,7 @@ A <- sample(1:100, 40, replace = FALSE);
 B <- sample(1:100, 60, replace = FALSE);
 C <- sample(1:100, 40, replace = FALSE);
 res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
-dplot(res)
+dplot(res,order=T,textsize=3)
 }
 }
 \author{
