@@ -11,6 +11,7 @@ LazyData: True
 Imports:
     dplyr,
     tidyr,
+    tibble,
     magrittr,
     ggplot2,
     VennDiagram,
