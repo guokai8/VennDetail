@@ -22,7 +22,7 @@
 ##' dB=data.frame(B=B,"FC"=rnorm(60))
 ##' dC=data.frame(C=C,"FC"=rnorm(40))
 ##' res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
-##' getFeature(res,group="Shared",rlist=list(dA,dB,dC))
+##' getFeature(res,group="Shared",rlist=list(dA,dB,dC),userowname=F)
 ##' }
 setMethod("getFeature",signature = (object="venn"),function(object,group,rlist,userowname=TRUE,gind=NULL,sep="_",...){
   dd<-object@result
