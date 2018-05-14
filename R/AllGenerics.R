@@ -40,6 +40,9 @@ setGeneric("get",function(object,...){
   standardGeneric("get")
 })
 ##' rowjoin generic
+##' @name rowjoin
+##' @rdname rowjoin-methods
+##' @title join data.frame based on rownames
 ##' @param x dataframe x
 ##' @param y dataframe y
 ##' @param fun join type
