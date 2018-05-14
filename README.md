@@ -37,7 +37,8 @@ dA=data.frame(A=A,"FC"=rnorm(400))
 dB=data.frame(B=B,"FC"=rnorm(600))
 dC=data.frame(C=C,"FC"=rnorm(350))
 dD=data.frame(D=D,"FC"=rnorm(550))
-getFeature(res,group="Shared",rlist=list(dA,dB,dC,dD))
+getFeature(res,group="Shared",rlist=list(dA,dB,dC,dD),userowname=F)
+###As all this four dataframe don't have rownames we choose userownames=F 
 ``` 
 ** PS: Support up to five-way venndiagram
 ## Contact information
