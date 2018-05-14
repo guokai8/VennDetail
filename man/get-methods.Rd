@@ -17,7 +17,7 @@ get(object, ...)
 
 \item{group}{group you want extract}
 
-\item{x}{venn object}
+\item{object}{venn object}
 }
 \value{
 return dataframe and print the header of dataframe

@@ -3,7 +3,7 @@
 \docType{methods}
 \name{show}
 \alias{show}
-\title{show venn information}
+\title{show venn results}
 \usage{
 \S4method{show}{venn}(object)
 }
