@@ -39,3 +39,25 @@ setGeneric("dplot",function(object,...){
 setGeneric("get",function(object,...){
   standardGeneric("get")
 })
+##' rowjoin generic
+##' @param x dataframe x
+##' @param y dataframe y
+##' @param fun join type
+##' @return dataframe with join results
+##' @export
+##' @author Kai Guo
+setGeneric("rowjoin",function(x,y,...){
+  standardGeneric("rowjoin")
+})
+##' getFeature generic
+##'
+##' @name getFeature
+##' @title get feature based on venn results
+##' @param object venn object
+##' @param ... additional parameters
+##' @return dataframe with all venn information and details from input
+##' @export
+##' @author Kai Guo
+setGeneric("getFeature",function(object,...){
+  standardGeneric("getFeature")
+})
