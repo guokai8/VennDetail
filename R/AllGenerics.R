@@ -45,7 +45,7 @@ setGeneric("get",function(object,group,...){
 ##' @return dataframe with join results
 ##' @export
 ##' @author Kai Guo
-setGeneric("rowjoin",function(x,y,fun,...){
+setGeneric("rowjoin",function(x,y,...){
   standardGeneric("rowjoin")
 })
 ##' getFeature generic
@@ -56,6 +56,6 @@ setGeneric("rowjoin",function(x,y,fun,...){
 ##' @return dataframe with all venn information and details from input
 ##' @export
 ##' @author Kai Guo
-setGeneric("getFeature",function(object,group, rlist, userowname,gind,sep,...){
+setGeneric("getFeature",function(object,group, rlist, userowname=TRUE,gind=NULL,sep="_",...){
   standardGeneric("getFeature")
 })
