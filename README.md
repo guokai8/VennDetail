@@ -39,7 +39,7 @@ dB=data.frame(B=B,"FC"=rnorm(600))
 dC=data.frame(C=C,"FC"=rnorm(350))
 dD=data.frame(D=D,"FC"=rnorm(550))
 getFeature(res,group="Shared",rlist=list(dA,dB,dC,dD),userowname=F)
-###As all these four dataframes don't have row names, we set useownames to be FALSE
+###As all these four dataframes don't have row names, we set userowname to be FALSE
 ``` 
 ** PS: Support up to five-way venndiagram
 ## Contact information
