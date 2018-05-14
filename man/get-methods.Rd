@@ -13,11 +13,7 @@ get(object, ...)
 \arguments{
 \item{object}{venn object}
 
-\item{...}{additional parameters}
-
-\item{group}{group you want extract}
-
-\item{object}{venn object}
+\item{group}{extract group name}
 }
 \value{
 return dataframe and print the header of dataframe

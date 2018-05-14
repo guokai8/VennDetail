@@ -14,15 +14,11 @@ getFeature(object, ...)
 \arguments{
 \item{object}{venn object}
 
-\item{...}{additional parameters}
-
 \item{group}{group you want used}
 
 \item{rlist}{detail information you want extract}
 
 \item{sep}{separate for new colnames}
-
-\item{object}{venn object}
 }
 \value{
 dataframe with all venn information and details from input
