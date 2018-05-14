@@ -1,7 +1,7 @@
 Package: VennDetail
 Type: Package
 Title: VennDetail package used for extract information from venndiagram plot
-Version: 0.0.2
+Version: 0.0.3
 Author: Kai Guo
 Maintainer: Kai Guo <guokai8@gmail.com>
 Description: VennDetail package used for extract information from venndiagram plot
