@@ -178,7 +178,7 @@ venndetail<-function(x,plot=TRUE,filename=NULL,col="black",mycol=c("dodgerblue",
                   cat.cex = cat.cex,
                   cat.fontface = cat.fontface,
                   cat.pos=cat.pos,
-                  cat.dis=cat.dis,
+                  cat.dist=cat.dist,
                   margin = margin)
    grid.draw(p)
   }
