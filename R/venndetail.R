@@ -16,7 +16,7 @@
 ##' res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
 ##' }
 venndetail<-function(x,plot=TRUE,filename=NULL,col="black",mycol=c("dodgerblue", "goldenrod1", "darkorange1", "seagreen3", "orchid3"),
-                    cat.cex=1.5,alpha=0.5,cex=2,cat.fontface="bold",margin=0.05){
+                    cat.cex=1.5,alpha=0.5,cex=2,cat.fontface="bold",cat.pos=0,cat.dist=0,margin=0.05,...){
   if(is.null(names(x))){
     names(x)<-paste("Group",1:length(x))
   }
@@ -177,6 +177,8 @@ venndetail<-function(x,plot=TRUE,filename=NULL,col="black",mycol=c("dodgerblue",
                   cat.col = mycol[1:n],
                   cat.cex = cat.cex,
                   cat.fontface = cat.fontface,
+                  cat.pos=cat.pos,
+                  cat.dis=cat.dis,
                   margin = margin)
    grid.draw(p)
   }
