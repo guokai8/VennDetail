@@ -16,7 +16,7 @@ getFeature(object, group, rlist, userowname, gind, sep, ...)
 
 \item{group}{group you want used}
 
-\item{rlist}{detail information you want extract}
+\item{rlist} detail information you want extract}
 
 \item{userowname}{use rowname to join dataframe or not}
 
