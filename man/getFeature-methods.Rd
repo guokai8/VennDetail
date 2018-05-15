@@ -16,11 +16,11 @@ getFeature(object, group, rlist, userowname, gind, sep, ...)
 
 \item{group}{group you want used}
 
-\item{rlist}{detail information you want extract}
+\item{rlist}{list of detail dataframe with all information}
 
 \item{userowname}{use rowname to join dataframe or not}
 
-\item{gind}{id name for each data.frame (set if userowname=F)}
+\item{gind}{id name you want use to extract for each data.frame (set if userowname=F)}
 
 \item{sep}{separate for new colnames}
 }
