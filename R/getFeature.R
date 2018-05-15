@@ -10,7 +10,9 @@
 ##' @importFrom purrr reduce
 ##' @param object venn object
 ##' @param group group you want used
-##' @param rlist detail information you want extract
+##' @param rlist list of detail dataframe with all information
+##' @param userowname use rowname to join dataframe or not
+##' @param gind id name you want use to extract for each data.frame (set if userowname=F)
 ##' @param sep separate for new colnames
 ##' @export
 ##' @examples
