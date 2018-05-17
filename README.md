@@ -1,6 +1,6 @@
 # VennDetail
 
-Extract detail information from venndiagram    
+Extract detail information from venn plot    
 ![](venn.png)
 
 ## Description
