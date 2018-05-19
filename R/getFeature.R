@@ -15,6 +15,7 @@
 ##' @param gind id name you want use to extract for each data.frame (set if userowname=F)
 ##' @param sep separate for new colnames
 ##' @export
+##' @author Kai Guo
 ##' @examples
 ##' \dontrun{
 ##' A <- sample(1:100, 40, replace = FALSE);
