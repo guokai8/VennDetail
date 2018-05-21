@@ -9,7 +9,7 @@
 ##' @importFrom magrittr %>%
 ##' @importFrom purrr reduce
 ##' @param object venn object
-##' @param group group you want used
+##' @param group which group you want extracted(default use all group)
 ##' @param rlist list of detail dataframe with all information
 ##' @param userowname use rowname to join dataframe or not
 ##' @param gind id name you want use to extract for each data.frame (set if userowname=F)
@@ -29,6 +29,9 @@
 ##' }
 setMethod("getFeature",signature = (object="venn"),function(object,group,rlist,userowname=TRUE,gind=NULL,sep="_",...){
   dd<-object@result
+  if(is.null(group)){
+    group=names(object@detail))
+    }
   lhs<-dd%>%filter(Group%in%group)
   lhs$Detail<-as.character(lhs$Detail)
   if(is.null(names(rlist))){
