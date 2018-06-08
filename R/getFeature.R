@@ -30,7 +30,7 @@
 setMethod("getFeature",signature = (object="venn"),function(object,group,rlist,userowname=TRUE,gind=NULL,sep="_",...){
   dd<-object@result
   if(is.null(group)){
-    group=names(object@detail))
+    group=names(object@detail)
     }
   lhs<-dd%>%filter(Group%in%group)
   lhs$Detail<-as.character(lhs$Detail)
