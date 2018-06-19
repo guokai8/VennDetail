@@ -29,9 +29,9 @@
 ##' }
 setMethod("getFeature",signature = (object="venn"),function(object,group,rlist,userowname=TRUE,gind=NULL,sep="_",...){
   dd<-object@result
-  if(is.null(group)){
-    group=names(object@detail)
-    }
+  if(missing(group)){
+    group=unique(dd$Group)
+  }
   lhs<-dd%>%filter(Group%in%group)
   lhs$Detail<-as.character(lhs$Detail)
   if(is.null(names(rlist))){
