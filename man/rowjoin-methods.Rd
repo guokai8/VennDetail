@@ -6,7 +6,7 @@
 \alias{rowjoin,data.frame,data.frame-method}
 \title{join data.frame based on rownames}
 \usage{
-rowjoin(x, y, fun, ...)
+rowjoin(x, y, ...)
 
 \S4method{rowjoin}{data.frame,data.frame}(x, y, fun = "full_join")
 }
@@ -30,5 +30,7 @@ dataframe with join results
 rowjoin generic
 }
 \author{
+Kai Guo
+
 Kai Guo
 }

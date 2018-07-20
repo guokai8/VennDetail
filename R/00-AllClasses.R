@@ -13,6 +13,7 @@
 ##' @keywords classes
 setClass("venn",
          representation = representation(
+           raw="vector",
            GroupNames="vector",
            result="data.frame",
            detail="vector"))

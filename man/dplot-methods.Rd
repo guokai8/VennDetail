@@ -6,16 +6,12 @@
 \alias{dplot}
 \title{detail plot}
 \usage{
-dplot(object, ...)
+dplot(object, order = FALSE, ...)
 
 \S4method{dplot}{venn}(object, order = FALSE, textsize = 5, ...)
 }
 \arguments{
 \item{object}{venn object}
-
-\item{order}{order the barplot or not}
-
-\item{textsize}{text size of the number}
 }
 \value{
 plot

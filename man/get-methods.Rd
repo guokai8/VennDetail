@@ -6,14 +6,14 @@
 \alias{get}
 \title{get detail}
 \usage{
-get(object, ...)
+get(object, group, ...)
 
 \S4method{get}{venn}(object, group, ...)
 }
 \arguments{
 \item{object}{venn object}
 
-\item{group}{extract group name}
+\item{group}{group you want extract}
 }
 \value{
 return dataframe and print the header of dataframe

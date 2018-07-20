@@ -59,3 +59,15 @@ setGeneric("rowjoin",function(x,y,...){
 setGeneric("getFeature",function(object,group, rlist, userowname=TRUE,gind=NULL,sep="_",...){
   standardGeneric("getFeature")
 })
+##' vennpie generic
+##'
+##' @name vennpie
+##' @rdname vennpie-methods
+##' @title pie plot show shared and unique part
+##' @return plot
+##' @export
+##' @author Kai Guo
+setGeneric("vennpie",function(object,...){
+  standardGeneric("vennpie")
+})
+

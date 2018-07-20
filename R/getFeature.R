@@ -7,15 +7,13 @@
 ##' @importFrom dplyr right_join
 ##' @importFrom tibble rownames_to_column
 ##' @importFrom magrittr %>%
-##' @importFrom purrr reduce
 ##' @param object venn object
-##' @param group which group you want extracted(default use all group)
+##' @param group group you want used
 ##' @param rlist list of detail dataframe with all information
 ##' @param userowname use rowname to join dataframe or not
 ##' @param gind id name you want use to extract for each data.frame (set if userowname=F)
 ##' @param sep separate for new colnames
 ##' @export
-##' @author Kai Guo
 ##' @examples
 ##' \dontrun{
 ##' A <- sample(1:100, 40, replace = FALSE);

@@ -21,10 +21,12 @@
 ##' }
 setMethod("dplot",signature = (object="venn"),function(object,order=FALSE,textsize=5,...){
   df<-data.frame(Group=names(object@detail),Detail=object@detail)
+  color=setcolor(length(object@detail))
+  names(color)=names(object@detail)
   if(order==TRUE){
   df$Group<-factor(df$Group, levels = df$Group[order(df$Detail)])
   }
-  p<-ggplot(df,aes(Group,Detail,fill=Group))+geom_bar(stat="identity")+theme_light(base_size = 12)+theme(axis.text.x=element_text(angle=90))+
+  p<-ggplot(df,aes(Group,Detail,fill=Group))+geom_bar(stat="identity")+scale_fill_manual(values=color)+theme_light(base_size = 12)+theme(axis.text.x=element_text(angle=90))+
   ggplot2::geom_text(aes(label=Detail),vjust=-0.3,size=textsize)+ggplot2::ylim(0,max(df$Detail)+1)
   p
 })

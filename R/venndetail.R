@@ -3,8 +3,10 @@
 ##' @rdname venndetail-methods
 ##' @title venn detail information
 ##' @importFrom VennDiagram venn.diagram
+##' @importFrom grid grid.draw
 ##' @param x list of variables with group names
 ##' @param plot whether plot the venndiagram plot or not
+##' @param ven choose to use venn.diagram or not
 ##' @inheritParams VennDiagram::venn.diagram
 ##' @export
 ##' @author Kai Guo
@@ -15,12 +17,16 @@
 ##' C <- sample(1:100, 40, replace = FALSE);
 ##' res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
 ##' }
-venndetail<-function(x,plot=TRUE,filename=NULL,col="black",mycol=c("dodgerblue", "goldenrod1", "darkorange1", "seagreen3", "orchid3"),
-                    cat.cex=1.5,alpha=0.5,cex=2,cat.fontface="bold",margin=0.05,...){
+venndetail<-function(x,plot=TRUE,filename=NULL,ven=TRUE,col="black",sep="_",mycol=c("dodgerblue", "goldenrod1", "darkorange1", "seagreen3", "orchid3"),
+                    cat.cex=1.5,alpha=0.5,cex=2,cat.fontface="bold",margin=0.05,abbr=FALSE,minlength=3,abbr.method="both.sides",...){
   if(is.null(names(x))){
     names(x)<-paste("Group",1:length(x))
   }
+  if(abbr==TRUE){
+    names(x)=abbreviate(names(x),minlength = minlength,method = abbr.method)
+  }
   GroupNames=names(x)
+  raw=unlist(lapply(x,length))
   if(length(x)==1){
     cat("Only one sets find!\n")
     return(NULL)
@@ -47,9 +53,9 @@ venndetail<-function(x,plot=TRUE,filename=NULL,col="black",mycol=c("dodgerblue",
     nA=Reduce(setdiff,list(A,B,C))
     nB=Reduce(setdiff,list(B,C,A))
     nC=Reduce(setdiff,list(C,A,B))
-    ggname=c("Shared",paste(names(x)[1:2],sep="",collapse = "_"),
-             paste(names(x)[c(1,3)],sep="",collapse = "_"),
-             paste(names(x)[2:3],sep="",collapse = "_"),names(x))
+    ggname=c("Shared",paste(names(x)[1:2],sep="",collapse = sep),
+             paste(names(x)[c(1,3)],sep="",collapse = sep),
+             paste(names(x)[2:3],sep="",collapse = sep),names(x))
     detail<-unlist(lapply(list(nABC,nAB,nAC,nBC,nA,nB,nC), function(x)length(x)))
     names(detail)<-ggname
     gname=rep(ggname,times=detail)
@@ -75,16 +81,16 @@ venndetail<-function(x,plot=TRUE,filename=NULL,col="black",mycol=c("dodgerblue",
     nB=Reduce(setdiff,list(B,C,D,A))
     nC=Reduce(setdiff,list(C,D,A,B))
     nD=Reduce(setdiff,list(D,A,B,C))
-    ggname=c("Shared",paste(names(x)[1:3],sep="",collapse = "_"),
-             paste(names(x)[c(1,2,4)],sep="",collapse = "_"),
-             paste(names(x)[c(1,3,4)],sep="",collapse = "_"),
-             paste(names(x)[2:4],sep="",collapse = "_"),
-             paste(names(x)[1:2],sep="",collapse = "_"),
-             paste(names(x)[c(1,3)],sep="",collapse = "_"),
-             paste(names(x)[c(1,4)],sep="",collapse = "_"),
-             paste(names(x)[2:3],sep="",collapse = "_"),
-             paste(names(x)[c(2,4)],sep="",collapse = "_"),
-             paste(names(x)[3:4],sep="",collapse = "_"),
+    ggname=c("Shared",paste(names(x)[1:3],sep="",collapse = sep),
+             paste(names(x)[c(1,2,4)],sep="",collapse = sep),
+             paste(names(x)[c(1,3,4)],sep="",collapse = sep),
+             paste(names(x)[2:4],sep="",collapse = sep),
+             paste(names(x)[1:2],sep="",collapse = sep),
+             paste(names(x)[c(1,3)],sep="",collapse = sep),
+             paste(names(x)[c(1,4)],sep="",collapse = sep),
+             paste(names(x)[2:3],sep="",collapse = sep),
+             paste(names(x)[c(2,4)],sep="",collapse = sep),
+             paste(names(x)[3:4],sep="",collapse = sep),
              names(x))
     detail<-unlist(lapply(list(nABCD,nABC,nABD,nACD,nBCD,nAB,nAC,nAD,nBC,nBD,nCD,nA,nB,nC,nD), function(x)length(x)))
     names(detail)<-ggname
@@ -128,31 +134,31 @@ venndetail<-function(x,plot=TRUE,filename=NULL,col="black",mycol=c("dodgerblue",
     nC=Reduce(setdiff,list(C,D,E,A,B))
     nD=Reduce(setdiff,list(D,E,A,B,C))
     nE=Reduce(setdiff,list(E,A,B,C,D))
-    ggname=c("Shared",paste(names(x)[1:4],sep="",collapse = "_"),
-             paste(names(x)[c(1,2,3,5)],sep="",collapse = "_"),
-             paste(names(x)[c(1,2,4,5)],sep="",collapse = "_"),
-             paste(names(x)[c(1,3,4,5)],sep="",collapse = "_"),
-             paste(names(x)[2:5],sep="",collapse = "_"),
-             paste(names(x)[1:3],sep="",collapse = "_"),
-             paste(names(x)[c(1,2,4)],sep="",collapse = "_"),
-             paste(names(x)[c(1,2,5)],sep="",collapse = "_"),
-             paste(names(x)[c(1,3,4)],sep="",collapse = "_"),
-             paste(names(x)[c(1,4,5)],sep="",collapse = "_"),
-             paste(names(x)[c(1,3,5)],sep="",collapse = "_"),
-             paste(names(x)[c(2,3,4)],sep="",collapse = "_"),
-             paste(names(x)[c(2,3,5)],sep="",collapse = "_"),
-             paste(names(x)[c(2,4,5)],sep="",collapse = "_"),
-             paste(names(x)[3:5],sep="",collapse = "_"),
-             paste(names(x)[c(1,2)],sep="",collapse = "_"),
-             paste(names(x)[c(1,3)],sep="",collapse = "_"),
-             paste(names(x)[c(1,4)],sep="",collapse = "_"),
-             paste(names(x)[c(1,5)],sep="",collapse = "_"),
-             paste(names(x)[c(2,3)],sep="",collapse = "_"),
-             paste(names(x)[c(2,4)],sep="",collapse = "_"),
-             paste(names(x)[c(2,5)],sep="",collapse = "_"),
-             paste(names(x)[c(3,4)],sep="",collapse = "_"),
-             paste(names(x)[c(3,5)],sep="",collapse = "_"),
-             paste(names(x)[c(4,5)],sep="",collapse = "_"),
+    ggname=c("Shared",paste(names(x)[1:4],sep="",collapse = sep),
+             paste(names(x)[c(1,2,3,5)],sep="",collapse = sep),
+             paste(names(x)[c(1,2,4,5)],sep="",collapse = sep),
+             paste(names(x)[c(1,3,4,5)],sep="",collapse = sep),
+             paste(names(x)[2:5],sep="",collapse = sep),
+             paste(names(x)[1:3],sep="",collapse = sep),
+             paste(names(x)[c(1,2,4)],sep="",collapse = sep),
+             paste(names(x)[c(1,2,5)],sep="",collapse = sep),
+             paste(names(x)[c(1,3,4)],sep="",collapse = sep),
+             paste(names(x)[c(1,4,5)],sep="",collapse = sep),
+             paste(names(x)[c(1,3,5)],sep="",collapse = sep),
+             paste(names(x)[c(2,3,4)],sep="",collapse = sep),
+             paste(names(x)[c(2,3,5)],sep="",collapse = sep),
+             paste(names(x)[c(2,4,5)],sep="",collapse = sep),
+             paste(names(x)[3:5],sep="",collapse = sep),
+             paste(names(x)[c(1,2)],sep="",collapse = sep),
+             paste(names(x)[c(1,3)],sep="",collapse = sep),
+             paste(names(x)[c(1,4)],sep="",collapse = sep),
+             paste(names(x)[c(1,5)],sep="",collapse = sep),
+             paste(names(x)[c(2,3)],sep="",collapse = sep),
+             paste(names(x)[c(2,4)],sep="",collapse = sep),
+             paste(names(x)[c(2,5)],sep="",collapse = sep),
+             paste(names(x)[c(3,4)],sep="",collapse = sep),
+             paste(names(x)[c(3,5)],sep="",collapse = sep),
+             paste(names(x)[c(4,5)],sep="",collapse = sep),
              names(x))
     detail<-unlist(lapply(list(nABCDE,nABCD,nABCE,nABDE,nACDE,nBCDE,nABC,nABD,nABE,nACD,nADE,
                                nACE,nBCD,nBCE,nBDE,nCDE,nAB,nAC,nAD,nAE,nBC,nBD,nBE,nCD,nCE,
@@ -162,12 +168,124 @@ venndetail<-function(x,plot=TRUE,filename=NULL,col="black",mycol=c("dodgerblue",
     names(detail)<-ggname
     res=data.frame(Group=gname,Detail=c(nABCDE,nABCD,nABCE,nABDE,nACDE,nBCDE,nABC,nABD,nABE,nACD,nADE,nACE,nBCD,nBCE,nBDE,nCDE,nAB,nAC,nAD,nAE,nBC,nBD,nBE,nCD,nCE,nDE,nA,nB,nC,nD,nE))
   }
+  else if(length(x)==6){
+    A=x[[1]]
+    B=x[[2]]
+    C=x[[3]]
+    D=x[[4]]
+    E=x[[5]]
+    F=x[[6]]
+    nABCDEF=Reduce(intersect,x)
+    nABCDE=setdiff(Reduce(intersect,list(A,B,C,D,E)),nABCDEF)
+    nABCDF=setdiff(Reduce(intersect,list(A,B,C,D,F)),nABCDEF)
+    nABCEF=setdiff(Reduce(intersect,list(A,B,C,E,F)),nABCDEF)
+    nABDEF=setdiff(Reduce(intersect,list(A,B,D,E,F)),nABCDEF)
+    nACDEF=setdiff(Reduce(intersect,list(A,C,D,E,F)),nABCDEF)
+    nBCDEF=setdiff(Reduce(intersect,list(B,C,D,E,F)),nABCDEF)
+    nA=Reduce(setdiff,list(A,B,C,D,E,F))
+    nB=Reduce(setdiff,list(B,C,D,E,F,A))
+    nC=Reduce(setdiff,list(C,D,E,F,A,B))
+    nD=Reduce(setdiff,list(D,E,F,A,B,C))
+    nE=Reduce(setdiff,list(E,F,A,B,C,D))
+    nF=Reduce(setdiff,list(F,A,B,C,D,E))
+    ggname=c("Shared",paste(names(x)[1:5],sep="",collapse = sep),
+             paste(names(x)[c(1:4,6)],sep="",collapse = sep),
+             paste(names(x)[c(1,2,3,5,6)],sep="",collapse = sep),
+             paste(names(x)[c(1,2,4,5,6)],sep="",collapse = sep),
+             paste(names(x)[c(1,3:6)],sep="",collapse = sep),
+             paste(names(x)[2:6],sep="",collapse = sep),
+             names(x))
+    detail<-unlist(lapply(list(nABCDEF,nABCDE,nABCDF,nABCEF,nABDEF,nACDEF,nBCDEF,
+                               nA,nB,nC,nD,nE,nF), function(x)length(x)))
+    gname=rep(ggname,times=detail)
+    names(detail)<-ggname
+    res=data.frame(Group=gname,Detail=c(nABCDEF,nABCDE,nABCDF,nABCEF,nABDEF,nACDEF,nBCDEF,
+                                        nA,nB,nC,nD,nE,nF))
+  }
+  else if(length(x)==7){
+    A=x[[1]]
+    B=x[[2]]
+    C=x[[3]]
+    D=x[[4]]
+    E=x[[5]]
+    F=x[[6]]
+    G=x[[7]]
+    nABCDEFG=Reduce(intersect,x)
+    nABCDEF=setdiff(Reduce(intersect,list(A,B,C,D,E,F)),nABCDEFG)
+    nABCDEG=setdiff(Reduce(intersect,list(A,B,C,D,E,G)),nABCDEFG)
+    nABCDFG=setdiff(Reduce(intersect,list(A,B,C,D,F,G)),nABCDEFG)
+    nABCEFG=setdiff(Reduce(intersect,list(A,B,C,E,F,G)),nABCDEFG)
+    nABDEFG=setdiff(Reduce(intersect,list(A,B,D,E,F,G)),nABCDEFG)
+    nACDEFG=setdiff(Reduce(intersect,list(A,C,D,E,F,G)),nABCDEFG)
+    nBCDEFG=setdiff(Reduce(intersect,list(A,B,C,D,F,G)),nABCDEFG)
+    nA=Reduce(setdiff,list(A,B,C,D,E,F,G))
+    nB=Reduce(setdiff,list(B,C,D,E,F,G,A))
+    nC=Reduce(setdiff,list(C,D,E,F,G,A,B))
+    nD=Reduce(setdiff,list(D,E,F,G,A,B,C))
+    nE=Reduce(setdiff,list(E,F,G,A,B,C,D))
+    nF=Reduce(setdiff,list(F,G,A,B,C,D,E))
+    nG=Reduce(setdiff,list(G,A,B,C,D,E,F))
+    ggname=c("Shared",paste(names(x)[1:6],sep="",collapse = sep),
+             paste(names(x)[c(1:5,7)],sep="",collapse = sep),
+             paste(names(x)[c(1:4,6,7)],sep="",collapse = sep),
+             paste(names(x)[c(1:3,5:7)],sep="",collapse = sep),
+             paste(names(x)[c(1,2,4:7)],sep="",collapse = sep),
+             paste(names(x)[c(1,3:7)],sep="",collapse = sep),
+             paste(names(x)[2:7],sep="",collapse = sep),
+             names(x))
+    detail<-unlist(lapply(list(nABCDEFG,nABCDEF,nABCDEG,nABCDFG,nABCEFG,nABDEFG,nACDEFG,nBCDEFG,nA,nB,nC,nD,nE,nF,nG),function(x)length(x)))
+    gname=rep(ggname,times=detail)
+    names(detail)<-ggname
+    res=data.frame(Group=gname,Detail=c(nABCDEFG,nABCDEF,nABCDEG,nABCDFG,nABCEFG,nABDEFG,nACDEFG,nBCDEFG,nA,nB,nC,nD,nE,nF,nG))
+  }
+  else if(length(x)==8){
+    A=x[[1]]
+    B=x[[2]]
+    C=x[[3]]
+    D=x[[4]]
+    E=x[[5]]
+    F=x[[6]]
+    G=x[[7]]
+    H=x[[8]]
+    nABCDEFGH=Reduce(intersect,x)
+    nABCDEFG=setdiff(Reduce(intersect,list(A,B,C,D,E,F,G)),nABCDEFGH)
+    nABCDEFH=setdiff(Reduce(intersect,list(A,B,C,D,E,F,H)),nABCDEFGH)
+    nABCDEGH=setdiff(Reduce(intersect,list(A,B,C,D,E,G,H)),nABCDEFGH)
+    nABCDFGH=setdiff(Reduce(intersect,list(A,B,C,D,F,G,H)),nABCDEFGH)
+    nABCEFGH=setdiff(Reduce(intersect,list(A,B,C,E,F,G,H)),nABCDEFGH)
+    nABDEFGH=setdiff(Reduce(intersect,list(A,B,D,E,F,G,H)),nABCDEFGH)
+    nACDEFGH=setdiff(Reduce(intersect,list(A,C,D,E,F,G,H)),nABCDEFGH)
+    nBCDEFGH=setdiff(Reduce(intersect,list(B,C,D,E,F,G,H)),nABCDEFGH)
+    nA=Reduce(setdiff,list(A,B,C,D,E,F,G,H))
+    nB=Reduce(setdiff,list(B,C,D,E,F,G,H,A))
+    nC=Reduce(setdiff,list(C,D,E,F,G,H,A,B))
+    nD=Reduce(setdiff,list(D,E,F,G,H,A,B,C))
+    nE=Reduce(setdiff,list(E,F,G,H,A,B,C,D))
+    nF=Reduce(setdiff,list(F,G,H,A,B,C,D,E))
+    nG=Reduce(setdiff,list(G,H,A,B,C,D,E,F))
+    nH=Reduce(setdiff,list(H,A,B,C,D,E,F,H))
+    ggname=c("Shared",paste(names(x)[1:7],sep="",collapse = sep),
+             paste(names(x)[c(1:6,8)],sep="",collapse = sep),
+             paste(names(x)[c(1:5,7,8)],sep="",collapse = sep),
+             paste(names(x)[c(1:4,6:8)],sep="",collapse = sep),
+             paste(names(x)[c(1:3,5:8)],sep="",collapse = sep),
+             paste(names(x)[c(1,2,4:8)],sep="",collapse = sep),
+             paste(names(x)[c(1,3:8)],sep="",collapse = sep),
+             paste(names(x)[2:8],sep="",collapse = sep),
+             names(x))
+    detail<-unlist(lapply(list(nABCDEFGH,nABCDEFG,nABCDEFH,nABCDEGH,nABCDFGH,nABCEFGH,nABDEFGH,nACDEFGH,nBCDEFGH,nA,nB,nC,nD,nE,nF,nG,nH),function(x)length(x)))
+    gname=rep(ggname,times=detail)
+    names(detail)<-ggname
+    res=data.frame(Group=gname,Detail=c(nABCDEFGH,nABCDEFG,nABCDEFH,nABCDEGH,nABCDFGH,nABCEFGH,nABDEFGH,nACDEFGH,nBCDEFGH,nA,nB,nC,nD,nE,nF,nG,nH))
+  }
   result<-new("venn",
+              raw=raw,
               GroupNames=GroupNames,
               result=res,
               detail=detail)
   if(plot==TRUE){
-    require(VennDiagram)
+    if(ven==TRUE&&length(x)<=5){
+    #require(VennDiagram)
     n=length(x)
     p<-venn.diagram(x,filename = filename,
                   col = col,
@@ -181,6 +299,16 @@ venndetail<-function(x,plot=TRUE,filename=NULL,col="black",mycol=c("dodgerblue",
                   #cat.dist=cat.dist,
                   margin = margin)
    grid.draw(p)
+   rfile=list.files(pattern="*.log")
+   file.remove(rfile)
+    }else{
+   print(vennpie(result,sep=sep))
+    }
   }
   return(result)
 }
+
+
+
+
+

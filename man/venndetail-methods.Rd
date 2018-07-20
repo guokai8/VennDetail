@@ -4,10 +4,10 @@
 \alias{venndetail}
 \title{venn detail information}
 \usage{
-venndetail(x, plot = TRUE, filename = NULL, col = "black",
-  mycol = c("dodgerblue", "goldenrod1", "darkorange1", "seagreen3",
-  "orchid3"), cat.cex = 1.5, alpha = 0.5, cex = 2,
-  cat.fontface = "bold", margin = 0.05)
+venndetail(x, plot = TRUE, filename = NULL, ven = TRUE, col = "black",
+  sep = "_", mycol = c("dodgerblue", "goldenrod1", "darkorange1",
+  "seagreen3", "orchid3"), cat.cex = 1.5, alpha = 0.5, cex = 2,
+  cat.fontface = "bold", margin = 0.05, ...)
 }
 \arguments{
 \item{x}{list of variables with group names}
@@ -15,6 +15,10 @@ venndetail(x, plot = TRUE, filename = NULL, col = "black",
 \item{plot}{whether plot the venndiagram plot or not}
 
 \item{filename}{Filename for image output, or if NULL returns the grid object itself}
+
+\item{ven}{choose to use venn.diagram or not}
+
+\item{...}{A series of graphical parameters tweaking the plot. See below for details}
 }
 \description{
 Extract shared and unique sets

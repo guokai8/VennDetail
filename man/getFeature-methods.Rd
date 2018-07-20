@@ -6,7 +6,8 @@
 \alias{getFeature}
 \title{get feature based on venn results}
 \usage{
-getFeature(object, group, rlist, userowname, gind, sep, ...)
+getFeature(object, group, rlist, userowname = TRUE, gind = NULL,
+  sep = "_", ...)
 
 \S4method{getFeature}{venn}(object, group, rlist, userowname = TRUE,
   gind = NULL, sep = "_", ...)
