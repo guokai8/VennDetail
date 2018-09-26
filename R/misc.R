@@ -53,6 +53,21 @@ detail.venn<-function(x){
   rownames(x)=as.character(x[,gind])
   return(x[,-gind,drop=F])
 }
+##' @method merge venn object
+##' @title merge two or more venn object by group name
+##' @rdname merge-method
+##' @importFrom purrr flatten
+##' @param object list of venn object
+##' @export
+##' @author Kai Guo
+setMethod("merge",signature = (object="list"),function(object){
+  input=lapply(object, function(x)slot(x,"input"))
+  input=flatten(input)
+  input=input[unique(names(input))]
+  ven=venndetail(input,plot=F)
+  return(ven)
+})
+
 ##' @method rowname join
 ##' @title join by rownames
 ##' @rdname rowjoin-methods

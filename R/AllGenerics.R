@@ -59,7 +59,7 @@ setGeneric("rowjoin",function(x,y,...){
 setGeneric("getFeature",function(object,group, rlist, userowname=TRUE,gind=NULL,sep="_",...){
   standardGeneric("getFeature")
 })
-##' vennpie generic
+##' Make vennpie figure
 ##'
 ##' @name vennpie
 ##' @rdname vennpie-methods
@@ -71,3 +71,14 @@ setGeneric("vennpie",function(object,...){
   standardGeneric("vennpie")
 })
 
+##' Merge two or more venn object by group name
+##'
+##' @name merge
+##' @rdname merge-methods
+##' @title merge two or more venn object
+##' @param object list of venn object
+##' @return venn object
+##' @author Kai Guo
+setGeneric("merge",function(object,...){
+  standardGeneric("merge")
+})

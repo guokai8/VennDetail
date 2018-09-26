@@ -377,7 +377,9 @@ venndetail<-function(x,plot=TRUE,filename=NULL,ven=TRUE,col="black",sep="_",myco
     res=data.frame(Group=gname,Detail=c(nABCDEFGH,nABCDEFG,nABCDEFH,nABCDEGH,nABCDFGH,nABCEFGH,nABDEFGH,nACDEFGH,nBCDEFGH,nA,nB,nC,nD,nE,nF,nG,nH))
   }
   result<-new("venn",
+              input=x,
               raw=raw,
+              sep=sep,
               GroupNames=GroupNames,
               result=res,
               detail=detail)
