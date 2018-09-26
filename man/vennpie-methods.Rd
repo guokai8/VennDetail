@@ -3,14 +3,14 @@
 \docType{methods}
 \name{vennpie}
 \alias{vennpie}
-\alias{vennpie}
 \title{pie plot show shared and unique part}
 \usage{
 vennpie(object, ...)
 
 \S4method{vennpie}{venn}(object, group = NULL, color = NULL,
-  revcolor = "lightgrey", any = NULL, show.number = TRUE, show.x = TRUE,
-  sep = "_", log = FALSE, base = NULL, percentage = FALSE, ...)
+  revcolor = "lightgrey", any = NULL, show.number = TRUE,
+  show.x = TRUE, sep = "_", log = FALSE, base = NULL,
+  percentage = FALSE, ...)
 }
 \arguments{
 \item{object}{venn object}
@@ -35,7 +35,7 @@ vennpie(object, ...)
 plot
 }
 \description{
-vennpie generic
+Make vennpie figure
 }
 \examples{
 \dontrun{

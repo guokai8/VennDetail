@@ -3,7 +3,6 @@
 \docType{methods}
 \name{getFeature}
 \alias{getFeature}
-\alias{getFeature}
 \title{get feature based on venn results}
 \usage{
 getFeature(object, group, rlist, userowname = TRUE, gind = NULL,

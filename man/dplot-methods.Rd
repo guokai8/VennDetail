@@ -3,7 +3,6 @@
 \docType{methods}
 \name{dplot}
 \alias{dplot}
-\alias{dplot}
 \title{detail plot}
 \usage{
 dplot(object, order = FALSE, ...)

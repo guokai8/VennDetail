@@ -10,3 +10,6 @@
 \arguments{
 \item{object}{venn object}
 }
+\description{
+show detail of venn object
+}

@@ -4,10 +4,11 @@
 \alias{venndetail}
 \title{venn detail information}
 \usage{
-venndetail(x, plot = TRUE, filename = NULL, ven = TRUE, col = "black",
-  sep = "_", mycol = c("dodgerblue", "goldenrod1", "darkorange1",
-  "seagreen3", "orchid3"), cat.cex = 1.5, alpha = 0.5, cex = 2,
-  cat.fontface = "bold", margin = 0.05, ...)
+venndetail(x, plot = TRUE, filename = NULL, ven = TRUE,
+  col = "black", sep = "_", mycol = c("dodgerblue", "goldenrod1",
+  "darkorange1", "seagreen3", "orchid3"), cat.cex = 1.5, alpha = 0.5,
+  cex = 2, cat.fontface = "bold", margin = 0.05, abbr = FALSE,
+  minlength = 3, abbr.method = "both.sides", ...)
 }
 \arguments{
 \item{x}{list of variables with group names}

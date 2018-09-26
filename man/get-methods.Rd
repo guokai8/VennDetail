@@ -3,7 +3,6 @@
 \docType{methods}
 \name{get}
 \alias{get}
-\alias{get}
 \title{get detail}
 \usage{
 get(object, group, ...)

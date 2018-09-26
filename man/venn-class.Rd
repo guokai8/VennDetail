@@ -15,6 +15,12 @@ This class include all information from venndetail
 \section{Slots}{
 
 \describe{
+\item{\code{input}}{orgianl input}
+
+\item{\code{raw}}{summary of the input}
+
+\item{\code{sep}}{separate delim}
+
 \item{\code{GroupNames}}{group names input}
 
 \item{\code{result}}{intersect and difference for groups}

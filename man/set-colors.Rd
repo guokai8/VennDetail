@@ -13,6 +13,9 @@ setcolor(x)
 \value{
 color palette
 }
+\description{
+set color with given a vector
+}
 \author{
 Kai Guo
 }
