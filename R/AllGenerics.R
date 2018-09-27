@@ -77,8 +77,10 @@ setGeneric("vennpie",function(object,...){
 ##' @rdname merge-methods
 ##' @title merge two or more venn object
 ##' @param object list of venn object
+##' @param ingore.case ingore case of group name
+##' @param useupper use uppercase for all group name
 ##' @return venn object
 ##' @author Kai Guo
-setGeneric("merge",function(object,...){
+setGeneric("merge",function(object,ingore.case=F,useupper=T...){
   standardGeneric("merge")
 })

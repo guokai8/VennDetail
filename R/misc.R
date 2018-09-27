@@ -58,14 +58,64 @@ detail.venn<-function(x){
 ##' @rdname merge-method
 ##' @importFrom purrr flatten
 ##' @param object list of venn object
+##' @param ingore.case ingore case of group name
+##' @param useupper use uppercase for all group name
 ##' @export
 ##' @author Kai Guo
-setMethod("merge",signature = (object="list"),function(object){
+setMethod("merge",signature = (object="list"),function(object,ingore.case=F,useupper=T){
   input=lapply(object, function(x)slot(x,"input"))
   input=flatten(input)
-  input=input[unique(names(input))]
+  nam=names(input)
+  if(ingore.case==TRUE){
+    if(useupper==TRUE){
+      nam=toupper(nam)
+      names(input)<-nam
+    }else{
+      nam=tolower(nam)
+      names(input)<-nam
+    }
+  }
+  input=input[unique(nam)]
   ven=venndetail(input,plot=F)
   return(ven)
+})
+##'
+setAs(from = "data.frame",to="venn",def=function(from){
+  Group=from$Group
+  Detail=from$Detail
+  GroupNames=vector()
+  raw=vector()
+  input=data.frame()
+  sep=character()
+  detail=as.vector(table(from$Group))
+  names(detail)=names(table(Group))
+  result=data.frame(Group,Detail)
+  new("venn",
+      input=input,
+      raw=raw,
+      sep=sep,
+      GroupNames=GroupNames,
+      result=result,
+      detail=detail)
+})
+##'
+setAs(from = "list",to="venn",def=function(from){
+  Group=from$Group
+  Detail=from$Detail
+  GroupNames=from$GroupName
+  raw=from$raw
+  input=data.frame()
+  sep=character()
+  detail=as.vector(table(Group))
+  names(detail)=names(table(Group))
+  result=data.frame(Group,Detail)
+  new("venn",
+      input=input,
+      raw=raw,
+      sep=sep,
+      GroupNames=GroupNames,
+      result=result,
+      detail=detail)
 })
 
 ##' @method rowname join
