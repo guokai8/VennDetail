@@ -4,10 +4,14 @@
 \alias{merge}
 \title{merge two or more venn object}
 \usage{
-merge(object, ...)
+merge(object, ingore.case = F, useupper = T...)
 }
 \arguments{
 \item{object}{list of venn object}
+
+\item{ingore.case}{ingore case of group name}
+
+\item{useupper}{use uppercase for all group name}
 }
 \value{
 venn object
