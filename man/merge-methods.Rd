@@ -4,7 +4,7 @@
 \alias{merge}
 \title{merge two or more venn object}
 \usage{
-merge(object, ingore.case = F, useupper = T...)
+merge(object, ingore.case = F, useupper = T, plot = FALSE, ...)
 }
 \arguments{
 \item{object}{list of venn object}
@@ -12,6 +12,8 @@ merge(object, ingore.case = F, useupper = T...)
 \item{ingore.case}{ingore case of group name}
 
 \item{useupper}{use uppercase for all group name}
+
+\item{plot}{plot figure or not}
 }
 \value{
 venn object
