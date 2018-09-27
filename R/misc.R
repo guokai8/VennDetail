@@ -51,7 +51,12 @@ detail.venn<-function(x){
 }
 .setrownames<-function(x,gind){
   rownames(x)=as.character(x[,gind])
-  return(x[,-gind,drop=F])
+  if(is.character(gind)){
+    ind=which(colnames(x)==gind)
+  }else{
+    ind=gind
+  }
+  return(x[,-ind,drop=F])
 }
 ##' @method merge venn object
 ##' @title merge two or more venn object by group name

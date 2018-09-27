@@ -32,17 +32,17 @@ setMethod("getFeature",signature = (object="venn"),function(object,group,rlist,u
   }
   lhs<-dd%>%filter(Group%in%group)
   lhs$Detail<-as.character(lhs$Detail)
-  if(is.null(names(rlist))){
-    names(rlist)<-paste("Group",1:length(rlist),sep="")
-  }
-  name<-names(rlist)
-  rlist<-Map(function(x,y).pasten(x,y,sep=sep),rlist,name)
   if(userowname==FALSE){
     if(is.null(gind)){
       gind=rep(1,length(rlist))
     }
     rlist=Map(function(x,y).setrownames(x,y),rlist,gind)
   }
+  if(is.null(names(rlist))){
+    names(rlist)<-paste("Group",1:length(rlist),sep="")
+  }
+  name<-names(rlist)
+  rlist<-Map(function(x,y).pasten(x,y,sep=sep),rlist,name)
   rlist<-lapply(rlist, function(x).add_colnames(x))
   rr<-Reduce(function(x,y)rowjoin(x,y,fun="full_join"),rlist)
   rhs<-left_join(lhs,rr,by=c("Detail"="rown"))
