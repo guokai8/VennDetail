@@ -60,9 +60,10 @@ detail.venn<-function(x){
 ##' @param object list of venn object
 ##' @param ingore.case ingore case of group name
 ##' @param useupper use uppercase for all group name
+##' @param plot plot figure or not
 ##' @export
 ##' @author Kai Guo
-setMethod("merge",signature = (object="list"),function(object,ingore.case=F,useupper=T){
+setMethod("merge",signature = (object="list"),function(object,ingore.case=F,useupper=T,plot=FALSE,...){
   input=lapply(object, function(x)slot(x,"input"))
   input=flatten(input)
   nam=names(input)
@@ -76,7 +77,7 @@ setMethod("merge",signature = (object="list"),function(object,ingore.case=F,useu
     }
   }
   input=input[unique(nam)]
-  ven=venndetail(input,plot=F)
+  ven=venndetail(input,plot=plot)
   return(ven)
 })
 ##'

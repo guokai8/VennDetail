@@ -79,8 +79,9 @@ setGeneric("vennpie",function(object,...){
 ##' @param object list of venn object
 ##' @param ingore.case ingore case of group name
 ##' @param useupper use uppercase for all group name
+##' @param plot plot figure or not
 ##' @return venn object
 ##' @author Kai Guo
-setGeneric("merge",function(object,ingore.case=F,useupper=T...){
+setGeneric("merge",function(object,ingore.case=F,useupper=T,plot=FALSE,...){
   standardGeneric("merge")
 })
