@@ -62,8 +62,16 @@ setGeneric("getFeature",function(object,group, rlist, userowname=TRUE,gind=NULL,
 ##' Make vennpie figure
 ##'
 ##' @name vennpie
-##' @rdname vennpie-methods
 ##' @title pie plot show shared and unique part
+##' @param object venn object
+##' @param group set name you want display
+##' @param color vector of color you want use for the group
+##' @param revcolor backgroup color
+##' @param show.number display the element number of the group or not
+##' @param log use log transform or not
+##' @param base log base
+##' @param sep separate for new colnames
+##' @param percentage display percentage format or not
 ##' @return plot
 ##' @export
 ##' @author Kai Guo
