@@ -60,7 +60,7 @@ setGeneric("getFeature",function(object,group, rlist, userowname=TRUE,gind=NULL,
   standardGeneric("getFeature")
 })
 ##' Make vennpie figure
-##'
+##' @rdname vennpie-methods
 ##' @name vennpie
 ##' @title pie plot show shared and unique part
 ##' @param object venn object
@@ -75,7 +75,9 @@ setGeneric("getFeature",function(object,group, rlist, userowname=TRUE,gind=NULL,
 ##' @return plot
 ##' @export
 ##' @author Kai Guo
-setGeneric("vennpie",function(object,...){
+setGeneric("vennpie",function(object,group=NULL,color=NULL,
+                              revcolor="lightgrey",any=NULL,show.number=TRUE,show.x=TRUE,
+                              sep="_",log=FALSE,base=NULL,percentage=FALSE,...){
   standardGeneric("vennpie")
 })
 
