@@ -30,6 +30,24 @@ vennpie(object, ...)
 \item{base}{log base}
 
 \item{percentage}{display percentage format or not}
+
+\item{object}{venn object}
+
+\item{group}{set name you want display}
+
+\item{color}{vector of color you want use for the group}
+
+\item{revcolor}{backgroup color}
+
+\item{show.number}{display the element number of the group or not}
+
+\item{log}{use log transform or not}
+
+\item{base}{log base}
+
+\item{sep}{separate for new colnames}
+
+\item{percentage}{display percentage format or not}
 }
 \value{
 plot

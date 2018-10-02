@@ -15,9 +15,23 @@ venndetail(x, plot = TRUE, filename = NULL, ven = TRUE,
 
 \item{plot}{whether plot the venndiagram plot or not}
 
-\item{filename}{Filename for image output, or if NULL returns the grid object itself}
+\item{filename}{output filename}
 
 \item{ven}{choose to use venn.diagram or not}
+
+\item{col}{color for the font}
+
+\item{sep}{separate delim}
+
+\item{mycol}{color for VennDiagram}
+
+\item{cat.cex}{font size for displaying}
+
+\item{cat.fontface}{font face}
+
+\item{abbr}{use abbreviate name or not}
+
+\item{minlength}{minmal length for name}
 
 \item{...}{A series of graphical parameters tweaking the plot. See below for details}
 }
