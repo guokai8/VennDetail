@@ -7,6 +7,16 @@
 ##' @param x list of variables with group names
 ##' @param plot whether plot the venndiagram plot or not
 ##' @param ven choose to use venn.diagram or not
+##' @param filename output filename
+##' @param col color for the font
+##' @param sep separate delim
+##' @param mycol color for VennDiagram
+##' @param cat.cex font size for displaying
+##' @param alpha
+##' @param cat.fontface font face
+##' @param abbr use abbreviate name or not
+##' @param minlength minmal length for name
+##' @abbr.method abbreviate method(default: both side)
 ##' @inheritParams VennDiagram::venn.diagram
 ##' @export
 ##' @author Kai Guo
