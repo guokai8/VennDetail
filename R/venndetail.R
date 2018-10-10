@@ -4,9 +4,11 @@
 ##' @title venn detail information
 ##' @importFrom VennDiagram venn.diagram
 ##' @importFrom grid grid.draw
+##' @importFrom UpSetR upset
+##' @importFrom UpSetR fromList
 ##' @param x list of variables with group names
 ##' @param plot whether plot the venndiagram plot or not
-##' @param ven choose to use venn.diagram or not
+##' @param type choose to use venn.diagram,vennpie or upsetR
 ##' @param filename output filename
 ##' @param col color for the font
 ##' @param sep separate delim
@@ -16,6 +18,7 @@
 ##' @param cat.fontface font face
 ##' @param abbr use abbreviate name or not
 ##' @param minlength minmal length for name
+##' @param text.scale text size for upsetR(ylab,yaxis,xlab,group name,xaxis,insection)
 ##' @abbr.method abbreviate method(default: both side)
 ##' @inheritParams VennDiagram::venn.diagram
 ##' @export
@@ -27,8 +30,8 @@
 ##' C <- sample(1:100, 40, replace = FALSE);
 ##' res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
 ##' }
-venndetail<-function(x,plot=TRUE,filename=NULL,ven=TRUE,col="black",sep="_",mycol=c("dodgerblue", "goldenrod1", "darkorange1", "seagreen3", "orchid3"),
-                    cat.cex=1.5,alpha=0.5,cex=2,cat.fontface="bold",margin=0.05,abbr=FALSE,minlength=3,abbr.method="both.sides",...){
+venndetail<-function(x,plot=TRUE,filename=NULL,type="venn",col="black",sep="_",mycol=c("dodgerblue", "goldenrod1", "darkorange1", "seagreen3", "orchid3"),
+                    cat.cex=1.5,alpha=0.5,cex=2,cat.fontface="bold",margin=0.05,abbr=FALSE,minlength=3,abbr.method="both.sides",text.scale=c(1.5, 1.5, 1.5, 1.5, 1.5, 1.5),...){
   if(is.null(names(x))){
     names(x)<-paste("Group",1:length(x))
   }
@@ -394,7 +397,7 @@ venndetail<-function(x,plot=TRUE,filename=NULL,ven=TRUE,col="black",sep="_",myco
               result=res,
               detail=detail)
   if(plot==TRUE){
-    if(ven==TRUE&&length(x)<=5){
+    if(type=="venn"&&length(x)<=5){
     #require(VennDiagram)
     n=length(x)
     p<-venn.diagram(x,filename = filename,
@@ -411,8 +414,16 @@ venndetail<-function(x,plot=TRUE,filename=NULL,ven=TRUE,col="black",sep="_",myco
    grid.draw(p)
    rfile=list.files(pattern="*.log")
    file.remove(rfile)
-    }else{
+    }
+    if(type=="vennpie"){
    print(vennpie(result,sep=sep))
+    }
+    if(type=="upset"){
+      if(length(x)<=5){
+       upset(fromList(x), nsets = length(x),point.size=5,sets.bar.color=mycol[1:length(x)],text.scale = text.scale)
+      }else{
+       upset(fromList(x), nsets = length(x),point.size=5,sets.bar.color=setcolor[length(x)],text.scale = text.scale)
+    }
     }
   }
   return(result)

@@ -161,7 +161,7 @@ setcolor<-function(x){
   if(x<length(mycolor)){
     res<-mycolor[1:x]
   }else{
-    res<-rep(mycolor,2)[1:x]
+    res<-c(mycolor,sample(colors(),x,replace=F))
   }
   return(res)
 }
