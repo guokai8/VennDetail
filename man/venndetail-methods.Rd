@@ -4,11 +4,12 @@
 \alias{venndetail}
 \title{venn detail information}
 \usage{
-venndetail(x, plot = TRUE, filename = NULL, ven = TRUE,
+venndetail(x, plot = TRUE, filename = NULL, type = "venn",
   col = "black", sep = "_", mycol = c("dodgerblue", "goldenrod1",
   "darkorange1", "seagreen3", "orchid3"), cat.cex = 1.5, alpha = 0.5,
   cex = 2, cat.fontface = "bold", margin = 0.05, abbr = FALSE,
-  minlength = 3, abbr.method = "both.sides", ...)
+  minlength = 3, abbr.method = "both.sides", text.scale = c(1.5, 1.5,
+  1.5, 1.5, 1.5, 1.5), ...)
 }
 \arguments{
 \item{x}{list of variables with group names}
@@ -17,7 +18,7 @@ venndetail(x, plot = TRUE, filename = NULL, ven = TRUE,
 
 \item{filename}{output filename}
 
-\item{ven}{choose to use venn.diagram or not}
+\item{type}{choose to use venn.diagram,vennpie or upsetR}
 
 \item{col}{color for the font}
 
@@ -32,6 +33,8 @@ venndetail(x, plot = TRUE, filename = NULL, ven = TRUE,
 \item{abbr}{use abbreviate name or not}
 
 \item{minlength}{minmal length for name}
+
+\item{text.scale}{text size for upsetR(ylab,yaxis,xlab,group name,xaxis,insection)}
 
 \item{...}{A series of graphical parameters tweaking the plot. See below for details}
 }
