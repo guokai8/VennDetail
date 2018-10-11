@@ -34,6 +34,8 @@ venndetail(x, plot = TRUE, filename = NULL, type = "venn",
 
 \item{minlength}{minmal length for name}
 
+\item{abbr.method}{abbreviate method(default: both side)}
+
 \item{text.scale}{text size for upsetR(ylab,yaxis,xlab,group name,xaxis,insection)}
 
 \item{...}{A series of graphical parameters tweaking the plot. See below for details}
