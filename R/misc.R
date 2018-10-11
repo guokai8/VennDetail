@@ -35,6 +35,54 @@ result.venn<-function(x){
 detail.venn<-function(x){
   x@detail
 }
+##' @method plot venn
+##' @importFrom VennDiagram venn.diagram
+##' @importFrom UpSetR upset
+##' @param type choose to use venn.diagram,vennpie or upsetR
+##' @param filename output filename
+##' @param col color for the font
+##' @param sep separate delim
+##' @param mycol color for VennDiagram
+##' @param cat.cex font size for displaying
+##' @param alpha
+##' @param cat.fontface font face
+##' @param text.scale text size for upsetR(ylab,yaxis,xlab,group name,xaxis,insection)
+##' @export
+plot.venn<-function(x,type="venn",col="black",sep="_",mycol=c("dodgerblue", "goldenrod1", "darkorange1", "seagreen3", "orchid3"),
+                    cat.cex=1.5,alpha=0.5,cex=2,cat.fontface="bold",margin=0.05,
+                    text.scale=c(1.5, 1.5, 1.5, 1.5, 1.5, 1.5),filename=NULL,...){
+  result<-x
+  x<-x@input
+  if(type=="venn"&&length(x)<=5){
+    #require(VennDiagram)
+    n=length(x)
+    p<-venn.diagram(x,filename = filename,
+                    col = col,
+                    fill = mycol[1:n],
+                    alpha = alpha,
+                    cex=cex,
+                    cat.col = mycol[1:n],
+                    cat.cex = cat.cex,
+                    cat.fontface = cat.fontface,
+                    #cat.pos=cat.pos,
+                    #cat.dist=cat.dist,
+                    margin = margin)
+    grid.draw(p)
+    rfile=list.files(pattern="*.log")
+    file.remove(rfile)
+  }
+  if(type=="vennpie"){
+    print(vennpie(result,sep=sep))
+  }
+  if(type=="upset"){
+    if(length(x)<=5){
+      upset(fromList(x), nsets = length(x),point.size=5,sets.bar.color=mycol[1:length(x)],text.scale = text.scale)
+    }else{
+      upset(fromList(x), nsets = length(x),point.size=5,sets.bar.color=setcolor[length(x)],text.scale = text.scale)
+    }
+  }
+
+}
 ##' @importFrom magrittr %>%
 ##' @importFrom dplyr select
 ##' @importFrom dplyr everything

@@ -19,7 +19,7 @@
 ##' @param abbr use abbreviate name or not
 ##' @param minlength minmal length for name
 ##' @param text.scale text size for upsetR(ylab,yaxis,xlab,group name,xaxis,insection)
-##' @abbr.method abbreviate method(default: both side)
+##' @param abbr.method abbreviate method(default: both side)
 ##' @inheritParams VennDiagram::venn.diagram
 ##' @export
 ##' @author Kai Guo
