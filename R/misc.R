@@ -36,6 +36,8 @@ detail.venn<-function(x){
   x@detail
 }
 ##' @method plot venn
+##' @title plot venn object
+##' @rdname merge-method
 ##' @importFrom VennDiagram venn.diagram
 ##' @importFrom UpSetR upset
 ##' @param type choose to use venn.diagram,vennpie or upsetR
@@ -50,7 +52,8 @@ detail.venn<-function(x){
 ##' @export
 plot.venn<-function(x,type="venn",col="black",sep="_",mycol=c("dodgerblue", "goldenrod1", "darkorange1", "seagreen3", "orchid3"),
                     cat.cex=1.5,alpha=0.5,cex=2,cat.fontface="bold",margin=0.05,
-                    text.scale=c(1.5, 1.5, 1.5, 1.5, 1.5, 1.5),filename=NULL,...){
+                    text.scale=c(1.5, 1.5, 1.5, 1.5, 1.5, 1.5),filename=NULL,piecolor=NULL,revcolor="lightgrey",any=NULL,show.number=TRUE,show.x=TRUE,
+                    log=FALSE,base=NULL,percentage=FALSE,...){
   result<-x
   x<-x@input
   if(type=="venn"&&length(x)<=5){
@@ -72,7 +75,9 @@ plot.venn<-function(x,type="venn",col="black",sep="_",mycol=c("dodgerblue", "gol
     file.remove(rfile)
   }
   if(type=="vennpie"){
-    print(vennpie(result,sep=sep))
+    print(vennpie(result,sep=sep,color=piecolor,
+                  revcolor=revcolor,any=any,show.number=show.number,show.x=show.x,
+                  log=log,base=base,percentage=percentage))
   }
   if(type=="upset"){
     if(length(x)<=5){
