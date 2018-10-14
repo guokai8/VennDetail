@@ -12,7 +12,9 @@
   cat.fontface = "bold", margin = 0.05, text.scale = c(1.5, 1.5, 1.5,
   1.5, 1.5, 1.5), filename = NULL, piecolor = NULL,
   revcolor = "lightgrey", any = NULL, show.number = TRUE,
-  show.x = TRUE, log = FALSE, base = NULL, percentage = FALSE, ...)
+  show.x = TRUE, log = FALSE, base = NULL, percentage = FALSE,
+  sets.x.label = "Set Size", mainbar.y.label = "Intersection Size",
+  nintersects = 40, ...)
 
 \S4method{merge}{list}(object, ingore.case = F, useupper = T,
   plot = FALSE, ...)
@@ -33,6 +35,12 @@
 \item{text.scale}{text size for upsetR(ylab,yaxis,xlab,group name,xaxis,insection)}
 
 \item{filename}{output filename}
+
+\item{sets.x.label}{The x-axis label of the set size bar plot}
+
+\item{mainbar.y.label}{The y-axis label of the intersection size bar plot}
+
+\item{nintersects}{Number of intersections to plot. If set to NA, all intersections will be plotted.}
 
 \item{object}{list of venn object}
 
