@@ -49,11 +49,12 @@ detail.venn<-function(x){
 ##' @param alpha
 ##' @param cat.fontface font face
 ##' @param text.scale text size for upsetR(ylab,yaxis,xlab,group name,xaxis,insection)
+##' @inheritParams UpSetR::upset
 ##' @export
 plot.venn<-function(x,type="venn",col="black",sep="_",mycol=c("dodgerblue", "goldenrod1", "darkorange1", "seagreen3", "orchid3"),
                     cat.cex=1.5,alpha=0.5,cex=2,cat.fontface="bold",margin=0.05,
                     text.scale=c(1.5, 1.5, 1.5, 1.5, 1.5, 1.5),filename=NULL,piecolor=NULL,revcolor="lightgrey",any=NULL,show.number=TRUE,show.x=TRUE,
-                    log=FALSE,base=NULL,percentage=FALSE,...){
+                    log=FALSE,base=NULL,percentage=FALSE,sets.x.label = "Set Size",mainbar.y.label = "Intersection Size",nintersects = 40,...){
   result<-x
   x<-x@input
   if(type=="venn"&&length(x)<=5){
@@ -81,9 +82,9 @@ plot.venn<-function(x,type="venn",col="black",sep="_",mycol=c("dodgerblue", "gol
   }
   if(type=="upset"){
     if(length(x)<=5){
-      upset(fromList(x), nsets = length(x),point.size=5,sets.bar.color=mycol[1:length(x)],text.scale = text.scale)
+      upset(fromList(x), nsets = length(x),sets.x.label = sets.x.label,mainbar.y.label = mainbar.y.label,nintersects = nintersects,point.size=5,sets.bar.color=mycol[1:length(x)],text.scale = text.scale)
     }else{
-      upset(fromList(x), nsets = length(x),point.size=5,sets.bar.color=setcolor[length(x)],text.scale = text.scale)
+      upset(fromList(x), nsets = length(x),sets.x.label = sets.x.label,mainbar.y.label = mainbar.y.label,nintersects = nintersects,point.size=5,sets.bar.color=setcolor[length(x)],text.scale = text.scale)
     }
   }
 
