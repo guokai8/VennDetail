@@ -93,10 +93,12 @@ plot.venn<-function(x,type="venn",col="black",sep="_",mycol=c("dodgerblue", "gol
 ##' @importFrom dplyr select
 ##' @importFrom dplyr everything
 .add_colnames<-function(x){
-  if(!"rown"%in%colnames(x)){
-    x$rown<-rownames(x)
+  if(sum(grepl("RowNxyz",colnames(x)))==0){
+    x$RowNxyz<-rownames(x)
+  }else{
+    colnames(x)[which(grepl("RowNxyz",colnames(x)))]<-"RowNxyz"
   }
-  x%>%select(rown,everything())
+  x%>%select(RowNxyz,everything())
 }
 
 .pasten<-function(x,name,sep="_"){
@@ -104,13 +106,15 @@ plot.venn<-function(x,type="venn",col="black",sep="_",mycol=c("dodgerblue", "gol
   return(x)
 }
 .setrownames<-function(x,gind){
-  rownames(x)=as.character(x[,gind])
+  #rownames(x)=as.character(x[,gind])
   if(is.character(gind)){
     ind=which(colnames(x)==gind)
   }else{
     ind=gind
   }
-  return(x[,-ind,drop=F])
+  colnames(x)[ind]<-"RowNxyz"
+  #return(x[,-ind,drop=F])
+  return(x)
 }
 ##' @method merge venn object
 ##' @title merge two or more venn object by group name
@@ -195,7 +199,7 @@ setMethod("rowjoin",signature(x="data.frame",y="data.frame"),function(x,y,fun="f
   x<-.add_colnames(x)
   y<-.add_colnames(y)
   f=match.fun(fun)
-  return(f(x,y,by=c("rown"="rown")))
+  return(f(x,y,by=c("RowNxyz"="RowNxyz")))
 })
 ##' @name set colors
 ##' @title set color with given a vector

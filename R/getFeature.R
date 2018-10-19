@@ -45,6 +45,6 @@ setMethod("getFeature",signature = (object="venn"),function(object,group,rlist,u
   rlist<-Map(function(x,y).pasten(x,y,sep=sep),rlist,name)
   rlist<-lapply(rlist, function(x).add_colnames(x))
   rr<-Reduce(function(x,y)rowjoin(x,y,fun="full_join"),rlist)
-  rhs<-left_join(lhs,rr,by=c("Detail"="rown"))
+  rhs<-left_join(lhs,rr,by=c("Detail"="RowNxyz"))
   return(rhs)
 })
