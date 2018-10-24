@@ -241,6 +241,15 @@ tabPanel("Detail",
                    # fluidRow(,
                     width=4
                   ),
+                  fluidRow(radioButtons(
+                    'fftype',
+                    label = 'File type',
+                    choices = c(
+                      txt = 'txt',
+                      csv='csv'
+                    ),inline = TRUE,
+                    selected = 'txt'
+                  ),width=4),
                   #mainPanel(uiOutput('mytabs'))
                   mainPanel(DT::dataTableOutput("table"))
                 )
