@@ -321,12 +321,17 @@ output$table<-DT::renderDT({
   #vennpie(ven)
 })
 save.file.name<-reactive(function(){
-  paste(input$filename,input$type,'txt',sep=".")
+  paste(input$filename,input$type,input$fftype,sep=".")
 })
 output$Download_data<-downloadHandler(
   filename=save.file.name(),
   content = function(file){
-    write.table(getdata(),file=file,sep="\t",quote=F)
+    if(input$fftype=="txt"){
+     write.table(getdata(),file=file,sep="\t",quote=F)
+    }
+    if(input$fftype=="csv"){
+      write.csv(getdata(),file=file,sep=",",quote=F)
+    }
   }
 )
 observe({

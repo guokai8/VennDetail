@@ -2,9 +2,9 @@ library(shinythemes)
 library(shiny)
 shinyUI(
   fluidPage(theme=shinytheme("lumen"),
-            titlePanel("VennDetail:Extract detail information from venn plot"),
+            titlePanel("VennDetail Shiny App"),
             tabsetPanel(id="tabs",
-              tabPanel("Upload File",
+              tabPanel("Upload file",
                        column(12,
                               sidebarLayout(
                                   sidebarPanel(
@@ -185,7 +185,7 @@ mainPanel(uiOutput('mytabs')
                                                ),
                                                width= 10)
                                 )))),
-              tabPanel("Plots",
+              tabPanel("Plot",
                        column(12,
                               sidebarLayout(
                                 sidebarPanel(
@@ -237,19 +237,19 @@ tabPanel("Detail",
                    # fluidRow(textInput("delim",label="Group separate",value = "_")),
                     br(),
                    fluidRow(textInput("filename","Filename: ",value = ""),width=4),
+                   fluidRow(radioButtons(
+                     'fftype',
+                     label = 'File type',
+                     choices = c(
+                       txt = 'txt',
+                       csv='csv'),inline = TRUE,
+                     selected = 'txt'
+                   )),
                     downloadButton('Download_data', label = "Download Data"),
                    # fluidRow(,
                     width=4
                   ),
-                  fluidRow(radioButtons(
-                    'fftype',
-                    label = 'File type',
-                    choices = c(
-                      txt = 'txt',
-                      csv='csv'
-                    ),inline = TRUE,
-                    selected = 'txt'
-                  ),width=4),
+                 
                   #mainPanel(uiOutput('mytabs'))
                   mainPanel(DT::dataTableOutput("table"))
                 )
