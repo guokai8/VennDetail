@@ -330,7 +330,7 @@ output$Download_data<-downloadHandler(
      write.table(getdata(),file=file,sep="\t",quote=F)
     }
     if(input$fftype=="csv"){
-      write.csv(getdata(),file=file,sep=",",quote=F)
+      write.csv(getdata(),file=file,quote=F)
     }
   }
 )
