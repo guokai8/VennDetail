@@ -199,6 +199,8 @@ plot_fig<-function(){
   }
 
 }
+###dirname(input$file1$datapath)
+###
 save.plot.name<-reactive(function(){
   paste(input$plotfile,input$type,input$ftype,sep=".")
 })
