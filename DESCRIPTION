@@ -15,6 +15,7 @@ Imports:
     tibble,
     magrittr,
     ggplot2,
+    UpSetR,
     VennDiagram,
     grid
 LinkingTo:
