@@ -338,7 +338,7 @@ output$Download_data<-downloadHandler(
 )
 observe({
   if(click$default==1){
-    updateTabsetPanel(session,"tabs","Plots")
+    updateTabsetPanel(session,"tabs","Plot")
   }
   click$default=0
 })
