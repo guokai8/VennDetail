@@ -3,7 +3,12 @@ library(DT)
 library(ggplot2)
 library(grid)
 library(tidyverse)
-
+library(readxl)
+library(export)
+library(officer)
+options(shiny.maxRequestSize=200*1024^2) 
+options(digits=3)
+#setwd("/home/hurlab/tmp")
 A1 <- sample(1:100, 15, replace = FALSE);
 B1 <- sample(1:100, 20, replace = FALSE);
 A=data.frame("Gene"=A1,"FC"=round(rnorm(15),2))
@@ -13,6 +18,11 @@ rownames(B)<-paste("Gene",sample(LETTERS[1:26],20,replace=F),sep=".")
 #mycol<-unique(c("dodgerblue", "goldenrod1", "darkorange1", "seagreen3", "orchid3",setcolor(30)))
 mycol<-c("dodgerblue", "goldenrod1", "darkorange1", "seagreen3", "orchid3")
 mycol2<-unique(c("transparent","black",mycol,setcolor(40)))
+checkfile <- function(file){ 
+  ex <- strsplit(basename(file), split="\\.")[[1]]
+  return(ex[-1])
+} 
+
 shinyServer(function(input, output,session){
   all_list=list()
   p <- reactiveValues(default=0)
@@ -26,46 +36,108 @@ shinyServer(function(input, output,session){
     file6<-input$file6
     filename1 <- input$filename1; filename2 <- input$filename2; filename3 <- input$filename3; filename4 <- input$filename4; 
     filename5 <- input$filename5; filename6 <- input$filename6;
+    if(filename1==""){filename1<-"File1"}; if(filename2==""){filename2<-"File2"}; if(filename3==""){filename3<-"File3"};
+    if(filename4==""){filename4<-"File4"}; if(filename5==""){filename5<-"File5"}; if(filename6==""){filename6<-"File6"};
     if (is.null(input$file1)) {
       # User has not uploaded a file yet
       f1<-A
-    }else{
-      f1<-read.delim(input$file1$datapath,sep=input$sep,header = TRUE,row.names=1)
+     }else{
+      ext1=checkfile(file1$datapath)
+      if(ext1=="txt"){
+        f1<-read.delim(file1$datapath,sep="\t",header = TRUE)
+      }
+      if(ext1=="csv"){
+        f1<-read.delim(file1$datapath,sep=",",header = TRUE)
+      }
+      if(ext1=="xls"|ext1=="xlsx"){
+        f1<-read_excel(file1$datapath)
+        f1<-as.data.frame(f1)
+      }
     }
     all_list[[filename1]]<-f1
     if (is.null(file2)) {
       # User has not uploaded a file yet
       f2<-B
     }else{
-      f2<-read.delim(file2$datapath,sep=input$sep,header = TRUE,row.names=1)
+      ext2<-checkfile(file2$datapath)
+      if(ext2=="txt"){
+        f2<-read.delim(file2$datapath,sep="\t",header = TRUE)
+      }
+      if(ext2=="csv"){
+        f2<-read.delim(file2$datapath,sep=",",header = TRUE)
+      }
+      if(ext2=="xls"|ext2=="xlsx"){
+        f2<-read_excel(file2$datapath)
+        f2<-as.data.frame(f2)
+      }
     }
     all_list[[filename2]]<-f2
     if (is.null(file3)) {
       # User has not uploaded a file yet
       f3<-NULL
     }else{
-      f3<-read.delim(file3$datapath,sep=input$sep,header = TRUE,row.names=1)
+      ext3=checkfile(file3$datapath)
+      if(ext3=="txt"){
+        f3<-read.delim(file3$datapath,sep="\t",header = TRUE)
+      }
+      if(ext3=="csv"){
+        f3<-read.delim(file3$datapath,sep=",",header = TRUE)
+      }
+      if(ext3=="xls"|ext3=="xlsx"){
+        f3<-read_excel(file3$datapath)
+        f3<-as.data.frame(f3)
+      }
     }
     all_list[[filename3]]<-f3
     if (is.null(file4)) {
       # User has not uploaded a file yet
       f4<-NULL
     }else{
-      f4<-read.delim(file4$datapath,sep=input$sep,header = TRUE,row.names=1)
+      ext4<-checkfile(file4$datapath)
+      if(ext4=="txt"){
+        f4<-read.delim(file4$datapath,sep="\t",header = TRUE)
+      }
+      if(ext4=="csv"){
+        f4<-read.delim(file4$datapath,sep=",",header = TRUE)
+      }
+      if(ext4=="xls"|ext4=="xlsx"){
+        f4<-read_excel(file4$datapath)
+        f4<-as.data.frame(f4)
+      }
     }
     all_list[[filename4]]<-f4
     if (is.null(file5)) {
       # User has not uploaded a file yet
       f5<-NULL
     }else{
-      f5<-read.delim(file5$datapath,sep=input$sep,header = TRUE,row.names=1)
+      ext5<-checkfile(file5$datapath)
+      if(ext5=="txt"){
+        f5<-read.delim(file5$datapath,sep="\t",header = TRUE)
+      }
+      if(ext5=="csv"){
+        f5<-read.delim(file5$datapath,sep=",",header = TRUE)
+      }
+      if(ext5=="xls"|ext5=="xlsx"){
+        f5<-read_excel(file5$datapath)
+        f5<-as.data.frame(f5)
+      }
     }
     all_list[[filename5]]<-f5
     if (is.null(file6)) {
       # User has not uploaded a file yet
       f6<-NULL
     }else{
-      f6<-read.delim(file6$datapath,sep=input$sep,header = TRUE,row.names=1)
+      ext6=checkfile(file6$datapath)
+      if(ext6=="txt"){
+        f6<-read.delim(file6$datapath,sep="\t",header = TRUE)
+      }
+      if(ext6=="csv"){
+        f6<-read.delim(file6$datapath,sep=",",header = TRUE)
+      }
+      if(ext6=="xls"|ext6=="xlsx"){
+        f6<-read_excel(file6$datapath)
+        f6<-as.data.frame(f6)
+      }
     }
     all_list[[filename6]]<-f6
     return(all_list)
@@ -80,7 +152,7 @@ shinyServer(function(input, output,session){
         tablename <- names(datain())
         output[[tablename[i]]] <-  DT::renderDT({
           datain()[[tablename[i]]]
-        },selection = list(target = 'column',mode="single"))
+        },selection = list(target = 'column',mode="single"),filter = 'top')
       })
     })
   })
@@ -138,10 +210,17 @@ shinyServer(function(input, output,session){
     if(p$default==1){
       dat <- datain()
       tablename <- names(dat)
+      rowtable<-paste(tablename,"rows_all",sep="_")
       tablename<-paste(tablename,"columns_selected",sep="_")
       for(i in 1:length(tablename)){
+        tmp<-dat[[i]]
+        s = input[[rowtable[[i]]]]
+        if(length(s)>0 && length(s) < nrow(tmp)){
+          tmp<-tmp[s,,drop=FALSE]
+        }
+        dat[[i]]<-tmp
         if(is.null(input[[tablename[i]]])){
-          dat[[i]]<-rownames(dat[[i]])
+          dat[[i]]<-dat[[i]][,1]
         }else{
           dat[[i]]<-dat[[i]][,input[[tablename[i]]]]
         }
@@ -166,6 +245,7 @@ output$select<-renderUI({
 setven<-reactive({
   dd<-data()
   dd<-dd[input$sel]
+  dd<-lapply(dd,function(x)na.omit(x))
   ven<<-venndetail(dd,plot=F)
 })
 plot_fig<-function(){
@@ -220,20 +300,31 @@ output$Download_plot<-downloadHandler(
     hei<-as.numeric(input$height)
     if(input$ftype=="pdf"){
       pdf(filename,width = wid,height = hei)
+      plot_fig()
     }
     if(input$ftype=="png"){
       png(filename,width = wid*50,height = hei*50,res=300,units = "px")
+      plot_fig()
     }
     if(input$ftype=="jpeg"){
       jpeg(filename,width = wid*50,height = hei*50,res=300,units = "px")
+      plot_fig()
     }
     if(input$ftype=="tiff"){
       tiff(filename,width = wid*50,height = hei*50,units = "px")
+      plot_fig()
     }
-    plot_fig()
+    if(input$ftype=="eps"){
+      graph2eps(plot_fig(),file=filename)
+    }
+    if(input$ftype=="pptx"){
+      graph2ppt(plot_fig(),file=filename)
+    }
+    if(input$ftype=="doxs"){
+      graph2doc(plot_fig(),file=filename)
+    }
     dev.off()
-    #file.copy("tmp.pdf",file,overwrite=TRUE)
-  }
+    }
 )
 output$dyna<-renderUI({
   switch(input$type,
@@ -262,26 +353,34 @@ getdata<-reactive({
   if(p$default==1){
     dat <- datain()
     tablename <- names(dat)
+    rowtable<-paste(tablename,"rows_all",sep="_")
     tablename<-paste(tablename,"columns_selected",sep="_")
     flag=0
     for(i in 1:length(dat)){
      # ind<-input[[tablename[[i]]]]
+      tmp<-dat[[i]]
+      s = input[[rowtable[[i]]]]
+      if(length(s)>0 && length(s) < nrow(tmp)){
+        tmp<-tmp[s,,drop=FALSE]
+      }
       if(!is.null(input[[tablename[[i]]]])){
-          tmp<-dat[[i]]
           iname<-input[[tablename[[i]]]]
           colnames(tmp)[iname]="RowNxyz"
           tmp$RowNxyz<-as.character(tmp$RowNxyz)
           tmp<-rownames_to_column(tmp)
-          dat[[i]]<-tmp%>%select(RowNxyz,everything())
+          tmp<-tmp%>%select(RowNxyz,everything())
           #dat[[i]]<-column_to_rownames(tmp,iname)
           flag=1
-        }
+      }else{
+        colnames(tmp)[1]<-"RowNxyz"
+      }
+      dat[[i]]<-tmp
     }
-    if(flag==1){
+    #if(flag==1){
       tab<-VennDetail::getFeature(setven(),rlist=dat,group = input$group,userowname = F)
-    }else{
-      tab<-VennDetail::getFeature(setven(),rlist=dat,group = input$group,userowname = T)
-    }
+   # }else{
+     # tab<-VennDetail::getFeature(setven(),rlist=dat,group = input$group,userowname = T)
+   # }
     flag=0
   }
   if(p$default==2){
@@ -294,19 +393,26 @@ getdata<-reactive({
     names(rlist)<-c(n1,n2)
     flag1=0
     tablename <- names(rlist)
+    rowtable<-paste(tablename,"rows_all",sep="_")
     tablename<-paste(tablename,"columns_selected",sep="_")
     for(i in 1:length(rlist)){
       # ind<-input[[tablename[[i]]]]
+      tmp1<-rlist[[i]]
+      s1 = input[[rowtable[[i]]]]
+      if(length(s1)>0 && length(s1) < nrow(tmp1)){
+        tmp1<-tmp1[s1,,drop=FALSE]
+      }
       if(!is.null(input[[tablename[[i]]]])){
         tmp1<-rlist[[i]]
-        #coln1<-colnames(tmp1)
+        coln1<-colnames(tmp1)
         iname1<-input[[tablename[[i]]]]
         colnames(tmp1)[iname1]="RowNxyz"
         tmp1$RowNxyz<-as.character(tmp1$RowNxyz)
         tmp1<-rownames_to_column(tmp1)
-        rlist[[i]]<-tmp1%>%select(RowNxyz,everything())
+        tmp1<-tmp1%>%select(RowNxyz,everything())
         flag1=1
       }
+      rlist[[i]]<-tmp1
     }
     if(flag1==1){
       tab<-VennDetail::getFeature(setven(),rlist=rlist,group = input$group,userowname = F)
@@ -319,7 +425,10 @@ getdata<-reactive({
 })
 
 output$table<-DT::renderDT({
-  getdata()
+  datatable(getdata(),caption=htmltools::tags$caption(
+    style = 'caption-side: bottom; text-align: center;',
+    htmltools::em('Detail of subsets selected.')
+  ))
   #vennpie(ven)
 })
 save.file.name<-reactive(function(){

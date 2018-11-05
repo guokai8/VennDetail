@@ -1,5 +1,6 @@
 library(shinythemes)
 library(shiny)
+options(shiny.maxRequestSize = 200*1024^2)
 shinyUI(
   fluidPage(theme=shinytheme("lumen"),
             titlePanel("VennDetail Shiny App"),
@@ -67,15 +68,7 @@ shinyUI(
                                                                 multiple = FALSE
                                                               ))
                                               ),
-                                   fluidRow(column(10,radioButtons(
-                                     'sep',
-                                     label = 'Separator',
-                                     choices = c(
-                                       Comma = ',',
-                                       Tab = '\t'
-                                     ),inline = TRUE,
-                                     selected = '\t'
-                                   ))),
+
                                     fluidRow(tags$button(id="plotx", 
                                                          type="button", 
                                                          class="btn action-button btn-large btn-primary", 
@@ -209,18 +202,21 @@ mainPanel(uiOutput('mytabs')
                                 
                                   fluidRow(radioButtons(
                                     'ftype',
-                                    label = 'Figure type',
+                                    label = 'Output type',
                                     choices = c(
                                       pdf = 'pdf',
                                       tiff="tiff",
                                       png = 'png',
-                                      jpeg='jpeg'
+                                      jpeg='jpeg',
+                                      eps= 'eps',
+                                      ppt= 'pptx',
+                                      doc = 'docx'
                                     ),inline = TRUE,
                                     selected = 'pdf'
                                   ),width=4),
                                   br(),
                                   downloadButton('Download_plot', label = "Download plot")
-
+                                           
                   ),
                                 #mainPanel(plotOutput("plot"))
                                 mainPanel(uiOutput("plot"))
