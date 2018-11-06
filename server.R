@@ -5,16 +5,16 @@ library(grid)
 library(tidyverse)
 library(readxl)
 library(export)
-library(officer)
+library(xlsx)
 options(shiny.maxRequestSize=200*1024^2) 
 options(digits=3)
 #setwd("/home/hurlab/tmp")
 A1 <- sample(1:100, 15, replace = FALSE);
 B1 <- sample(1:100, 20, replace = FALSE);
-A=data.frame("Gene"=A1,"FC"=round(rnorm(15),2))
-B=data.frame("Gene"=B1,"FC"=round(rnorm(20),2))
-rownames(A)<-paste("Gene",sample(LETTERS[1:26],15,replace=F),sep=".")
-rownames(B)<-paste("Gene",sample(LETTERS[1:26],20,replace=F),sep=".")
+A=data.frame("Gene"=paste("Gene",sample(LETTERS[1:26],15,replace=F),sep="."),"Exp"=A1,"FC"=round(rnorm(15),2))
+B=data.frame("Gene"=paste("Gene",sample(LETTERS[1:26],20,replace=F),sep="."),"Exp"=B1,"FC"=round(rnorm(20),2))
+rownames(A)<-A$Gene
+rownames(B)<-B$Gene
 #mycol<-unique(c("dodgerblue", "goldenrod1", "darkorange1", "seagreen3", "orchid3",setcolor(30)))
 mycol<-c("dodgerblue", "goldenrod1", "darkorange1", "seagreen3", "orchid3")
 mycol2<-unique(c("transparent","black",mycol,setcolor(40)))
@@ -53,6 +53,7 @@ shinyServer(function(input, output,session){
         f1<-read_excel(file1$datapath)
         f1<-as.data.frame(f1)
       }
+      rownames(f1)<-make.names(f1[,1],unique = T)
     }
     all_list[[filename1]]<-f1
     if (is.null(file2)) {
@@ -70,6 +71,7 @@ shinyServer(function(input, output,session){
         f2<-read_excel(file2$datapath)
         f2<-as.data.frame(f2)
       }
+      rownames(f2)<-make.names(f2[,1],unique = T)
     }
     all_list[[filename2]]<-f2
     if (is.null(file3)) {
@@ -87,6 +89,7 @@ shinyServer(function(input, output,session){
         f3<-read_excel(file3$datapath)
         f3<-as.data.frame(f3)
       }
+      rownames(f3)<-make.names(f3[,1],unique = T)
     }
     all_list[[filename3]]<-f3
     if (is.null(file4)) {
@@ -104,6 +107,7 @@ shinyServer(function(input, output,session){
         f4<-read_excel(file4$datapath)
         f4<-as.data.frame(f4)
       }
+      rownames(f4)<-make.names(f4[,1],unique = T)
     }
     all_list[[filename4]]<-f4
     if (is.null(file5)) {
@@ -121,6 +125,7 @@ shinyServer(function(input, output,session){
         f5<-read_excel(file5$datapath)
         f5<-as.data.frame(f5)
       }
+      rownames(f5)<-make.names(f5[,1],unique = T)
     }
     all_list[[filename5]]<-f5
     if (is.null(file6)) {
@@ -138,6 +143,7 @@ shinyServer(function(input, output,session){
         f6<-read_excel(file6$datapath)
         f6<-as.data.frame(f6)
       }
+      rownames(f6)<-make.names(f6[,1],unique = T)
     }
     all_list[[filename6]]<-f6
     return(all_list)
@@ -220,7 +226,7 @@ shinyServer(function(input, output,session){
         }
         dat[[i]]<-tmp
         if(is.null(input[[tablename[i]]])){
-          dat[[i]]<-dat[[i]][,1]
+          dat[[i]]<-as.character(dat[[i]][,1])
         }else{
           dat[[i]]<-dat[[i]][,input[[tablename[i]]]]
         }
@@ -372,14 +378,15 @@ getdata<-reactive({
           #dat[[i]]<-column_to_rownames(tmp,iname)
           flag=1
       }else{
-        colnames(tmp)[1]<-"RowNxyz"
+        colnames(tmp)[1]<-"RowNxyz" ###need to be modified
+        tmp[,1]<-as.character(tmp[,1])
       }
       dat[[i]]<-tmp
     }
-    #if(flag==1){
+   # if(flag==1){
       tab<-VennDetail::getFeature(setven(),rlist=dat,group = input$group,userowname = F)
    # }else{
-     # tab<-VennDetail::getFeature(setven(),rlist=dat,group = input$group,userowname = T)
+  #    tab<-VennDetail::getFeature(setven(),rlist=dat,group = input$group,userowname = T)
    # }
     flag=0
   }
@@ -411,14 +418,17 @@ getdata<-reactive({
         tmp1<-rownames_to_column(tmp1)
         tmp1<-tmp1%>%select(RowNxyz,everything())
         flag1=1
+      }else{
+        colnames(tmp1)[1]<-"RowNxyz" ###need to be modified
+        tmp1[,1]<-as.character(tmp1[,1])
       }
       rlist[[i]]<-tmp1
     }
-    if(flag1==1){
+    #if(flag1==1){
       tab<-VennDetail::getFeature(setven(),rlist=rlist,group = input$group,userowname = F)
-    }else{
-      tab<-VennDetail::getFeature(setven(),rlist=rlist,group = input$group,userowname = T)
-    }
+  #  }else{
+    #  tab<-VennDetail::getFeature(setven(),rlist=rlist,group = input$group,userowname = T)
+   # }
     flag=0
   }
   tab
@@ -443,6 +453,9 @@ output$Download_data<-downloadHandler(
     if(input$fftype=="csv"){
       write.csv(getdata(),file=file,quote=F)
     }
+    if(input$fftype=="xls"){
+      write.xlsx(getdata(),file=file,sheetName="Sheet 1",append=FALSE)
+    }
   }
 )
 observe({
@@ -453,7 +466,6 @@ observe({
 })
 onSessionEnded(function() {
   cat("Goodbye\n")
-  #unlink("tmp.pdf")
 }) 
 }
 )

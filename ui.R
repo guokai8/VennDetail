@@ -9,64 +9,66 @@ shinyUI(
                        column(12,
                               sidebarLayout(
                                   sidebarPanel(
+                                    div(style = "padding-bottom: 0px;",
                                     fluidRow(
                                       column(4,aligh="left",
-                                             textInput("filename1","Name",value="File1")),
+                                             textInput("filename1","Name",value="File1"),style='padding: 0px;'),
                                       column(7,align = "center",
                                       fileInput(
                                       'file1',
                                       label = "Input file1",
                                       multiple = FALSE
-                                    )
+                                    ),style='padding:0px;'
                                     )
                                    #width=8
-                                    ),
+                                    )),
+                                   div(style = "padding-top: 0px;",
                                       fluidRow(column(4,aligh="left",
-                                                      textInput("filename2","Name",value="File2")),
+                                                      textInput("filename2","Name",value="File2"),style='padding: 0px;'),
                                                column(7,align = "center",
                                                       fileInput(
                                                         'file2',
                                                         label = "Input file2",
                                                         multiple = FALSE
-                                                      )
+                                                      ),style='padding:0px;'
                                       #width=4
-                                      )),
+                                      ))),
                                         fluidRow(column(4,aligh="left",
-                                                        textInput("filename3","Name",value="File3")),
+                                                        textInput("filename3","Name",value="File3"),style='padding: 0px;'),
                                                  column(7,align = "center",
                                                         fileInput(
                                                           'file3',
                                                           label = "Input file3",
                                                           multiple = FALSE
-                                                        )
+                                                        ),style='padding: 0px;'
                                         #width=4
                                         )),
                                           fluidRow(column(4,aligh="left",
-                                                          textInput("filename4","Name",value="File4")),
+                                                          textInput("filename4","Name",value="File4"),style='padding: 0px;'),
                                                    column(7,align = "center",
                                                           fileInput(
                                                             'file4',
                                                             label = "Input file4",
                                                             multiple = FALSE
-                                                          ))
+                                                          ),style='padding: 0px;')
                                           ),
                                             fluidRow(column(4,aligh="left",
-                                                            textInput("filename5","Name",value="File5")),
+                                                            textInput("filename5","Name",value="File5"),style='padding: 0px;'),
                                                      column(7,align = "center",
                                                             fileInput(
                                                               'file5',
                                                               label = "Input file5",
                                                               multiple = FALSE
-                                                            )
+                                                            ),style='padding: 0px;'
                                             )),
                                               fluidRow(column(4,aligh="left",
-                                                              textInput("filename6","Name",value="File6")),
+                                                              textInput("filename6","Name",value="File6"),style='padding: 0px;'),
                                                        column(7,align = "center",
                                                               fileInput(
                                                                 'file6',
                                                                 label = "Input file6",
                                                                 multiple = FALSE
-                                                              ))
+                                                              ),style='padding: 0px;')
                                               ),
 
                                     fluidRow(tags$button(id="plotx", 
@@ -238,7 +240,8 @@ tabPanel("Detail",
                      label = 'File type',
                      choices = c(
                        txt = 'txt',
-                       csv='csv'),inline = TRUE,
+                       csv='csv',
+                       xls='xls'),inline = TRUE,
                      selected = 'txt'
                    )),
                     downloadButton('Download_data', label = "Download Data"),
