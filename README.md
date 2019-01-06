@@ -39,7 +39,7 @@ dA=data.frame(A=A,"FC"=rnorm(400))
 dB=data.frame(B=B,"FC"=rnorm(600))
 dC=data.frame(C=C,"FC"=rnorm(350))
 dD=data.frame(D=D,"FC"=rnorm(550))
-getFeature(res,group="Shared",rlist=list(dA,dB,dC,dD),userowname=F)
+getFeature(res,group="Shared",rlist=list(dA,dB,dC,dD),userowname=F,gind=c("A","B","C","D"))
 ###As all these four dataframes don't have row names, we set userowname to be FALSE
 ``` 
 ### Support shiny now
