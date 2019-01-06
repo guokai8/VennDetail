@@ -33,7 +33,7 @@
 venndetail<-function(x,plot=TRUE,filename=NULL,type="venn",col="black",sep="_",mycol=c("dodgerblue", "goldenrod1", "darkorange1", "seagreen3", "orchid3"),
                     cat.cex=1.5,alpha=0.5,cex=2,cat.fontface="bold",margin=0.05,abbr=FALSE,minlength=3,abbr.method="both.sides",text.scale=c(1.5, 1.5, 1.5, 1.5, 1.5, 1.5),...){
   if(is.null(names(x))){
-    names(x)<-paste("Group",1:length(x))
+    names(x)<-paste("Group",1:seq_along(x))
   }
   if(abbr==TRUE){
     names(x)=abbreviate(names(x),minlength = minlength,method = abbr.method)
@@ -420,7 +420,7 @@ venndetail<-function(x,plot=TRUE,filename=NULL,type="venn",col="black",sep="_",m
     }
     if(type=="upset"){
       if(length(x)<=5){
-       upset(fromList(x), nsets = length(x),point.size=5,sets.bar.color=mycol[1:length(x)],text.scale = text.scale)
+       upset(fromList(x), nsets = length(x),point.size=5,sets.bar.color=mycol[seq_along(x)],text.scale = text.scale)
       }else{
        upset(fromList(x), nsets = length(x),point.size=5,sets.bar.color=setcolor[length(x)],text.scale = text.scale)
     }

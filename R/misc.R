@@ -82,7 +82,7 @@ plot.venn<-function(x,type="venn",col="black",sep="_",mycol=c("dodgerblue", "gol
   }
   if(type=="upset"){
     if(length(x)<=5){
-      upset(fromList(x), nsets = length(x),sets.x.label = sets.x.label,mainbar.y.label = mainbar.y.label,nintersects = nintersects,point.size=5,sets.bar.color=mycol[1:length(x)],text.scale = text.scale)
+      upset(fromList(x), nsets = length(x),sets.x.label = sets.x.label,mainbar.y.label = mainbar.y.label,nintersects = nintersects,point.size=5,sets.bar.color=mycol[seq_along(x)],text.scale = text.scale)
     }else{
       upset(fromList(x), nsets = length(x),sets.x.label = sets.x.label,mainbar.y.label = mainbar.y.label,nintersects = nintersects,point.size=5,sets.bar.color=setcolor[length(x)],text.scale = text.scale)
     }
@@ -105,12 +105,12 @@ plot.venn<-function(x,type="venn",col="black",sep="_",mycol=c("dodgerblue", "gol
   colnames(x)<-paste(name,colnames(x),sep=sep)
   return(x)
 }
-.setrownames<-function(x,gind){
+.setrownames<-function(x,gin){
   #rownames(x)=as.character(x[,gind])
-  if(is.character(gind)){
-    ind=which(colnames(x)==gind)
+  if(is.character(gin)){
+    ind=which(colnames(x)==gin)
   }else{
-    ind=gind
+    ind=gin
   }
   colnames(x)[ind]<-"RowNxyz"
   #return(x[,-ind,drop=F])
@@ -126,7 +126,7 @@ plot.venn<-function(x,type="venn",col="black",sep="_",mycol=c("dodgerblue", "gol
 ##' @param plot plot figure or not
 ##' @export
 ##' @author Kai Guo
-setMethod("merge",signature = (object="list"),function(object,ingore.case=F,useupper=T,plot=FALSE,...){
+setMethod("merge",signature = (object="list"),function(object,ingore.case=FALSE,useupper=TRUE,plot=FALSE,...){
   input=lapply(object, function(x)slot(x,"input"))
   input=flatten(input)
   nam=names(input)
@@ -219,7 +219,7 @@ setcolor<-function(x){
   if(x<length(mycolor)){
     res<-mycolor[1:x]
   }else{
-    res<-c(mycolor,sample(colors(),x,replace=F))
+    res<-c(mycolor,sample(colors(),x,replace=FALSE))
   }
   return(res)
 }

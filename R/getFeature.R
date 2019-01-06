@@ -36,6 +36,9 @@ setMethod("getFeature",signature = (object="venn"),function(object,group,rlist,u
     if(is.null(gind)){
       gind=rep(1,length(rlist))
     }
+    if(length(gind)<length(rlist)){
+      stop("Please specify name for each column you want use!")
+    }
     rlist=Map(function(x,y).setrownames(x,y),rlist,gind)
   }
   if(is.null(names(rlist))){
@@ -45,6 +48,7 @@ setMethod("getFeature",signature = (object="venn"),function(object,group,rlist,u
   rlist<-Map(function(x,y).pasten(x,y,sep=sep),rlist,name)
   rlist<-lapply(rlist, function(x).add_colnames(x))
   rr<-Reduce(function(x,y)rowjoin(x,y,fun="full_join"),rlist)
+  rr$RowNxyz<-as.character(rr$RowNxyz)
   rhs<-left_join(lhs,rr,by=c("Detail"="RowNxyz"))
   return(rhs)
 })
