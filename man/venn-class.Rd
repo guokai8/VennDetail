@@ -15,7 +15,7 @@ This class include all information from venndetail
 \section{Slots}{
 
 \describe{
-\item{\code{input}}{orgianl input}
+\item{\code{input}}{orginal input}
 
 \item{\code{raw}}{summary of the input}
 
