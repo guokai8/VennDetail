@@ -26,18 +26,37 @@ dim.venn <- function(x) {
   x@result[, name]
 }
 ##' @method result venn
+##' @title extract result from venn object
+##' @rdname result
+##' @examples{
+##' A <- sample(1:100, 40, replace = FALSE);
+##' B <- sample(1:100, 60, replace = FALSE);
+##' C <- sample(1:100, 40, replace = FALSE);
+##' res<-venndetail(list(A=A,B=B,C=C),plot=FALSE)
+##' result<-result(res)
+##' }
 ##' @export
 result.venn<-function(x){
   as.data.frame(x@result)
 }
 ##' @method detail venn
+##' @title detail venn object
+##' @rdname detail
+##' @examples{
+##' A <- sample(1:100, 40, replace = FALSE);
+##' B <- sample(1:100, 60, replace = FALSE);
+##' C <- sample(1:100, 40, replace = FALSE);
+##' res<-venndetail(list(A=A,B=B,C=C),plot=FALSE)
+##' detail(res)
+##' }
 ##' @export
 detail.venn<-function(x){
   x@detail
 }
 ##' @method plot venn
 ##' @title plot venn object
-##' @rdname merge-method
+##' @rdname plot
+##' @return different type of figures based on user chose
 ##' @importFrom VennDiagram venn.diagram
 ##' @importFrom UpSetR upset
 ##' @param type choose to use venn.diagram,vennpie or upsetR
@@ -50,6 +69,13 @@ detail.venn<-function(x){
 ##' @param cat.fontface font face
 ##' @param text.scale text size for upsetR(ylab,yaxis,xlab,group name,xaxis,insection)
 ##' @inheritParams UpSetR::upset
+##' @examples{
+##' A <- sample(1:100, 40, replace = FALSE);
+##' B <- sample(1:100, 60, replace = FALSE);
+##' C <- sample(1:100, 40, replace = FALSE);
+##' res<-venndetail(list(A=A,B=B,C=C),plot=FALSE)
+##' plot(res,type="venn")
+##' }
 ##' @export
 plot.venn<-function(x,type="venn",col="black",sep="_",mycol=c("dodgerblue", "goldenrod1", "darkorange1", "seagreen3", "orchid3"),
                     cat.cex=1.5,alpha=0.5,cex=2,cat.fontface="bold",margin=0.05,
@@ -116,9 +142,9 @@ plot.venn<-function(x,type="venn",col="black",sep="_",mycol=c("dodgerblue", "gol
   #return(x[,-ind,drop=F])
   return(x)
 }
-##' @method merge venn object
-##' @title merge two or more venn object by group name
-##' @rdname merge-method
+##' @method merge venn
+##' @title merge venn
+##' @rdname merge
 ##' @importFrom purrr flatten
 ##' @param object list of venn object
 ##' @param ingore.case ingore case of group name
@@ -183,8 +209,6 @@ setAs(from = "list",to="venn",def=function(from){
 })
 
 ##' @method rowname join
-##' @title join by rownames
-##' @rdname rowjoin-methods
 ##' @importFrom dplyr full_join
 ##' @importFrom dplyr left_join
 ##' @importFrom dplyr right_join
@@ -193,7 +217,6 @@ setAs(from = "list",to="venn",def=function(from){
 ##' @param x data.frame x
 ##' @param y data.frame y
 ##' @param fun join type
-##' @export
 ##' @author Kai Guo
 setMethod("rowjoin",signature(x="data.frame",y="data.frame"),function(x,y,fun="full_join"){
   x<-.add_colnames(x)
@@ -201,10 +224,13 @@ setMethod("rowjoin",signature(x="data.frame",y="data.frame"),function(x,y,fun="f
   f=match.fun(fun)
   return(f(x,y,by=c("RowNxyz"="RowNxyz")))
 })
-##' @name set colors
+##' @name setcolor
 ##' @title set color with given a vector
 ##' @param x length of color
 ##' @return color palette
+##' @examples{
+##' mycol<-setcolor(10)
+##' }
 ##' @export
 ##' @author Kai Guo
 setcolor<-function(x){

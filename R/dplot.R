@@ -1,5 +1,6 @@
 ##' @name dplot
-##' @rdname dplot-methods
+##' @rdname dplot
+##' @title plot venn object
 ##' @method dplot venn
 ##' @importFrom ggplot2 ggplot
 ##' @importFrom ggplot2 aes
@@ -10,15 +11,16 @@
 ##' @importFrom ggplot2 geom_text
 ##' @importFrom ggplot2 ylim
 ##' @param object venn object
-##' @export
-##' @examples
-##' \dontrun{
+##' @examples{
 ##' A <- sample(1:100, 40, replace = FALSE);
 ##' B <- sample(1:100, 60, replace = FALSE);
 ##' C <- sample(1:100, 40, replace = FALSE);
 ##' res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
-##' dplot(res,order=T,textsize=3)
+##' dplot(res,order=TRUE,textsize=3)
 ##' }
+##' @export
+##' @author Kai Guo
+
 setMethod("dplot",signature = (object="venn"),function(object,order=FALSE,textsize=5,...){
   df<-data.frame(Group=names(object@detail),Detail=object@detail)
   color=setcolor(length(object@detail))
@@ -26,19 +28,21 @@ setMethod("dplot",signature = (object="venn"),function(object,order=FALSE,textsi
   if(order==TRUE){
   df$Group<-factor(df$Group, levels = df$Group[order(df$Detail)])
   }
-  p<-ggplot(df,aes(Group,Detail,fill=Group))+geom_bar(stat="identity")+scale_fill_manual(values=color)+theme_light(base_size = 12)+theme(axis.text.x=element_text(angle=90))+
-  ggplot2::geom_text(aes(label=Detail),vjust=-0.3,size=textsize)+ggplot2::ylim(0,max(df$Detail)+1)
+  p<-ggplot(df,aes(Group,Detail,fill=Group))+geom_bar(stat="identity")+
+    scale_fill_manual(values=color)+
+    theme_light(base_size = 12)+theme(axis.text.x=element_text(angle=90))+
+    geom_text(aes(label=Detail),vjust=-0.3,size=textsize)+ggplot2::ylim(0,max(df$Detail)+1)
   p
 })
 ##' @name get
-##' @rdname get-methods
+##' @rdname get
+##' @title get subset from venn object
 ##' @importFrom dplyr filter
 ##' @importFrom magrittr %>%
 ##' @param object venn object
 ##' @param group group you want extract
 ##' @export
-##' @examples
-##' \dontrun{
+##' @examples{
 ##' A <- sample(1:100, 40, replace = FALSE);
 ##' B <- sample(1:100, 60, replace = FALSE);
 ##' C <- sample(1:100, 40, replace = FALSE);
@@ -53,8 +57,16 @@ setMethod("get",signature = (object="venn"),function(object,group,...){
 })
 ##' @name show
 ##' @title show detail of venn object
-##' @rdname show-methods
+##' @rdname show
+##' @return summary and quich look for the ven object
 ##' @param object venn object
+##' @examples{
+##' A <- sample(1:100, 40, replace = FALSE);
+##' B <- sample(1:100, 60, replace = FALSE);
+##' C <- sample(1:100, 40, replace = FALSE);
+##' res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
+##' show(res)
+##' }
 ##' @export
 setMethod("show",signature = (object="venn"),function(object){
   cat("=== Here is the detail of Venndiagram===\n");

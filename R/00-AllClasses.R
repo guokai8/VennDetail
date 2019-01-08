@@ -5,7 +5,7 @@
 ##'    plot, venn-method
 ##'    summary, venn-method
 ##' @docType class
-##' @slot input orgianl input
+##' @slot input orginal input
 ##' @slot raw summary of the input
 ##' @slot sep separate delim
 ##' @slot GroupNames group names input
@@ -14,12 +14,6 @@
 ##' @exportClass venn
 ##' @author Kai Guo
 ##' @keywords classes
-setClass("venn",
-         representation = representation(
-           input="list",
-           raw="vector",
-           sep="character",
-           GroupNames="vector",
-           result="data.frame",
-           detail="vector"))
+setClass("venn",representation = representation(input="list",raw="vector",sep="character",
+                                                GroupNames="vector",result="data.frame",detail="vector"))
 

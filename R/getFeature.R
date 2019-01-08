@@ -1,6 +1,6 @@
 ##' @name getFeature
 ##' @title get feature based on venn results
-##' @rdname getFeature-methods
+##' @rdname getFeature
 ##' @importFrom dplyr filter
 ##' @importFrom dplyr left_join
 ##' @importFrom dplyr full_join
@@ -11,11 +11,10 @@
 ##' @param group group you want used
 ##' @param rlist list of detail dataframe with all information
 ##' @param userowname use rowname to join dataframe or not
-##' @param gind id name you want use to extract for each data.frame (set if userowname=F)
+##' @param gind extract column for each data.frame (if userowname=FALSE)
 ##' @param sep separate for new colnames
 ##' @export
-##' @examples
-##' \dontrun{
+##' @examples{
 ##' A <- sample(1:100, 40, replace = FALSE);
 ##' B <- sample(1:100, 60, replace = FALSE);
 ##' C <- sample(1:100, 40, replace = FALSE);
@@ -23,7 +22,7 @@
 ##' dB=data.frame(B=B,"FC"=rnorm(60))
 ##' dC=data.frame(C=C,"FC"=rnorm(40))
 ##' res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
-##' getFeature(res,group="Shared",rlist=list(dA,dB,dC),userowname=F)
+##' rhs<-getFeature(res,group="Shared",rlist=list(dA,dB,dC),userowname=FALSE,gind=rep(1,3))
 ##' }
 setMethod("getFeature",signature = (object="venn"),function(object,group,rlist,userowname=TRUE,gind=NULL,sep="_",...){
   dd<-object@result
