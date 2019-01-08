@@ -9,9 +9,9 @@ License: GPL-2
 Encoding: UTF-8
 LazyData: True
 Imports:
+    utils,
     dplyr,
     purrr,
-    tidyr,
     tibble,
     magrittr,
     ggplot2,
@@ -21,7 +21,9 @@ Imports:
 LinkingTo:
 Suggests:
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat
 VignetteBuilder: knitr
-RoxygenNote: 6.1.0
-biocViews: dplyr
+URL: https://github.com/guokai8/VennDetail
+RoxygenNote: 6.1.1
+biocViews:DataRepresentation,GraphAndNetwork 
