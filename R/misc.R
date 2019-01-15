@@ -66,7 +66,7 @@ detail.venn<-function(x){
 ##' @importFrom UpSetR upset
 ##' @param type choose to use venn.diagram,vennpie or upsetR
 ##' @param filename output filename
-##' @param col color for the font
+##' @param col color for the cycle
 ##' @param sep separate delim
 ##' @param mycol color for VennDiagram
 ##' @param cat.cex font size for displaying
