@@ -17,7 +17,7 @@
 \arguments{
 \item{type}{choose to use venn.diagram,vennpie or upsetR}
 
-\item{col}{color for the font}
+\item{col}{color for the cycle}
 
 \item{sep}{separate delim}
 
