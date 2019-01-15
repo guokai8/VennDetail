@@ -41,7 +41,6 @@ setGeneric("get",function(object,group,...){
 ##' @param y dataframe y
 ##' @param fun join type
 ##' @export
-##' @author Kai Guo
 setGeneric("rowjoin",function(x,y,...){
   standardGeneric("rowjoin")
 })
