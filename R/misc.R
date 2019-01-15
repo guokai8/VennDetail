@@ -57,8 +57,11 @@ detail.venn<-function(x){
 }
 ##' @method plot venn
 ##' @title plot venn object
+##' @description Plot allows users to graphically display the groups and overlap between groups
+##' in their venn class object through a variety of graph types such as a bar plot, traditional venn,
+##' or venn pie chart.
 ##' @rdname plot
-##' @return different type of figures based on user chose
+##' @return different type of graphics based on user chose
 ##' @importFrom VennDiagram venn.diagram
 ##' @importFrom UpSetR upset
 ##' @param type choose to use venn.diagram,vennpie or upsetR
