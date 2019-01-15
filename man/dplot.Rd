@@ -3,7 +3,7 @@
 \docType{methods}
 \name{dplot}
 \alias{dplot}
-\title{detail plot}
+\title{The dplot function allows users to visualize the detail function in the form of a barplot}
 \usage{
 dplot(object, order = FALSE, ...)
 
@@ -11,21 +11,26 @@ dplot(object, order = FALSE, ...)
 }
 \arguments{
 \item{object}{venn object}
+
+\item{order}{sort the bar or not (default:FALSE)}
+
+\item{textsize}{text size above the bar}
 }
 \value{
-barplot with number of item in each set
+Produces a bar plot displaying the total counts within each group
 }
 \description{
-dplot generic
+The amount of members within each group determined by venndetail will be displayed as a bar plot.
+This will include all groups such as shared, pairwise, and unique. By default the order of the bars will be ascending.
+This can be adjusted by the user using the order argument. The text size argument will allow users to change
+the size of the numbers above bars indicating the total members within each group.
 }
 \examples{
-{
 A <- sample(1:100, 40, replace = FALSE);
 B <- sample(1:100, 60, replace = FALSE);
 C <- sample(1:100, 40, replace = FALSE);
 res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
 dplot(res,order=TRUE,textsize=3)
-}
 }
 \author{
 Kai Guo

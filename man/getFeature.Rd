@@ -3,7 +3,7 @@
 \docType{methods}
 \name{getFeature}
 \alias{getFeature}
-\title{get feature based on venn results}
+\title{getFeature provide a way to combine list of user supplied data.frame with venndetail results}
 \usage{
 getFeature(object, group, rlist, userowname = TRUE, gind = NULL,
   sep = "_", ...)
@@ -14,24 +14,24 @@ getFeature(object, group, rlist, userowname = TRUE, gind = NULL,
 \arguments{
 \item{object}{venn object}
 
-\item{group}{group you want used}
+\item{group}{user defined group want to extract}
 
-\item{rlist}{list of detail dataframe with all information}
+\item{rlist}{list of user supplied dataframe to combine with venndetail result}
 
-\item{userowname}{use rowname to join dataframe or not}
+\item{userowname}{use rowname to join dataframe or not (default: TRUE)}
 
-\item{gind}{extract column for each data.frame (if userowname=FALSE)}
+\item{gind}{column name or index for each data.frame user want to use (userowname=FALSE)}
 
-\item{sep}{separate for new colnames}
+\item{sep}{separate of the new colnames for the return data.frame}
 }
 \value{
-dataframe with all venn information and details from input
+data.frame with subset information and detail from user supplied data.frame
 }
 \description{
-getFeature generic
+Getfeature allows users a method of extracting members of groups from venndetail in table format
+that can also include accompanying information from a data frame provided in the rlist argument
 }
 \examples{
-{
 A <- sample(1:100, 40, replace = FALSE);
 B <- sample(1:100, 60, replace = FALSE);
 C <- sample(1:100, 40, replace = FALSE);
@@ -40,7 +40,6 @@ dB=data.frame(B=B,"FC"=rnorm(60))
 dC=data.frame(C=C,"FC"=rnorm(40))
 res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
 rhs<-getFeature(res,group="Shared",rlist=list(dA,dB,dC),userowname=FALSE,gind=rep(1,3))
-}
 }
 \author{
 Kai Guo

@@ -2,7 +2,7 @@
 % Please edit documentation in R/venndetail.R
 \name{venndetail}
 \alias{venndetail}
-\title{venn detail information}
+\title{Extract shared and unique sets}
 \usage{
 venndetail(x, plot = TRUE, filename = NULL, type = "venn",
   col = "black", sep = "_", mycol = c("dodgerblue", "goldenrod1",
@@ -14,15 +14,15 @@ venndetail(x, plot = TRUE, filename = NULL, type = "venn",
 \arguments{
 \item{x}{list of variables with group names}
 
-\item{plot}{whether plot the venndiagram plot or not}
+\item{plot}{whether plot the venndiagram plot or not (default:TRUE)}
 
 \item{filename}{output filename}
 
-\item{type}{choose to use venn.diagram,vennpie or upsetR}
+\item{type}{choose to use venn.diagram,vennpie or upset}
 
-\item{col}{color for the font}
+\item{col}{color for the cycle}
 
-\item{sep}{separate delim}
+\item{sep}{separation for the group and numbers}
 
 \item{mycol}{color for VennDiagram}
 
@@ -38,23 +38,27 @@ venndetail(x, plot = TRUE, filename = NULL, type = "venn",
 
 \item{abbr.method}{abbreviate method(default: both side)}
 
-\item{text.scale}{text size for upsetR(ylab,yaxis,xlab,group name,xaxis,insection)}
+\item{text.scale}{text size for upset (ylab,yaxis,xlab,group name,xaxis,insection)}
 
 \item{...}{A series of graphical parameters tweaking the plot. See below for details}
 }
 \value{
-ven object and figures
+venn object and figures
 }
 \description{
+Extracts shared and unique elements from groups provided to the function.
+This base function will create a formal class venn object and can also graphically plot the amount
+of objects in each group. The plot will be in the form of a tradition venn diagram with default. And user
+can also use vennpie or upset method to display the result.
+}
+\details{
 Extract shared and unique sets
 }
 \examples{
-{
 A <- sample(1:100, 40, replace = FALSE);
 B <- sample(1:100, 60, replace = FALSE);
 C <- sample(1:100, 40, replace = FALSE);
 res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
-}
 }
 \author{
 Kai Guo

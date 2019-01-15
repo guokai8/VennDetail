@@ -3,7 +3,7 @@
 \name{result}
 \alias{result}
 \alias{result.venn}
-\title{result generic}
+\title{extract the result from venn object}
 \usage{
 result(x)
 
@@ -16,18 +16,14 @@ result(x)
 return dataframe and print header of dataframe
 }
 \description{
-result generic
-
-extract result from venn object
+Result will return output in a table format including the contents of the groups included in the venndetail object
 }
 \examples{
-{
 A <- sample(1:100, 40, replace = FALSE);
 B <- sample(1:100, 60, replace = FALSE);
 C <- sample(1:100, 40, replace = FALSE);
 res<-venndetail(list(A=A,B=B,C=C),plot=FALSE)
 result<-result(res)
-}
 }
 \author{
 Kai Guo

@@ -3,7 +3,7 @@
 \docType{methods}
 \name{show}
 \alias{show}
-\title{show detail of venn object}
+\title{show the summary of venn object}
 \usage{
 \S4method{show}{venn}(object)
 }
@@ -11,17 +11,19 @@
 \item{object}{venn object}
 }
 \value{
-summary and quich look for the ven object
+summary and quick look for the venn object
 }
 \description{
-show detail of venn object
+Show provides a summary of the venn object which includes a total
+results and sets as well as an abbreviated table.
 }
 \examples{
-{
 A <- sample(1:100, 40, replace = FALSE);
 B <- sample(1:100, 60, replace = FALSE);
 C <- sample(1:100, 40, replace = FALSE);
 res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
 show(res)
 }
+\author{
+Kai Guo
 }

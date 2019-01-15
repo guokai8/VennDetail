@@ -2,7 +2,7 @@
 % Please edit documentation in R/misc.R
 \name{setcolor}
 \alias{setcolor}
-\title{set color with given a vector}
+\title{return colors with given a vector}
 \usage{
 setcolor(x)
 }
@@ -10,15 +10,14 @@ setcolor(x)
 \item{x}{length of color}
 }
 \value{
-color palette
+colors
 }
 \description{
-set color with given a vector
+Setcolor will provide a list of color vectors based on the number used as an input.
 }
 \examples{
-{
 mycol<-setcolor(10)
-}
+mycol
 }
 \author{
 Kai Guo

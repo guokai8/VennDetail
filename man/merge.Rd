@@ -9,7 +9,7 @@
 merge(object, ingore.case = FALSE, useupper = TRUE, plot = FALSE,
   ...)
 
-\S4method{merge}{list}(object, ingore.case = FALSE, useupper = TRUE,
+\S4method{merge}{list}(object, ignore.case = FALSE, useupper = TRUE,
   plot = FALSE, ...)
 }
 \arguments{
@@ -21,9 +21,9 @@ merge(object, ingore.case = FALSE, useupper = TRUE, plot = FALSE,
 
 \item{plot}{plot figure or not}
 
-\item{object}{list of venn object}
+\item{ignore.case}{ignore case of group name}
 
-\item{ingore.case}{ingore case of group name}
+\item{object}{list of venn object}
 
 \item{useupper}{use uppercase for all group name}
 
@@ -34,9 +34,9 @@ venn object
 }
 \description{
 Merge two or more venn object by group name
+
+Merge will combine multiple venn diagrams to allow comparison between multiple groups
 }
 \author{
-Kai Guo
-
 Kai Guo
 }

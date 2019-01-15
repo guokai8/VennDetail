@@ -12,23 +12,25 @@ get(object, group, ...)
 \arguments{
 \item{object}{venn object}
 
-\item{group}{group you want extract}
+\item{group}{user defined specified group}
 }
 \value{
 return dataframe and print the header of dataframe
 }
 \description{
 get generic
+
+Get the contents of a specified group from venndetail object
 }
 \examples{
-{
 A <- sample(1:100, 40, replace = FALSE);
 B <- sample(1:100, 60, replace = FALSE);
 C <- sample(1:100, 40, replace = FALSE);
 res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
 get(res,"A")
 }
-}
 \author{
+Kai Guo
+
 Kai Guo
 }

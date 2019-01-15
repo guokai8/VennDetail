@@ -35,11 +35,11 @@ vennpie(object, group = NULL, color = NULL, revcolor = "lightgrey",
 
 \item{object}{venn object}
 
-\item{group}{set name you want display}
+\item{group}{set name user want to highlight}
 
 \item{color}{vector of color you want use for the group}
 
-\item{revcolor}{backgroup color}
+\item{revcolor}{color user want for other sets except highlight}
 
 \item{show.number}{display the element number of the group or not}
 
@@ -52,13 +52,14 @@ vennpie(object, group = NULL, color = NULL, revcolor = "lightgrey",
 \item{percentage}{display percentage format or not}
 }
 \value{
-plot
+vennpie graphic
 }
 \description{
-Make vennpie figure
+Vennpie uses the venn object and  create a figure in the form of a venn pie diagram
+rather than a traditional venn diagram. User are allowed to highlight a specific section of the venn pie.
+With revcolor paramater user can set the color of all groups not selected using the group argument.
 }
 \examples{
-{
 A <- sample(1:100, 40, replace = FALSE);
 B <- sample(1:100, 60, replace = FALSE);
 C <- sample(1:100, 40, replace = FALSE);
@@ -67,7 +68,6 @@ dB=data.frame(B=B,"FC"=rnorm(60))
 dC=data.frame(C=C,"FC"=rnorm(40))
 res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
 vennpie(res)
-}
 }
 \author{
 Kai Guo

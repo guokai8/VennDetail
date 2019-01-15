@@ -3,7 +3,7 @@
 \name{detail}
 \alias{detail}
 \alias{detail.venn}
-\title{detail generic}
+\title{The detail function provides a way to display the amount of members in each group}
 \usage{
 detail(x)
 
@@ -13,21 +13,19 @@ detail(x)
 \item{x}{venn object}
 }
 \value{
-vector include numbers belong to different sets
+Vector including group names and total member amounts for each group
 }
 \description{
-detail generic
-
-detail venn object
+The objective of this function is to allow insight into the amount of overlap between groups identified by
+venndetail without the need to print a diagram. The groups displayed will include all comparisons such as
+shared, pairwise, and unique.
 }
 \examples{
-{
 A <- sample(1:100, 40, replace = FALSE);
 B <- sample(1:100, 60, replace = FALSE);
 C <- sample(1:100, 40, replace = FALSE);
 res<-venndetail(list(A=A,B=B,C=C),plot=FALSE)
 detail(res)
-}
 }
 \author{
 Kai Guo
