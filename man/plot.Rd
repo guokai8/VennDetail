@@ -38,10 +38,12 @@
 \item{nintersects}{Number of intersections to plot. If set to NA, all intersections will be plotted.}
 }
 \value{
-different type of figures based on user chose
+different type of graphics based on user chose
 }
 \description{
-plot venn object
+Plot allows users to graphically display the groups and overlap between groups
+in their venn class object through a variety of graph types such as a bar plot, traditional venn,
+or venn pie chart.
 }
 \examples{
 {
