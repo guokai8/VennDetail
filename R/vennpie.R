@@ -1,6 +1,9 @@
 ##' @name vennpie
-##' @title get feature based on venn results
-##' @rdname vennpie-methods
+##' @title Vennpie provide different way compare with Venn Diagram plot
+##' @description Vennpie uses the venn object and  create a figure in the form of a venn pie diagram
+##' rather than a traditional venn diagram. User are allowed to highlight a specific section of the venn pie.
+##' With revcolor paramater user can set the color of all groups not selected using the group argument.
+##' @rdname vennpie
 ##' @import ggplot2
 ##' @importFrom ggplot2 labs
 ##' @importFrom ggplot2 ggplot
@@ -15,17 +18,17 @@
 ##' @importFrom ggplot2 scale_fill_manual
 ##' @importFrom ggplot2 scale_color_manual
 ##' @param object venn object
-##' @param group set name you want display
+##' @param group set name user want to highlight
 ##' @param color vector of color you want use for the group
-##' @param revcolor backgroup color
+##' @param revcolor color user want for other sets except highlight
 ##' @param show.number display the element number of the group or not
 ##' @param log use log transform or not
 ##' @param base log base
 ##' @param sep separate for new colnames
 ##' @param percentage display percentage format or not
+##' @return vennpie graphic
 ##' @export
 ##' @examples
-##' \dontrun{
 ##' A <- sample(1:100, 40, replace = FALSE);
 ##' B <- sample(1:100, 60, replace = FALSE);
 ##' C <- sample(1:100, 40, replace = FALSE);
@@ -34,7 +37,6 @@
 ##' dC=data.frame(C=C,"FC"=rnorm(40))
 ##' res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
 ##' vennpie(res)
-##' }
 setMethod("vennpie",signature = (object="venn"),function(object,group=NULL,color=NULL,
                                                          revcolor="lightgrey",any=NULL,show.number=TRUE,show.x=TRUE,
                                                          sep="_",log=FALSE,base=NULL,percentage=FALSE,...){

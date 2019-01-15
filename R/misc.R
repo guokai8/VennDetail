@@ -26,29 +26,31 @@ dim.venn <- function(x) {
   x@result[, name]
 }
 ##' @method result venn
-##' @title extract result from venn object
+##' @title extract the result from venn object
+##' @description Result will return output in a table format including the contents of the groups included in the venndetail object
 ##' @rdname result
-##' @examples{
+##' @examples
 ##' A <- sample(1:100, 40, replace = FALSE);
 ##' B <- sample(1:100, 60, replace = FALSE);
 ##' C <- sample(1:100, 40, replace = FALSE);
 ##' res<-venndetail(list(A=A,B=B,C=C),plot=FALSE)
 ##' result<-result(res)
-##' }
 ##' @export
 result.venn<-function(x){
   as.data.frame(x@result)
 }
 ##' @method detail venn
-##' @title detail venn object
+##' @title The detail function provides a way to display the amount of members in each group
+##' @description  The objective of this function is to allow insight into the amount of overlap between groups identified by
+##' venndetail without the need to print a diagram. The groups displayed will include all comparisons such as
+##' shared, pairwise, and unique.
 ##' @rdname detail
-##' @examples{
+##' @examples
 ##' A <- sample(1:100, 40, replace = FALSE);
 ##' B <- sample(1:100, 60, replace = FALSE);
 ##' C <- sample(1:100, 40, replace = FALSE);
 ##' res<-venndetail(list(A=A,B=B,C=C),plot=FALSE)
 ##' detail(res)
-##' }
 ##' @export
 detail.venn<-function(x){
   x@detail
@@ -143,16 +145,16 @@ plot.venn<-function(x,type="venn",col="black",sep="_",mycol=c("dodgerblue", "gol
   return(x)
 }
 ##' @method merge venn
-##' @title merge venn
+##' @title Merge two or more venndetail obejct together
+##' @description Merge will combine multiple venn diagrams to allow comparison between multiple groups
 ##' @rdname merge
 ##' @importFrom purrr flatten
 ##' @param object list of venn object
-##' @param ingore.case ingore case of group name
+##' @param ignore.case ignore case of group name
 ##' @param useupper use uppercase for all group name
 ##' @param plot plot figure or not
 ##' @export
-##' @author Kai Guo
-setMethod("merge",signature = (object="list"),function(object,ingore.case=FALSE,useupper=TRUE,plot=FALSE,...){
+setMethod("merge",signature = (object="list"),function(object,ignore.case=FALSE,useupper=TRUE,plot=FALSE,...){
   input=lapply(object, function(x)slot(x,"input"))
   input=flatten(input)
   nam=names(input)
@@ -207,7 +209,9 @@ setAs(from = "list",to="venn",def=function(from){
       result=result,
       detail=detail)
 })
-
+##' @title join data.frame based on rownames
+##' @description join two data.frame with rownames
+##' @rdname rowjoin
 ##' @method rowname join
 ##' @importFrom dplyr full_join
 ##' @importFrom dplyr left_join
@@ -217,6 +221,7 @@ setAs(from = "list",to="venn",def=function(from){
 ##' @param x data.frame x
 ##' @param y data.frame y
 ##' @param fun join type
+##' @return dataframe with join results
 ##' @author Kai Guo
 setMethod("rowjoin",signature(x="data.frame",y="data.frame"),function(x,y,fun="full_join"){
   x<-.add_colnames(x)
@@ -225,12 +230,13 @@ setMethod("rowjoin",signature(x="data.frame",y="data.frame"),function(x,y,fun="f
   return(f(x,y,by=c("RowNxyz"="RowNxyz")))
 })
 ##' @name setcolor
-##' @title set color with given a vector
+##' @title return colors with given a vector
+##' @description Setcolor will provide a list of color vectors based on the number used as an input.
 ##' @param x length of color
-##' @return color palette
-##' @examples{
+##' @return colors
+##' @examples
 ##' mycol<-setcolor(10)
-##' }
+##' mycol
 ##' @export
 ##' @author Kai Guo
 setcolor<-function(x){

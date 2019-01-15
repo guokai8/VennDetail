@@ -1,4 +1,3 @@
-##' result generic
 ##' @param x venn object
 ##' @return return dataframe and print header of dataframe
 ##' @export
@@ -6,19 +5,21 @@
 result<-function(x){
   UseMethod("result",x)
 }
-##' detail generic
 ##' @param x venn object
-##' @return vector include numbers belong to different sets
+##' @return Vector including group names and total member amounts for each group
 ##' @export
 ##' @author Kai Guo
 detail<-function(x){
   UseMethod("detail",x)
 }
-##' dplot generic
 ##' @name dplot
 ##' @rdname dplot
-##' @title detail plot
-##' @return barplot with number of item in each set
+##' @title The dplot function allows users to visualize the detail function in the form of a barplot
+##' @description The amount of members within each group determined by venndetail will be displayed as a bar plot.
+##' This will include all groups such as shared, pairwise, and unique. By default the order of the bars will be ascending.
+##' This can be adjusted by the user using the order argument. The text size argument will allow users to change
+##' the size of the numbers above bars indicating the total members within each group.
+##' @return Produces a bar plot displaying the total counts within each group
 ##' @export
 ##' @author Kai Guo
 setGeneric("dplot",function(object,order=FALSE,...){
@@ -35,30 +36,22 @@ setGeneric("dplot",function(object,order=FALSE,...){
 setGeneric("get",function(object,group,...){
   standardGeneric("get")
 })
-##' rowjoin generic
 ##' @name rowjoin
-##' @rdname rowjoin
-##' @title join data.frame based on rownames
 ##' @param x dataframe x
 ##' @param y dataframe y
 ##' @param fun join type
-##' @return dataframe with join results
+##' @export
 ##' @author Kai Guo
 setGeneric("rowjoin",function(x,y,...){
   standardGeneric("rowjoin")
 })
-##' getFeature generic
-##'
 ##' @name getFeature
 ##' @rdname getFeature
-##' @title get feature based on venn results
-##' @return dataframe with all venn information and details from input
 ##' @export
 ##' @author Kai Guo
 setGeneric("getFeature",function(object,group, rlist, userowname=TRUE,gind=NULL,sep="_",...){
   standardGeneric("getFeature")
 })
-##' Make vennpie figure
 ##' @rdname vennpie
 ##' @name vennpie
 ##' @title pie plot show shared and unique part
@@ -71,7 +64,6 @@ setGeneric("getFeature",function(object,group, rlist, userowname=TRUE,gind=NULL,
 ##' @param base log base
 ##' @param sep separate for new colnames
 ##' @param percentage display percentage format or not
-##' @return plot
 ##' @export
 ##' @author Kai Guo
 setGeneric("vennpie",function(object,group=NULL,color=NULL,

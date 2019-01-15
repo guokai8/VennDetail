@@ -1,33 +1,36 @@
 ##' Extract shared and unique sets
 ##' @name venndetail
 ##' @rdname venndetail
-##' @title venn detail information
-##' @return ven object and figures
+##' @title Extract shared and unique sets
+##' @description Extracts shared and unique elements from groups provided to the function.
+##' This base function will create a formal class venn object and can also graphically plot the amount
+##' of objects in each group. The plot will be in the form of a tradition venn diagram with default. And user
+##' can also use vennpie or upset method to display the result.
+##' @return venn object and figures
 ##' @importFrom VennDiagram venn.diagram
 ##' @importFrom grid grid.draw
 ##' @importFrom UpSetR upset
 ##' @importFrom UpSetR fromList
 ##' @param x list of variables with group names
-##' @param plot whether plot the venndiagram plot or not
-##' @param type choose to use venn.diagram,vennpie or upsetR
+##' @param plot whether plot the venndiagram plot or not (default:TRUE)
+##' @param type choose to use venn.diagram,vennpie or upset
 ##' @param filename output filename
-##' @param col color for the font
-##' @param sep separate delim
+##' @param col color for the cycle
+##' @param sep separation for the group and numbers
 ##' @param mycol color for VennDiagram
 ##' @param cat.cex font size for displaying
 ##' @param alpha alpha value for color
 ##' @param cat.fontface font face
 ##' @param abbr use abbreviate name or not
 ##' @param minlength minmal length for name
-##' @param text.scale text size for upsetR(ylab,yaxis,xlab,group name,xaxis,insection)
+##' @param text.scale text size for upset (ylab,yaxis,xlab,group name,xaxis,insection)
 ##' @param abbr.method abbreviate method(default: both side)
 ##' @inheritParams VennDiagram::venn.diagram
-##' @examples{
+##' @examples
 ##' A <- sample(1:100, 40, replace = FALSE);
 ##' B <- sample(1:100, 60, replace = FALSE);
 ##' C <- sample(1:100, 40, replace = FALSE);
 ##' res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
-##' }
 ##' @export
 ##' @author Kai Guo
 

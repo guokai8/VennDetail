@@ -1,6 +1,9 @@
 ##' @name getFeature
-##' @title get feature based on venn results
+##' @title getFeature provide a way to combine list of user supplied data.frame with venndetail results
+##' @description Getfeature allows users a method of extracting members of groups from venndetail in table format
+##' that can also include accompanying information from a data frame provided in the rlist argument
 ##' @rdname getFeature
+##' @return data.frame with subset information and detail from user supplied data.frame
 ##' @importFrom dplyr filter
 ##' @importFrom dplyr left_join
 ##' @importFrom dplyr full_join
@@ -8,13 +11,13 @@
 ##' @importFrom tibble rownames_to_column
 ##' @importFrom magrittr %>%
 ##' @param object venn object
-##' @param group group you want used
-##' @param rlist list of detail dataframe with all information
-##' @param userowname use rowname to join dataframe or not
-##' @param gind extract column for each data.frame (if userowname=FALSE)
-##' @param sep separate for new colnames
+##' @param group user defined group want to extract
+##' @param rlist list of user supplied dataframe to combine with venndetail result
+##' @param userowname use rowname to join dataframe or not (default: TRUE)
+##' @param gind column name or index for each data.frame user want to use (userowname=FALSE)
+##' @param sep separate of the new colnames for the return data.frame
 ##' @export
-##' @examples{
+##' @examples
 ##' A <- sample(1:100, 40, replace = FALSE);
 ##' B <- sample(1:100, 60, replace = FALSE);
 ##' C <- sample(1:100, 40, replace = FALSE);
@@ -23,7 +26,6 @@
 ##' dC=data.frame(C=C,"FC"=rnorm(40))
 ##' res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
 ##' rhs<-getFeature(res,group="Shared",rlist=list(dA,dB,dC),userowname=FALSE,gind=rep(1,3))
-##' }
 setMethod("getFeature",signature = (object="venn"),function(object,group,rlist,userowname=TRUE,gind=NULL,sep="_",...){
   dd<-object@result
   if(missing(group)){

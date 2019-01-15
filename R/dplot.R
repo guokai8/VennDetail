@@ -11,13 +11,14 @@
 ##' @importFrom ggplot2 geom_text
 ##' @importFrom ggplot2 ylim
 ##' @param object venn object
-##' @examples{
+##' @param order sort the bar or not (default:FALSE)
+##' @param textsize text size above the bar
+##' @examples
 ##' A <- sample(1:100, 40, replace = FALSE);
 ##' B <- sample(1:100, 60, replace = FALSE);
 ##' C <- sample(1:100, 40, replace = FALSE);
 ##' res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
 ##' dplot(res,order=TRUE,textsize=3)
-##' }
 ##' @export
 ##' @author Kai Guo
 
@@ -36,19 +37,20 @@ setMethod("dplot",signature = (object="venn"),function(object,order=FALSE,textsi
 })
 ##' @name get
 ##' @rdname get
-##' @title get subset from venn object
+##' @title Get the contents of a specified group from venndetail object
+##' @description Get the contents of a specified group from venndetail object
 ##' @importFrom dplyr filter
 ##' @importFrom magrittr %>%
 ##' @param object venn object
-##' @param group group you want extract
+##' @param group user defined specified group
 ##' @export
-##' @examples{
+##' @author Kai Guo
+##' @examples
 ##' A <- sample(1:100, 40, replace = FALSE);
 ##' B <- sample(1:100, 60, replace = FALSE);
 ##' C <- sample(1:100, 40, replace = FALSE);
 ##' res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
 ##' get(res,"A")
-##' }
 setMethod("get",signature = (object="venn"),function(object,group,...){
   dd<-object@result
   lhs<-dd%>%filter(Group%in%group)
@@ -56,17 +58,19 @@ setMethod("get",signature = (object="venn"),function(object,group,...){
   return(lhs)
 })
 ##' @name show
-##' @title show detail of venn object
+##' @title show the summary of venn object
+##' @description Show provides a summary of the venn object which includes a total
+##' results and sets as well as an abbreviated table.
 ##' @rdname show
-##' @return summary and quich look for the ven object
+##' @return summary and quick look for the venn object
 ##' @param object venn object
-##' @examples{
+##' @author Kai Guo
+##' @examples
 ##' A <- sample(1:100, 40, replace = FALSE);
 ##' B <- sample(1:100, 60, replace = FALSE);
 ##' C <- sample(1:100, 40, replace = FALSE);
 ##' res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
 ##' show(res)
-##' }
 ##' @export
 setMethod("show",signature = (object="venn"),function(object){
   cat("=== Here is the detail of Venndiagram===\n");
