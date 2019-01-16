@@ -31,6 +31,4 @@ join two data.frame with rownames
 }
 \author{
 Kai Guo
-
-Kai Guo
 }

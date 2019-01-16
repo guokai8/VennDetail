@@ -60,12 +60,9 @@ rather than a traditional venn diagram. User are allowed to highlight a specific
 With revcolor paramater user can set the color of all groups not selected using the group argument.
 }
 \examples{
-A <- sample(1:100, 40, replace = FALSE);
-B <- sample(1:100, 60, replace = FALSE);
-C <- sample(1:100, 40, replace = FALSE);
-dA=data.frame(A=A,"FC"=rnorm(40))
-dB=data.frame(B=B,"FC"=rnorm(60))
-dC=data.frame(C=C,"FC"=rnorm(40))
+A<-sample(1:100, 40, replace = FALSE);
+B<-sample(1:100, 60, replace = FALSE);
+C<-sample(1:100, 40, replace = FALSE);
 res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
 vennpie(res)
 }

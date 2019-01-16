@@ -26,14 +26,12 @@ This can be adjusted by the user using the order argument. The text size argumen
 the size of the numbers above bars indicating the total members within each group.
 }
 \examples{
-A <- sample(1:100, 40, replace = FALSE);
-B <- sample(1:100, 60, replace = FALSE);
-C <- sample(1:100, 40, replace = FALSE);
+A<-sample(1:100, 40, replace = FALSE);
+B<-sample(1:100, 60, replace = FALSE);
+C<-sample(1:100, 40, replace = FALSE);
 res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
 dplot(res,order=TRUE,textsize=3)
 }
 \author{
-Kai Guo
-
 Kai Guo
 }

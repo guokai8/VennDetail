@@ -3,7 +3,7 @@
 \docType{methods}
 \name{get}
 \alias{get}
-\title{get detail}
+\title{Get the contents of a specified group from venndetail object}
 \usage{
 get(object, group, ...)
 
@@ -18,14 +18,12 @@ get(object, group, ...)
 return dataframe and print the header of dataframe
 }
 \description{
-get generic
-
 Get the contents of a specified group from venndetail object
 }
 \examples{
-A <- sample(1:100, 40, replace = FALSE);
-B <- sample(1:100, 60, replace = FALSE);
-C <- sample(1:100, 40, replace = FALSE);
+A<-sample(1:100,40,replace = FALSE);
+B<-sample(1:100,60,replace = FALSE);
+C<-sample(1:100,40,replace = FALSE);
 res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
 get(res,"A")
 }

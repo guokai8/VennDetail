@@ -24,13 +24,13 @@ venndetail(x, plot = TRUE, filename = NULL, type = "venn",
 
 \item{sep}{separation for the group and numbers}
 
-\item{mycol}{color for VennDiagram}
+\item{mycol}{color for VennDiagram graphic}
 
 \item{cat.cex}{font size for displaying}
 
-\item{alpha}{alpha value for color}
+\item{alpha}{transparency value}
 
-\item{cat.fontface}{font face}
+\item{cat.fontface}{font family}
 
 \item{abbr}{use abbreviate name or not}
 
@@ -55,9 +55,9 @@ can also use vennpie or upset method to display the result.
 Extract shared and unique sets
 }
 \examples{
-A <- sample(1:100, 40, replace = FALSE);
-B <- sample(1:100, 60, replace = FALSE);
-C <- sample(1:100, 40, replace = FALSE);
+A<-sample(1:100, 40, replace = FALSE);
+B<-sample(1:100, 60, replace = FALSE);
+C<-sample(1:100, 40, replace = FALSE);
 res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
 }
 \author{
