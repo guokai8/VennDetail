@@ -14,13 +14,12 @@
 ##' @param order sort the bar or not (default:FALSE)
 ##' @param textsize text size above the bar
 ##' @examples
-##' A <- sample(1:100, 40, replace = FALSE);
-##' B <- sample(1:100, 60, replace = FALSE);
-##' C <- sample(1:100, 40, replace = FALSE);
+##' A<-sample(1:100, 40, replace = FALSE);
+##' B<-sample(1:100, 60, replace = FALSE);
+##' C<-sample(1:100, 40, replace = FALSE);
 ##' res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
 ##' dplot(res,order=TRUE,textsize=3)
 ##' @export
-##' @author Kai Guo
 
 setMethod("dplot",signature = (object="venn"),function(object,order=FALSE,textsize=5,...){
   df<-data.frame(Group=names(object@detail),Detail=object@detail)
@@ -46,9 +45,9 @@ setMethod("dplot",signature = (object="venn"),function(object,order=FALSE,textsi
 ##' @export
 ##' @author Kai Guo
 ##' @examples
-##' A <- sample(1:100, 40, replace = FALSE);
-##' B <- sample(1:100, 60, replace = FALSE);
-##' C <- sample(1:100, 40, replace = FALSE);
+##' A<-sample(1:100,40,replace = FALSE);
+##' B<-sample(1:100,60,replace = FALSE);
+##' C<-sample(1:100,40,replace = FALSE);
 ##' res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
 ##' get(res,"A")
 setMethod("get",signature = (object="venn"),function(object,group,...){
@@ -66,9 +65,9 @@ setMethod("get",signature = (object="venn"),function(object,group,...){
 ##' @param object venn object
 ##' @author Kai Guo
 ##' @examples
-##' A <- sample(1:100, 40, replace = FALSE);
-##' B <- sample(1:100, 60, replace = FALSE);
-##' C <- sample(1:100, 40, replace = FALSE);
+##' A<-sample(1:100, 40, replace = FALSE);
+##' B<-sample(1:100, 60, replace = FALSE);
+##' C<-sample(1:100, 40, replace = FALSE);
 ##' res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
 ##' show(res)
 ##' @export

@@ -29,12 +29,9 @@
 ##' @return vennpie graphic
 ##' @export
 ##' @examples
-##' A <- sample(1:100, 40, replace = FALSE);
-##' B <- sample(1:100, 60, replace = FALSE);
-##' C <- sample(1:100, 40, replace = FALSE);
-##' dA=data.frame(A=A,"FC"=rnorm(40))
-##' dB=data.frame(B=B,"FC"=rnorm(60))
-##' dC=data.frame(C=C,"FC"=rnorm(40))
+##' A<-sample(1:100, 40, replace = FALSE);
+##' B<-sample(1:100, 60, replace = FALSE);
+##' C<-sample(1:100, 40, replace = FALSE);
 ##' res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
 ##' vennpie(res)
 setMethod("vennpie",signature = (object="venn"),function(object,group=NULL,color=NULL,

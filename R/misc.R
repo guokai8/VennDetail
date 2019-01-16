@@ -75,9 +75,9 @@ detail.venn<-function(x){
 ##' @param text.scale text size for upsetR(ylab,yaxis,xlab,group name,xaxis,insection)
 ##' @inheritParams UpSetR::upset
 ##' @examples{
-##' A <- sample(1:100, 40, replace = FALSE);
-##' B <- sample(1:100, 60, replace = FALSE);
-##' C <- sample(1:100, 40, replace = FALSE);
+##' A<-sample(1:100,40,replace = FALSE);
+##' B<-sample(1:100,60,replace = FALSE);
+##' C<-sample(1:100,40,replace = FALSE);
 ##' res<-venndetail(list(A=A,B=B,C=C),plot=FALSE)
 ##' plot(res,type="venn")
 ##' }

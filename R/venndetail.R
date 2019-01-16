@@ -17,19 +17,19 @@
 ##' @param filename output filename
 ##' @param col color for the cycle
 ##' @param sep separation for the group and numbers
-##' @param mycol color for VennDiagram
+##' @param mycol color for VennDiagram graphic
 ##' @param cat.cex font size for displaying
-##' @param alpha alpha value for color
-##' @param cat.fontface font face
+##' @param alpha transparency value
+##' @param cat.fontface font family
 ##' @param abbr use abbreviate name or not
 ##' @param minlength minmal length for name
 ##' @param text.scale text size for upset (ylab,yaxis,xlab,group name,xaxis,insection)
 ##' @param abbr.method abbreviate method(default: both side)
 ##' @inheritParams VennDiagram::venn.diagram
 ##' @examples
-##' A <- sample(1:100, 40, replace = FALSE);
-##' B <- sample(1:100, 60, replace = FALSE);
-##' C <- sample(1:100, 40, replace = FALSE);
+##' A<-sample(1:100, 40, replace = FALSE);
+##' B<-sample(1:100, 60, replace = FALSE);
+##' C<-sample(1:100, 40, replace = FALSE);
 ##' res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
 ##' @export
 ##' @author Kai Guo

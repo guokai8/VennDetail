@@ -1,6 +1,6 @@
 ##' @name getFeature
 ##' @title getFeature provide a way to combine list of user supplied data.frame with venndetail results
-##' @description Getfeature allows users a method of extracting members of groups from venndetail in table format
+##' @description GetFeature allows users a method of extracting members of groups from venndetail in table format
 ##' that can also include accompanying information from a data frame provided in the rlist argument
 ##' @rdname getFeature
 ##' @return data.frame with subset information and detail from user supplied data.frame
@@ -18,12 +18,12 @@
 ##' @param sep separate of the new colnames for the return data.frame
 ##' @export
 ##' @examples
-##' A <- sample(1:100, 40, replace = FALSE);
-##' B <- sample(1:100, 60, replace = FALSE);
-##' C <- sample(1:100, 40, replace = FALSE);
-##' dA=data.frame(A=A,"FC"=rnorm(40))
-##' dB=data.frame(B=B,"FC"=rnorm(60))
-##' dC=data.frame(C=C,"FC"=rnorm(40))
+##' A<-sample(1:100,40,replace = FALSE);
+##' B<-sample(1:100,60,replace = FALSE);
+##' C<-sample(1:100,40,replace = FALSE);
+##' dA<-data.frame(A=A,"FC"=rnorm(40))
+##' dB<-data.frame(B=B,"FC"=rnorm(60))
+##' dC<-data.frame(C=C,"FC"=rnorm(40))
 ##' res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
 ##' rhs<-getFeature(res,group="Shared",rlist=list(dA,dB,dC),userowname=FALSE,gind=rep(1,3))
 setMethod("getFeature",signature = (object="venn"),function(object,group,rlist,userowname=TRUE,gind=NULL,sep="_",...){
