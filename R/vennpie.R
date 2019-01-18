@@ -26,6 +26,10 @@
 ##' @param base base value for log transformation
 ##' @param sep separation character for new colnames
 ##' @param percentage display percentage format (default: FALSE)
+##' @param show.x show label outside the circle (default: TRUE)
+##' @param piecolor colors for vennpie
+##' @param any alternative ways to highlight sets (vennpie)
+##' @param sets.x.label x-axis label (upset)
 ##' @return vennpie graphic
 ##' @export
 ##' @examples

@@ -76,6 +76,9 @@ detail.venn<-function(object){
 ##' @param minlength set minmal length for names
 ##' @param text.scale vector of text size for upset (ylab,yaxis,xlab,group name,xaxis,insection)
 ##' @param abbr.method abbreviation method(default: both side)
+##' @param show.x show label outside the circle (default: TRUE)
+##' @param piecolor colors for vennpie
+##' @param any alternative ways to highlight sets (vennpie)
 ##' @param sets.x.label x-axis label (upset)
 ##' @param mainbar.y.label y-axis label (upset)
 ##' @inheritParams UpSetR::upset
