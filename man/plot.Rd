@@ -2,7 +2,7 @@
 % Please edit documentation in R/misc.R
 \name{plot.venn}
 \alias{plot.venn}
-\title{plot venn object}
+\title{Plot venn object}
 \usage{
 \method{plot}{venn}(x, type = "venn", col = "black", sep = "_",
   mycol = c("dodgerblue", "goldenrod1", "darkorange1", "seagreen3",
@@ -15,19 +15,21 @@
   nintersects = 40, ...)
 }
 \arguments{
-\item{type}{choose to use venn.diagram,vennpie or upsetR}
+\item{type}{use venn,vennpie or upset (default: venn)}
 
-\item{col}{color for the cycle}
+\item{col}{color for the circle}
 
-\item{sep}{separate delim}
+\item{sep}{separation character used for the group and numbers}
 
-\item{mycol}{color for VennDiagram}
+\item{mycol}{color for VennDiagram graphic}
 
-\item{cat.cex}{font size for displaying}
+\item{cat.cex}{font size}
 
-\item{cat.fontface}{font face}
+\item{alpha}{transparency value}
 
-\item{text.scale}{text size for upsetR(ylab,yaxis,xlab,group name,xaxis,insection)}
+\item{cat.fontface}{font type}
+
+\item{text.scale}{vector of text size for upset (ylab,yaxis,xlab,group name,xaxis,insection)}
 
 \item{filename}{output filename}
 
@@ -36,6 +38,12 @@
 \item{mainbar.y.label}{The y-axis label of the intersection size bar plot}
 
 \item{nintersects}{Number of intersections to plot. If set to NA, all intersections will be plotted.}
+
+\item{abbr}{abbreviate name or not (default: FALSE)}
+
+\item{minlength}{set minmal length for names}
+
+\item{abbr.method}{abbreviation method(default: both side)}
 }
 \value{
 different type of graphics based on user chose
@@ -46,11 +54,12 @@ in their venn class object through a variety of graph types such as a bar plot, 
 or venn pie chart.
 }
 \examples{
-{
 A<-sample(1:100,40,replace = FALSE);
 B<-sample(1:100,60,replace = FALSE);
 C<-sample(1:100,40,replace = FALSE);
 res<-venndetail(list(A=A,B=B,C=C),plot=FALSE)
 plot(res,type="venn")
 }
+\author{
+Kai Guo
 }

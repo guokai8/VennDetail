@@ -4,7 +4,7 @@
 \name{rowjoin}
 \alias{rowjoin}
 \alias{rowjoin,data.frame,data.frame-method}
-\title{join data.frame based on rownames}
+\title{Join data.frame based on rownames}
 \usage{
 rowjoin(x, y, ...)
 
@@ -21,13 +21,13 @@ rowjoin(x, y, ...)
 
 \item{y}{data.frame y}
 
-\item{fun}{join type}
+\item{fun}{different join format: left_join,full_join,right_join (default:full_join)}
 }
 \value{
 dataframe with join results
 }
 \description{
-join two data.frame with rownames
+join two dataframes by rownames
 }
 \author{
 Kai Guo

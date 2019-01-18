@@ -12,7 +12,7 @@ get(object, group, ...)
 \arguments{
 \item{object}{venn object}
 
-\item{group}{user defined specified group}
+\item{group}{user defined specified groups}
 }
 \value{
 return dataframe and print the header of dataframe

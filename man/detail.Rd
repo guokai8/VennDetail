@@ -5,12 +5,12 @@
 \alias{detail.venn}
 \title{The detail function provides a way to display the amount of members in each group}
 \usage{
-detail(x)
+detail(object)
 
-\method{detail}{venn}(x)
+\method{detail}{venn}(object)
 }
 \arguments{
-\item{x}{venn object}
+\item{object}{venn object}
 }
 \value{
 Vector including group names and total member amounts for each group

@@ -9,38 +9,36 @@ venndetail(x, plot = TRUE, filename = NULL, type = "venn",
   "darkorange1", "seagreen3", "orchid3"), cat.cex = 1.5, alpha = 0.5,
   cex = 2, cat.fontface = "bold", margin = 0.05, abbr = FALSE,
   minlength = 3, abbr.method = "both.sides", text.scale = c(1.5, 1.5,
-  1.5, 1.5, 1.5, 1.5), ...)
+  1.5, 1.5, 1.5, 1.5))
 }
 \arguments{
 \item{x}{list of variables with group names}
 
-\item{plot}{whether plot the venndiagram plot or not (default:TRUE)}
+\item{plot}{plot the graphic (default:TRUE)}
 
 \item{filename}{output filename}
 
-\item{type}{choose to use venn.diagram,vennpie or upset}
+\item{type}{use venn,vennpie or upset (default: venn)}
 
-\item{col}{color for the cycle}
+\item{col}{color for the circle}
 
-\item{sep}{separation for the group and numbers}
+\item{sep}{separation character used for the group and numbers}
 
 \item{mycol}{color for VennDiagram graphic}
 
-\item{cat.cex}{font size for displaying}
+\item{cat.cex}{font size}
 
 \item{alpha}{transparency value}
 
-\item{cat.fontface}{font family}
+\item{cat.fontface}{font type}
 
-\item{abbr}{use abbreviate name or not}
+\item{abbr}{abbreviate name or not (default: FALSE)}
 
-\item{minlength}{minmal length for name}
+\item{minlength}{set minmal length for names}
 
-\item{abbr.method}{abbreviate method(default: both side)}
+\item{abbr.method}{abbreviation method(default: both side)}
 
-\item{text.scale}{text size for upset (ylab,yaxis,xlab,group name,xaxis,insection)}
-
-\item{...}{A series of graphical parameters tweaking the plot. See below for details}
+\item{text.scale}{vector of text size for upset (ylab,yaxis,xlab,group name,xaxis,insection)}
 }
 \value{
 venn object and figures

@@ -12,9 +12,9 @@ dplot(object, order = FALSE, ...)
 \arguments{
 \item{object}{venn object}
 
-\item{order}{sort the bar or not (default:FALSE)}
+\item{order}{sort the bar (default:FALSE)}
 
-\item{textsize}{text size above the bar}
+\item{textsize}{controls text size above the bar}
 }
 \value{
 Produces a bar plot displaying the total counts within each group

@@ -3,14 +3,14 @@
 \name{result}
 \alias{result}
 \alias{result.venn}
-\title{extract the result from venn object}
+\title{Extract the result from venn object}
 \usage{
-result(x)
+result(object)
 
-\method{result}{venn}(x)
+\method{result}{venn}(object)
 }
 \arguments{
-\item{x}{venn object}
+\item{object}{venn object}
 }
 \value{
 return dataframe and print header of dataframe

@@ -4,37 +4,27 @@
 \name{merge}
 \alias{merge}
 \alias{merge,list-method}
-\title{merge two or more venn object}
+\title{Merge two or more venn object by group name}
 \usage{
-merge(object, ingore.case = FALSE, useupper = TRUE, plot = FALSE,
+merge(object, ignore.case = FALSE, useupper = TRUE, plot = FALSE,
   ...)
 
 \S4method{merge}{list}(object, ignore.case = FALSE, useupper = TRUE,
   plot = FALSE, ...)
 }
 \arguments{
-\item{object}{list of venn object}
+\item{object}{list of venn objects}
 
-\item{ingore.case}{ingore case of group name}
+\item{ignore.case}{ignore case of group name (default: FALSE)}
 
-\item{useupper}{use uppercase for all group name}
+\item{useupper}{use uppercase for all group name (default: TRUE)}
 
-\item{plot}{plot figure or not}
-
-\item{ignore.case}{ignore case of group name}
-
-\item{object}{list of venn object}
-
-\item{useupper}{use uppercase for all group name}
-
-\item{plot}{plot figure or not}
+\item{plot}{plot figure or not (default: FALSE)}
 }
 \value{
 venn object
 }
 \description{
-Merge two or more venn object by group name
-
 Merge will combine multiple venn diagrams to allow comparison between multiple groups
 }
 \author{

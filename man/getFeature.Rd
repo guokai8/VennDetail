@@ -14,15 +14,15 @@ getFeature(object, group, rlist, userowname = TRUE, gind = NULL,
 \arguments{
 \item{object}{venn object}
 
-\item{group}{user defined group want to extract}
+\item{group}{user defined group to extract}
 
 \item{rlist}{list of user supplied dataframe to combine with venndetail result}
 
 \item{userowname}{use rowname to join dataframe or not (default: TRUE)}
 
-\item{gind}{column name or index for each data.frame user want to use (userowname=FALSE)}
+\item{gind}{column name or index for each data.frame (userowname=FALSE)}
 
-\item{sep}{separate of the new colnames for the return data.frame}
+\item{sep}{separation character for new colnames in the return dataframe}
 }
 \value{
 data.frame with subset information and detail from user supplied data.frame

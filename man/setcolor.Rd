@@ -7,10 +7,10 @@
 setcolor(x)
 }
 \arguments{
-\item{x}{length of color}
+\item{x}{amount of color}
 }
 \value{
-colors
+color vector
 }
 \description{
 Setcolor will provide a list of color vectors based on the number used as an input.

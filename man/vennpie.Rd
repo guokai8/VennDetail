@@ -3,7 +3,7 @@
 \docType{methods}
 \name{vennpie}
 \alias{vennpie}
-\title{pie plot show shared and unique part}
+\title{Pie plot show shared and unique set}
 \usage{
 vennpie(object, group = NULL, color = NULL, revcolor = "lightgrey",
   any = NULL, show.number = TRUE, show.x = TRUE, sep = "_",
@@ -17,47 +17,29 @@ vennpie(object, group = NULL, color = NULL, revcolor = "lightgrey",
 \arguments{
 \item{object}{venn object}
 
-\item{group}{set name you want display}
+\item{group}{set names user want to highlight}
 
-\item{color}{vector of color you want use for the group}
+\item{color}{vector of color you want to use for the sets}
 
-\item{revcolor}{backgroup color}
-
-\item{show.number}{display the element number of the group or not}
-
-\item{sep}{separate for new colnames}
-
-\item{log}{use log transform or not}
-
-\item{base}{log base}
-
-\item{percentage}{display percentage format or not}
-
-\item{object}{venn object}
-
-\item{group}{set name user want to highlight}
-
-\item{color}{vector of color you want use for the group}
-
-\item{revcolor}{color user want for other sets except highlight}
+\item{revcolor}{color user want for the non-selected sets}
 
 \item{show.number}{display the element number of the group or not}
 
-\item{log}{use log transform or not}
+\item{sep}{separation character for new colnames}
 
-\item{base}{log base}
+\item{log}{log transform (default: FALSE)}
 
-\item{sep}{separate for new colnames}
+\item{base}{base value for log transformation}
 
-\item{percentage}{display percentage format or not}
+\item{percentage}{display percentage format (default: FALSE)}
 }
 \value{
 vennpie graphic
 }
 \description{
-Vennpie uses the venn object and  create a figure in the form of a venn pie diagram
+Vennpie uses the venn object and to create a figure in the form of a venn pie diagram
 rather than a traditional venn diagram. User are allowed to highlight a specific section of the venn pie.
-With revcolor paramater user can set the color of all groups not selected using the group argument.
+Using the revcolor paramater user can set the color of all groups not selected using the group argument.
 }
 \examples{
 A<-sample(1:100, 40, replace = FALSE);

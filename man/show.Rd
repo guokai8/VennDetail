@@ -3,7 +3,7 @@
 \docType{methods}
 \name{show}
 \alias{show}
-\title{show the summary of venn object}
+\title{Show the summary of venn object}
 \usage{
 \S4method{show}{venn}(object)
 }
