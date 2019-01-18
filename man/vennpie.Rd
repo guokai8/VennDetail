@@ -23,7 +23,11 @@ vennpie(object, group = NULL, color = NULL, revcolor = "lightgrey",
 
 \item{revcolor}{color user want for the non-selected sets}
 
+\item{any}{alternative ways to highlight sets (vennpie)}
+
 \item{show.number}{display the element number of the group or not}
+
+\item{show.x}{show label outside the circle (default: TRUE)}
 
 \item{sep}{separation character for new colnames}
 
@@ -32,6 +36,10 @@ vennpie(object, group = NULL, color = NULL, revcolor = "lightgrey",
 \item{base}{base value for log transformation}
 
 \item{percentage}{display percentage format (default: FALSE)}
+
+\item{piecolor}{colors for vennpie}
+
+\item{sets.x.label}{x-axis label (upset)}
 }
 \value{
 vennpie graphic

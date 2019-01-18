@@ -33,9 +33,15 @@
 
 \item{filename}{output filename}
 
-\item{sets.x.label}{The x-axis label of the set size bar plot}
+\item{piecolor}{colors for vennpie}
 
-\item{mainbar.y.label}{The y-axis label of the intersection size bar plot}
+\item{any}{alternative ways to highlight sets (vennpie)}
+
+\item{show.x}{show label outside the circle (default: TRUE)}
+
+\item{sets.x.label}{x-axis label (upset)}
+
+\item{mainbar.y.label}{y-axis label (upset)}
 
 \item{nintersects}{Number of intersections to plot. If set to NA, all intersections will be plotted.}
 
