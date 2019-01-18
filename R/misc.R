@@ -26,7 +26,7 @@ dim.venn <- function(x) {
   x@result[, name]
 }
 ##' @method result venn
-##' @title extract the result from venn object
+##' @title Extract the result from venn object
 ##' @description Result will return output in a table format including the contents of the groups included in the venndetail object
 ##' @rdname result
 ##' @examples
@@ -36,8 +36,8 @@ dim.venn <- function(x) {
 ##' res<-venndetail(list(A=A,B=B,C=C),plot=FALSE)
 ##' result<-result(res)
 ##' @export
-result.venn<-function(x){
-  as.data.frame(x@result)
+result.venn<-function(object){
+  as.data.frame(object@result)
 }
 ##' @method detail venn
 ##' @title The detail function provides a way to display the amount of members in each group
@@ -52,11 +52,11 @@ result.venn<-function(x){
 ##' res<-venndetail(list(A=A,B=B,C=C),plot=FALSE)
 ##' detail(res)
 ##' @export
-detail.venn<-function(x){
-  x@detail
+detail.venn<-function(object){
+  object@detail
 }
 ##' @method plot venn
-##' @title plot venn object
+##' @title Plot venn object
 ##' @description Plot allows users to graphically display the groups and overlap between groups
 ##' in their venn class object through a variety of graph types such as a bar plot, traditional venn,
 ##' or venn pie chart.
@@ -64,24 +64,29 @@ detail.venn<-function(x){
 ##' @return different type of graphics based on user chose
 ##' @importFrom VennDiagram venn.diagram
 ##' @importFrom UpSetR upset
-##' @param type choose to use venn.diagram,vennpie or upsetR
+##' @param type use venn,vennpie or upset (default: venn)
 ##' @param filename output filename
-##' @param col color for the cycle
-##' @param sep separate delim
-##' @param mycol color for VennDiagram
-##' @param cat.cex font size for displaying
-##' @param alpha
-##' @param cat.fontface font face
-##' @param text.scale text size for upsetR(ylab,yaxis,xlab,group name,xaxis,insection)
+##' @param col color for the circle
+##' @param sep separation character used for the group and numbers
+##' @param mycol color for VennDiagram graphic
+##' @param cat.cex font size
+##' @param alpha transparency value
+##' @param cat.fontface font type
+##' @param abbr abbreviate name or not (default: FALSE)
+##' @param minlength set minmal length for names
+##' @param text.scale vector of text size for upset (ylab,yaxis,xlab,group name,xaxis,insection)
+##' @param abbr.method abbreviation method(default: both side)
+##' @param sets.x.label x-axis label (upset)
+##' @param mainbar.y.label y-axis label (upset)
 ##' @inheritParams UpSetR::upset
-##' @examples{
+##' @examples
 ##' A<-sample(1:100,40,replace = FALSE);
 ##' B<-sample(1:100,60,replace = FALSE);
 ##' C<-sample(1:100,40,replace = FALSE);
 ##' res<-venndetail(list(A=A,B=B,C=C),plot=FALSE)
 ##' plot(res,type="venn")
-##' }
 ##' @export
+##' @author Kai Guo
 plot.venn<-function(x,type="venn",col="black",sep="_",mycol=c("dodgerblue", "goldenrod1", "darkorange1", "seagreen3", "orchid3"),
                     cat.cex=1.5,alpha=0.5,cex=2,cat.fontface="bold",margin=0.05,
                     text.scale=c(1.5, 1.5, 1.5, 1.5, 1.5, 1.5),filename=NULL,piecolor=NULL,revcolor="lightgrey",any=NULL,show.number=TRUE,show.x=TRUE,
@@ -148,14 +153,15 @@ plot.venn<-function(x,type="venn",col="black",sep="_",mycol=c("dodgerblue", "gol
   return(x)
 }
 ##' @method merge venn
-##' @title Merge two or more venndetail obejct together
+##' @title Merge two or more venndetail obejcts
 ##' @description Merge will combine multiple venn diagrams to allow comparison between multiple groups
 ##' @rdname merge
 ##' @importFrom purrr flatten
-##' @param object list of venn object
-##' @param ignore.case ignore case of group name
-##' @param useupper use uppercase for all group name
-##' @param plot plot figure or not
+##' @param object list of venn objects
+##' @param ignore.case ignore case of group name (default: FALSE)
+##' @param useupper use uppercase for all group name (default: TRUE)
+##' @param plot plot figure or not (default: FALSE)
+##' @return venn object
 ##' @export
 setMethod("merge",signature = (object="list"),function(object,ignore.case=FALSE,useupper=TRUE,plot=FALSE,...){
   input=lapply(object, function(x)slot(x,"input"))
@@ -212,8 +218,8 @@ setAs(from = "list",to="venn",def=function(from){
       result=result,
       detail=detail)
 })
-##' @title join data.frame based on rownames
-##' @description join two data.frame with rownames
+##' @title Join data.frame based on rownames
+##' @description join two dataframes by rownames
 ##' @rdname rowjoin
 ##' @method rowname join
 ##' @importFrom dplyr full_join
@@ -223,7 +229,7 @@ setAs(from = "list",to="venn",def=function(from){
 ##' @importFrom dplyr semi_join
 ##' @param x data.frame x
 ##' @param y data.frame y
-##' @param fun join type
+##' @param fun different join format: left_join,full_join,right_join (default:full_join)
 ##' @return dataframe with join results
 ##' @author Kai Guo
 setMethod("rowjoin",signature(x="data.frame",y="data.frame"),function(x,y,fun="full_join"){
@@ -235,8 +241,8 @@ setMethod("rowjoin",signature(x="data.frame",y="data.frame"),function(x,y,fun="f
 ##' @name setcolor
 ##' @title return colors with given a vector
 ##' @description Setcolor will provide a list of color vectors based on the number used as an input.
-##' @param x length of color
-##' @return colors
+##' @param x amount of color
+##' @return color vector
 ##' @examples
 ##' mycol<-setcolor(10)
 ##' mycol

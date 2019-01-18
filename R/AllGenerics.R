@@ -1,16 +1,16 @@
-##' @param x venn object
+##' @param object venn object
 ##' @return return dataframe and print header of dataframe
 ##' @export
 ##' @author Kai Guo
-result<-function(x){
-  UseMethod("result",x)
+result<-function(object){
+  UseMethod("result",object)
 }
-##' @param x venn object
+##' @param object venn object
 ##' @return Vector including group names and total member amounts for each group
 ##' @export
 ##' @author Kai Guo
-detail<-function(x){
-  UseMethod("detail",x)
+detail<-function(object){
+  UseMethod("detail",object)
 }
 ##' @name dplot
 ##' @rdname dplot
@@ -51,16 +51,7 @@ setGeneric("getFeature",function(object,group, rlist, userowname=TRUE,gind=NULL,
 })
 ##' @rdname vennpie
 ##' @name vennpie
-##' @title pie plot show shared and unique part
-##' @param object venn object
-##' @param group set name you want display
-##' @param color vector of color you want use for the group
-##' @param revcolor backgroup color
-##' @param show.number display the element number of the group or not
-##' @param log use log transform or not
-##' @param base log base
-##' @param sep separate for new colnames
-##' @param percentage display percentage format or not
+##' @title Pie plot show shared and unique set
 ##' @export
 ##' @author Kai Guo
 setGeneric("vennpie",function(object,group=NULL,color=NULL,
@@ -74,13 +65,7 @@ setGeneric("vennpie",function(object,group=NULL,color=NULL,
 ##'
 ##' @name merge
 ##' @rdname merge
-##' @title merge two or more venn object
-##' @param object list of venn object
-##' @param ingore.case ingore case of group name
-##' @param useupper use uppercase for all group name
-##' @param plot plot figure or not
-##' @return venn object
 ##' @author Kai Guo
-setGeneric("merge",function(object,ingore.case=FALSE,useupper=TRUE,plot=FALSE,...){
+setGeneric("merge",function(object,ignore.case=FALSE,useupper=TRUE,plot=FALSE,...){
   standardGeneric("merge")
 })

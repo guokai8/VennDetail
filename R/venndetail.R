@@ -12,19 +12,19 @@
 ##' @importFrom UpSetR upset
 ##' @importFrom UpSetR fromList
 ##' @param x list of variables with group names
-##' @param plot whether plot the venndiagram plot or not (default:TRUE)
-##' @param type choose to use venn.diagram,vennpie or upset
+##' @param plot plot the graphic (default:TRUE)
+##' @param type use venn,vennpie or upset (default: venn)
 ##' @param filename output filename
-##' @param col color for the cycle
-##' @param sep separation for the group and numbers
+##' @param col color for the circle
+##' @param sep separation character used for the group and numbers
 ##' @param mycol color for VennDiagram graphic
-##' @param cat.cex font size for displaying
+##' @param cat.cex font size
 ##' @param alpha transparency value
-##' @param cat.fontface font family
-##' @param abbr use abbreviate name or not
-##' @param minlength minmal length for name
-##' @param text.scale text size for upset (ylab,yaxis,xlab,group name,xaxis,insection)
-##' @param abbr.method abbreviate method(default: both side)
+##' @param cat.fontface font type
+##' @param abbr abbreviate name or not (default: FALSE)
+##' @param minlength set minmal length for names
+##' @param text.scale vector of text size for upset (ylab,yaxis,xlab,group name,xaxis,insection)
+##' @param abbr.method abbreviation method(default: both side)
 ##' @inheritParams VennDiagram::venn.diagram
 ##' @examples
 ##' A<-sample(1:100, 40, replace = FALSE);
@@ -35,7 +35,7 @@
 ##' @author Kai Guo
 
 venndetail<-function(x,plot=TRUE,filename=NULL,type="venn",col="black",sep="_",mycol=c("dodgerblue", "goldenrod1", "darkorange1", "seagreen3", "orchid3"),
-                    cat.cex=1.5,alpha=0.5,cex=2,cat.fontface="bold",margin=0.05,abbr=FALSE,minlength=3,abbr.method="both.sides",text.scale=c(1.5, 1.5, 1.5, 1.5, 1.5, 1.5),...){
+                    cat.cex=1.5,alpha=0.5,cex=2,cat.fontface="bold",margin=0.05,abbr=FALSE,minlength=3,abbr.method="both.sides",text.scale=c(1.5, 1.5, 1.5, 1.5, 1.5, 1.5)){
   if(is.null(names(x))){
     names(x)<-paste("Group",1:seq_along(x))
   }

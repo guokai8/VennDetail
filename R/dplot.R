@@ -1,6 +1,6 @@
 ##' @name dplot
 ##' @rdname dplot
-##' @title plot venn object
+##' @title Plot venn object
 ##' @method dplot venn
 ##' @importFrom ggplot2 ggplot
 ##' @importFrom ggplot2 aes
@@ -11,8 +11,8 @@
 ##' @importFrom ggplot2 geom_text
 ##' @importFrom ggplot2 ylim
 ##' @param object venn object
-##' @param order sort the bar or not (default:FALSE)
-##' @param textsize text size above the bar
+##' @param order sort the bar (default:FALSE)
+##' @param textsize controls text size above the bar
 ##' @examples
 ##' A<-sample(1:100, 40, replace = FALSE);
 ##' B<-sample(1:100, 60, replace = FALSE);
@@ -41,7 +41,7 @@ setMethod("dplot",signature = (object="venn"),function(object,order=FALSE,textsi
 ##' @importFrom dplyr filter
 ##' @importFrom magrittr %>%
 ##' @param object venn object
-##' @param group user defined specified group
+##' @param group user defined specified groups
 ##' @export
 ##' @author Kai Guo
 ##' @examples
@@ -57,7 +57,7 @@ setMethod("get",signature = (object="venn"),function(object,group,...){
   return(lhs)
 })
 ##' @name show
-##' @title show the summary of venn object
+##' @title Show the summary of venn object
 ##' @description Show provides a summary of the venn object which includes a total
 ##' results and sets as well as an abbreviated table.
 ##' @rdname show

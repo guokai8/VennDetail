@@ -1,8 +1,8 @@
 ##' @name vennpie
 ##' @title Vennpie provide different way compare with Venn Diagram plot
-##' @description Vennpie uses the venn object and  create a figure in the form of a venn pie diagram
+##' @description Vennpie uses the venn object and to create a figure in the form of a venn pie diagram
 ##' rather than a traditional venn diagram. User are allowed to highlight a specific section of the venn pie.
-##' With revcolor paramater user can set the color of all groups not selected using the group argument.
+##' Using the revcolor paramater user can set the color of all groups not selected using the group argument.
 ##' @rdname vennpie
 ##' @import ggplot2
 ##' @importFrom ggplot2 labs
@@ -18,14 +18,14 @@
 ##' @importFrom ggplot2 scale_fill_manual
 ##' @importFrom ggplot2 scale_color_manual
 ##' @param object venn object
-##' @param group set name user want to highlight
-##' @param color vector of color you want use for the group
-##' @param revcolor color user want for other sets except highlight
+##' @param group set names user want to highlight
+##' @param color vector of color you want to use for the sets
+##' @param revcolor color user want for the non-selected sets
 ##' @param show.number display the element number of the group or not
-##' @param log use log transform or not
-##' @param base log base
-##' @param sep separate for new colnames
-##' @param percentage display percentage format or not
+##' @param log log transform (default: FALSE)
+##' @param base base value for log transformation
+##' @param sep separation character for new colnames
+##' @param percentage display percentage format (default: FALSE)
 ##' @return vennpie graphic
 ##' @export
 ##' @examples

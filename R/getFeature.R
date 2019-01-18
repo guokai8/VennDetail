@@ -11,11 +11,11 @@
 ##' @importFrom tibble rownames_to_column
 ##' @importFrom magrittr %>%
 ##' @param object venn object
-##' @param group user defined group want to extract
+##' @param group user defined group to extract
 ##' @param rlist list of user supplied dataframe to combine with venndetail result
 ##' @param userowname use rowname to join dataframe or not (default: TRUE)
-##' @param gind column name or index for each data.frame user want to use (userowname=FALSE)
-##' @param sep separate of the new colnames for the return data.frame
+##' @param gind column name or index for each data.frame (userowname=FALSE)
+##' @param sep separation character for new colnames in the return dataframe
 ##' @export
 ##' @examples
 ##' A<-sample(1:100,40,replace = FALSE);
