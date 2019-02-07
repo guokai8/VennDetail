@@ -13,6 +13,8 @@ detail<-function(object){
     UseMethod("detail",object)
 }
 ##' @name dplot
+##' @aliases dplot
+##' @docType methods
 ##' @rdname dplot
 ##' @title Dplot function allows users to visualize the detail function
 ##' in the form of a barplot
@@ -38,6 +40,8 @@ setGeneric("rowjoin",function(x,y,...){
     standardGeneric("rowjoin")
 })
 ##' @name getFeature
+##' @aliases getFeature
+##' @docType methods
 ##' @rdname getFeature
 ##' @export
 ##' @author Kai Guo
@@ -45,8 +49,10 @@ setGeneric("getFeature",function(object,group, rlist, userowname=TRUE,gind=NULL,
                                 sep="_",...){
     standardGeneric("getFeature")
 })
-##' @rdname vennpie
 ##' @name vennpie
+##' @rdname vennpie
+##' @aliases vennpie
+##' @docType methods
 ##' @title Pie plot shows shared and unique sets
 ##' @export
 ##' @author Kai Guo
@@ -55,6 +61,9 @@ setGeneric("vennpie",function(object,group=NULL,color=NULL,revcolor="lightgrey",
                         base=NULL,percentage=FALSE,...){
     standardGeneric("vennpie")
 })
+##' @name Get
+##' @aliases Get
+##' @docType methods
 ##' @rdname Get
 ##' @export
 ##' @author Kai Guo
@@ -64,6 +73,8 @@ setGeneric("Get",function(object,group,...){
 ##' Merge two or more venn object by group name
 ##'
 ##' @name merge
+##' @aliases merge
+##' @docType methods
 ##' @rdname merge
 ##' @author Kai Guo
 setGeneric("merge",function(object,ignore.case=FALSE,useupper=TRUE,plot=FALSE,
@@ -71,6 +82,8 @@ setGeneric("merge",function(object,ignore.case=FALSE,useupper=TRUE,plot=FALSE,
     standardGeneric("merge")
 })
 ##' @rdname show
+##' @aliases show
+##' @docType methods
 ##' @export
 ##' @author Kai Guo
 setGeneric("show",function(object,group,...){
