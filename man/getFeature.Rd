@@ -3,14 +3,15 @@
 \docType{methods}
 \name{getFeature}
 \alias{getFeature}
+\alias{getFeature venn}
 \title{getFeature provides a way to combine list of user supplied data
 frames with venn object}
 \usage{
 getFeature(object, group, rlist, userowname = TRUE, gind = NULL,
-    sep = "_", ...)
+  sep = "_", ...)
 
 \S4method{getFeature}{venn}(object, group, rlist, userowname = TRUE,
-    gind = NULL, sep = "_", ...)
+  gind = NULL, sep = "_", ...)
 }
 \arguments{
 \item{object}{venn object}
@@ -49,7 +50,7 @@ dB <- data.frame(B = B,"FC" = rnorm(60))
 dC <- data.frame(C = C,"FC" = rnorm(40))
 res <- venndetail(list(A = A,B = B,C = C), plot = TRUE)
 rhs <- getFeature(res, group = "Shared", rlist = list(dA,dB,dC),
-    userowname= FALSE,gind = rep(1, 3))
+   userowname= FALSE,gind = rep(1, 3))
 }
 \author{
 Kai Guo

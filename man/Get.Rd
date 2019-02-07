@@ -3,6 +3,7 @@
 \docType{methods}
 \name{Get}
 \alias{Get}
+\alias{Get venn}
 \title{Get the contents of a specific set from venndetail object}
 \usage{
 Get(object, group, ...)

@@ -3,6 +3,7 @@
 \docType{methods}
 \name{show}
 \alias{show}
+\alias{show venn}
 \title{Show the summary of venn object}
 \usage{
 show(object, group, ...)

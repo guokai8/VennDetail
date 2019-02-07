@@ -3,6 +3,7 @@
 \docType{methods}
 \name{dplot}
 \alias{dplot}
+\alias{dplot venn}
 \title{Dplot function allows users to visualize the detail function
 in the form of a barplot}
 \usage{
