@@ -1,8 +1,8 @@
 Package: VennDetail
 Type: Package
 Title: VennDetail Package Used for Extract Information from Venndiagram Plot
-Version: 0.1.0
-Author: Kai Guo
+Version: 0.99.0
+Author: Kai Guo, Brett McGregor
 Maintainer: Kai Guo <guokai8@gmail.com>
 Description: This package used for extract information from Venndiagram plot
 License: GPL-2
@@ -18,6 +18,7 @@ Imports:
     UpSetR,
     VennDiagram,
     grid
+Depends:
 LinkingTo:
 Suggests:
     knitr,

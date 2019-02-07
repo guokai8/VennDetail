@@ -1,4 +1,2 @@
-CHANGES IN VERSION 0.1.0
-------------------------
-
-    o Base class: Fix issues for getFeature function
+Changes in version 0.99.0 (2018-05-15)
++ Submitted to Bioconductor
