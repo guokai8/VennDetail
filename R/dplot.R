@@ -1,6 +1,5 @@
 ##' @name dplot
 ##' @rdname dplot
-##' @title Plot venn object
 ##' @method dplot venn
 ##' @importFrom ggplot2 ggplot
 ##' @importFrom ggplot2 aes
@@ -11,70 +10,73 @@
 ##' @importFrom ggplot2 geom_text
 ##' @importFrom ggplot2 ylim
 ##' @param object venn object
-##' @param order sort the bar (default:FALSE)
-##' @param textsize controls text size above the bar
+##' @param order Boolean indicating whether to sort the bar (default: FALSE).
+##' @param textsize Numeric vector giving the text size above the bar.
 ##' @examples
-##' A<-sample(1:100, 40, replace = FALSE);
-##' B<-sample(1:100, 60, replace = FALSE);
-##' C<-sample(1:100, 40, replace = FALSE);
-##' res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
-##' dplot(res,order=TRUE,textsize=3)
+##' A <- sample(1:100, 40, replace = FALSE);
+##' B <- sample(1:100, 60, replace = FALSE);
+##' C <- sample(1:100, 40, replace = FALSE);
+##' res <- venndetail(list(A = A,B = B,C = C), plot = TRUE)
+##' dplot(res, order = TRUE, textsize = 3)
 ##' @export
 
-setMethod("dplot",signature = (object="venn"),function(object,order=FALSE,textsize=5,...){
-  df<-data.frame(Group=names(object@detail),Detail=object@detail)
-  color=setcolor(length(object@detail))
-  names(color)=names(object@detail)
-  if(order==TRUE){
-  df$Group<-factor(df$Group, levels = df$Group[order(df$Detail)])
-  }
-  p<-ggplot(df,aes(Group,Detail,fill=Group))+geom_bar(stat="identity")+
-    scale_fill_manual(values=color)+
-    theme_light(base_size = 12)+theme(axis.text.x=element_text(angle=90))+
-    geom_text(aes(label=Detail),vjust=-0.3,size=textsize)+ggplot2::ylim(0,max(df$Detail)+1)
-  p
+setMethod("dplot",signature = (object="venn"),function(object,order=FALSE,
+                textsize=5,...){
+    df<-data.frame(Group=names(object@detail),Detail=object@detail)
+    color=setcolor(length(object@detail))
+    names(color)=names(object@detail)
+    if(order==TRUE){
+        df$Group<-factor(df$Group, levels = df$Group[order(df$Detail)])
+    }
+    p<-ggplot(df,aes(Group,Detail,fill=Group))+geom_bar(stat="identity")+
+        scale_fill_manual(values=color)+
+        theme_light(base_size = 12)+theme(axis.text.x=element_text(angle=90))+
+        geom_text(aes(label=Detail),vjust=-0.3,size=textsize)+
+        ylim(0,max(df$Detail)+1)
+    p
 })
 ##' @name get
 ##' @rdname get
-##' @title Get the contents of a specified group from venndetail object
-##' @description Get the contents of a specified group from venndetail object
+##' @title Get the contents of a specific set from venndetail object
+##' @description Get the contents of a specific set from venndetail object
 ##' @importFrom dplyr filter
 ##' @importFrom magrittr %>%
 ##' @param object venn object
-##' @param group user defined specified groups
+##' @param group Character vector giving the set names
+##' @return Specific set information
 ##' @export
 ##' @author Kai Guo
 ##' @examples
-##' A<-sample(1:100,40,replace = FALSE);
-##' B<-sample(1:100,60,replace = FALSE);
-##' C<-sample(1:100,40,replace = FALSE);
-##' res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
+##' A <- sample(1:100, 40, replace = FALSE);
+##' B <- sample(1:100, 60, replace = FALSE);
+##' C <- sample(1:100, 40, replace = FALSE);
+##' res <- venndetail(list(A = A,B = B,C = C), plot = TRUE)
 ##' get(res,"A")
 setMethod("get",signature = (object="venn"),function(object,group,...){
-  dd<-object@result
-  lhs<-dd%>%filter(Group%in%group)
-  head(lhs)
-  return(lhs)
+    dd<-object@result
+    lhs<-dd%>%filter(Group%in%group)
+    head(lhs)
+    return(lhs)
 })
 ##' @name show
 ##' @title Show the summary of venn object
-##' @description Show provides a summary of the venn object which includes a total
-##' results and sets as well as an abbreviated table.
+##' @description This function provides a summary of the venn object, including
+##' a full results and sets as well as an summary information.
 ##' @rdname show
-##' @return summary and quick look for the venn object
+##' @return summary information for the venn object
 ##' @param object venn object
 ##' @author Kai Guo
 ##' @examples
-##' A<-sample(1:100, 40, replace = FALSE);
-##' B<-sample(1:100, 60, replace = FALSE);
-##' C<-sample(1:100, 40, replace = FALSE);
-##' res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
+##' A <- sample(1:100, 40, replace = FALSE);
+##' B <- sample(1:100, 60, replace = FALSE);
+##' C <- sample(1:100, 40, replace = FALSE);
+##' res <- venndetail(list(A = A,B = B,C = C), plot = TRUE)
 ##' show(res)
 ##' @export
 setMethod("show",signature = (object="venn"),function(object){
-  cat("=== Here is the detail of Venndiagram===\n");
-  cat("Total results: ",nrow(object@result),"x",ncol(object@result),"\n")
-  cat("Total sets is:",length(unique(object@result$Group)),"\n")
-  print(object@result[1:6,],quote=FALSE)
-  cat("... with",nrow(object@result)-6,"more rows\n")
+    cat("=== Here is the detail of Venndiagram===\n");
+    cat("Total results: ",nrow(object@result),"x",ncol(object@result),"\n")
+    cat("Total sets is:",length(unique(object@result$Group)),"\n")
+    print(head(object@result),quote=FALSE)
+    cat("... with",nrow(object@result)-6,"more rows\n")
 })
