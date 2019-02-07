@@ -1,13 +1,18 @@
 # VennDetail
 
-Extract detail information from venn plot    
+VennDetail: a package for visualization and extract details
 ![](venn.png)
 
 ## Description
 
-__VennDetail__ is a package can be used for extracting details(shared,unique sets) shown in the venn plot    
-
-*** PS: Supports up to five-way Venn diagrams
+Visualizing and extracting unique (disjoint) or overlapping subsets of multiple 
+gene sets are a frequently performed task for bioinformatics. Although various 
+packages and web applications are available, no R package offerings functions to
+extract and combine details of these subsets with user datasets in data frame is
+available. Moreover, graphical visualization is usually limited to six or less 
+gene sets and a novel method is required to properly show the subset details.
+We have developed __VennDetail__, an R package to generate high-quality Venn-Pie
+charts and to allow extraction of subset details from input sets.  
 
 ## Dependencies
 
