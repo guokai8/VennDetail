@@ -1,4 +1,4 @@
-##' @name dplot venn
+##' @name dplot
 ##' @rdname dplot
 ##' @method dplot venn
 ##' @importFrom ggplot2 ggplot
@@ -35,7 +35,7 @@ setMethod("dplot",signature = (object="venn"),function(object,order=FALSE,
         ylim(0,max(df$Detail)+1)
     p
 })
-##' @name Get venn
+##' @name Get
 ##' @rdname Get
 ##' @title Get the contents of a specific set from venndetail object
 ##' @description Get the contents of a specific set from venndetail object
@@ -58,7 +58,7 @@ setMethod("Get",signature = (object="venn"),function(object,group,...){
   head(lhs)
   return(lhs)
 })
-##' @name show venn
+##' @name show
 ##' @title Show the summary of venn object
 ##' @description This function provides a summary of the venn object, including
 ##' a full results and sets as well as an summary information.
