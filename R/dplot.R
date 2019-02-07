@@ -35,8 +35,8 @@ setMethod("dplot",signature = (object="venn"),function(object,order=FALSE,
         ylim(0,max(df$Detail)+1)
     p
 })
-##' @name get venn
-##' @rdname get
+##' @name Get venn
+##' @rdname Get
 ##' @title Get the contents of a specific set from venndetail object
 ##' @description Get the contents of a specific set from venndetail object
 ##' @importFrom dplyr filter
