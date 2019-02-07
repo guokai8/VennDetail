@@ -48,10 +48,10 @@ getFeature(res,group="Shared",rlist=list(dA,dB,dC,dD),userowname=F,gind=c("A","B
 ###As all these four dataframes don't have row names, we set userowname to be FALSE
 ``` 
 ### Support shiny now
-```
-library(shiny)
-runApp()
-``` 
+
+[VennDetail Shiny App](https://github.com/guokai8/VennDetail-Shiny)   
+[VennDetail Shiny App Website](http://hurlab.med.und.edu:3838/VennDetail/)
+
 ## Contact information
 
 For any questions please contact guokai8@gmail.com
