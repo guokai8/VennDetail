@@ -1,2 +1,14 @@
+Changes in version 0.99.6 (2019-02-05)
++ add show as generic function
+Changes in version 0.99.5 (2019-02-05)
++ update Get function
+Changes in version 0.99.4 (2019-02-05)
++ update NAMESPACE
+Changes in version 0.99.3 (2019-02-07)
++ modify the get function to Get
+Changes in version 0.99.2 (2019-02-07)
++ revised the test function
+Changes in version 0.99.1 (2019-02-07)
++ delete Rproj file
 Changes in version 0.99.0 (2019-02-05)
 + Submitted to Bioconductor
