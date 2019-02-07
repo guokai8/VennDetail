@@ -51,13 +51,13 @@ setMethod("dplot",signature = (object="venn"),function(object,order=FALSE,
 ##' B <- sample(1:100, 60, replace = FALSE);
 ##' C <- sample(1:100, 40, replace = FALSE);
 ##' res <- venndetail(list(A = A,B = B,C = C), plot = TRUE)
-##' get(res,"A")
-get.venn<-function(object,group,...){
-    dd<-object@result
-    lhs<-dd%>%filter(Group%in%group)
-    head(lhs)
-    return(lhs)
-}
+##' Get(res,"A")
+setMethod("Get",signature = (object="venn"),function(object,group,...){
+  dd<-object@result
+  lhs<-dd%>%filter(Group%in%group)
+  head(lhs)
+  return(lhs)
+})
 ##' @name show
 ##' @title Show the summary of venn object
 ##' @description This function provides a summary of the venn object, including
