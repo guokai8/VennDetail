@@ -1,4 +1,4 @@
-##' @name vennpie venn
+##' @name vennpie
 ##' @title Vennpie provides a pie-chart like visualization similar to
 ##' traditional Venn Diagram plots
 ##' @description Vennpie uses the venn object and to creates a figure in the
