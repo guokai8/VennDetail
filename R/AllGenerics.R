@@ -55,7 +55,12 @@ setGeneric("vennpie",function(object,group=NULL,color=NULL,revcolor="lightgrey",
                         base=NULL,percentage=FALSE,...){
     standardGeneric("vennpie")
 })
-
+##' @rdname Get
+##' @export
+##' @author Kai Guo
+setGeneric("Get",function(object,group,...){
+  standardGeneric("Get")
+})
 ##' Merge two or more venn object by group name
 ##'
 ##' @name merge
