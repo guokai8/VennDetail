@@ -70,3 +70,9 @@ setGeneric("merge",function(object,ignore.case=FALSE,useupper=TRUE,plot=FALSE,
                         ...){
     standardGeneric("merge")
 })
+##' @rdname show
+##' @export
+##' @author Kai Guo
+setGeneric("show",function(object,group,...){
+  standardGeneric("show")
+})
