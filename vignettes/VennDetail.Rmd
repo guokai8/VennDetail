@@ -47,7 +47,7 @@ result<-result(res);
 ```  
 ### Extract subset information and display the results
 ```  {r,fig_width=10,fig_height=10}
-get(res,"A"); # get unique elements in A
+Get(res,"A"); # get unique elements in A
 detail(res); #show overlap 'details' of all groups
 ## make Figures
 plot(res,type="venn")
