@@ -1,4 +1,4 @@
-##' @name getFeature
+##' @name getFeature venn
 ##' @title getFeature provides a way to combine list of user supplied data
 ##' frames with venn object
 ##' @description GetFeature allows users to extract sets from venn object
