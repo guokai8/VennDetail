@@ -29,15 +29,6 @@ detail<-function(object){
 setGeneric("dplot",function(object,order=FALSE,...){
     standardGeneric("dplot")
 })
-##' @name get
-##' @title Get the contents of a specified group from venndetail object
-##' @rdname get
-##' @return return dataframe and print the header of dataframe
-##' @export
-##' @author Kai Guo
-setGeneric("get",function(object,group,...){
-    standardGeneric("get")
-})
 ##' @name rowjoin
 ##' @param x dataframe x
 ##' @param y dataframe y
