@@ -7,25 +7,25 @@
 \alias{venn-method}
 \alias{summary,}
 \title{Class 'venn'
-This class include all information from venndetail}
+This class includes all information from venndetail}
 \description{
 Class 'venn'
-This class include all information from venndetail
+This class includes all information from venndetail
 }
 \section{Slots}{
 
 \describe{
-\item{\code{input}}{orginal input}
+\item{\code{input}}{orginal input datasets}
 
-\item{\code{raw}}{summary of the input}
+\item{\code{raw}}{summary of the input datasets}
 
-\item{\code{sep}}{separate delim}
+\item{\code{sep}}{separation character}
 
-\item{\code{GroupNames}}{group names input}
+\item{\code{GroupNames}}{input group names}
 
-\item{\code{result}}{intersect and difference for groups}
+\item{\code{result}}{shared or unique sets}
 
-\item{\code{detail}}{number belongs to each group}
+\item{\code{detail}}{shared of unique number belongs to each sets}
 }}
 
 \author{

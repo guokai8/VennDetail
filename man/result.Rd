@@ -16,14 +16,15 @@ result(object)
 return dataframe and print header of dataframe
 }
 \description{
-Result will return output in a table format including the contents of the groups included in the venndetail object
+Result will return output in a table format including the
+contents of the sets included in the venndetail object
 }
 \examples{
 A <- sample(1:100, 40, replace = FALSE);
 B <- sample(1:100, 60, replace = FALSE);
 C <- sample(1:100, 40, replace = FALSE);
-res<-venndetail(list(A=A,B=B,C=C),plot=FALSE)
-result<-result(res)
+res <- venndetail(list(A = A,B = B,C = C), plot = TRUE)
+result <- result(res)
 }
 \author{
 Kai Guo

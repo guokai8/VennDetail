@@ -3,43 +3,53 @@
 \docType{methods}
 \name{getFeature}
 \alias{getFeature}
-\title{getFeature provide a way to combine list of user supplied data.frame with venndetail results}
+\title{getFeature provides a way to combine list of user supplied data
+frames with venn object}
 \usage{
 getFeature(object, group, rlist, userowname = TRUE, gind = NULL,
-  sep = "_", ...)
+    sep = "_", ...)
 
 \S4method{getFeature}{venn}(object, group, rlist, userowname = TRUE,
-  gind = NULL, sep = "_", ...)
+    gind = NULL, sep = "_", ...)
 }
 \arguments{
 \item{object}{venn object}
 
-\item{group}{user defined group to extract}
+\item{group}{Character vector giving the names of the user-defined
+set to extract}
 
-\item{rlist}{list of user supplied dataframe to combine with venndetail result}
+\item{rlist}{List of user-supplied data frames to combine with
+venndetail result}
 
-\item{userowname}{use rowname to join dataframe or not (default: TRUE)}
+\item{userowname}{Boolean indicating whether to use row names to join
+data frames or not (default: TRUE)}
 
-\item{gind}{column name or index for each data.frame (userowname=FALSE)}
+\item{gind}{Column name or index of each user-supplied data.frame to
+use to join data frames(valid only when userowname=FALSE)}
 
-\item{sep}{separation character for new colnames in the return dataframe}
+\item{sep}{Character string used to separate the terms when concatenating
+group names into
+new separation character for new column names in the resulting data frame}
 }
 \value{
-data.frame with subset information and detail from user supplied data.frame
+data.frame with subset information and details from the user
+supplied data frame
 }
 \description{
-GetFeature allows users a method of extracting members of groups from venndetail in table format
-that can also include accompanying information from a data frame provided in the rlist argument
+GetFeature allows users to extract sets from venn object
+into a table format along with accompanying information from the data frames
+provided in the rlist argument
 }
 \examples{
-A<-sample(1:100,40,replace = FALSE);
-B<-sample(1:100,60,replace = FALSE);
-C<-sample(1:100,40,replace = FALSE);
-dA<-data.frame(A=A,"FC"=rnorm(40))
-dB<-data.frame(B=B,"FC"=rnorm(60))
-dC<-data.frame(C=C,"FC"=rnorm(40))
-res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
-rhs<-getFeature(res,group="Shared",rlist=list(dA,dB,dC),userowname=FALSE,gind=rep(1,3))
+A <- sample(1:100, 40, replace = FALSE);
+B <- sample(1:100, 60, replace = FALSE);
+C <- sample(1:100, 40, replace = FALSE);
+dA <- data.frame(A = A,"FC" = rnorm(40))
+dB <- data.frame(B = B,"FC" = rnorm(60))
+dC <- data.frame(C = C,"FC" = rnorm(40))
+res <- venndetail(list(A = A,B = B,C = C), plot = TRUE)
+rhs <- getFeature(res, group = "Shared", rlist = list(dA,dB,dC),
+    userowname= FALSE,gind = rep(1, 3))
 }
 \author{
 Kai Guo

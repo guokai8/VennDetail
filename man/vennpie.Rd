@@ -3,57 +3,59 @@
 \docType{methods}
 \name{vennpie}
 \alias{vennpie}
-\title{Pie plot show shared and unique set}
+\title{Pie plot shows shared and unique sets}
 \usage{
 vennpie(object, group = NULL, color = NULL, revcolor = "lightgrey",
-  any = NULL, show.number = TRUE, show.x = TRUE, sep = "_",
-  log = FALSE, base = NULL, percentage = FALSE, ...)
+    any = NULL, show.number = TRUE, show.x = TRUE, sep = "_",
+    log = FALSE, base = NULL, percentage = FALSE, ...)
 
 \S4method{vennpie}{venn}(object, group = NULL, color = NULL,
-  revcolor = "lightgrey", any = NULL, show.number = TRUE,
-  show.x = TRUE, sep = "_", log = FALSE, base = NULL,
-  percentage = FALSE, ...)
+    revcolor = "lightgrey", any = NULL, show.number = TRUE,
+    show.x = TRUE, sep = "_", log = FALSE, base = NULL,
+    percentage = FALSE, ...)
 }
 \arguments{
 \item{object}{venn object}
 
-\item{group}{set names user want to highlight}
+\item{group}{Character vector giving the set users want to highlight.}
 
-\item{color}{vector of color you want to use for the sets}
+\item{color}{Character vector giving the colors of the sets.}
 
-\item{revcolor}{color user want for the non-selected sets}
+\item{revcolor}{Character giving the color for the non-selected sets.}
 
-\item{any}{alternative ways to highlight sets (vennpie)}
+\item{any}{Number to indicate selected sets, such as 1 means any unique
+sets, 2 means any sets shared by two groups.}
 
-\item{show.number}{display the element number of the group or not}
+\item{show.number}{Boolean indicating whether to display the element numbers
+of the sets or not (default: TRUE).}
 
-\item{show.x}{show label outside the circle (default: TRUE)}
+\item{show.x}{Boolean indicating whether to show set labels outside the
+circle (default: TRUE).}
 
-\item{sep}{separation character for new colnames}
+\item{sep}{Character string used to separate the terms when concatenating
+group names into new column names (colnames).}
 
-\item{log}{log transform (default: FALSE)}
+\item{log}{Boolean indicating whether to transform the data in log scale .}
 
-\item{base}{base value for log transformation}
+\item{base}{Base value for log transformation.}
 
-\item{percentage}{display percentage format (default: FALSE)}
-
-\item{piecolor}{colors for vennpie}
-
-\item{sets.x.label}{x-axis label (upset)}
+\item{percentage}{Boolean indicating whether to display set percentages
+(default: FALSE).}
 }
 \value{
-vennpie graphic
+vennpie figure
 }
 \description{
-Vennpie uses the venn object and to create a figure in the form of a venn pie diagram
-rather than a traditional venn diagram. User are allowed to highlight a specific section of the venn pie.
-Using the revcolor paramater user can set the color of all groups not selected using the group argument.
+Vennpie uses the venn object and to creates a figure in the
+form of a venn pie diagram
+rather than a traditional venn diagram. Users can highlight a specific
+sections of the venn pie.
 }
 \examples{
-A<-sample(1:100, 40, replace = FALSE);
-B<-sample(1:100, 60, replace = FALSE);
-C<-sample(1:100, 40, replace = FALSE);
-res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
+A <- sample(1:100, 40, replace = FALSE);
+B <- sample(1:100, 60, replace = FALSE);
+C <- sample(1:100, 40, replace = FALSE);
+res <- venndetail(list(A = A,B = B,C = C), plot = TRUE)
 vennpie(res)
 }
 \author{

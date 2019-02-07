@@ -12,19 +12,21 @@ get(object, group, ...)
 \arguments{
 \item{object}{venn object}
 
-\item{group}{user defined specified groups}
+\item{group}{Character vector giving the set names}
 }
 \value{
 return dataframe and print the header of dataframe
+
+Specific set information
 }
 \description{
-Get the contents of a specified group from venndetail object
+Get the contents of a specific set from venndetail object
 }
 \examples{
-A<-sample(1:100,40,replace = FALSE);
-B<-sample(1:100,60,replace = FALSE);
-C<-sample(1:100,40,replace = FALSE);
-res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
+A <- sample(1:100, 40, replace = FALSE);
+B <- sample(1:100, 60, replace = FALSE);
+C <- sample(1:100, 40, replace = FALSE);
+res <- venndetail(list(A = A,B = B,C = C), plot = TRUE)
 get(res,"A")
 }
 \author{

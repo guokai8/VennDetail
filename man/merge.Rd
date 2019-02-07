@@ -7,25 +7,37 @@
 \title{Merge two or more venn object by group name}
 \usage{
 merge(object, ignore.case = FALSE, useupper = TRUE, plot = FALSE,
-  ...)
+    ...)
 
 \S4method{merge}{list}(object, ignore.case = FALSE, useupper = TRUE,
-  plot = FALSE, ...)
+    plot = FALSE, ...)
 }
 \arguments{
-\item{object}{list of venn objects}
+\item{object}{List of venn objects}
 
-\item{ignore.case}{ignore case of group name (default: FALSE)}
+\item{ignore.case}{Boolean indicating whether to ignore case of
+group names (default: FALSE)}
 
-\item{useupper}{use uppercase for all group name (default: TRUE)}
+\item{useupper}{Boolean indicating whether to use uppercases for
+group names (default: TRUE)}
 
-\item{plot}{plot figure or not (default: FALSE)}
+\item{plot}{Boolean indicating whether to plot figure or not
+(default: FALSE)}
 }
 \value{
 venn object
 }
 \description{
-Merge will combine multiple venn diagrams to allow comparison between multiple groups
+Merge will combine multiple venn diagrams to allow comparison
+between multiple groups
+}
+\examples{
+A <- sample(1:100, 40, replace = FALSE);
+B <- sample(1:100, 60, replace = FALSE);
+C <- sample(1:100, 40, replace = FALSE);
+res1 <- venndetail(list(A = A,B = B), plot = FALSE)
+res2 <- venndetail(list(A = A,C = C), plot = FALSE)
+res <- merge(list(res1 = res1, res2 = res2), plot = TRUE)
 }
 \author{
 Kai Guo

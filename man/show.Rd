@@ -11,17 +11,17 @@
 \item{object}{venn object}
 }
 \value{
-summary and quick look for the venn object
+summary information for the venn object
 }
 \description{
-Show provides a summary of the venn object which includes a total
-results and sets as well as an abbreviated table.
+This function provides a summary of the venn object, including
+a full results and sets as well as an summary information.
 }
 \examples{
-A<-sample(1:100, 40, replace = FALSE);
-B<-sample(1:100, 60, replace = FALSE);
-C<-sample(1:100, 40, replace = FALSE);
-res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
+A <- sample(1:100, 40, replace = FALSE);
+B <- sample(1:100, 60, replace = FALSE);
+C <- sample(1:100, 40, replace = FALSE);
+res <- venndetail(list(A = A,B = B,C = C), plot = TRUE)
 show(res)
 }
 \author{

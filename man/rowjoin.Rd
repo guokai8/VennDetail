@@ -21,13 +21,23 @@ rowjoin(x, y, ...)
 
 \item{y}{data.frame y}
 
-\item{fun}{different join format: left_join,full_join,right_join (default:full_join)}
+\item{fun}{Different join format: left_join,full_join,right_join
+(default:full_join)}
 }
 \value{
 dataframe with join results
 }
 \description{
 join two dataframes by rownames
+}
+\examples{
+A <- sample(1:100, 40, replace = FALSE);
+B <- sample(1:100, 60, replace = FALSE);
+dA <- data.frame(A = A,"FC" = rnorm(40))
+dB <- data.frame(B = B,"FC" = rnorm(60))
+rownames(dA) <- A
+rownames(dB) <- B
+rowjoin(dA,dB)
 }
 \author{
 Kai Guo

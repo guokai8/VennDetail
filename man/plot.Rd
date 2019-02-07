@@ -5,66 +5,94 @@
 \title{Plot venn object}
 \usage{
 \method{plot}{venn}(x, type = "venn", col = "black", sep = "_",
-  mycol = c("dodgerblue", "goldenrod1", "darkorange1", "seagreen3",
-  "orchid3"), cat.cex = 1.5, alpha = 0.5, cex = 2,
-  cat.fontface = "bold", margin = 0.05, text.scale = c(1.5, 1.5, 1.5,
-  1.5, 1.5, 1.5), filename = NULL, piecolor = NULL,
-  revcolor = "lightgrey", any = NULL, show.number = TRUE,
-  show.x = TRUE, log = FALSE, base = NULL, percentage = FALSE,
-  sets.x.label = "Set Size", mainbar.y.label = "Intersection Size",
-  nintersects = 40, ...)
+    mycol = c("dodgerblue", "goldenrod1", "darkorange1", "seagreen3",
+    "orchid3"), cat.cex = 1.5, alpha = 0.5, cex = 2,
+    cat.fontface = "bold", margin = 0.05, text.scale = c(1.5, 1.5, 1.5,
+    1.5, 1.5, 1.5), filename = NULL, piecolor = NULL,
+    revcolor = "lightgrey", any = NULL, show.number = TRUE,
+    show.x = TRUE, log = FALSE, base = NULL, percentage = FALSE,
+    sets.x.label = "Set Size", mainbar.y.label = "Intersection Size",
+    nintersects = 40, ...)
 }
 \arguments{
-\item{type}{use venn,vennpie or upset (default: venn)}
+\item{type}{Use venn,vennpie or upset (default: venn)}
 
-\item{col}{color for the circle}
+\item{col}{Character vector giving the color of the circles.}
 
-\item{sep}{separation character used for the group and numbers}
+\item{sep}{The separation character used for column names of detailed
+output files (default: ‘_’).}
 
-\item{mycol}{color for VennDiagram graphic}
+\item{mycol}{Character vector giving the filled color for
+VennDiagram circles.}
 
-\item{cat.cex}{font size}
+\item{cat.cex}{Numeric vector giving the size of the category names.}
 
-\item{alpha}{transparency value}
+\item{alpha}{A number giving the transparency value.}
 
-\item{cat.fontface}{font type}
+\item{cat.fontface}{A character giving the fontface (font style) for
+category name.}
 
-\item{text.scale}{vector of text size for upset (ylab,yaxis,xlab,group name,xaxis,insection)}
+\item{text.scale}{Numeric vector of text sizes for upset diagram
+(ylab,yaxis,xlab,set name,xaxis,insection).}
 
-\item{filename}{output filename}
+\item{filename}{Filename for output figure.}
 
-\item{piecolor}{colors for vennpie}
+\item{piecolor}{Character vector giving the colors of the sets(vennpie).}
 
-\item{any}{alternative ways to highlight sets (vennpie)}
+\item{revcolor}{Character giving the color for the non-selected
+sets(vennpie).}
 
-\item{show.x}{show label outside the circle (default: TRUE)}
+\item{any}{Number to indicate selected sets, such as 1 means any unique
+sets, 2 means any sets shared by two groups(vennpie).}
+
+\item{show.number}{Boolean indicating whether to display the
+element numbers of the sets or not (default: TRUE)(vennpie).}
+
+\item{show.x}{Show label outside the circle (default: TRUE).}
+
+\item{log}{Boolean indicating whether to transform the data in
+log scale(vennpie).}
+
+\item{base}{Base value for log transformation(vennpie).}
+
+\item{percentage}{Boolean indicating whether to display set percentages
+(default: FALSE)(vennpie).}
 
 \item{sets.x.label}{x-axis label (upset)}
 
 \item{mainbar.y.label}{y-axis label (upset)}
 
-\item{nintersects}{Number of intersections to plot. If set to NA, all intersections will be plotted.}
+\item{nintersects}{Number of intersections to plot. If set to NA, all
+intersections will be plotted.}
 
-\item{abbr}{abbreviate name or not (default: FALSE)}
+\item{abbr}{Boolean indicating whether to abbreviate set names
+(default: FALSE).}
 
-\item{minlength}{set minmal length for names}
+\item{minlength}{Minmal length for the set name.}
 
-\item{abbr.method}{abbreviation method(default: both side)}
+\item{abbr.method}{Abbreviation method (default: both side).}
+
+\item{sep}{Character string used to separate the terms when concatenating
+group names into new column names (colnames)(vennpie).}
+
+\item{show.x}{Boolean indicating whether to show set labels outside the
+circle (default: TRUE)(vennpie).}
 }
 \value{
 different type of graphics based on user chose
 }
 \description{
-Plot allows users to graphically display the groups and overlap between groups
-in their venn class object through a variety of graph types such as a bar plot, traditional venn,
+The plot function allows users to graphically display the
+groups and overlap between groups in their venn class object through a
+variety of graph types such as a bar plot, traditional venn,
 or venn pie chart.
 }
 \examples{
-A<-sample(1:100,40,replace = FALSE);
-B<-sample(1:100,60,replace = FALSE);
-C<-sample(1:100,40,replace = FALSE);
-res<-venndetail(list(A=A,B=B,C=C),plot=FALSE)
-plot(res,type="venn")
+A <- sample(1:100, 40, replace = FALSE);
+B <- sample(1:100, 60, replace = FALSE);
+C <- sample(1:100, 40, replace = FALSE);
+res <- venndetail(list(A = A,B = B,C = C), plot = TRUE)
+plot(res, type = "venn")
 }
 \author{
 Kai Guo

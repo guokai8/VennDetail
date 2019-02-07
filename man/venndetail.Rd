@@ -5,58 +5,64 @@
 \title{Extract shared and unique sets}
 \usage{
 venndetail(x, plot = TRUE, filename = NULL, type = "venn",
-  col = "black", sep = "_", mycol = c("dodgerblue", "goldenrod1",
-  "darkorange1", "seagreen3", "orchid3"), cat.cex = 1.5, alpha = 0.5,
-  cex = 2, cat.fontface = "bold", margin = 0.05, abbr = FALSE,
-  minlength = 3, abbr.method = "both.sides", text.scale = c(1.5, 1.5,
-  1.5, 1.5, 1.5, 1.5))
+    col = "black", sep = "_", mycol = c("dodgerblue", "goldenrod1",
+    "darkorange1", "seagreen3", "orchid3"), cat.cex = 1.5, alpha = 0.5,
+    cex = 2, cat.fontface = "bold", margin = 0.05, abbr = FALSE,
+    minlength = 3, abbr.method = "both.sides", text.scale = c(1.5, 1.5,
+    1.5, 1.5, 1.5, 1.5))
 }
 \arguments{
-\item{x}{list of variables with group names}
+\item{x}{A list of variables with group names.}
 
-\item{plot}{plot the graphic (default:TRUE)}
+\item{plot}{Boolean indicating whether to draw a plot  (default:TRUE).}
 
-\item{filename}{output filename}
+\item{filename}{Filename for output figure.}
 
-\item{type}{use venn,vennpie or upset (default: venn)}
+\item{type}{One of c(‘venn’, ‘vennpie’, ‘upset’) to specify the type of
+plot (default: venn).}
 
-\item{col}{color for the circle}
+\item{col}{Character vector giving the color of the circles.}
 
-\item{sep}{separation character used for the group and numbers}
+\item{sep}{The separation character used for column names of detailed
+output files (default: ‘_’).}
 
-\item{mycol}{color for VennDiagram graphic}
+\item{mycol}{Character vector giving the filled color for circles.}
 
-\item{cat.cex}{font size}
+\item{cat.cex}{Numeric vector giving the size of the category names.}
 
-\item{alpha}{transparency value}
+\item{alpha}{A number giving the transparency value.}
 
-\item{cat.fontface}{font type}
+\item{cat.fontface}{A character giving the fontface (font style) for
+category name.}
 
-\item{abbr}{abbreviate name or not (default: FALSE)}
+\item{abbr}{Boolean indicating whether to abbreviate set names
+(default: FALSE).}
 
-\item{minlength}{set minmal length for names}
+\item{minlength}{minmal length for the set name.}
 
-\item{abbr.method}{abbreviation method(default: both side)}
+\item{abbr.method}{abbreviation method (default: both side).}
 
-\item{text.scale}{vector of text size for upset (ylab,yaxis,xlab,group name,xaxis,insection)}
+\item{text.scale}{Numeric vector of text sizes for upset diagram
+(ylab,yaxis,xlab,set name,xaxis,insection).}
 }
 \value{
 venn object and figures
 }
 \description{
-Extracts shared and unique elements from groups provided to the function.
-This base function will create a formal class venn object and can also graphically plot the amount
-of objects in each group. The plot will be in the form of a tradition venn diagram with default. And user
-can also use vennpie or upset method to display the result.
+Extracts shared and unique elements from groups provided to
+the function.This base function will create a formal class venn object and
+can also graphically plot the amount of objects in each group. The plot will
+be in the form of a traditional venn diagram as default.And users can also
+use vennpie or upset methods to display the result.
 }
 \details{
 Extract shared and unique sets
 }
 \examples{
-A<-sample(1:100, 40, replace = FALSE);
-B<-sample(1:100, 60, replace = FALSE);
-C<-sample(1:100, 40, replace = FALSE);
-res<-venndetail(list(A=A,B=B,C=C),plot=TRUE)
+A <- sample(1:100, 40, replace = FALSE);
+B <- sample(1:100, 60, replace = FALSE);
+C <- sample(1:100, 40, replace = FALSE);
+res <- venndetail(list(A = A,B = B,C = C), plot = TRUE)
 }
 \author{
 Kai Guo
