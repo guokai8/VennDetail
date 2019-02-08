@@ -55,10 +55,10 @@ setMethod("dplot",signature = (object="venn"),function(object,order=FALSE,
 ##' res <- venndetail(list(A = A,B = B,C = C), plot = TRUE)
 ##' Get(res,"A")
 setMethod("Get",signature = (object="venn"),function(object,group){
-  dd<-object@result
-  lhs<-dd%>%filter_(~Group%in%group)
-  head(lhs)
-  return(lhs)
+    dd<-object@result
+    lhs<-dd%>%filter_(~Group%in%group)
+    head(lhs)
+    return(lhs)
 })
 ##' @name show venn
 ##' @title Show the summary of venn object

@@ -68,7 +68,7 @@ setGeneric("vennpie",function(object,group=NULL,color=NULL,revcolor="lightgrey",
 ##' @export
 ##' @author Kai Guo
 setGeneric("Get",function(object,group){
-  standardGeneric("Get")
+    standardGeneric("Get")
 })
 ##' Merge two or more venn object by group name
 ##'
@@ -87,5 +87,5 @@ setGeneric("merge",function(object,ignore.case=FALSE,useupper=TRUE,plot=FALSE,
 ##' @export
 ##' @author Kai Guo
 setGeneric("show",function(object){
-  standardGeneric("show")
+    standardGeneric("show")
 })
