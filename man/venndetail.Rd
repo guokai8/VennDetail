@@ -5,11 +5,11 @@
 \title{Extract shared and unique sets}
 \usage{
 venndetail(x, plot = TRUE, filename = NULL, type = "venn",
-    col = "black", sep = "_", mycol = c("dodgerblue", "goldenrod1",
-    "darkorange1", "seagreen3", "orchid3"), cat.cex = 1.5, alpha = 0.5,
-    cex = 2, cat.fontface = "bold", margin = 0.05, abbr = FALSE,
-    minlength = 3, abbr.method = "both.sides", text.scale = c(1.5, 1.5,
-    1.5, 1.5, 1.5, 1.5))
+  col = "black", sep = "_", mycol = c("dodgerblue", "goldenrod1",
+  "darkorange1", "seagreen3", "orchid3"), cat.cex = 1.5, alpha = 0.5,
+  cex = 2, cat.fontface = "bold", margin = 0.05, abbr = FALSE,
+  minlength = 3, abbr.method = "both.sides", text.scale = c(1.5, 1.5,
+  1.5, 1.5, 1.5, 1.5))
 }
 \arguments{
 \item{x}{A list of variables with group names.}
@@ -32,8 +32,13 @@ output files (default: ‘_’).}
 
 \item{alpha}{A number giving the transparency value.}
 
+\item{cex}{Vector giving the size for each area label}
+
 \item{cat.fontface}{A character giving the fontface (font style) for
 category name.}
+
+\item{margin}{Number giving the amount of whitespace around the diagram in
+grid units}
 
 \item{abbr}{Boolean indicating whether to abbreviate set names
 (default: FALSE).}

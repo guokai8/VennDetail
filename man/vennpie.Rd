@@ -3,17 +3,18 @@
 \docType{methods}
 \name{vennpie}
 \alias{vennpie}
+\alias{vennpie,venn-method}
 \alias{vennpie venn}
 \title{Pie plot shows shared and unique sets}
 \usage{
 vennpie(object, group = NULL, color = NULL, revcolor = "lightgrey",
   any = NULL, show.number = TRUE, show.x = TRUE, sep = "_",
-  log = FALSE, base = NULL, percentage = FALSE, ...)
+  log = FALSE, base = NULL, percentage = FALSE)
 
 \S4method{vennpie}{venn}(object, group = NULL, color = NULL,
   revcolor = "lightgrey", any = NULL, show.number = TRUE,
   show.x = TRUE, sep = "_", log = FALSE, base = NULL,
-  percentage = FALSE, ...)
+  percentage = FALSE)
 }
 \arguments{
 \item{object}{venn object}

@@ -5,22 +5,25 @@
 \title{Plot venn object}
 \usage{
 \method{plot}{venn}(x, type = "venn", col = "black", sep = "_",
-    mycol = c("dodgerblue", "goldenrod1", "darkorange1", "seagreen3",
-    "orchid3"), cat.cex = 1.5, alpha = 0.5, cex = 2,
-    cat.fontface = "bold", margin = 0.05, text.scale = c(1.5, 1.5, 1.5,
-    1.5, 1.5, 1.5), filename = NULL, piecolor = NULL,
-    revcolor = "lightgrey", any = NULL, show.number = TRUE,
-    show.x = TRUE, log = FALSE, base = NULL, percentage = FALSE,
-    sets.x.label = "Set Size", mainbar.y.label = "Intersection Size",
-    nintersects = 40, ...)
+  mycol = c("dodgerblue", "goldenrod1", "darkorange1", "seagreen3",
+  "orchid3"), cat.cex = 1.5, alpha = 0.5, cex = 2,
+  cat.fontface = "bold", margin = 0.05, text.scale = c(1.5, 1.5, 1.5,
+  1.5, 1.5, 1.5), filename = NULL, piecolor = NULL,
+  revcolor = "lightgrey", any = NULL, show.number = TRUE,
+  show.x = TRUE, log = FALSE, base = NULL, percentage = FALSE,
+  sets.x.label = "Set Size", mainbar.y.label = "Intersection Size",
+  nintersects = 40, abbr = FALSE, abbr.method = "both.sides",
+  minlength = 3, ...)
 }
 \arguments{
+\item{x}{venn object}
+
 \item{type}{Use venn,vennpie or upset (default: venn)}
 
 \item{col}{Character vector giving the color of the circles.}
 
-\item{sep}{The separation character used for column names of detailed
-output files (default: ‘_’).}
+\item{sep}{Character string used to separate the terms when concatenating
+group names into new column names (colnames)(vennpie).}
 
 \item{mycol}{Character vector giving the filled color for
 VennDiagram circles.}
@@ -29,8 +32,13 @@ VennDiagram circles.}
 
 \item{alpha}{A number giving the transparency value.}
 
+\item{cex}{A numerical value giving the text size for venndiagram}
+
 \item{cat.fontface}{A character giving the fontface (font style) for
 category name.}
+
+\item{margin}{Number giving the amount of whitespace around the diagram in
+grid units}
 
 \item{text.scale}{Numeric vector of text sizes for upset diagram
 (ylab,yaxis,xlab,set name,xaxis,insection).}
@@ -48,7 +56,8 @@ sets, 2 means any sets shared by two groups(vennpie).}
 \item{show.number}{Boolean indicating whether to display the
 element numbers of the sets or not (default: TRUE)(vennpie).}
 
-\item{show.x}{Show label outside the circle (default: TRUE).}
+\item{show.x}{Boolean indicating whether to show set labels outside the
+circle (default: TRUE)(vennpie).}
 
 \item{log}{Boolean indicating whether to transform the data in
 log scale(vennpie).}
@@ -68,15 +77,12 @@ intersections will be plotted.}
 \item{abbr}{Boolean indicating whether to abbreviate set names
 (default: FALSE).}
 
+\item{abbr.method}{a character string specifying the method used.
+Partial matches allowed. (default: both side).}
+
 \item{minlength}{Minmal length for the set name.}
 
-\item{abbr.method}{Abbreviation method (default: both side).}
-
-\item{sep}{Character string used to separate the terms when concatenating
-group names into new column names (colnames)(vennpie).}
-
-\item{show.x}{Boolean indicating whether to show set labels outside the
-circle (default: TRUE)(vennpie).}
+\item{...}{further arguments passed to or from other methods}
 }
 \value{
 different type of graphics based on user chose

@@ -3,12 +3,12 @@
 \docType{methods}
 \name{Get}
 \alias{Get}
-\alias{Get venn}
+\alias{Get,venn-method}
 \title{Get the contents of a specific set from venndetail object}
 \usage{
-Get(object, group, ...)
+Get(object, group)
 
-\S4method{Get}{venn}(object, group, ...)
+\S4method{Get}{venn}(object, group)
 }
 \arguments{
 \item{object}{venn object}

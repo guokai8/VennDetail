@@ -3,13 +3,13 @@
 \docType{methods}
 \name{dplot}
 \alias{dplot}
-\alias{dplot venn}
+\alias{dplot,venn-method}
 \title{Dplot function allows users to visualize the detail function
 in the form of a barplot}
 \usage{
-dplot(object, order = FALSE, ...)
+dplot(object, order = FALSE, textsize = 5)
 
-\S4method{dplot}{venn}(object, order = FALSE, textsize = 5, ...)
+\S4method{dplot}{venn}(object, order = FALSE, textsize = 5)
 }
 \arguments{
 \item{object}{venn object}

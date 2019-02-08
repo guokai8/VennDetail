@@ -6,17 +6,11 @@
 \alias{rowjoin,data.frame,data.frame-method}
 \title{Join data.frame based on rownames}
 \usage{
-rowjoin(x, y, ...)
+rowjoin(x, y, fun = "fun_join")
 
 \S4method{rowjoin}{data.frame,data.frame}(x, y, fun = "full_join")
 }
 \arguments{
-\item{x}{dataframe x}
-
-\item{y}{dataframe y}
-
-\item{fun}{join type}
-
 \item{x}{data.frame x}
 
 \item{y}{data.frame y}
@@ -31,6 +25,7 @@ dataframe with join results
 join two dataframes by rownames
 }
 \examples{
+library(dplyr)
 A <- sample(1:100, 40, replace = FALSE);
 B <- sample(1:100, 60, replace = FALSE);
 dA <- data.frame(A = A,"FC" = rnorm(40))

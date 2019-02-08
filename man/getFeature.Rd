@@ -3,15 +3,16 @@
 \docType{methods}
 \name{getFeature}
 \alias{getFeature}
+\alias{getFeature,venn-method}
 \alias{getFeature venn}
 \title{getFeature provides a way to combine list of user supplied data
 frames with venn object}
 \usage{
 getFeature(object, group, rlist, userowname = TRUE, gind = NULL,
-  sep = "_", ...)
+  sep = "_")
 
 \S4method{getFeature}{venn}(object, group, rlist, userowname = TRUE,
-  gind = NULL, sep = "_", ...)
+  gind = NULL, sep = "_")
 }
 \arguments{
 \item{object}{venn object}

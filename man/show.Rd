@@ -4,9 +4,10 @@
 \name{show}
 \alias{show}
 \alias{show venn}
+\alias{show,venn-method}
 \title{Show the summary of venn object}
 \usage{
-show(object, group, ...)
+show(object)
 
 \S4method{show}{venn}(object)
 }

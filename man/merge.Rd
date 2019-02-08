@@ -7,10 +7,10 @@
 \title{Merge two or more venn object by group name}
 \usage{
 merge(object, ignore.case = FALSE, useupper = TRUE, plot = FALSE,
-    ...)
+  ...)
 
 \S4method{merge}{list}(object, ignore.case = FALSE, useupper = TRUE,
-    plot = FALSE, ...)
+  plot = FALSE, ...)
 }
 \arguments{
 \item{object}{List of venn objects}
@@ -23,6 +23,8 @@ group names (default: TRUE)}
 
 \item{plot}{Boolean indicating whether to plot figure or not
 (default: FALSE)}
+
+\item{...}{arguments for venndetail}
 }
 \value{
 venn object
