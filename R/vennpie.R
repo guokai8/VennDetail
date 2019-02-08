@@ -1,4 +1,4 @@
-##' @name vennpie
+##' @name vennpie venn
 ##' @title Vennpie provides a pie-chart like visualization similar to
 ##' traditional Venn Diagram plots
 ##' @description Vennpie uses the venn object and to creates a figure in the
@@ -8,6 +8,7 @@
 ##' @rdname vennpie
 ##' @import ggplot2
 ##' @importFrom ggplot2 labs
+##' @importFrom ggplot2 aes_string
 ##' @importFrom ggplot2 ggplot
 ##' @importFrom ggplot2 geom_bar
 ##' @importFrom ggplot2 xlab
@@ -19,6 +20,7 @@
 ##' @importFrom ggplot2 coord_polar
 ##' @importFrom ggplot2 scale_fill_manual
 ##' @importFrom ggplot2 scale_color_manual
+##' @importFrom stats quantile
 ##' @param object venn object
 ##' @param group Character vector giving the set users want to highlight.
 ##' @param color Character vector giving the colors of the sets.
@@ -45,7 +47,7 @@
 ##' vennpie(res)
 setMethod("vennpie",signature = (object="venn"),function(object,group=NULL,
                 color=NULL,revcolor="lightgrey",any=NULL,show.number=TRUE,
-                show.x=TRUE,sep="_",log=FALSE,base=NULL,percentage=FALSE,...){
+                show.x=TRUE,sep="_",log=FALSE,base=NULL,percentage=FALSE){
     #options(stringsAsFactors = F)
     detail<-object@detail
     gr=object@GroupNames
@@ -100,10 +102,10 @@ setMethod("vennpie",signature = (object="venn"),function(object,group=NULL,
     }
     if(show.number==TRUE){
         names(color)<-paste(names(color),detail,sep=delim)
-        p<-ggplot(dd,aes(group,val,fill=sets,color=group))+
+        p<-ggplot(dd,aes_(~group,~val,fill=~sets,color=~group))+
             theme_light(base_size = 15)
     }else{
-        p<-ggplot(dd,aes(group,val,fill=name,color=group))+
+        p<-ggplot(dd,aes_(~group,~val,fill=~name,color=~group))+
             theme_light(base_size = 15)
     }
     gn=paste(names(raw),raw,sep=delim)

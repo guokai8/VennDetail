@@ -12,8 +12,12 @@
 ##' @importFrom grid grid.draw
 ##' @importFrom UpSetR upset
 ##' @importFrom UpSetR fromList
+##' @importFrom methods new
 ##' @param x A list of variables with group names.
 ##' @param plot Boolean indicating whether to draw a plot  (default:TRUE).
+##' @param cex Vector giving the size for each area label
+##' @param margin Number giving the amount of whitespace around the diagram in
+##' grid units
 ##' @param type One of c(‘venn’, ‘vennpie’, ‘upset’) to specify the type of
 ##' plot (default: venn).
 ##' @param filename Filename for output figure.

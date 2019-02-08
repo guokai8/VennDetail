@@ -2,7 +2,7 @@
 ##' @rdname dplot
 ##' @method dplot venn
 ##' @importFrom ggplot2 ggplot
-##' @importFrom ggplot2 aes
+##' @importFrom ggplot2 aes_
 ##' @importFrom ggplot2 geom_bar
 ##' @importFrom ggplot2 element_text
 ##' @importFrom ggplot2 theme
@@ -21,25 +21,27 @@
 ##' @export
 
 setMethod("dplot",signature = (object="venn"),function(object,order=FALSE,
-                textsize=5,...){
+                textsize=5){
     df<-data.frame(Group=names(object@detail),Detail=object@detail)
     color=setcolor(length(object@detail))
     names(color)=names(object@detail)
     if(order==TRUE){
         df$Group<-factor(df$Group, levels = df$Group[order(df$Detail)])
     }
-    p<-ggplot(df,aes(Group,Detail,fill=Group))+geom_bar(stat="identity")+
+    p<-ggplot(df,aes_(~Group,~Detail,fill=~Group))+geom_bar(stat="identity")+
         scale_fill_manual(values=color)+
         theme_light(base_size = 12)+theme(axis.text.x=element_text(angle=90))+
-        geom_text(aes(label=Detail),vjust=-0.3,size=textsize)+
+        geom_text(aes_(label=~Detail),vjust=-0.3,size=textsize)+
         ylim(0,max(df$Detail)+1)
     p
 })
 ##' @name Get
 ##' @rdname Get
+##' @aliases Get,venn-method
+##' @docType methods
 ##' @title Get the contents of a specific set from venndetail object
 ##' @description Get the contents of a specific set from venndetail object
-##' @importFrom dplyr filter
+##' @importFrom dplyr filter_
 ##' @importFrom magrittr %>%
 ##' @param object venn object
 ##' @param group Character vector giving the set names
@@ -52,17 +54,19 @@ setMethod("dplot",signature = (object="venn"),function(object,order=FALSE,
 ##' C <- sample(1:100, 40, replace = FALSE);
 ##' res <- venndetail(list(A = A,B = B,C = C), plot = TRUE)
 ##' Get(res,"A")
-setMethod("Get",signature = (object="venn"),function(object,group,...){
+setMethod("Get",signature = (object="venn"),function(object,group){
   dd<-object@result
-  lhs<-dd%>%filter(Group%in%group)
+  lhs<-dd%>%filter_(~Group%in%group)
   head(lhs)
   return(lhs)
 })
-##' @name show
+##' @name show venn
 ##' @title Show the summary of venn object
 ##' @description This function provides a summary of the venn object, including
 ##' a full results and sets as well as an summary information.
 ##' @rdname show
+##' @aliases show,venn-method
+##' @docType methods
 ##' @return summary information for the venn object
 ##' @param object venn object
 ##' @author Kai Guo

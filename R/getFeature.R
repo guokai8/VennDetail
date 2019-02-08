@@ -1,4 +1,4 @@
-##' @name getFeature
+##' @name getFeature venn
 ##' @title getFeature provides a way to combine list of user supplied data
 ##' frames with venn object
 ##' @description GetFeature allows users to extract sets from venn object
@@ -7,7 +7,7 @@
 ##' @rdname getFeature
 ##' @return data.frame with subset information and details from the user
 ##' supplied data frame
-##' @importFrom dplyr filter
+##' @importFrom dplyr filter_
 ##' @importFrom dplyr left_join
 ##' @importFrom dplyr full_join
 ##' @importFrom dplyr right_join
@@ -37,12 +37,12 @@
 ##' rhs <- getFeature(res, group = "Shared", rlist = list(dA,dB,dC),
 ##'    userowname= FALSE,gind = rep(1, 3))
 setMethod("getFeature",signature = (object="venn"),function(object,group,rlist,
-                        userowname=TRUE,gind=NULL,sep="_",...){
+                        userowname=TRUE,gind=NULL,sep="_"){
     dd<-object@result
     if(missing(group)){
         group=unique(dd$Group)
     }
-    lhs<-dd%>%filter(Group%in%group)
+    lhs<-dd%>%filter_(~Group%in%group)
     lhs$Detail<-as.character(lhs$Detail)
     if(userowname==FALSE){
         if(is.null(gind)){

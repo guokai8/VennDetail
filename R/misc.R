@@ -66,11 +66,13 @@ detail.venn<-function(object){
 ##' @return different type of graphics based on user chose
 ##' @importFrom VennDiagram venn.diagram
 ##' @importFrom UpSetR upset
+##' @param x venn object
+##' @param cex A numerical value giving the text size for venndiagram
+##' @param margin Number giving the amount of whitespace around the diagram in
+##' grid units
 ##' @param type Use venn,vennpie or upset (default: venn)
 ##' @param filename Filename for output figure.
 ##' @param col Character vector giving the color of the circles.
-##' @param sep The separation character used for column names of detailed
-##' output files (default: ‘_’).
 ##' @param mycol Character vector giving the filled color for
 ##' VennDiagram circles.
 ##' @param cat.cex Numeric vector giving the size of the category names.
@@ -82,8 +84,8 @@ detail.venn<-function(object){
 ##' @param minlength Minmal length for the set name.
 ##' @param text.scale Numeric vector of text sizes for upset diagram
 ##' (ylab,yaxis,xlab,set name,xaxis,insection).
-##' @param abbr.method Abbreviation method (default: both side).
-##' @param show.x Show label outside the circle (default: TRUE).
+##' @param abbr.method a character string specifying the method used.
+##' Partial matches allowed. (default: both side).
 ##' @param piecolor Character vector giving the colors of the sets(vennpie).
 ##' @param revcolor Character giving the color for the non-selected
 ##' sets(vennpie).
@@ -104,6 +106,7 @@ detail.venn<-function(object){
 ##' @param mainbar.y.label y-axis label (upset)
 ##' @param nintersects Number of intersections to plot. If set to NA, all
 ##' intersections will be plotted.
+##' @param ... further arguments passed to or from other methods
 ##' @inheritParams UpSetR::upset
 ##' @examples
 ##' A <- sample(1:100, 40, replace = FALSE);
@@ -120,7 +123,8 @@ plot.venn<-function(x,type="venn",col="black",sep="_",mycol=c("dodgerblue",
                     piecolor=NULL,revcolor="lightgrey",any=NULL,
                     show.number=TRUE,show.x=TRUE,log=FALSE,base=NULL,
                     percentage=FALSE,sets.x.label = "Set Size",
-                    mainbar.y.label = "Intersection Size",nintersects = 40,...)
+                    mainbar.y.label = "Intersection Size",nintersects = 40,
+                    abbr=FALSE,abbr.method="both.sides",minlength=3,...)
 {
     result<-x
     x<-x@input
@@ -163,7 +167,7 @@ plot.venn<-function(x,type="venn",col="black",sep="_",mycol=c("dodgerblue",
 
 }
 ##' @importFrom magrittr %>%
-##' @importFrom dplyr select
+##' @importFrom dplyr select_
 ##' @importFrom dplyr everything
 ##' @param x data frame
 .add_colnames<-function(x){
@@ -172,7 +176,7 @@ plot.venn<-function(x,type="venn",col="black",sep="_",mycol=c("dodgerblue",
     }else{
         colnames(x)[which(grepl("RowNxyz",colnames(x)))]<-"RowNxyz"
     }
-    return(x%>%select(RowNxyz,everything()))
+    return(x%>%select_("RowNxyz",'everything()'))
 }
 
 .pasten<-function(x,name,sep="_"){
@@ -194,6 +198,7 @@ plot.venn<-function(x,type="venn",col="black",sep="_",mycol=c("dodgerblue",
 ##' between multiple groups
 ##' @rdname merge
 ##' @importFrom purrr flatten
+##' @importFrom methods slot
 ##' @param object List of venn objects
 ##' @param ignore.case Boolean indicating whether to ignore case of
 ##' group names (default: FALSE)
@@ -201,6 +206,7 @@ plot.venn<-function(x,type="venn",col="black",sep="_",mycol=c("dodgerblue",
 ##' group names (default: TRUE)
 ##' @param plot Boolean indicating whether to plot figure or not
 ##' (default: FALSE)
+##' @param ... arguments for venndetail
 ##' @return venn object
 ##' @examples
 ##' A <- sample(1:100, 40, replace = FALSE);
@@ -225,7 +231,7 @@ setMethod("merge",signature = (object="list"),function(object,ignore.case=FALSE,
         }
     }
     input=input[unique(nam)]
-    ven=venndetail(input,plot=plot)
+    ven=venndetail(input,plot=plot,...)
     return(ven)
 })
 ##'
@@ -281,6 +287,7 @@ setAs(from = "list",to="venn",def=function(from){
 ##' (default:full_join)
 ##' @return dataframe with join results
 ##' @examples
+##' library(dplyr)
 ##' A <- sample(1:100, 40, replace = FALSE);
 ##' B <- sample(1:100, 60, replace = FALSE);
 ##' dA <- data.frame(A = A,"FC" = rnorm(40))
@@ -301,6 +308,7 @@ setMethod("rowjoin",signature(x="data.frame",y="data.frame"),
 ##' @title return colors with given a vector
 ##' @description Setcolor will provide a list of color vectors based on
 ##' the number used as an input.
+##' @importFrom grDevices colors
 ##' @param x Number of color
 ##' @return color vector
 ##' @examples
