@@ -466,7 +466,7 @@ venndetail<-function(x,plot=TRUE,filename=NULL,type="venn",col="black",sep="_",
     wide<-cbind(wide,sapply(names(x), function(y)inp%in%x[[y]]))
     wide[wide==TRUE]<-1
     wide$SharedSets<-rowSums(wide[,2:ncol(wide)])
-    wide<-wide[order(wide$SharedSets,decreasing = T),]
+    wide<-wide[order(wide$SharedSets,decreasing = TRUE),]
     result<-new("venn",
                 input=x,
                 raw=raw,
