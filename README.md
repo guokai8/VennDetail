@@ -33,7 +33,7 @@ C <- sample(1:1000, 350, replace = FALSE);
 D <- sample(1:1000, 550, replace = FALSE);
 res<-venndetail(list(A=A,B=B,C=C,D=D),plot=TRUE);
 result<-result(res);
-head(res);
+head(result);
 ```  
 ### Some useful commands
 ```  
