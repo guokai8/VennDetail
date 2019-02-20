@@ -37,8 +37,13 @@ dim.venn <- function(x) {
 ##' res <- venndetail(list(A = A,B = B,C = C), plot = TRUE)
 ##' result <- result(res)
 ##' @export
-result.venn<-function(object){
-    as.data.frame(object@result)
+result.venn<-function(object,wide=FALSE){
+  if(wide==TRUE){
+    dd<-as.data.frame(object@wide)
+  }else{
+    dd<-as.data.frame(object@result)
+  }
+  return(dd)
 }
 ##' @method detail venn
 ##' @title Detail function provides a way to display the amount of members in

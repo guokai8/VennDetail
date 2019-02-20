@@ -1,8 +1,9 @@
 ##' @param object venn object
+##' @param wide Boolean indicating whether to return wide format(default:FALSE)
 ##' @return return dataframe and print header of dataframe
 ##' @export
 ##' @author Kai Guo
-result<-function(object){
+result<-function(object,wide=FALSE){
     UseMethod("result",object)
 }
 ##' @param object venn object
@@ -48,7 +49,7 @@ setGeneric("rowjoin",function(x,y,fun="fun_join"){
 ##' @export
 ##' @author Kai Guo
 setGeneric("getFeature",function(object,group, rlist, userowname=TRUE,gind=NULL,
-                                sep="_"){
+                                sep="_",wide=FALSE){
     standardGeneric("getFeature")
 })
 ##' @rdname vennpie

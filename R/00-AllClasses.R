@@ -11,9 +11,10 @@
 ##' @slot GroupNames input group names
 ##' @slot result shared or unique sets
 ##' @slot detail shared of unique number belongs to each sets
+##' @slot wide result in wide format
 ##' @exportClass venn
 ##' @author Kai Guo
 ##' @keywords classes
 setClass("venn",representation = representation(input="list",raw="vector",
                 sep="character",GroupNames="vector",result="data.frame",
-                detail="vector"))
+                detail="vector",wide="data.frame"))

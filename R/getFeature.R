@@ -25,6 +25,7 @@
 ##' @param sep Character string used to separate the terms when concatenating
 ##' group names into
 ##' new separation character for new column names in the resulting data frame
+##' @param wide Boolean indicating whether to use wide format(default:FALSE)
 ##' @export
 ##' @examples
 ##' A <- sample(1:100, 40, replace = FALSE);
@@ -37,13 +38,18 @@
 ##' rhs <- getFeature(res, group = "Shared", rlist = list(dA,dB,dC),
 ##'    userowname= FALSE,gind = rep(1, 3))
 setMethod("getFeature",signature = (object="venn"),function(object,group,rlist,
-                        userowname=TRUE,gind=NULL,sep="_"){
+                        userowname=TRUE,gind=NULL,sep="_",wide=FALSE){
     dd<-object@result
+    wd=object@wide
+    wd$Detail<-as.character(wd$Detail)
     if(missing(group)){
         group=unique(dd$Group)
     }
     lhs<-dd%>%filter_(~Group%in%group)
     lhs$Detail<-as.character(lhs$Detail)
+    if(wide==TRUE){
+      lhs<-wd%>%filter_(~Detail%in%lhs$Detail)
+    }
     if(userowname==FALSE){
         if(is.null(gind)){
             gind=rep(1,length(rlist))
