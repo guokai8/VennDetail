@@ -9,10 +9,10 @@
 frames with venn object}
 \usage{
 getFeature(object, group, rlist, userowname = TRUE, gind = NULL,
-  sep = "_")
+  sep = "_", wide = FALSE)
 
 \S4method{getFeature}{venn}(object, group, rlist, userowname = TRUE,
-  gind = NULL, sep = "_")
+  gind = NULL, sep = "_", wide = FALSE)
 }
 \arguments{
 \item{object}{venn object}
@@ -32,6 +32,8 @@ use to join data frames(valid only when userowname=FALSE)}
 \item{sep}{Character string used to separate the terms when concatenating
 group names into
 new separation character for new column names in the resulting data frame}
+
+\item{wide}{Boolean indicating whether to use wide format(default:FALSE)}
 }
 \value{
 data.frame with subset information and details from the user

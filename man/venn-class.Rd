@@ -26,6 +26,8 @@ This class includes all information from venndetail
 \item{\code{result}}{shared or unique sets}
 
 \item{\code{detail}}{shared of unique number belongs to each sets}
+
+\item{\code{wide}}{result in wide format}
 }}
 
 \author{

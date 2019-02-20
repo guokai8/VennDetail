@@ -5,12 +5,14 @@
 \alias{result.venn}
 \title{Extract the result from venn object}
 \usage{
-result(object)
+result(object, wide = FALSE)
 
-\method{result}{venn}(object)
+\method{result}{venn}(object, wide = FALSE)
 }
 \arguments{
 \item{object}{venn object}
+
+\item{wide}{Boolean indicating whether to return wide format(default:FALSE)}
 }
 \value{
 return dataframe and print header of dataframe
