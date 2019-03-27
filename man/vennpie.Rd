@@ -3,21 +3,21 @@
 \docType{methods}
 \name{vennpie}
 \alias{vennpie}
-\alias{vennpie,venn-method}
-\alias{vennpie venn}
+\alias{vennpie,Venn-method}
+\alias{vennpie Venn}
 \title{Pie plot shows shared and unique sets}
 \usage{
 vennpie(object, group = NULL, color = NULL, revcolor = "lightgrey",
   any = NULL, show.number = TRUE, show.x = TRUE, sep = "_",
   log = FALSE, base = NULL, percentage = FALSE)
 
-\S4method{vennpie}{venn}(object, group = NULL, color = NULL,
+\S4method{vennpie}{Venn}(object, group = NULL, color = NULL,
   revcolor = "lightgrey", any = NULL, show.number = TRUE,
   show.x = TRUE, sep = "_", log = FALSE, base = NULL,
   percentage = FALSE)
 }
 \arguments{
-\item{object}{venn object}
+\item{object}{Venn object}
 
 \item{group}{Character vector giving the set users want to highlight.}
 
@@ -25,8 +25,8 @@ vennpie(object, group = NULL, color = NULL, revcolor = "lightgrey",
 
 \item{revcolor}{Character giving the color for the non-selected sets.}
 
-\item{any}{Number to indicate selected sets, such as 1 means any unique
-sets, 2 means any sets shared by two groups.}
+\item{any}{Number to indicate selected sets,  such as 1 means any unique
+sets,  2 means any sets shared by two groups.}
 
 \item{show.number}{Boolean indicating whether to display the element numbers
 of the sets or not (default: TRUE).}
@@ -54,10 +54,10 @@ rather than a traditional venn diagram. Users can highlight a specific
 sections of the venn pie.
 }
 \examples{
-A <- sample(1:100, 40, replace = FALSE);
-B <- sample(1:100, 60, replace = FALSE);
-C <- sample(1:100, 40, replace = FALSE);
-res <- venndetail(list(A = A,B = B,C = C), plot = TRUE)
+A <- sample(1:100,  40,  replace = FALSE);
+B <- sample(1:100,  60,  replace = FALSE);
+C <- sample(1:100,  40,  replace = FALSE);
+res <- venndetail(list(A = A, B = B, C = C))
 vennpie(res)
 }
 \author{

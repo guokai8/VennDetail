@@ -3,16 +3,16 @@
 \docType{methods}
 \name{dplot}
 \alias{dplot}
-\alias{dplot,venn-method}
+\alias{dplot,Venn-method}
 \title{Dplot function allows users to visualize the detail function
 in the form of a barplot}
 \usage{
 dplot(object, order = FALSE, textsize = 5)
 
-\S4method{dplot}{venn}(object, order = FALSE, textsize = 5)
+\S4method{dplot}{Venn}(object, order = FALSE, textsize = 5)
 }
 \arguments{
-\item{object}{venn object}
+\item{object}{Venn object}
 
 \item{order}{Boolean indicating whether to sort the bar (default: FALSE).}
 
@@ -31,11 +31,11 @@ the numbers above the bars indicating the total number of members within
 each group.
 }
 \examples{
-A <- sample(1:100, 40, replace = FALSE);
-B <- sample(1:100, 60, replace = FALSE);
-C <- sample(1:100, 40, replace = FALSE);
-res <- venndetail(list(A = A,B = B,C = C), plot = TRUE)
-dplot(res, order = TRUE, textsize = 3)
+A <- sample(1:100,  40,  replace = FALSE);
+B <- sample(1:100,  60,  replace = FALSE);
+C <- sample(1:100,  40,  replace = FALSE);
+res <- venndetail(list(A = A, B = B, C = C))
+dplot(res,  order = TRUE,  textsize = 3)
 }
 \author{
 Kai Guo

@@ -3,15 +3,15 @@
 \docType{methods}
 \name{Get}
 \alias{Get}
-\alias{Get,venn-method}
+\alias{Get,Venn-method}
 \title{Get the contents of a specific set from venndetail object}
 \usage{
 Get(object, group)
 
-\S4method{Get}{venn}(object, group)
+\S4method{Get}{Venn}(object, group)
 }
 \arguments{
-\item{object}{venn object}
+\item{object}{Venn object}
 
 \item{group}{Character vector giving the set names}
 }
@@ -22,11 +22,11 @@ Specific set information
 Get the contents of a specific set from venndetail object
 }
 \examples{
-A <- sample(1:100, 40, replace = FALSE);
-B <- sample(1:100, 60, replace = FALSE);
-C <- sample(1:100, 40, replace = FALSE);
-res <- venndetail(list(A = A,B = B,C = C), plot = TRUE)
-Get(res,"A")
+A <- sample(1:100,  40,  replace = FALSE);
+B <- sample(1:100,  60,  replace = FALSE);
+C <- sample(1:100,  40,  replace = FALSE);
+res <- venndetail(list(A = A, B = B, C = C))
+Get(res, "A")
 }
 \author{
 Kai Guo

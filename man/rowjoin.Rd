@@ -15,7 +15,7 @@ rowjoin(x, y, fun = "fun_join")
 
 \item{y}{data.frame y}
 
-\item{fun}{Different join format: left_join,full_join,right_join
+\item{fun}{Different join format: left_join, full_join, right_join
 (default:full_join)}
 }
 \value{
@@ -26,13 +26,13 @@ join two dataframes by rownames
 }
 \examples{
 library(dplyr)
-A <- sample(1:100, 40, replace = FALSE);
-B <- sample(1:100, 60, replace = FALSE);
-dA <- data.frame(A = A,"FC" = rnorm(40))
-dB <- data.frame(B = B,"FC" = rnorm(60))
+A <- sample(1:100,  40,  replace = FALSE);
+B <- sample(1:100,  60,  replace = FALSE);
+dA <- data.frame(A = A, "FC" = rnorm(40))
+dB <- data.frame(B = B, "FC" = rnorm(60))
 rownames(dA) <- A
 rownames(dB) <- B
-rowjoin(dA,dB)
+rowjoin(dA, dB)
 }
 \author{
 Kai Guo

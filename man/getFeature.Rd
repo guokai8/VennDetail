@@ -3,19 +3,19 @@
 \docType{methods}
 \name{getFeature}
 \alias{getFeature}
-\alias{getFeature,venn-method}
-\alias{getFeature venn}
+\alias{getFeature,Venn-method}
+\alias{getFeature Venn}
 \title{getFeature provides a way to combine list of user supplied data
-frames with venn object}
+frames with Venn object}
 \usage{
 getFeature(object, group, rlist, userowname = TRUE, gind = NULL,
   sep = "_", wide = FALSE)
 
-\S4method{getFeature}{venn}(object, group, rlist, userowname = TRUE,
+\S4method{getFeature}{Venn}(object, group, rlist, userowname = TRUE,
   gind = NULL, sep = "_", wide = FALSE)
 }
 \arguments{
-\item{object}{venn object}
+\item{object}{Venn object}
 
 \item{group}{Character vector giving the names of the user-defined
 set to extract}
@@ -45,15 +45,15 @@ into a table format along with accompanying information from the data frames
 provided in the rlist argument
 }
 \examples{
-A <- sample(1:100, 40, replace = FALSE);
-B <- sample(1:100, 60, replace = FALSE);
-C <- sample(1:100, 40, replace = FALSE);
-dA <- data.frame(A = A,"FC" = rnorm(40))
-dB <- data.frame(B = B,"FC" = rnorm(60))
-dC <- data.frame(C = C,"FC" = rnorm(40))
-res <- venndetail(list(A = A,B = B,C = C), plot = TRUE)
-rhs <- getFeature(res, group = "Shared", rlist = list(dA,dB,dC),
-   userowname= FALSE,gind = rep(1, 3))
+A <- sample(1:100,  40,  replace = FALSE);
+B <- sample(1:100,  60,  replace = FALSE);
+C <- sample(1:100,  40,  replace = FALSE);
+dA <- data.frame(A = A, "FC" = rnorm(40))
+dB <- data.frame(B = B, "FC" = rnorm(60))
+dC <- data.frame(C = C, "FC" = rnorm(40))
+res <- venndetail(list(A = A, B = B, C = C))
+rhs <- getFeature(res,  group = "Shared",  rlist = list(dA, dB, dC),
+   userowname= FALSE, gind = rep(1,  3))
 }
 \author{
 Kai Guo

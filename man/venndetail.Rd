@@ -4,51 +4,22 @@
 \alias{venndetail}
 \title{Extract shared and unique sets}
 \usage{
-venndetail(x, plot = TRUE, filename = NULL, type = "venn",
-  col = "black", sep = "_", mycol = c("dodgerblue", "goldenrod1",
-  "darkorange1", "seagreen3", "orchid3"), cat.cex = 1.5, alpha = 0.5,
-  cex = 2, cat.fontface = "bold", margin = 0.05, abbr = FALSE,
-  minlength = 3, abbr.method = "both.sides", text.scale = c(1.5, 1.5,
-  1.5, 1.5, 1.5, 1.5))
+venndetail(x, sep = "_", abbr = FALSE, minlength = 3,
+  abbr.method = "both side")
 }
 \arguments{
 \item{x}{A list of variables with group names.}
 
-\item{plot}{Boolean indicating whether to draw a plot  (default:TRUE).}
-
-\item{filename}{Filename for output figure.}
-
-\item{type}{One of c(‘venn’, ‘vennpie’, ‘upset’) to specify the type of
-plot (default: venn).}
-
-\item{col}{Character vector giving the color of the circles.}
-
 \item{sep}{The separation character used for column names of detailed
 output files (default: ‘_’).}
-
-\item{mycol}{Character vector giving the filled color for circles.}
-
-\item{cat.cex}{Numeric vector giving the size of the category names.}
-
-\item{alpha}{A number giving the transparency value.}
-
-\item{cex}{Vector giving the size for each area label}
-
-\item{cat.fontface}{A character giving the fontface (font style) for
-category name.}
-
-\item{margin}{Number giving the amount of whitespace around the diagram in
-grid units}
 
 \item{abbr}{Boolean indicating whether to abbreviate set names
 (default: FALSE).}
 
-\item{minlength}{minmal length for the set name.}
+\item{minlength}{Minmal length for the set name.}
 
-\item{abbr.method}{abbreviation method (default: both side).}
-
-\item{text.scale}{Numeric vector of text sizes for upset diagram
-(ylab,yaxis,xlab,set name,xaxis,insection).}
+\item{abbr.method}{a character string specifying the method used.
+Partial matches allowed. (default: both side).}
 }
 \value{
 venn object and figures
@@ -64,10 +35,10 @@ use vennpie or upset methods to display the result.
 Extract shared and unique sets
 }
 \examples{
-A <- sample(1:100, 40, replace = FALSE);
-B <- sample(1:100, 60, replace = FALSE);
-C <- sample(1:100, 40, replace = FALSE);
-res <- venndetail(list(A = A,B = B,C = C), plot = TRUE)
+A <- sample(1:100,  40,  replace = FALSE);
+B <- sample(1:100,  60,  replace = FALSE);
+C <- sample(1:100,  40,  replace = FALSE);
+res <- venndetail(list(A = A, B = B, C = C))
 }
 \author{
 Kai Guo
