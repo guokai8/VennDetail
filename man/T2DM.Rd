@@ -16,11 +16,11 @@
 T2DM
 }
 \description{
-T2DM data are differential expression genes (DEGs) with annotation from the
-publication by Hinder et al. The data contains three DEG sets from three
-different tissues (Cortex,SCN,Glom). DEGs were determined by using Cuffdiff
-with a false discovery rate (FDR) < 0.05 between groups with
-or without pioglitazone treatment.
+T2DM data are differential expression genes (DEGs) with
+annotation from the publication by Hinder et al. The data contains three
+DEG sets from three different tissues (Cortex,SCN,Glom). DEGs were
+determined by using Cuffdiff with a false discovery rate (FDR) < 0.05
+between groups with or without pioglitazone treatment.
 }
 \examples{
 T2DM
