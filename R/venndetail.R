@@ -23,9 +23,9 @@
 ##' Partial matches allowed. (default: both side).
 ##' @inheritParams VennDiagram::venn.diagram
 ##' @examples
-##' A <- sample(1:100,  40,  replace = FALSE)
-##' B <- sample(1:100,  60,  replace = FALSE)
-##' C <- sample(1:100,  40,  replace = FALSE)
+##' A <- sample(1:100,  40,  replace = FALSE);
+##' B <- sample(1:100,  60,  replace = FALSE);
+##' C <- sample(1:100,  40,  replace = FALSE);
 ##' res <- venndetail(list(A = A, B = B, C = C))
 ##' @export
 ##' @author Kai Guo
@@ -107,12 +107,13 @@ venndetail <- function(x,  sep="_",  abbr = FALSE,  minlength = 3,
             paste(names(x)[c(2, 4)], sep="", collapse = sep),
             paste(names(x)[3:4], sep="", collapse = sep),
             names(x))
-        detail  <-  unlist(lapply(list(nABCD, nABC, nABD, nACD, nBCD, nAB, nAC, nAD, nBC,
-                                nBD, nCD, nA, nB, nC, nD),  function(x)length(x)))
+        detail  <-  unlist(lapply(list(nABCD, nABC, nABD, nACD, nBCD, nAB, nAC,
+                        nAD, nBC,nBD, nCD, nA, nB, nC, nD),
+                        function(x)length(x)))
         names(detail)  <-  ggname
         gname=rep(ggname, times=detail)
-        res=data.frame(Group=gname, Detail=c(nABCD, nABC, nABD, nACD, nBCD, nAB, nAC,
-                                        nAD, nBC, nBD, nCD, nA, nB, nC, nD))
+        res=data.frame(Group=gname, Detail=c(nABCD, nABC, nABD, nACD, nBCD, nAB,
+                        nAC,nAD, nBC, nBD, nCD, nA, nB, nC, nD))
     }
     else if(length(x)==5){
         A=x[[1]]
@@ -161,7 +162,7 @@ venndetail <- function(x,  sep="_",  abbr = FALSE,  minlength = 3,
         nC=Reduce(setdiff, list(C, D, E, A, B))
         nD=Reduce(setdiff, list(D, E, A, B, C))
         nE=Reduce(setdiff, list(E, A, B, C, D))
-        ggname=c("Shared", paste(names(x)[c(1, 2, 3, 4)], sep="", collapse = sep),
+        ggname=c("Shared", paste(names(x)[c(1, 2, 3, 4)], sep="",collapse =sep),
             paste(names(x)[c(1, 2, 3, 5)], sep="", collapse = sep),
             paste(names(x)[c(1, 2, 4, 5)], sep="", collapse = sep),
             paste(names(x)[c(1, 3, 4, 5)], sep="", collapse = sep),
@@ -187,16 +188,17 @@ venndetail <- function(x,  sep="_",  abbr = FALSE,  minlength = 3,
             paste(names(x)[c(3, 5)], sep="", collapse = sep),
             paste(names(x)[c(4, 5)], sep="", collapse = sep),
             names(x))
-        detail  <-  unlist(lapply(list(nABCDE, nABCD, nABCE, nABDE, nACDE, nBCDE, nABC,
-                                nABD, nABE, nACD, nADE,
-                nACE, nBCD, nBCE, nBDE, nCDE, nAB, nAC, nAD, nAE, nBC, nBD, nBE, nCD, nCE,
+        detail  <-  unlist(lapply(list(nABCDE, nABCD, nABCE, nABDE, nACDE,
+                nBCDE, nABC,nABD, nABE, nACD, nADE,
+                nACE, nBCD, nBCE, nBDE, nCDE, nAB, nAC, nAD, nAE, nBC, nBD,
+                nBE, nCD, nCE,
                 nDE, nA, nB, nC, nD, nE),  function(x)length(x)))
 
         gname=rep(ggname, times=detail)
         names(detail)  <-  ggname
         res=data.frame(Group=gname, Detail=c(nABCDE, nABCD, nABCE, nABDE, nACDE,
-                            nBCDE, nABC, nABD, nABE, nACD, nADE, nACE, nBCD, nBCE, nBDE,
-                            nCDE, nAB, nAC, nAD, nAE, nBC, nBD, nBE, nCD, nCE, nDE, nA, nB,
+                nBCDE, nABC, nABD, nABE, nACD, nADE, nACE, nBCD, nBCE, nBDE,
+                nCDE, nAB, nAC, nAD, nAE, nBC, nBD, nBE, nCD, nCE, nDE, nA, nB,
                             nC, nD, nE))
     }
     else if(length(x)==6){
@@ -232,58 +234,93 @@ venndetail <- function(x,  sep="_",  abbr = FALSE,  minlength = 3,
         nDF=setdiff(intersect(D, F), Reduce(union, list(A, B, C, E)))
         nEF=setdiff(intersect(E, F), Reduce(union, list(A, B, C, D)))
         #
-        nABC=setdiff(Reduce(intersect, list(A, B, C)), Reduce(union, list(D, E, F)))
-        nABD=setdiff(Reduce(intersect, list(A, B, D)), Reduce(union, list(C, E, F)))
-        nABE=setdiff(Reduce(intersect, list(A, B, E)), Reduce(union, list(C, D, F)))
-        nABF=setdiff(Reduce(intersect, list(A, B, F)), Reduce(union, list(C, D, E)))
+        nABC=setdiff(Reduce(intersect,
+                            list(A, B, C)), Reduce(union, list(D, E, F)))
+        nABD=setdiff(Reduce(intersect,
+                            list(A, B, D)), Reduce(union, list(C, E, F)))
+        nABE=setdiff(Reduce(intersect,
+                            list(A, B, E)), Reduce(union, list(C, D, F)))
+        nABF=setdiff(Reduce(intersect,
+                            list(A, B, F)), Reduce(union, list(C, D, E)))
         #
-        nACD=setdiff(Reduce(intersect, list(A, C, D)), Reduce(union, list(B, E, F)))
-        nACE=setdiff(Reduce(intersect, list(A, C, E)), Reduce(union, list(B, D, F)))
-        nACF=setdiff(Reduce(intersect, list(A, C, F)), Reduce(union, list(B, D, E)))
+        nACD=setdiff(Reduce(intersect,
+                            list(A, C, D)), Reduce(union, list(B, E, F)))
+        nACE=setdiff(Reduce(intersect,
+                            list(A, C, E)), Reduce(union, list(B, D, F)))
+        nACF=setdiff(Reduce(intersect,
+                            list(A, C, F)), Reduce(union, list(B, D, E)))
         #
-        nADE=setdiff(Reduce(intersect, list(A, D, E)), Reduce(union, list(B, C, F)))
-        nADF=setdiff(Reduce(intersect, list(A, D, F)), Reduce(union, list(B, C, E)))
-        nAEF=setdiff(Reduce(intersect, list(A, E, F)), Reduce(union, list(B, C, D)))
+        nADE=setdiff(Reduce(intersect,
+                            list(A, D, E)), Reduce(union, list(B, C, F)))
+        nADF=setdiff(Reduce(intersect,
+                            list(A, D, F)), Reduce(union, list(B, C, E)))
+        nAEF=setdiff(Reduce(intersect,
+                            list(A, E, F)), Reduce(union, list(B, C, D)))
         #
-        nBCD=setdiff(Reduce(intersect, list(B, C, D)), Reduce(union, list(A, E, F)))
-        nBCE=setdiff(Reduce(intersect, list(B, C, E)), Reduce(union, list(A, D, F)))
-        nBCF=setdiff(Reduce(intersect, list(B, C, F)), Reduce(union, list(A, D, E)))
+        nBCD=setdiff(Reduce(intersect,
+                            list(B, C, D)), Reduce(union, list(A, E, F)))
+        nBCE=setdiff(Reduce(intersect,
+                            list(B, C, E)), Reduce(union, list(A, D, F)))
+        nBCF=setdiff(Reduce(intersect,
+                            list(B, C, F)), Reduce(union, list(A, D, E)))
         #
-        nBDE=setdiff(Reduce(intersect, list(B, D, E)), Reduce(union, list(A, C, F)))
-        nBDF=setdiff(Reduce(intersect, list(B, D, F)), Reduce(union, list(A, C, E)))
-        nBEF=setdiff(Reduce(intersect, list(B, E, F)), Reduce(union, list(A, C, D)))
+        nBDE=setdiff(Reduce(intersect,
+                            list(B, D, E)), Reduce(union, list(A, C, F)))
+        nBDF=setdiff(Reduce(intersect,
+                            list(B, D, F)), Reduce(union, list(A, C, E)))
+        nBEF=setdiff(Reduce(intersect,
+                            list(B, E, F)), Reduce(union, list(A, C, D)))
         #
-        nCDE=setdiff(Reduce(intersect, list(C, D, E)), Reduce(union, list(A, B, F)))
-        nCDF=setdiff(Reduce(intersect, list(C, D, F)), Reduce(union, list(A, B, E)))
-        nCEF=setdiff(Reduce(intersect, list(C, E, F)), Reduce(union, list(A, B, D)))
+        nCDE=setdiff(Reduce(intersect,
+                            list(C, D, E)), Reduce(union, list(A, B, F)))
+        nCDF=setdiff(Reduce(intersect,
+                            list(C, D, F)), Reduce(union, list(A, B, E)))
+        nCEF=setdiff(Reduce(intersect,
+                            list(C, E, F)), Reduce(union, list(A, B, D)))
         #
-        nDEF=setdiff(Reduce(intersect, list(D, E, F)), Reduce(union, list(A, B, C)))
+        nDEF=setdiff(Reduce(intersect,
+                            list(D, E, F)), Reduce(union, list(A, B, C)))
         #
-        nABCD=setdiff(Reduce(intersect, list(A, B, C, D)), Reduce(union, list(E, F)))
-        nABCE=setdiff(Reduce(intersect, list(A, B, C, E)), Reduce(union, list(D, F)))
-        nABCF=setdiff(Reduce(intersect, list(A, B, C, F)), Reduce(union, list(D, E)))
-        nABDE=setdiff(Reduce(intersect, list(A, B, D, E)), Reduce(union, list(C, F)))
-        nABDF=setdiff(Reduce(intersect, list(A, B, D, F)), Reduce(union, list(C, E)))
-        nABEF=setdiff(Reduce(intersect, list(A, B, E, F)), Reduce(union, list(C, D)))
+        nABCD=setdiff(Reduce(intersect,
+                             list(A, B, C, D)), Reduce(union, list(E, F)))
+        nABCE=setdiff(Reduce(intersect,
+                             list(A, B, C, E)), Reduce(union, list(D, F)))
+        nABCF=setdiff(Reduce(intersect,
+                             list(A, B, C, F)), Reduce(union, list(D, E)))
+        nABDE=setdiff(Reduce(intersect,
+                             list(A, B, D, E)), Reduce(union, list(C, F)))
+        nABDF=setdiff(Reduce(intersect,
+                             list(A, B, D, F)), Reduce(union, list(C, E)))
+        nABEF=setdiff(Reduce(intersect,
+                             list(A, B, E, F)), Reduce(union, list(C, D)))
         #
-        nACDE=setdiff(Reduce(intersect, list(A, C, D, E)), Reduce(union, list(B, F)))
-        nACDF=setdiff(Reduce(intersect, list(A, C, D, F)), Reduce(union, list(B, E)))
-        nACEF=setdiff(Reduce(intersect, list(A, C, E, F)), Reduce(union, list(B, D)))
+        nACDE=setdiff(Reduce(intersect,
+                             list(A, C, D, E)), Reduce(union, list(B, F)))
+        nACDF=setdiff(Reduce(intersect,
+                             list(A, C, D, F)), Reduce(union, list(B, E)))
+        nACEF=setdiff(Reduce(intersect,
+                             list(A, C, E, F)), Reduce(union, list(B, D)))
         #
-        nADEF=setdiff(Reduce(intersect, list(A, D, E, F)), Reduce(union, list(B, C)))
+        nADEF=setdiff(Reduce(intersect,
+                             list(A, D, E, F)), Reduce(union, list(B, C)))
         #
-        nBCDE=setdiff(Reduce(intersect, list(B, C, D, E)), Reduce(union, list(A, F)))
-        nBCDF=setdiff(Reduce(intersect, list(B, C, D, F)), Reduce(union, list(A, E)))
-        nBDEF=setdiff(Reduce(intersect, list(B, D, E, F)), Reduce(union, list(A, C)))
+        nBCDE=setdiff(Reduce(intersect,
+                             list(B, C, D, E)), Reduce(union, list(A, F)))
+        nBCDF=setdiff(Reduce(intersect,
+                             list(B, C, D, F)), Reduce(union, list(A, E)))
+        nBDEF=setdiff(Reduce(intersect,
+                             list(B, D, E, F)), Reduce(union, list(A, C)))
         #
-        nCDEF=setdiff(Reduce(intersect, list(C, D, E, F)), Reduce(union, list(A, B)))
+        nCDEF=setdiff(Reduce(intersect,
+                             list(C, D, E, F)), Reduce(union, list(A, B)))
         nA=Reduce(setdiff, list(A, B, C, D, E, F))
         nB=Reduce(setdiff, list(B, C, D, E, F, A))
         nC=Reduce(setdiff, list(C, D, E, F, A, B))
         nD=Reduce(setdiff, list(D, E, F, A, B, C))
         nE=Reduce(setdiff, list(E, F, A, B, C, D))
         nF=Reduce(setdiff, list(F, A, B, C, D, E))
-        ggname=c("Shared", paste(names(x)[c(1, 2, 3, 4, 5)], sep="", collapse = sep),
+        ggname=c("Shared", paste(names(x)[c(1, 2, 3, 4, 5)], sep="",
+                                 collapse = sep),
             paste(names(x)[c(1, 2, 3, 4, 6)], sep="", collapse = sep),
             paste(names(x)[c(1, 2, 3, 5, 6)], sep="", collapse = sep),
             paste(names(x)[c(1, 2, 4, 5, 6)], sep="", collapse = sep),
@@ -342,11 +379,16 @@ venndetail <- function(x,  sep="_",  abbr = FALSE,  minlength = 3,
             paste(names(x)[c(4, 6)], sep="", collapse=sep),
             paste(names(x)[c(5, 6)], sep="", collapse=sep),
             names(x))
-        detail  <-  unlist(lapply(list(nABCDEF, nABCDE, nABCDF, nABCEF, nABDEF, nACDEF,
-                nBCDEF, nABCD, nABCE, nABCF, nABDE, nABDF, nABEF, nACDE, nACDF, nACEF,
-                nADEF, nBCDE, nBCDF, nBDEF, nCDEF, nABC, nABD, nABE, nABF, nACD, nACE,
-                nACF, nADE, nADF, nAEF, nBCD, nBCE, nBCF, nBDE, nBDF, nBEF, nCDE, nCDF,
-                nCEF, nDEF, nAB, nAC, nAD, nAE, nAF, nBC, nBD, nBE, nBF, nCD, nCE, nCF,
+        detail  <-  unlist(lapply(list(nABCDEF, nABCDE, nABCDF, nABCEF, nABDEF,
+                nACDEF,
+                nBCDEF, nABCD, nABCE, nABCF, nABDE, nABDF, nABEF, nACDE, nACDF,
+                nACEF,
+                nADEF, nBCDE, nBCDF, nBDEF, nCDEF, nABC, nABD, nABE, nABF, nACD,
+                nACE,
+                nACF, nADE, nADF, nAEF, nBCD, nBCE, nBCF, nBDE, nBDF, nBEF,
+                nCDE, nCDF,
+                nCEF, nDEF, nAB, nAC, nAD, nAE, nAF, nBC, nBD, nBE, nBF, nCD,
+                nCE, nCF,
                 nDE, nDF, nEF, nA, nB, nC, nD, nE, nF),  function(x)length(x)))
         gname=rep(ggname, times=detail)
         names(detail)  <-  ggname
@@ -355,7 +397,8 @@ venndetail <- function(x,  sep="_",  abbr = FALSE,  minlength = 3,
                     nBCDEF, nABCD, nABCE, nABCF, nABDE, nABDF, nABEF, nACDE,
                     nACDF, nACEF, nADEF, nBCDE, nBCDF, nBDEF, nCDEF, nABC, nABD,
                     nABE, nABF, nACD, nACE, nACF, nADE, nADF, nAEF, nBCD, nBCE,
-                    nBCF, nBDE, nBDF, nBEF, nCDE, nCDF, nCEF, nDEF, nAB, nAC, nAD,
+                    nBCF, nBDE, nBDF, nBEF, nCDE, nCDF, nCEF, nDEF, nAB, nAC,
+                    nAD,
                     nAE, nAF, nBC, nBD, nBE, nBF, nCD, nCE, nCF, nDE, nDF, nEF,
                     nA, nB, nC, nD, nE, nF))
     }
@@ -391,13 +434,15 @@ venndetail <- function(x,  sep="_",  abbr = FALSE,  minlength = 3,
             paste(names(x)[c(1, 3:7)], sep="", collapse = sep),
             paste(names(x)[2:7], sep="", collapse = sep),
             names(x))
-        detail <- unlist(lapply(list(nABCDEFG, nABCDEF, nABCDEG, nABCDFG, nABCEFG,
+        detail <- unlist(lapply(list(nABCDEFG, nABCDEF, nABCDEG, nABCDFG,
+                nABCEFG,
                 nABDEFG, nACDEFG, nBCDEFG, nA, nB, nC, nD, nE, nF, nG),
                 function(x)length(x)))
         gname <- rep(ggname, times=detail)
         names(detail) <- ggname
-        res <- data.frame(Group=gname, Detail=c(nABCDEFG, nABCDEF, nABCDEG, nABCDFG,
-                        nABCEFG, nABDEFG, nACDEFG, nBCDEFG, nA, nB, nC, nD, nE, nF, nG))
+        res <- data.frame(Group=gname, Detail=c(nABCDEFG, nABCDEF, nABCDEG,
+                nABCDFG,
+                nABCEFG, nABDEFG, nACDEFG, nBCDEFG, nA, nB, nC, nD, nE, nF, nG))
     }
     else if(length(x)==8){
         A=x[[1]]

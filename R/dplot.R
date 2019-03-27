@@ -13,9 +13,9 @@
 ##' @param order Boolean indicating whether to sort the bar (default: FALSE).
 ##' @param textsize Numeric vector giving the text size above the bar.
 ##' @examples
-##' A <- sample(1:100,  40,  replace = FALSE)
-##' B <- sample(1:100,  60,  replace = FALSE)
-##' C <- sample(1:100,  40,  replace = FALSE)
+##' A <- sample(1:100,  40,  replace = FALSE);
+##' B <- sample(1:100,  60,  replace = FALSE);
+##' C <- sample(1:100,  40,  replace = FALSE);
 ##' res <- venndetail(list(A = A, B = B, C = C))
 ##' dplot(res,  order = TRUE,  textsize = 3)
 ##' @export
@@ -72,9 +72,9 @@ setMethod("Get", signature = (object="Venn"), function(object, group){
 ##' @param object venn object
 ##' @author Kai Guo
 ##' @examples
-##' A <- sample(1:100,  40,  replace = FALSE)
-##' B <- sample(1:100,  60,  replace = FALSE)
-##' C <- sample(1:100,  40,  replace = FALSE)
+##' A <- sample(1:100,  40,  replace = FALSE);
+##' B <- sample(1:100,  60,  replace = FALSE);
+##' C <- sample(1:100,  40,  replace = FALSE);
 ##' res <- venndetail(list(A = A, B = B, C = C))
 ##' show(res)
 ##'

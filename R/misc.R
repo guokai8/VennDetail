@@ -31,19 +31,19 @@ dim.Venn <- function(x) {
 ##' contents of the sets included in the venndetail object
 ##' @rdname result
 ##' @examples
-##' A <- sample(1:100, 40, replace = FALSE)
-##' B <- sample(1:100, 60, replace = FALSE)
-##' C <- sample(1:100, 40, replace = FALSE)
+##' A <- sample(1:100, 40, replace = FALSE);
+##' B <- sample(1:100, 60, replace = FALSE);
+##' C <- sample(1:100, 40, replace = FALSE);
 ##' res <- venndetail(list(A = A, B = B, C = C))
 ##' result <- result(res)
 ##' @export
 setMethod("result", signature = (object="Venn"), function(object, wide=FALSE){
-  if(wide == TRUE){
-    dd <- as.data.frame(object@wide)
-  }else{
-    dd <- as.data.frame(object@result)
-  }
-  return(dd)
+    if(wide == TRUE){
+        dd <- as.data.frame(object@wide)
+    }else{
+        dd <- as.data.frame(object@result)
+    }
+    return(dd)
 })
 ##' @method detail Venn
 ##' @title Detail function provides a way to display the amount of members in
@@ -52,9 +52,9 @@ setMethod("result", signature = (object="Venn"), function(object, wide=FALSE){
 ##' across groups identified by venndetail without creating diagram.
 ##' @rdname detail
 ##' @examples
-##' A <- sample(1:100,  40,  replace = FALSE)
-##' B <- sample(1:100,  60,  replace = FALSE)
-##' C <- sample(1:100,  40,  replace = FALSE)
+##' A <- sample(1:100,  40,  replace = FALSE);
+##' B <- sample(1:100,  60,  replace = FALSE);
+##' C <- sample(1:100,  40,  replace = FALSE);
 ##' res <- venndetail(list(A = A, B = B, C = C))
 ##' detail(res)
 ##' @export
@@ -114,9 +114,9 @@ setMethod("detail", signature = (object="Venn"), function(object){
 ##' @param ... further arguments passed to or from other methods
 ##' @inheritParams UpSetR::upset
 ##' @examples
-##' A <- sample(1:100, 40, replace = FALSE)
-##' B <- sample(1:100, 60, replace = FALSE)
-##' C <- sample(1:100, 40, replace = FALSE)
+##' A <- sample(1:100, 40, replace = FALSE);
+##' B <- sample(1:100, 60, replace = FALSE);
+##' C <- sample(1:100, 40, replace = FALSE);
 ##' res <- venndetail(list(A = A, B = B, C = C))
 ##' plot(res, type = "venn")
 ##' @export
@@ -153,7 +153,7 @@ plot.Venn <- function(x, type = "venn", col = "black", sep = "_",
         file.remove(rfile)
     }
     if(length(x) > 5 & type != "upset"){
-      type = "vennpie"
+        type = "vennpie"
     }
     if(type == "vennpie"){
         print(vennpie(result, sep = sep, color = piecolor, revcolor = revcolor,
@@ -219,9 +219,9 @@ plot.Venn <- function(x, type = "venn", col = "black", sep = "_",
 ##' @param ... arguments for venndetail
 ##' @return venn object
 ##' @examples
-##' A <- sample(1:100,  40,  replace = FALSE)
-##' B <- sample(1:100,  60,  replace = FALSE)
-##' C <- sample(1:100,  40,  replace = FALSE)
+##' A <- sample(1:100,  40,  replace = FALSE);
+##' B <- sample(1:100,  60,  replace = FALSE);
+##' C <- sample(1:100,  40,  replace = FALSE);
 ##' res1 <- venndetail(list(A = A,  B = B))
 ##' res2 <- venndetail(list(A = A,  C = C))
 ##' res <- merge(res1,  res2)
@@ -299,8 +299,8 @@ setAs(from = "list",  to = "Venn",  def = function(from){
 ##' @return dataframe with join results
 ##' @examples
 ##' library(dplyr)
-##' A <- sample(1:100,  40,  replace = FALSE)
-##' B <- sample(1:100,  60,  replace = FALSE)
+##' A <- sample(1:100,  40,  replace = FALSE);
+##' B <- sample(1:100,  60,  replace = FALSE);
 ##' dA <- data.frame(A = A, "FC" = rnorm(40))
 ##' dB <- data.frame(B = B, "FC" = rnorm(60))
 ##' rownames(dA) <- A
