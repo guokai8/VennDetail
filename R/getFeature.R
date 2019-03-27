@@ -28,9 +28,9 @@
 ##' @param wide Boolean indicating whether to use wide format(default:FALSE)
 ##' @export
 ##' @examples
-##' A <- sample(1:100,  40,  replace = FALSE);
-##' B <- sample(1:100,  60,  replace = FALSE);
-##' C <- sample(1:100,  40,  replace = FALSE);
+##' A <- sample(1:100,  40,  replace = FALSE)
+##' B <- sample(1:100,  60,  replace = FALSE)
+##' C <- sample(1:100,  40,  replace = FALSE)
 ##' dA <- data.frame(A = A, "FC" = rnorm(40))
 ##' dB <- data.frame(B = B, "FC" = rnorm(60))
 ##' dC <- data.frame(C = C, "FC" = rnorm(40))
