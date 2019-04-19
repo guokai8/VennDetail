@@ -308,6 +308,8 @@ venndetail <- function(x,  sep="_",  abbr = FALSE,  minlength = 3,
                              list(B, C, D, E)), Reduce(union, list(A, F)))
         nBCDF=setdiff(Reduce(intersect,
                              list(B, C, D, F)), Reduce(union, list(A, E)))
+        nBCEF=setdiff(Reduce(intersect,
+                             list(B, C, E, F)), Reduce(union, list(A, D)))
         nBDEF=setdiff(Reduce(intersect,
                              list(B, D, E, F)), Reduce(union, list(A, C)))
         #
@@ -339,6 +341,7 @@ venndetail <- function(x,  sep="_",  abbr = FALSE,  minlength = 3,
             paste(names(x)[c(1, 4, 5, 6)], sep="", collapse=sep),
             paste(names(x)[c(2, 3, 4, 5)], sep="", collapse=sep),
             paste(names(x)[c(2, 3, 4, 6)], sep="", collapse=sep),
+            paste(names(x)[c(2, 3, 5, 6)], sep="", collapse=sep),
             paste(names(x)[c(2, 4, 5, 6)], sep="", collapse=sep),
             paste(names(x)[c(3, 4, 5, 6)], sep="", collapse=sep),
             ##
@@ -383,19 +386,20 @@ venndetail <- function(x,  sep="_",  abbr = FALSE,  minlength = 3,
                 nACDEF,
                 nBCDEF, nABCD, nABCE, nABCF, nABDE, nABDF, nABEF, nACDE, nACDF,
                 nACEF,
-                nADEF, nBCDE, nBCDF, nBDEF, nCDEF, nABC, nABD, nABE, nABF, nACD,
-                nACE,
+                nADEF, nBCDE, nBCDF, nBCEF,nBDEF, nCDEF, nABC, nABD, nABE, nABF,
+                nACD, nACE,
                 nACF, nADE, nADF, nAEF, nBCD, nBCE, nBCF, nBDE, nBDF, nBEF,
                 nCDE, nCDF,
                 nCEF, nDEF, nAB, nAC, nAD, nAE, nAF, nBC, nBD, nBE, nBF, nCD,
                 nCE, nCF,
                 nDE, nDF, nEF, nA, nB, nC, nD, nE, nF),  function(x)length(x)))
-        gname=rep(ggname, times=detail)
+        gname <- rep(ggname, times=detail)
         names(detail)  <-  ggname
         res=data.frame(Group=gname,
                     Detail=c(nABCDEF, nABCDE, nABCDF, nABCEF, nABDEF, nACDEF,
                     nBCDEF, nABCD, nABCE, nABCF, nABDE, nABDF, nABEF, nACDE,
-                    nACDF, nACEF, nADEF, nBCDE, nBCDF, nBDEF, nCDEF, nABC, nABD,
+                    nACDF, nACEF, nADEF, nBCDE, nBCDF, nBCEF,nBDEF, nCDEF, nABC,
+                    nABD,
                     nABE, nABF, nACD, nACE, nACF, nADE, nADF, nAEF, nBCD, nBCE,
                     nBCF, nBDE, nBDF, nBEF, nCDE, nCDF, nCEF, nDEF, nAB, nAC,
                     nAD,
@@ -454,14 +458,22 @@ venndetail <- function(x,  sep="_",  abbr = FALSE,  minlength = 3,
         G=x[[7]]
         H=x[[8]]
         nABCDEFGH=Reduce(intersect, x)
-        nABCDEFG=setdiff(Reduce(intersect, list(A, B, C, D, E, F, G)), nABCDEFGH)
-        nABCDEFH=setdiff(Reduce(intersect, list(A, B, C, D, E, F, H)), nABCDEFGH)
-        nABCDEGH=setdiff(Reduce(intersect, list(A, B, C, D, E, G, H)), nABCDEFGH)
-        nABCDFGH=setdiff(Reduce(intersect, list(A, B, C, D, F, G, H)), nABCDEFGH)
-        nABCEFGH=setdiff(Reduce(intersect, list(A, B, C, E, F, G, H)), nABCDEFGH)
-        nABDEFGH=setdiff(Reduce(intersect, list(A, B, D, E, F, G, H)), nABCDEFGH)
-        nACDEFGH=setdiff(Reduce(intersect, list(A, C, D, E, F, G, H)), nABCDEFGH)
-        nBCDEFGH=setdiff(Reduce(intersect, list(B, C, D, E, F, G, H)), nABCDEFGH)
+        nABCDEFG=setdiff(Reduce(intersect,
+                                list(A, B, C, D, E, F, G)), nABCDEFGH)
+        nABCDEFH=setdiff(Reduce(intersect,
+                                list(A, B, C, D, E, F, H)), nABCDEFGH)
+        nABCDEGH=setdiff(Reduce(intersect,
+                                list(A, B, C, D, E, G, H)), nABCDEFGH)
+        nABCDFGH=setdiff(Reduce(intersect,
+                                list(A, B, C, D, F, G, H)), nABCDEFGH)
+        nABCEFGH=setdiff(Reduce(intersect,
+                                list(A, B, C, E, F, G, H)), nABCDEFGH)
+        nABDEFGH=setdiff(Reduce(intersect,
+                                list(A, B, D, E, F, G, H)), nABCDEFGH)
+        nACDEFGH=setdiff(Reduce(intersect,
+                                list(A, C, D, E, F, G, H)), nABCDEFGH)
+        nBCDEFGH=setdiff(Reduce(intersect,
+                                list(B, C, D, E, F, G, H)), nABCDEFGH)
         nA=Reduce(setdiff, list(A, B, C, D, E, F, G, H))
         nB=Reduce(setdiff, list(B, C, D, E, F, G, H, A))
         nC=Reduce(setdiff, list(C, D, E, F, G, H, A, B))
