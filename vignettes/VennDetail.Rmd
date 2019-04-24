@@ -26,15 +26,16 @@ intersection
 ## 1. Introduction
 
 Visualizing and extracting unique (disjoint) or overlapping subsets of multiple 
-gene sets are a frequently performed task for bioinformatics. Although various 
-packages and web applications are available, no R package offering functions to
-extract and combine details of these subsets with user datasets in data frame is
-available. Moreover, graphical visualization is usually limited to six or less 
-gene sets and a novel method is required to properly show the subset details.
-We have developed __VennDetail__, an R package to generate high-quality Venn-Pie
-charts and to allow extraction of subset details from input sets.  
+gene datasets are a frequently performed task for bioinformatics. Although 
+various packages and web applications are available, no R package offering 
+functions to extract and combine details of these subsets with user datasets in 
+data frame is available. Moreover, graphical visualization is usually limited to
+six or less gene datasets and a novel method is required to properly show the 
+subset details.We have developed __VennDetail__, an R package to generate 
+high-quality Venn-Pie charts and to allow extraction of subset details from 
+input datasets.  
 
-## 2. Software Implementation
+## 2. Software Usage
 ### 2.1 Installation
 The package can be installed as
 ``` {r install,eval = FALSE}
@@ -43,12 +44,12 @@ if (!requireNamespace("BiocManager"))
 `BiocManager::install("VennDetail")
 ``` 
 ### 2.2 Data Input
-```{r load, results='hide'}
+```{r load, results = 'hide', message = FALSE}
 library(VennDetail)
 data(T2DM)
 ```
 T2DM data include three sets of differentially expressed genes (DEGs) from the
-publication by _Hinder et al_ [1]. The three DEG sets were obtained in three 
+publication by _Hinder et al_ [1]. The three DEG datasets were obtained in three 
 different tissues, kidney Cortex, kidney glomerula, and sciatic nerve, by 
 comparing db/db diabetic mice and db/db mice with pioglitazone treatment. 
 Differential expression was determined by using Cuffdiff with a false discovery 
@@ -56,7 +57,7 @@ rate (FDR) < 0.05.
 
 ### 2.3 Quick Tour
 ``` {r quick} 
-ven<-venndetail(list(Cortex = T2DM$Cortex$Entrez, SCN = T2DM$SCN$Entrez,
+ven <- venndetail(list(Cortex = T2DM$Cortex$Entrez, SCN = T2DM$SCN$Entrez,
                     Glom = T2DM$Glom$Entrez))
 ```  
 _VennDetail_ supports three different types of Venn diagram display formats
@@ -65,12 +66,12 @@ _VennDetail_ supports three different types of Venn diagram display formats
 plot(ven)
 ```
 
-```  {r fig2, fig.width = 6, fig.height = 5,fig.align = "center"}
+```  {r fig2, fig.width = 6, fig.height = 5, fig.align = "center"}
 ##Venn-Pie format
 plot(ven, type = "vennpie")
 ```
 
-```  {r fig3, fig.width = 6, fig.height = 5,fig.align = "center"}
+```  {r fig3, fig.width = 6, fig.height = 5, fig.align = "center"}
 ##Upset format
 plot(ven, type = "upset")
 ```   
@@ -92,7 +93,7 @@ by SCN tissue can be extracted.
 ```{r get}
 ## List the subsets name
 detail(ven) 
-head(Get(ven, group = c("Shared", "SCN")), 10)
+head(Get(ven, set = c("Shared", "SCN")), 10)
 ```    
 -- _result_ function can be used to extract and export all of the subsets 
 for further processing. We currently support two different formats of result 
@@ -110,41 +111,53 @@ head(result(ven, wide = TRUE))
 -- _vennpie_ creates a Venn-pie diagram with unique or common subsets in 
 multiple ways such as highlighting unique or shared subsets. The following 
 example illustrates how to show the unique subsets on the venn-pie plots.
-```{r fig4, fig.width = 6, fig.height = 5,fig.align = "center"}
+```{r fig4, fig.width = 6, fig.height = 5, fig.align = "center"}
 vennpie(ven, any = 1, revcolor = "lightgrey")
 ```
 The parameters _any_ and _group_ provide two different ways to highlight the 
 subsets. _any_ determines the subsets to show up in the number of groups 
 (1: those included in just one group; 2: those shared by any two groups). 
 _group_ asks users to specify the subsets to be highlighted. Users may check 
-the subsets name by using _detail_ function.
+the sets name by using _detail_ function.
 Since the example datasets used in this vignette include only a small number of 
 shared genes all across three sets (n=8), it may be a little hard to see the 
 shared subset (grey), particularly in the Cortex group (the inner-most 
 circle).
 .
-```{r fig5, fig.width = 6, fig.height = 5,fig.align = "center" }
+```{r fig5, fig.width = 6, fig.height = 5, fig.align = "center" }
 vennpie(ven, log = TRUE)
 ```   
-
+When we have five datasets, we can use vennpie to show the sets 
+include elements from at least four datasets. Below show the reults with five 
+datasets as input. 
+```{r fig6, fig.width = 6, fig.height = 5, fig.align = "center" }
+set.seed(123)
+A <- sample(1:1000, 400, replace = FALSE)
+B <- sample(1:1000, 600, replace = FALSE)
+C <- sample(1:1000, 350, replace = FALSE)
+D <- sample(1:1000, 550, replace = FALSE)
+E <- sample(1:1000, 450, replace = FALSE)
+venn <- venndetail(list(A = A, B = B, C= C, D = D, E = E))
+vennpie(venn, min = 4)
+```
 -- _getFeature_ allows users to combine the details of any or all subsets from 
 the main result with users’ other datasets, containing a list of data frames, 
 and to export the combined data as a data frame. In the following example, we 
 will demonstrate how to add other available annotation in the input data (T2DM)
 such as log2FC and FDR values for the shared genes among these three tissues.
 ```{r getfeature}
-head(getFeature(ven, group = "Shared", rlist=T2DM))
+head(getFeature(ven, set = "Shared", rlist = T2DM))
 ```
 -- _dplot_ shows the details of these subsets with bar-plot. 
 
-```{r fig6, fig.width = 6, fig.height = 5,fig.align = "center"}
+```{r fig7, fig.width = 6, fig.height = 5, fig.align = "center"}
 dplot(ven, order = TRUE,textsize = 4)
 ```    
 
-### 2.5 Support Shiny Now
-A shiny web application [VennDetail](http://hurlab.med.und.edu/VennDetail/) for 
-those who are not familiar with the R analysis platform 
-
+### 2.5 Shiny web app
+A shiny web application is here: 
+[VennDetail](http://hurlab.med.und.edu/VennDetail/) 
+Note: Only support five input datasets now
 ## 3 Contact information
 
 For any questions please contact guokai8@gmail.com    
