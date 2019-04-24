@@ -1,13 +1,13 @@
 ##' @importFrom utils head
 ##' @method head Venn
 ##' @export
-head.Venn <- function(x, n=6L, ...){
+head.Venn <- function(x, n = 6L, ...){
     head(x@result, n, ...)
 }
 ##' @importFrom utils tail
 ##' @method tail Venn
 ##' @export
-tail.Venn <- function(x, n=6L, ...){
+tail.Venn <- function(x, n = 6L, ...){
     tail(x@result, n, ...)
 }
 ##' @method dim Venn
@@ -17,13 +17,13 @@ dim.Venn <- function(x) {
 }
 ##' @method [ Venn
 ##' @export
-`[.Venn` <- function(x,  i,  j) {
+`[.Venn` <- function(x, i, j) {
     x@result[i, j]
 }
 ##' @method $ Venn
 ##' @export
-`$.Venn` <- function(x,  name) {
-    x@result[,  name]
+`$.Venn` <- function(x, name) {
+    x@result[, name]
 }
 ##' @method result Venn
 ##' @title Extract the result from venn object
@@ -31,14 +31,14 @@ dim.Venn <- function(x) {
 ##' contents of the sets included in the venndetail object
 ##' @rdname result
 ##' @examples
-##' A <- sample(1:100, 40, replace = FALSE);
-##' B <- sample(1:100, 60, replace = FALSE);
-##' C <- sample(1:100, 40, replace = FALSE);
+##' A <- sample(1:100, 40, replace = FALSE)
+##' B <- sample(1:100, 60, replace = FALSE)
+##' C <- sample(1:100, 40, replace = FALSE)
 ##' res <- venndetail(list(A = A, B = B, C = C))
 ##' result <- result(res)
 ##' @export
-setMethod("result", signature = (object="Venn"), function(object, wide=FALSE){
-    if(wide == TRUE){
+setMethod("result", signature = (object="Venn"), function(object, wide = FALSE){
+    if(isTRUE(wide)){
         dd <- as.data.frame(object@wide)
     }else{
         dd <- as.data.frame(object@result)
@@ -52,9 +52,9 @@ setMethod("result", signature = (object="Venn"), function(object, wide=FALSE){
 ##' across groups identified by venndetail without creating diagram.
 ##' @rdname detail
 ##' @examples
-##' A <- sample(1:100,  40,  replace = FALSE);
-##' B <- sample(1:100,  60,  replace = FALSE);
-##' C <- sample(1:100,  40,  replace = FALSE);
+##' A <- sample(1:100, 40, replace = FALSE)
+##' B <- sample(1:100, 60, replace = FALSE)
+##' C <- sample(1:100, 40, replace = FALSE)
 ##' res <- venndetail(list(A = A, B = B, C = C))
 ##' detail(res)
 ##' @export
@@ -65,7 +65,7 @@ setMethod("detail", signature = (object="Venn"), function(object){
 ##' @title Plot Venn object
 ##' @description The plot function allows users to graphically display the
 ##' groups and overlap between groups in their venn class object through a
-##' variety of graph types such as a bar plot,  traditional venn,
+##' variety of graph types such as a bar plot, traditional venn,
 ##' or venn pie chart.
 ##' @rdname plot
 ##' @return different type of graphics based on user chose
@@ -105,18 +105,18 @@ setMethod("detail", signature = (object="Venn"), function(object){
 ##' (default: FALSE)(vennpie).
 ##' @param show.x Boolean indicating whether to show set labels outside the
 ##' circle (default: TRUE)(vennpie).
-##' @param any Number to indicate selected sets,  such as 1 means any unique
-##' sets,  2 means any sets shared by two groups(vennpie).
+##' @param any Number to indicate selected sets, such as 1 means any unique
+##' sets, 2 means any sets shared by two groups(vennpie).
 ##' @param sets.x.label x-axis label (upset)
 ##' @param mainbar.y.label y-axis label (upset)
-##' @param nintersects Number of intersections to plot. If set to NA,  all
+##' @param nintersects Number of intersections to plot. If set to NA, all
 ##' intersections will be plotted.
 ##' @param ... further arguments passed to or from other methods
 ##' @inheritParams UpSetR::upset
 ##' @examples
-##' A <- sample(1:100, 40, replace = FALSE);
-##' B <- sample(1:100, 60, replace = FALSE);
-##' C <- sample(1:100, 40, replace = FALSE);
+##' A <- sample(1:100, 40, replace = FALSE)
+##' B <- sample(1:100, 60, replace = FALSE)
+##' C <- sample(1:100, 40, replace = FALSE)
 ##' res <- venndetail(list(A = A, B = B, C = C))
 ##' plot(res, type = "venn")
 ##' @export
@@ -162,18 +162,61 @@ plot.Venn <- function(x, type = "venn", col = "black", sep = "_",
     }
     if(type == "upset"){
         if(length(x) <= 5){
-            upset(fromList(x),  nsets = length(x), sets.x.label = sets.x.label,
+            upset(fromList(x), nsets = length(x), sets.x.label = sets.x.label,
             mainbar.y.label = mainbar.y.label, nintersects = nintersects,
             point.size = 5, sets.bar.color = mycol[seq_along(x)],
             text.scale = text.scale)
         }else{
-            upset(fromList(x),  nsets = length(x), sets.x.label = sets.x.label,
+            upset(fromList(x), nsets = length(x), sets.x.label = sets.x.label,
             mainbar.y.label = mainbar.y.label, nintersects = nintersects,
             point.size = 5, sets.bar.color = setcolor(length(x)),
             text.scale = text.scale)
         }
     }
 
+}
+##' make table for venndetail
+##' modified from make.truth.table (VennDaigram)
+##' @importFrom stats setNames
+##' @param x A list with input groups
+##' @return A data frame with logical vector columns and 2 ^ length(x) rows.
+##' @examples
+##' A <- sample(1:100, 40, replace = FALSE)
+##' B <- sample(1:100, 60, replace = FALSE)
+##' C <- sample(1:100, 40, replace = FALSE)
+##' tab <- make.table(x = list(A = A, B = B, C = C))
+##' @export
+##' @author Kai Guo
+make.table <- function(x){
+  tb <- lapply(seq_along(names(x)), function(.) c(TRUE, FALSE))
+  out <- setNames(do.call(expand.grid, tb), names(x))
+  out <- out[apply(out, 1, any), ]
+  return(out)
+}
+##' get set
+##' @importFrom stats setNames
+##' @param x A list with input groups
+##' @param tab TRUE or FALSE table
+##' @param sep Character string used to separate the terms when concatenating
+##' group names into new column names (colnames).
+##' @return A list with groups and details
+##' @examples
+##' A <- sample(1:100, 40, replace = FALSE)
+##' B <- sample(1:100, 60, replace = FALSE)
+##' C <- sample(1:100, 40, replace = FALSE)
+##' x = list(A = A, B = B, C = C)
+##' tab <- make.table(x = list(A = A, B = B, C = C))
+##' out <- get.set(x = x, tab = tab)
+##' @author Kai Guo
+##' @export
+get.set <- function(x, tab, sep = "_"){
+    GroupNames <- as.vector(apply(tab,1,
+                function(x)paste(colnames(tab)[as.logical(x)],
+                sep = "",collapse = sep)))
+    out <- apply(tab, 1, function(y)setdiff(Reduce(intersect,
+                x[as.logical(y)]), Reduce(union, x[!as.logical(y)])))
+    res <- setNames(out, GroupNames)
+    return(res)
 }
 ##' @importFrom magrittr %>%
 ##' @importFrom dplyr select_
@@ -188,15 +231,15 @@ plot.Venn <- function(x, type = "venn", col = "black", sep = "_",
     return(x%>%select_("RowNxyz", 'everything()'))
 }
 
-.pasten <- function(x, name, sep="_"){
-    colnames(x) <- paste(name, colnames(x), sep=sep)
+.pasten <- function(x, name, sep = "_"){
+    colnames(x) <- paste(name, colnames(x), sep = sep)
     return(x)
 }
 .setrownames <- function(x, gin){
     if(is.character(gin)){
-        ind = which(colnames(x)==gin)
+        ind <- which(colnames(x) == gin)
     }else{
-        ind = gin
+        ind <- gin
     }
     colnames(x)[ind] <- "RowNxyz"
     return(x)
@@ -219,43 +262,43 @@ plot.Venn <- function(x, type = "venn", col = "black", sep = "_",
 ##' @param ... arguments for venndetail
 ##' @return venn object
 ##' @examples
-##' A <- sample(1:100,  40,  replace = FALSE);
-##' B <- sample(1:100,  60,  replace = FALSE);
-##' C <- sample(1:100,  40,  replace = FALSE);
-##' res1 <- venndetail(list(A = A,  B = B))
-##' res2 <- venndetail(list(A = A,  C = C))
-##' res <- merge(res1,  res2)
+##' A <- sample(1:100, 40, replace = FALSE)
+##' B <- sample(1:100, 60, replace = FALSE)
+##' C <- sample(1:100, 40, replace = FALSE)
+##' res1 <- venndetail(list(A = A, B = B))
+##' res2 <- venndetail(list(A = A, C = C))
+##' res <- merge(res1, res2)
 ##' @export
 merge.Venn <- function(x, y, ignore.case = FALSE,
                             useupper = TRUE, plot = FALSE, ...){
-    object = list(x, y)
-    input = lapply(object,  function(x)slot(x, "input"))
-    input = flatten(input)
-    nam = names(input)
-    if(ignore.case==TRUE){
-        if(useupper==TRUE){
-            nam = toupper(nam)
+    object <- list(x, y)
+    input <- lapply(object, function(x)slot(x, "input"))
+    input <- flatten(input)
+    nam <- names(input)
+    if(isTRUE(ignore.case)){
+        if(isTRUE(useupper)){
+            nam <- toupper(nam)
             names(input) <- nam
         }else{
-            nam = tolower(nam)
+            nam <- tolower(nam)
             names(input) <- nam
         }
     }
-    input = input[unique(nam)]
-    ven = venndetail(input,  ...)
+    input <- input[unique(nam)]
+    ven <- venndetail(input, ...)
     return(ven)
 }
 ##'
-setAs(from = "data.frame",  to = "Venn",  def=function(from){
-    Group = from$Group
-    Detail = from$Detail
-    GroupNames = vector()
-    raw = vector()
-    input = data.frame()
-    sep = character()
-    detail = as.vector(table(from$Group))
-    names(detail) = names(table(Group))
-    result = data.frame(Group, Detail)
+setAs(from = "data.frame", to = "Venn", def = function(from){
+    Group <- from$Group
+    Detail <- from$Detail
+    GroupNames <- vector()
+    raw <- vector()
+    input <- data.frame()
+    sep <- character()
+    detail <- as.vector(table(from$Group))
+    names(detail) <- names(table(Group))
+    result <- data.frame(Group, Detail)
     new("venn",
         input = input,
         raw = raw,
@@ -265,16 +308,16 @@ setAs(from = "data.frame",  to = "Venn",  def=function(from){
         detail = detail)
 })
 ##'
-setAs(from = "list",  to = "Venn",  def = function(from){
-    Group = from$Group
-    Detail = from$Detail
-    GroupNames = from$GroupName
-    raw = from$raw
-    input = data.frame()
-    sep = character()
-    detail = as.vector(table(Group))
-    names(detail) = names(table(Group))
-    result = data.frame(Group, Detail)
+setAs(from = "list", to = "Venn", def = function(from){
+    Group <- from$Group
+    Detail <- from$Detail
+    GroupNames <- from$GroupName
+    raw <- from$raw
+    input <- data.frame()
+    sep <- character()
+    detail <- as.vector(table(Group))
+    names(detail) <- names(table(Group))
+    result <- data.frame(Group, Detail)
     new("venn",
         input = input,
         raw = raw,
@@ -299,8 +342,8 @@ setAs(from = "list",  to = "Venn",  def = function(from){
 ##' @return dataframe with join results
 ##' @examples
 ##' library(dplyr)
-##' A <- sample(1:100,  40,  replace = FALSE);
-##' B <- sample(1:100,  60,  replace = FALSE);
+##' A <- sample(1:100, 40, replace = FALSE)
+##' B <- sample(1:100, 60, replace = FALSE)
 ##' dA <- data.frame(A = A, "FC" = rnorm(40))
 ##' dB <- data.frame(B = B, "FC" = rnorm(60))
 ##' rownames(dA) <- A
@@ -312,7 +355,7 @@ setMethod("rowjoin", signature(x = "data.frame", y = "data.frame"),
         function(x, y, fun = "full_join"){
     x <- .add_colnames(x)
     y <- .add_colnames(y)
-    f = match.fun(fun)
+    f <- match.fun(fun)
     return(f(x, y, by = c("RowNxyz" = "RowNxyz")))
 })
 ##' @name setcolor
@@ -330,7 +373,7 @@ setMethod("rowjoin", signature(x = "data.frame", y = "data.frame"),
 setcolor<-function(x){
     mycolor =c("#A6CEE3", "#1F78B4", "#B2DF8A", "#33A02C", "#FB9A99", "#E31A1C",
             "#1B9E77", "brown", "#7570B3", "#E7298A", "#7FC97F", "#A6761D",
-            "#BEAED4", "#FDC086", "#FFFF99", "chartreuse1", "cyan3", "purple",
+            "#BEAED4", "#FDC086", "chartreuse1", "cyan3", "purple",
             "pink4", "cyan", "royalblue", "violet", "springgreen2", "gold3",
             "darkseagreen4", "#E5D8BD",
             "#00AFBB", "#FC4E07", "#9999FF", "#FF9326",

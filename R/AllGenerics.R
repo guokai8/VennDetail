@@ -10,7 +10,7 @@ setGeneric("result", function(object, wide = FALSE)
 #    UseMethod("result",object)
 #}
 ##' @param object Venn object
-##' @return Numeric vector with group names and amounts for each group
+##' @return Numeric vector with set names and amounts for each set
 ##' @export
 ##' @author Kai Guo
 setGeneric("detail", function(object)
@@ -54,19 +54,20 @@ setGeneric("rowjoin",function(x, y, fun = "fun_join")
 ##' @docType methods
 ##' @export
 ##' @author Kai Guo
-setGeneric("getFeature",function(object, group, rlist, userowname = TRUE,
+setGeneric("getFeature",function(object, set, rlist, userowname = TRUE,
                                 gind = NULL, sep = "_", wide = FALSE)
     standardGeneric("getFeature")
 )
 ##' @rdname vennpie
 ##' @name vennpie
-##' @title Pie plot shows shared and unique sets
 ##' @aliases vennpie,Venn-method
+##' @title Pie plot shows shared and unique sets
 ##' @docType methods
 ##' @export
 ##' @author Kai Guo
-setGeneric("vennpie",function(object, group = NULL, color = NULL,
-                        revcolor = "lightgrey", any = NULL, show.number = TRUE,
+setGeneric("vennpie", function(object, set = NULL, top = 31, min = 0,
+                        color = NULL,revcolor = "lightgrey", any = NULL,
+                        show.number = TRUE,
                         show.x = TRUE, sep = "_", log = FALSE,
                         base = NULL, percentage = FALSE)
     standardGeneric("vennpie")
@@ -75,6 +76,7 @@ setGeneric("vennpie",function(object, group = NULL, color = NULL,
 ##' @rdname Get
 ##' @export
 ##' @author Kai Guo
-setGeneric("Get",function(object,group)
+setGeneric("Get",function(object, set = NULL,
+                        min = 0, wide = FALSE)
     standardGeneric("Get")
 )
