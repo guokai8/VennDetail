@@ -4,29 +4,33 @@
 \name{vennpie}
 \alias{vennpie}
 \alias{vennpie,Venn-method}
-\alias{vennpie Venn}
 \title{Pie plot shows shared and unique sets}
 \usage{
-vennpie(object, group = NULL, color = NULL, revcolor = "lightgrey",
-  any = NULL, show.number = TRUE, show.x = TRUE, sep = "_",
-  log = FALSE, base = NULL, percentage = FALSE)
-
-\S4method{vennpie}{Venn}(object, group = NULL, color = NULL,
+vennpie(object, set = NULL, top = 31, min = 0, color = NULL,
   revcolor = "lightgrey", any = NULL, show.number = TRUE,
   show.x = TRUE, sep = "_", log = FALSE, base = NULL,
   percentage = FALSE)
+
+\S4method{vennpie}{Venn}(object, set = NULL, top = 31, min = 0,
+  color = NULL, revcolor = "lightgrey", any = NULL,
+  show.number = TRUE, show.x = TRUE, sep = "_", log = FALSE,
+  base = NULL, percentage = FALSE)
 }
 \arguments{
 \item{object}{Venn object}
 
-\item{group}{Character vector giving the set users want to highlight.}
+\item{set}{Character vector giving the set users want to highlight.}
+
+\item{top}{number of sets with largest to display (default: 31)}
+
+\item{min}{Minimal number of shared sets}
 
 \item{color}{Character vector giving the colors of the sets.}
 
 \item{revcolor}{Character giving the color for the non-selected sets.}
 
-\item{any}{Number to indicate selected sets,  such as 1 means any unique
-sets,  2 means any sets shared by two groups.}
+\item{any}{Number to indicate selected sets, such as 1 means any unique
+sets, 2 means any sets shared by two groups.}
 
 \item{show.number}{Boolean indicating whether to display the element numbers
 of the sets or not (default: TRUE).}
@@ -54,9 +58,9 @@ rather than a traditional venn diagram. Users can highlight a specific
 sections of the venn pie.
 }
 \examples{
-A <- sample(1:100,  40,  replace = FALSE);
-B <- sample(1:100,  60,  replace = FALSE);
-C <- sample(1:100,  40,  replace = FALSE);
+A <- sample(1:100, 40, replace = FALSE)
+B <- sample(1:100, 60, replace = FALSE)
+C <- sample(1:100, 40, replace = FALSE)
 res <- venndetail(list(A = A, B = B, C = C))
 vennpie(res)
 }

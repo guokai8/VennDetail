@@ -15,16 +15,16 @@ detail(object)
 \item{object}{Venn object}
 }
 \value{
-Numeric vector with group names and amounts for each group
+Numeric vector with set names and amounts for each set
 }
 \description{
 The objective of this function is to summarizes the overlaps
 across groups identified by venndetail without creating diagram.
 }
 \examples{
-A <- sample(1:100,  40,  replace = FALSE);
-B <- sample(1:100,  60,  replace = FALSE);
-C <- sample(1:100,  40,  replace = FALSE);
+A <- sample(1:100, 40, replace = FALSE)
+B <- sample(1:100, 60, replace = FALSE)
+C <- sample(1:100, 40, replace = FALSE)
 res <- venndetail(list(A = A, B = B, C = C))
 detail(res)
 }

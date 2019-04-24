@@ -50,8 +50,8 @@ grid units}
 \item{revcolor}{Character giving the color for the non-selected
 sets(vennpie).}
 
-\item{any}{Number to indicate selected sets,  such as 1 means any unique
-sets,  2 means any sets shared by two groups(vennpie).}
+\item{any}{Number to indicate selected sets, such as 1 means any unique
+sets, 2 means any sets shared by two groups(vennpie).}
 
 \item{show.number}{Boolean indicating whether to display the
 element numbers of the sets or not (default: TRUE)(vennpie).}
@@ -71,7 +71,7 @@ log scale(vennpie).}
 
 \item{mainbar.y.label}{y-axis label (upset)}
 
-\item{nintersects}{Number of intersections to plot. If set to NA,  all
+\item{nintersects}{Number of intersections to plot. If set to NA, all
 intersections will be plotted.}
 
 \item{abbr}{Boolean indicating whether to abbreviate set names
@@ -90,13 +90,13 @@ different type of graphics based on user chose
 \description{
 The plot function allows users to graphically display the
 groups and overlap between groups in their venn class object through a
-variety of graph types such as a bar plot,  traditional venn,
+variety of graph types such as a bar plot, traditional venn,
 or venn pie chart.
 }
 \examples{
-A <- sample(1:100, 40, replace = FALSE);
-B <- sample(1:100, 60, replace = FALSE);
-C <- sample(1:100, 40, replace = FALSE);
+A <- sample(1:100, 40, replace = FALSE)
+B <- sample(1:100, 60, replace = FALSE)
+C <- sample(1:100, 40, replace = FALSE)
 res <- venndetail(list(A = A, B = B, C = C))
 plot(res, type = "venn")
 }

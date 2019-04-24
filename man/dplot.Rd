@@ -31,9 +31,9 @@ the numbers above the bars indicating the total number of members within
 each group.
 }
 \examples{
-A <- sample(1:100,  40,  replace = FALSE);
-B <- sample(1:100,  60,  replace = FALSE);
-C <- sample(1:100,  40,  replace = FALSE);
+A <- sample(1:100,  40,  replace = FALSE)
+B <- sample(1:100,  60,  replace = FALSE)
+C <- sample(1:100,  40,  replace = FALSE)
 res <- venndetail(list(A = A, B = B, C = C))
 dplot(res,  order = TRUE,  textsize = 3)
 }

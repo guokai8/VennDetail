@@ -31,10 +31,10 @@ Merge will combine multiple venn diagrams to allow comparison
 between multiple groups
 }
 \examples{
-A <- sample(1:100,  40,  replace = FALSE);
-B <- sample(1:100,  60,  replace = FALSE);
-C <- sample(1:100,  40,  replace = FALSE);
-res1 <- venndetail(list(A = A,  B = B))
-res2 <- venndetail(list(A = A,  C = C))
-res <- merge(res1,  res2)
+A <- sample(1:100, 40, replace = FALSE)
+B <- sample(1:100, 60, replace = FALSE)
+C <- sample(1:100, 40, replace = FALSE)
+res1 <- venndetail(list(A = A, B = B))
+res2 <- venndetail(list(A = A, C = C))
+res <- merge(res1, res2)
 }

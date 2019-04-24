@@ -6,14 +6,18 @@
 \alias{Get,Venn-method}
 \title{Get the contents of a specific set from venndetail object}
 \usage{
-Get(object, group)
+Get(object, set = NULL, min = 0, wide = FALSE)
 
-\S4method{Get}{Venn}(object, group)
+\S4method{Get}{Venn}(object, set = NULL, min = 0, wide = FALSE)
 }
 \arguments{
 \item{object}{Venn object}
 
-\item{group}{Character vector giving the set names}
+\item{set}{Character vector giving the set names}
+
+\item{min}{Minimal number of shared sets}
+
+\item{wide}{Boolean indicating return wide format (default: FALSE).}
 }
 \value{
 Specific set information
@@ -22,9 +26,9 @@ Specific set information
 Get the contents of a specific set from venndetail object
 }
 \examples{
-A <- sample(1:100,  40,  replace = FALSE);
-B <- sample(1:100,  60,  replace = FALSE);
-C <- sample(1:100,  40,  replace = FALSE);
+A <- sample(1:100, 40, replace = FALSE)
+B <- sample(1:100, 60, replace = FALSE)
+C <- sample(1:100, 40, replace = FALSE)
 res <- venndetail(list(A = A, B = B, C = C))
 Get(res, "A")
 }

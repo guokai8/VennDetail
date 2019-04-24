@@ -8,16 +8,16 @@
 \title{getFeature provides a way to combine list of user supplied data
 frames with Venn object}
 \usage{
-getFeature(object, group, rlist, userowname = TRUE, gind = NULL,
+getFeature(object, set, rlist, userowname = TRUE, gind = NULL,
   sep = "_", wide = FALSE)
 
-\S4method{getFeature}{Venn}(object, group, rlist, userowname = TRUE,
+\S4method{getFeature}{Venn}(object, set, rlist, userowname = TRUE,
   gind = NULL, sep = "_", wide = FALSE)
 }
 \arguments{
 \item{object}{Venn object}
 
-\item{group}{Character vector giving the names of the user-defined
+\item{set}{Character vector giving the names of the user-defined
 set to extract}
 
 \item{rlist}{List of user-supplied data frames to combine with
@@ -45,15 +45,15 @@ into a table format along with accompanying information from the data frames
 provided in the rlist argument
 }
 \examples{
-A <- sample(1:100,  40,  replace = FALSE);
-B <- sample(1:100,  60,  replace = FALSE);
-C <- sample(1:100,  40,  replace = FALSE);
+A <- sample(1:100, 40, replace = FALSE)
+B <- sample(1:100, 60, replace = FALSE)
+C <- sample(1:100, 40, replace = FALSE)
 dA <- data.frame(A = A, "FC" = rnorm(40))
 dB <- data.frame(B = B, "FC" = rnorm(60))
 dC <- data.frame(C = C, "FC" = rnorm(40))
 res <- venndetail(list(A = A, B = B, C = C))
-rhs <- getFeature(res,  group = "Shared",  rlist = list(dA, dB, dC),
-   userowname= FALSE, gind = rep(1,  3))
+rhs <- getFeature(res, set = "Shared", rlist = list(dA, dB, dC),
+   userowname= FALSE, gind = rep(1, 3))
 }
 \author{
 Kai Guo

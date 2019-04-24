@@ -26,8 +26,8 @@ join two dataframes by rownames
 }
 \examples{
 library(dplyr)
-A <- sample(1:100,  40,  replace = FALSE);
-B <- sample(1:100,  60,  replace = FALSE);
+A <- sample(1:100, 40, replace = FALSE)
+B <- sample(1:100, 60, replace = FALSE)
 dA <- data.frame(A = A, "FC" = rnorm(40))
 dB <- data.frame(B = B, "FC" = rnorm(60))
 rownames(dA) <- A
