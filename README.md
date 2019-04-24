@@ -33,7 +33,7 @@ head(result)
 ```  
 ## Software Usage
 ```  
-Get(res,"A") # get unique elements in A
+Get(res, "A") # get unique elements in A
 detail(res) #show overlap 'details' of all subsets
 dplot(res) #make a bargraph for 'details'
 dA <- data.frame(A = A, "FC" = rnorm(400))
