@@ -139,6 +139,7 @@ D <- sample(1:1000, 550, replace = FALSE)
 E <- sample(1:1000, 450, replace = FALSE)
 venn <- venndetail(list(A = A, B = B, C= C, D = D, E = E))
 vennpie(venn, min = 4)
+Get(venn, min = 4, wide = TRUE)
 ```
 -- _getFeature_ allows users to combine the details of any or all subsets from 
 the main result with users’ other datasets, containing a list of data frames, 
