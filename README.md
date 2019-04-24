@@ -27,7 +27,7 @@ A <- sample(1:1000, 400, replace = FALSE)
 B <- sample(1:1000, 600, replace = FALSE)
 C <- sample(1:1000, 350, replace = FALSE)
 D <- sample(1:1000, 550, replace = FALSE)
-res <- venndetail(list(A = A,B = B,C = C,D = D))
+res <- venndetail(list(A = A, B = B, C = C, D = D))
 result <- result(res)
 head(result)
 ```  
@@ -36,11 +36,11 @@ head(result)
 Get(res,"A") # get unique elements in A
 detail(res) #show overlap 'details' of all subsets
 dplot(res) #make a bargraph for 'details'
-dA <- data.frame(A = A,"FC" = rnorm(400))
-dB <- data.frame(B = B,"FC" = rnorm(600))
-dC <- data.frame(C = C,"FC" = rnorm(350))
-dD <- data.frame(D = D,"FC" = rnorm(550))
-getFeature(res, set = "Shared",rlist = list(dA, dB, dC, dD), 
+dA <- data.frame(A = A, "FC" = rnorm(400))
+dB <- data.frame(B = B, "FC" = rnorm(600))
+dC <- data.frame(C = C, "FC" = rnorm(350))
+dD <- data.frame(D = D, "FC" = rnorm(550))
+getFeature(res, set = "Shared", rlist = list(dA, dB, dC, dD), 
 userowname = FALSE, gind = c("A", "B", "C", "D"))
 ###As all these four dataframes don't have row names, we set userowname to be FALSE
 ``` 
