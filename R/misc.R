@@ -1,5 +1,5 @@
-##' @method head Venn
 ##' @importFrom utils head
+##' @method head Venn
 ##' @param x Venn object
 ##' @param n number of rows to display
 ##' @param ... other arguments ignored (for compatibility with generic)
