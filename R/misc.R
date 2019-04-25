@@ -3,7 +3,6 @@
 ##' @param x Venn object
 ##' @param n number of rows to display
 ##' @param ... other arguments ignored (for compatibility with generic)
-##' @title Print the head of Venn object
 ##' @export
 head.Venn <- function(x, n = 6L, ...){
     head(x@result, n, ...)
@@ -225,7 +224,7 @@ plot.Venn <- function(x, type = "venn", col = "black", sep = "_",
 ##' B <- sample(1:100, 60, replace = FALSE)
 ##' C <- sample(1:100, 40, replace = FALSE)
 ##' x <- list(A = A, B = B, C = C)
-##' out <- make.subset(x)
+##' out <-  make.subset(x)
 ##' @author Kai Guo
 ##' @export
 make.subset  <- function(x, sep = "_"){
@@ -248,6 +247,7 @@ make.subset  <- function(x, sep = "_"){
 ##' @importFrom dplyr select_
 ##' @importFrom dplyr everything
 ##' @param x data frame
+##' @return return data frame with the first colnames change to "RowNxyz"
 .add_colnames <- function(x){
     if(sum(grepl("RowNxyz", colnames(x))) == 0){
         x$RowNxyz <- rownames(x)
