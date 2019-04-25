@@ -24,7 +24,7 @@ A <- sample(1:100, 40, replace = FALSE)
 B <- sample(1:100, 60, replace = FALSE)
 C <- sample(1:100, 40, replace = FALSE)
 x <- list(A = A, B = B, C = C)
-out <- make.subset(x)
+out <-  make.subset(x)
 }
 \author{
 Kai Guo

@@ -9,6 +9,9 @@
 \arguments{
 \item{x}{data frame}
 }
+\value{
+return data frame with the first colnames change to "RowNxyz"
+}
 \description{
 Give first colname as RowNxyz
 }
