@@ -85,15 +85,15 @@ function to merge two _Venn_ objects together to save time.
 -- _plot_ generates figures with different layouts with _type_ parameter. _plot_ 
 function also provides lots of parameters for users to modify the figures. 
 
--- _Get_ function provides a way to extract subsets from the main result along 
-with any available annotations. The parameter _group_ asks the users to give the 
+-- _getSet_ function provides a way to extract subsets from the main result along 
+with any available annotations. The parameter _subset_ asks the users to give the 
 subset names to extract. It accepts a vector of subset names. Here, we will show
 how the DEGs shared by all three tissues as well as those that are only included
 by SCN tissue can be extracted.
 ```{r get}
 ## List the subsets name
 detail(ven) 
-head(Get(ven, set = c("Shared", "SCN")), 10)
+head(getSet(ven, subset = c("Shared", "SCN")), 10)
 ```    
 -- _result_ function can be used to extract and export all of the subsets 
 for further processing. We currently support two different formats of result 
@@ -139,7 +139,6 @@ D <- sample(1:1000, 550, replace = FALSE)
 E <- sample(1:1000, 450, replace = FALSE)
 venn <- venndetail(list(A = A, B = B, C= C, D = D, E = E))
 vennpie(venn, min = 4)
-Get(venn, min = 4, wide = TRUE)
 ```
 -- _getFeature_ allows users to combine the details of any or all subsets from 
 the main result with users’ other datasets, containing a list of data frames, 
@@ -147,12 +146,12 @@ and to export the combined data as a data frame. In the following example, we
 will demonstrate how to add other available annotation in the input data (T2DM)
 such as log2FC and FDR values for the shared genes among these three tissues.
 ```{r getfeature}
-head(getFeature(ven, set = "Shared", rlist = T2DM))
+head(getFeature(ven, subset = "Shared", rlist = T2DM))
 ```
 -- _dplot_ shows the details of these subsets with bar-plot. 
 
 ```{r fig7, fig.width = 6, fig.height = 5, fig.align = "center"}
-dplot(ven, order = TRUE,textsize = 4)
+dplot(ven, order = TRUE, textsize = 4)
 ```    
 
 ### 2.5 Shiny web app
