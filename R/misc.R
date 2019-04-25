@@ -225,7 +225,7 @@ plot.Venn <- function(x, type = "venn", col = "black", sep = "_",
 ##' B <- sample(1:100, 60, replace = FALSE)
 ##' C <- sample(1:100, 40, replace = FALSE)
 ##' x <- list(A = A, B = B, C = C)
-##' out <-  make.subset(x)
+##' out <- make.subset(x)
 ##' @author Kai Guo
 ##' @export
 make.subset  <- function(x, sep = "_"){
