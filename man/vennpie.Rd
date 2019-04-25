@@ -6,12 +6,12 @@
 \alias{vennpie,Venn-method}
 \title{Pie plot shows shared and unique sets}
 \usage{
-vennpie(object, set = NULL, top = 31, min = 0, color = NULL,
+vennpie(object, subset = NULL, top = 31, min = 0, color = NULL,
   revcolor = "lightgrey", any = NULL, show.number = TRUE,
   show.x = TRUE, sep = "_", log = FALSE, base = NULL,
   percentage = FALSE)
 
-\S4method{vennpie}{Venn}(object, set = NULL, top = 31, min = 0,
+\S4method{vennpie}{Venn}(object, subset = NULL, top = 31, min = 0,
   color = NULL, revcolor = "lightgrey", any = NULL,
   show.number = TRUE, show.x = TRUE, sep = "_", log = FALSE,
   base = NULL, percentage = FALSE)
@@ -19,23 +19,25 @@ vennpie(object, set = NULL, top = 31, min = 0, color = NULL,
 \arguments{
 \item{object}{Venn object}
 
-\item{set}{Character vector giving the set users want to highlight.}
+\item{subset}{Character vector giving the subset users want to highlight.}
 
-\item{top}{number of sets with largest to display (default: 31)}
+\item{top}{number of subsets with largest to display (default: 31)}
 
-\item{min}{Minimal number of shared sets}
+\item{min}{The minimum number of input groups that a subset must belong to
+e.g. min = 2 will only report those
+subsets with elements shared by 2 or more input groups.}
 
-\item{color}{Character vector giving the colors of the sets.}
+\item{color}{Character vector giving the colors of the subsets.}
 
-\item{revcolor}{Character giving the color for the non-selected sets.}
+\item{revcolor}{Character giving the color for the non-selected subsets.}
 
-\item{any}{Number to indicate selected sets, such as 1 means any unique
-sets, 2 means any sets shared by two groups.}
+\item{any}{Number to indicate selected subsets, such as 1 means any unique
+subsets, 2 means any subsets shared by two groups.}
 
 \item{show.number}{Boolean indicating whether to display the element numbers
-of the sets or not (default: TRUE).}
+of the subsets or not (default: TRUE).}
 
-\item{show.x}{Boolean indicating whether to show set labels outside the
+\item{show.x}{Boolean indicating whether to show subset labels outside the
 circle (default: TRUE).}
 
 \item{sep}{Character string used to separate the terms when concatenating
@@ -45,7 +47,7 @@ group names into new column names (colnames).}
 
 \item{base}{Base value for log transformation.}
 
-\item{percentage}{Boolean indicating whether to display set percentages
+\item{percentage}{Boolean indicating whether to display subset percentages
 (default: FALSE).}
 }
 \value{

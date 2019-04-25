@@ -20,7 +20,7 @@ return dataframe and print header of dataframe
 }
 \description{
 Result will return output in a table format including the
-contents of the sets included in the venndetail object
+contents of the subsets included in the venndetail object
 }
 \examples{
 A <- sample(1:100, 40, replace = FALSE)

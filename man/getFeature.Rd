@@ -8,17 +8,17 @@
 \title{getFeature provides a way to combine list of user supplied data
 frames with Venn object}
 \usage{
-getFeature(object, set, rlist, userowname = TRUE, gind = NULL,
+getFeature(object, subset, rlist, userowname = TRUE, gind = NULL,
   sep = "_", wide = FALSE)
 
-\S4method{getFeature}{Venn}(object, set, rlist, userowname = TRUE,
+\S4method{getFeature}{Venn}(object, subset, rlist, userowname = TRUE,
   gind = NULL, sep = "_", wide = FALSE)
 }
 \arguments{
 \item{object}{Venn object}
 
-\item{set}{Character vector giving the names of the user-defined
-set to extract}
+\item{subset}{Character vector giving the names of the user-defined
+subset to extract}
 
 \item{rlist}{List of user-supplied data frames to combine with
 venndetail result}
@@ -36,11 +36,11 @@ new separation character for new column names in the resulting data frame}
 \item{wide}{Boolean indicating whether to use wide format(default:FALSE)}
 }
 \value{
-data.frame with subset information and details from the user
+data.frame with subsets information and details from the user
 supplied data frame
 }
 \description{
-GetFeature allows users to extract sets from venn object
+GetFeature allows users to extract subsets from venn object
 into a table format along with accompanying information from the data frames
 provided in the rlist argument
 }
@@ -52,7 +52,7 @@ dA <- data.frame(A = A, "FC" = rnorm(40))
 dB <- data.frame(B = B, "FC" = rnorm(60))
 dC <- data.frame(C = C, "FC" = rnorm(40))
 res <- venndetail(list(A = A, B = B, C = C))
-rhs <- getFeature(res, set = "Shared", rlist = list(dA, dB, dC),
+rhs <- getFeature(res, subset = "Shared", rlist = list(dA, dB, dC),
    userowname= FALSE, gind = rep(1, 3))
 }
 \author{

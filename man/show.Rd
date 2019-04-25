@@ -15,8 +15,8 @@
 summary information for the venn object
 }
 \description{
-This function provides a summary of the venn object,  including
-a full results and sets as well as an summary information.
+This function provides a summary of the venn object, including
+a full results and subsets as well as an summary information.
 }
 \examples{
 A <- sample(1:100, 40, replace = FALSE)

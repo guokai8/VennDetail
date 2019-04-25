@@ -41,22 +41,22 @@ category name.}
 grid units}
 
 \item{text.scale}{Numeric vector of text sizes for upset diagram
-(ylab, yaxis, xlab, set name, xaxis, insection).}
+(ylab, yaxis, xlab, subset name, xaxis, insection).}
 
 \item{filename}{Filename for output figure.}
 
-\item{piecolor}{Character vector giving the colors of the sets(vennpie).}
+\item{piecolor}{Character vector giving the colors of the subsets(vennpie).}
 
 \item{revcolor}{Character giving the color for the non-selected
-sets(vennpie).}
+subsets(vennpie).}
 
-\item{any}{Number to indicate selected sets, such as 1 means any unique
-sets, 2 means any sets shared by two groups(vennpie).}
+\item{any}{Number to indicate selected subsets, such as 1 means any unique
+subsets, 2 means any subsets shared by two groups(vennpie).}
 
 \item{show.number}{Boolean indicating whether to display the
-element numbers of the sets or not (default: TRUE)(vennpie).}
+element numbers of the subsets or not (default: TRUE)(vennpie).}
 
-\item{show.x}{Boolean indicating whether to show set labels outside the
+\item{show.x}{Boolean indicating whether to show subset labels outside the
 circle (default: TRUE)(vennpie).}
 
 \item{log}{Boolean indicating whether to transform the data in
@@ -64,23 +64,23 @@ log scale(vennpie).}
 
 \item{base}{Base value for log transformation(vennpie).}
 
-\item{percentage}{Boolean indicating whether to display set percentages
+\item{percentage}{Boolean indicating whether to display subset percentages
 (default: FALSE)(vennpie).}
 
 \item{sets.x.label}{x-axis label (upset)}
 
 \item{mainbar.y.label}{y-axis label (upset)}
 
-\item{nintersects}{Number of intersections to plot. If set to NA, all
+\item{nintersects}{Number of intersections to plot. If subset to NA, all
 intersections will be plotted.}
 
-\item{abbr}{Boolean indicating whether to abbreviate set names
+\item{abbr}{Boolean indicating whether to abbreviate subset names
 (default: FALSE).}
 
 \item{abbr.method}{a character string specifying the method used.
 Partial matches allowed. (default: both side).}
 
-\item{minlength}{Minmal length for the set name.}
+\item{minlength}{Minmal length for the subset name.}
 
 \item{...}{further arguments passed to or from other methods}
 }

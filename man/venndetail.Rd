@@ -2,7 +2,7 @@
 % Please edit documentation in R/venndetail.R
 \name{venndetail}
 \alias{venndetail}
-\title{Extract shared and unique sets}
+\title{Extract shared and unique subsets}
 \usage{
 venndetail(x, sep = "_", abbr = FALSE, minlength = 3,
   abbr.method = "both side")
@@ -10,13 +10,13 @@ venndetail(x, sep = "_", abbr = FALSE, minlength = 3,
 \arguments{
 \item{x}{A list of variables with group names.}
 
-\item{sep}{The separation character used for column names of detailed
-output files (default: ‘_’).}
+\item{sep}{symbol character used when concatenating group names into subset
+names (default: ‘_’).}
 
-\item{abbr}{Boolean indicating whether to abbreviate set names
+\item{abbr}{Boolean indicating whether to abbreviate subset names
 (default: FALSE).}
 
-\item{minlength}{Minmal length for the set name.}
+\item{minlength}{Minmal length for the subset name.}
 
 \item{abbr.method}{a character string specifying the method used.
 Partial matches allowed. (default: both side).}
@@ -32,7 +32,7 @@ be in the form of a traditional venn diagram as default.And users can also
 use vennpie or upset methods to display the result.
 }
 \details{
-Extract shared and unique sets
+Extract shared and unique subsets
 }
 \examples{
 A <- sample(1:100, 40, replace = FALSE)
