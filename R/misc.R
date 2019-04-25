@@ -1,5 +1,9 @@
-##' @importFrom utils head
 ##' @method head Venn
+##' @importFrom utils head
+##' @param x Venn object
+##' @param n number of rows to display
+##' @param ... other arguments ignored (for compatibility with generic)
+##' @title Print the head of Venn object
 ##' @export
 head.Venn <- function(x, n = 6L, ...){
     head(x@result, n, ...)
@@ -25,10 +29,32 @@ dim.Venn <- function(x) {
 `$.Venn` <- function(x, name) {
     x@result[, name]
 }
+
+##' @method summary Venn
+##' @title Give summary information of Venn object
+##' @rdname summary
+##' @description print the summary information of Venn object
+##' @param object Venn object
+##' @param ... other arguments ignored (for compatibility with generic)
+##' @return summary information
+##' @examples
+##' A <- sample(1:100, 40, replace = FALSE)
+##' B <- sample(1:100, 60, replace = FALSE)
+##' C <- sample(1:100, 40, replace = FALSE)
+##' res <- venndetail(list(A = A, B = B, C = C))
+##' summary(res)
+##' @export
+summary.Venn <- function(object, ...){
+  cat("Input groups are: ",object@GroupNames,"\n")
+  cat("Total unique elements are: ",nrow(object@result),"\n")
+  cat("Total subsets are: ",length(detail(object)),"\n")
+  cat("====== Subsets detail: ======\n")
+  detail(object)
+}
 ##' @method result Venn
 ##' @title Extract the result from venn object
 ##' @description Result will return output in a table format including the
-##' contents of the sets included in the venndetail object
+##' contents of the subsets included in the venndetail object
 ##' @rdname result
 ##' @examples
 ##' A <- sample(1:100, 40, replace = FALSE)
@@ -84,32 +110,32 @@ setMethod("detail", signature = (object="Venn"), function(object){
 ##' @param alpha A number giving the transparency value.
 ##' @param cat.fontface A character giving the fontface (font style) for
 ##' category name.
-##' @param abbr Boolean indicating whether to abbreviate set names
+##' @param abbr Boolean indicating whether to abbreviate subset names
 ##' (default: FALSE).
-##' @param minlength Minmal length for the set name.
+##' @param minlength Minmal length for the subset name.
 ##' @param text.scale Numeric vector of text sizes for upset diagram
-##' (ylab, yaxis, xlab, set name, xaxis, insection).
+##' (ylab, yaxis, xlab, subset name, xaxis, insection).
 ##' @param abbr.method a character string specifying the method used.
 ##' Partial matches allowed. (default: both side).
-##' @param piecolor Character vector giving the colors of the sets(vennpie).
+##' @param piecolor Character vector giving the colors of the subsets(vennpie).
 ##' @param revcolor Character giving the color for the non-selected
-##' sets(vennpie).
+##' subsets(vennpie).
 ##' @param show.number Boolean indicating whether to display the
-##' element numbers of the sets or not (default: TRUE)(vennpie).
+##' element numbers of the subsets or not (default: TRUE)(vennpie).
 ##' @param log Boolean indicating whether to transform the data in
 ##' log scale(vennpie).
 ##' @param base Base value for log transformation(vennpie).
 ##' @param sep Character string used to separate the terms when concatenating
 ##' group names into new column names (colnames)(vennpie).
-##' @param percentage Boolean indicating whether to display set percentages
+##' @param percentage Boolean indicating whether to display subset percentages
 ##' (default: FALSE)(vennpie).
-##' @param show.x Boolean indicating whether to show set labels outside the
+##' @param show.x Boolean indicating whether to show subset labels outside the
 ##' circle (default: TRUE)(vennpie).
-##' @param any Number to indicate selected sets, such as 1 means any unique
-##' sets, 2 means any sets shared by two groups(vennpie).
+##' @param any Number to indicate selected subsets, such as 1 means any unique
+##' subsets, 2 means any subsets shared by two groups(vennpie).
 ##' @param sets.x.label x-axis label (upset)
 ##' @param mainbar.y.label y-axis label (upset)
-##' @param nintersects Number of intersections to plot. If set to NA, all
+##' @param nintersects Number of intersections to plot. If subset to NA, all
 ##' intersections will be plotted.
 ##' @param ... further arguments passed to or from other methods
 ##' @inheritParams UpSetR::upset
@@ -136,8 +162,8 @@ plot.Venn <- function(x, type = "venn", col = "black", sep = "_",
     x <- x@input
     if(type == "venn"&&length(x) <= 5){
     #require(VennDiagram)
-        n=length(x)
-        p<-venn.diagram(x, filename = filename,
+        n <- length(x)
+        p <- venn.diagram(x, filename = filename,
                     col = col,
                     fill = mycol[seq_len(n)],
                     alpha = alpha,
@@ -149,11 +175,11 @@ plot.Venn <- function(x, type = "venn", col = "black", sep = "_",
                     #cat.dist=cat.dist,
                     margin = margin)
         grid.draw(p)
-        rfile = list.files(pattern = "*.log")
+        rfile <- list.files(pattern = "*.log")
         file.remove(rfile)
     }
     if(length(x) > 5 & type != "upset"){
-        type = "vennpie"
+        type <- "vennpie"
     }
     if(type == "vennpie"){
         print(vennpie(result, sep = sep, color = piecolor, revcolor = revcolor,
@@ -176,48 +202,48 @@ plot.Venn <- function(x, type = "venn", col = "black", sep = "_",
 
 }
 ##' make table for venndetail
-##' modified from make.truth.table (VennDaigram)
+##' modified from make.truth.table (VennDiagram)
 ##' @importFrom stats setNames
 ##' @param x A list with input groups
-##' @return A data frame with logical vector columns and 2 ^ length(x) rows.
-##' @examples
-##' A <- sample(1:100, 40, replace = FALSE)
-##' B <- sample(1:100, 60, replace = FALSE)
-##' C <- sample(1:100, 40, replace = FALSE)
-##' tab <- make.table(x = list(A = A, B = B, C = C))
-##' @export
+##' @return A data frame with logical vector columns and 2 ^ length(x)-1 rows.
 ##' @author Kai Guo
-make.table <- function(x){
+.make.table <- function(x){
   tb <- lapply(seq_along(names(x)), function(.) c(TRUE, FALSE))
   out <- setNames(do.call(expand.grid, tb), names(x))
   out <- out[apply(out, 1, any), ]
   return(out)
 }
-##' get set
+##' @title Get subset from list of input groups
 ##' @importFrom stats setNames
 ##' @param x A list with input groups
-##' @param tab TRUE or FALSE table
-##' @param sep Character string used to separate the terms when concatenating
-##' group names into new column names (colnames).
-##' @return A list with groups and details
+##' @param sep symbol character used when concatenating group names into subset
+##' names
+##' @return	A list of subsets. The names on the list are the subset names
+##' and the list elements are the subset details.
 ##' @examples
 ##' A <- sample(1:100, 40, replace = FALSE)
 ##' B <- sample(1:100, 60, replace = FALSE)
 ##' C <- sample(1:100, 40, replace = FALSE)
-##' x = list(A = A, B = B, C = C)
-##' tab <- make.table(x = list(A = A, B = B, C = C))
-##' out <- get.set(x = x, tab = tab)
+##' x <- list(A = A, B = B, C = C)
+##' out <-  make.subset(x)
 ##' @author Kai Guo
 ##' @export
-get.set <- function(x, tab, sep = "_"){
+make.subset  <- function(x, sep = "_"){
+    if(length(x) == 1){
+        cat("Only one group find!\n")
+        return(NULL)
+    }
+    tab <- .make.table(x)
     GroupNames <- as.vector(apply(tab,1,
                 function(x)paste(colnames(tab)[as.logical(x)],
                 sep = "",collapse = sep)))
     out <- apply(tab, 1, function(y)setdiff(Reduce(intersect,
                 x[as.logical(y)]), Reduce(union, x[!as.logical(y)])))
     res <- setNames(out, GroupNames)
+    names(res)[1] <- "Shared"
     return(res)
 }
+##' @title Give first colname as RowNxyz
 ##' @importFrom magrittr %>%
 ##' @importFrom dplyr select_
 ##' @importFrom dplyr everything
@@ -290,15 +316,15 @@ merge.Venn <- function(x, y, ignore.case = FALSE,
 }
 ##'
 setAs(from = "data.frame", to = "Venn", def = function(from){
-    Group <- from$Group
+    Subset <- from$Subset
     Detail <- from$Detail
     GroupNames <- vector()
     raw <- vector()
     input <- data.frame()
     sep <- character()
-    detail <- as.vector(table(from$Group))
-    names(detail) <- names(table(Group))
-    result <- data.frame(Group, Detail)
+    detail <- as.vector(table(from$Subset))
+    names(detail) <- names(table(Subset))
+    result <- data.frame(Subset, Detail)
     new("venn",
         input = input,
         raw = raw,
@@ -309,15 +335,15 @@ setAs(from = "data.frame", to = "Venn", def = function(from){
 })
 ##'
 setAs(from = "list", to = "Venn", def = function(from){
-    Group <- from$Group
+    Subset <- from$Subset
     Detail <- from$Detail
     GroupNames <- from$GroupName
     raw <- from$raw
     input <- data.frame()
     sep <- character()
-    detail <- as.vector(table(Group))
-    names(detail) <- names(table(Group))
-    result <- data.frame(Group, Detail)
+    detail <- as.vector(table(Subset))
+    names(detail) <- names(table(Subset))
+    result <- data.frame(Subset, Detail)
     new("venn",
         input = input,
         raw = raw,

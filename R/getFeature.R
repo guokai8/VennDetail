@@ -1,11 +1,11 @@
 ##' @name getFeature Venn
 ##' @title getFeature provides a way to combine list of user supplied data
 ##' frames with Venn object
-##' @description GetFeature allows users to extract sets from venn object
+##' @description GetFeature allows users to extract subsets from venn object
 ##' into a table format along with accompanying information from the data frames
 ##' provided in the rlist argument
 ##' @rdname getFeature
-##' @return data.frame with subset information and details from the user
+##' @return data.frame with subsets information and details from the user
 ##' supplied data frame
 ##' @importFrom dplyr filter_
 ##' @importFrom dplyr left_join
@@ -14,8 +14,8 @@
 ##' @importFrom tibble rownames_to_column
 ##' @importFrom magrittr %>%
 ##' @param object Venn object
-##' @param set Character vector giving the names of the user-defined
-##' set to extract
+##' @param subset Character vector giving the names of the user-defined
+##' subset to extract
 ##' @param rlist List of user-supplied data frames to combine with
 ##' venndetail result
 ##' @param userowname Boolean indicating whether to use row names to join
@@ -35,17 +35,17 @@
 ##' dB <- data.frame(B = B, "FC" = rnorm(60))
 ##' dC <- data.frame(C = C, "FC" = rnorm(40))
 ##' res <- venndetail(list(A = A, B = B, C = C))
-##' rhs <- getFeature(res, set = "Shared", rlist = list(dA, dB, dC),
+##' rhs <- getFeature(res, subset = "Shared", rlist = list(dA, dB, dC),
 ##'    userowname= FALSE, gind = rep(1, 3))
-setMethod("getFeature", signature = (object="Venn"), function(object, set,
+setMethod("getFeature", signature = (object="Venn"), function(object, subset,
         rlist, userowname=TRUE, gind=NULL, sep="_", wide=FALSE){
     dd <- object@result
     wd <- object@wide
     wd$Detail <- as.character(wd$Detail)
-    if(missing(set)){
-        set <- unique(dd$Group)
+    if(missing(subset)){
+        subset <- unique(dd$Subset)
     }
-    lhs <- dd%>%filter_(~Group %in% set)
+    lhs <- dd%>%filter_(~Subset %in% subset)
     lhs$Detail <- as.character(lhs$Detail)
     if(isTRUE(wide)){
         lhs <- wd %>% filter_(~Detail %in% lhs$Detail)

@@ -1,7 +1,7 @@
-##' Extract shared and unique sets
+##' Extract shared and unique subsets
 ##' @name venndetail
 ##' @rdname venndetail
-##' @title Extract shared and unique sets
+##' @title Extract shared and unique subsets
 ##' @description Extracts shared and unique elements from groups provided to
 ##' the function.This base function will create a formal class venn object and
 ##' can also graphically plot the amount of objects in each group. The plot will
@@ -14,11 +14,11 @@
 ##' @importFrom UpSetR fromList
 ##' @importFrom methods new
 ##' @param x A list of variables with group names.
-##' @param sep The separation character used for column names of detailed
-##' output files (default: ‘_’).
-##' @param abbr Boolean indicating whether to abbreviate set names
+##' @param sep symbol character used when concatenating group names into subset
+##' names (default: ‘_’).
+##' @param abbr Boolean indicating whether to abbreviate subset names
 ##' (default: FALSE).
-##' @param minlength Minmal length for the set name.
+##' @param minlength Minmal length for the subset name.
 ##' @param abbr.method a character string specifying the method used.
 ##' Partial matches allowed. (default: both side).
 ##' @inheritParams VennDiagram::venn.diagram
@@ -41,14 +41,13 @@ venndetail <- function(x,  sep="_",  abbr = FALSE,  minlength = 3,
     GroupNames <- names(x)
     raw <- unlist(lapply(x,  length))
     if(length(x) == 1){
-        cat("Only one set find!\n")
+        cat("Only one group find!\n")
         return(NULL)
     }
-    tab <- make.table(x)
-    out <- get.set(x, tab, sep = sep)
-    names(out)[1] <- "Shared"
+    out <- make.subset(x, sep = sep)
+    #names(out)[1] <- "Shared"
     detail <- unlist(lapply(out, function(x) length(x)))
-    res <- data.frame(Group = rep(names(out), as.numeric(detail)),
+    res <- data.frame(Subset = rep(names(out), as.numeric(detail)),
             Detail = unlist(out))
     rownames(res) <- NULL
     ###create wide format result

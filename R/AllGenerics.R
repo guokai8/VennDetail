@@ -16,9 +16,7 @@ setGeneric("result", function(object, wide = FALSE)
 setGeneric("detail", function(object)
     standardGeneric("detail")
 )
-#detail<-function(object){
-#    UseMethod("detail",object)
-#}
+
 ##' @name dplot
 ##' @rdname dplot
 ##' @aliases dplot,Venn-method
@@ -54,7 +52,7 @@ setGeneric("rowjoin",function(x, y, fun = "fun_join")
 ##' @docType methods
 ##' @export
 ##' @author Kai Guo
-setGeneric("getFeature",function(object, set, rlist, userowname = TRUE,
+setGeneric("getFeature",function(object, subset, rlist, userowname = TRUE,
                                 gind = NULL, sep = "_", wide = FALSE)
     standardGeneric("getFeature")
 )
@@ -65,18 +63,17 @@ setGeneric("getFeature",function(object, set, rlist, userowname = TRUE,
 ##' @docType methods
 ##' @export
 ##' @author Kai Guo
-setGeneric("vennpie", function(object, set = NULL, top = 31, min = 0,
+setGeneric("vennpie", function(object, subset = NULL, top = 31, min = 0,
                         color = NULL,revcolor = "lightgrey", any = NULL,
                         show.number = TRUE,
                         show.x = TRUE, sep = "_", log = FALSE,
                         base = NULL, percentage = FALSE)
     standardGeneric("vennpie")
 )
-##' @name Get
-##' @rdname Get
+##' @name getSet
+##' @rdname getSet
 ##' @export
-##' @author Kai Guo
-setGeneric("Get",function(object, set = NULL,
+setGeneric("getSet",function(object, subset = NULL,
                         min = 0, wide = FALSE)
-    standardGeneric("Get")
+    standardGeneric("getSet")
 )

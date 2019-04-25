@@ -23,23 +23,25 @@
 ##' @importFrom dplyr select_
 ##' @importFrom stats quantile
 ##' @param object Venn object
-##' @param set Character vector giving the set users want to highlight.
-##' @param top number of sets with largest to display (default: 31)
-##' @param min Minimal number of shared sets
-##' @param color Character vector giving the colors of the sets.
-##' @param revcolor Character giving the color for the non-selected sets.
+##' @param subset Character vector giving the subset users want to highlight.
+##' @param top number of subsets with largest to display (default: 31)
+##' @param min The minimum number of input groups that a subset must belong to
+##' e.g. min = 2 will only report those
+##' subsets with elements shared by 2 or more input groups.
+##' @param color Character vector giving the colors of the subsets.
+##' @param revcolor Character giving the color for the non-selected subsets.
 ##' @param show.number Boolean indicating whether to display the element numbers
-##' of the sets or not (default: TRUE).
+##' of the subsets or not (default: TRUE).
 ##' @param log Boolean indicating whether to transform the data in log scale .
 ##' @param base Base value for log transformation.
 ##' @param sep Character string used to separate the terms when concatenating
 ##' group names into new column names (colnames).
-##' @param percentage Boolean indicating whether to display set percentages
+##' @param percentage Boolean indicating whether to display subset percentages
 ##' (default: FALSE).
-##' @param show.x Boolean indicating whether to show set labels outside the
+##' @param show.x Boolean indicating whether to show subset labels outside the
 ##' circle (default: TRUE).
-##' @param any Number to indicate selected sets, such as 1 means any unique
-##' sets, 2 means any sets shared by two groups.
+##' @param any Number to indicate selected subsets, such as 1 means any unique
+##' subsets, 2 means any subsets shared by two groups.
 ##' @return vennpie figure
 ##' @export
 ##' @examples
@@ -48,24 +50,24 @@
 ##' C <- sample(1:100, 40, replace = FALSE)
 ##' res <- venndetail(list(A = A, B = B, C = C))
 ##' vennpie(res)
-setMethod("vennpie", signature = (object="Venn"), function(object, set = NULL,
+setMethod("vennpie", signature = (object="Venn"), function(object, subset = NULL,
                 top = 31, min = 0,
                 color = NULL, revcolor = "lightgrey", any = NULL,
                 show.number = TRUE,show.x = TRUE, sep = "_", log = FALSE,
                 base = NULL, percentage = FALSE){
     #options(stringsAsFactors = F)
-    group=set
+    group=subset
     lhs <- result(object, wide = TRUE)
     lhs <- lhs%>%filter_(~SharedSets >= min)%>%select_(~Detail)
     lhs <- as.vector(lhs[, 1])
     rhs <- result(object)
-    rhs <- rhs%>%filter_(~Detail %in% lhs)%>%select_(~Group)
+    rhs <- rhs%>%filter_(~Detail %in% lhs)%>%select_(~Subset)
     rhs <- unique(as.vector(rhs[, 1]))
     det <- object@detail
     detail <- det[rhs]
    # detail["Other"] <- sum(det[setdiff(names(det), rhs)])
     if(length(det) >= top){
-        ths <- names(sort(det,decreasing = T))[seq_along(1:top)]
+        ths <- names(sort(det,decreasing = TRUE))[seq_along(1:top)]
     }else{
         ths <- names(det)
     }
@@ -96,7 +98,7 @@ setMethod("vennpie", signature = (object="Venn"), function(object, set = NULL,
     }
     if(!is.null(color)){
         if(!any(is.na(names(color)))){
-            names(color) = names(detail)
+            names(color) <- names(detail)
         }
     }else{
             color <- setcolor(length(detail))
@@ -151,7 +153,7 @@ setMethod("vennpie", signature = (object="Venn"), function(object, set = NULL,
             scale_y_continuous(breaks = ybreaks)
     }
     p <- p + scale_fill_manual(values = color)+
-        coord_polar("y", start = 0)+labs(fill = "Visualization Sets")
+        coord_polar("y", start = 0)+labs(fill = "Visualization Subsets")
     p <- p + scale_color_manual(breaks = names(raw), labels = gn,
         values = gcol)+
         labs(color = "Input Groups")+
