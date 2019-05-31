@@ -19,6 +19,8 @@ charts and to allow extraction of subset details from input datasets.
 ``` 
 library(devtools)    
 install_github("guokai8/VennDetail")
+##Or install from Bioconductor
+BiocManager::install("VennDetail")
 ``` 
 ## Getting started
 ```  
