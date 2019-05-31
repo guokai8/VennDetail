@@ -162,6 +162,10 @@ plot.Venn <- function(x, type = "venn", col = "black", sep = "_",
     if(type == "venn"&&length(x) <= 5){
     #require(VennDiagram)
         n <- length(x)
+        ## don't generate log, except on warning / error.
+        othresh <- futile.logger::flog.threshold()
+        futile.logger::flog.threshold(futile.logger::WARN)
+        on.exit(futile.logger::flog.threshold(othresh))
         p <- venn.diagram(x, filename = filename,
                     col = col,
                     fill = mycol[seq_len(n)],
@@ -174,8 +178,6 @@ plot.Venn <- function(x, type = "venn", col = "black", sep = "_",
                     #cat.dist=cat.dist,
                     margin = margin)
         grid.draw(p)
-        rfile <- list.files(pattern = "*.log")
-        file.remove(rfile)
     }
     if(length(x) > 5 & type != "upset"){
         type <- "vennpie"
