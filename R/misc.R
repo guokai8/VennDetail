@@ -162,6 +162,10 @@ plot.Venn <- function(x, type = "venn", col = "black", sep = "_",
     if(type == "venn"&&length(x) <= 5){
     #require(VennDiagram)
         n <- length(x)
+        ## don't generate log, except on warning / error.
+        othresh <- futile.logger::flog.threshold()
+        futile.logger::flog.threshold(futile.logger::WARN)
+        on.exit(futile.logger::flog.threshold(othresh))
         p <- venn.diagram(x, filename = filename,
                     col = col,
                     fill = mycol[seq_len(n)],
@@ -174,8 +178,6 @@ plot.Venn <- function(x, type = "venn", col = "black", sep = "_",
                     #cat.dist=cat.dist,
                     margin = margin)
         grid.draw(p)
-        rfile <- list.files(pattern = "*.log")
-        file.remove(rfile)
     }
     if(length(x) > 5 & type != "upset"){
         type <- "vennpie"
@@ -399,16 +401,22 @@ setMethod("rowjoin", signature(x = "data.frame", y = "data.frame"),
 setcolor<-function(x){
     mycolor =c("#A6CEE3", "#1F78B4", "#B2DF8A", "#33A02C", "#FB9A99", "#E31A1C",
             "#1B9E77", "brown", "#7570B3", "#E7298A", "#7FC97F", "#A6761D",
-            "#BEAED4", "#FDC086", "chartreuse1", "cyan3", "purple",
-            "pink4", "cyan", "royalblue", "violet", "springgreen2", "gold3",
+            "#BEAED4", "#FDC086", "chartreuse1", "cyan3", "purple","pink4",
+            "cyan", "royalblue", "violet", "springgreen2", "gold3",
             "darkseagreen4", "#E5D8BD",
+            "#E64B35", "#4DBBD5","#00A087","#3C5488","#F39B7F", "#8491B4",
+            "#91D1C2", "#DC0000","#7E6148", "#B09C85","#008B45", "#631879",
+            "#008280", "#BB0021","#5F559B", "#A20056","#808180", "#1B1919",
+            "#374E55",  "#DF8F44","#00A1D5", "#B24745","#79AF97", "#6A6599",
+            "#80796B","#0073C2", "#EFC000", "#868686", "#CD534C","#7AA6DC",
+            "#003C67","#8F7700", "#3B3B3B","#A73030", "#4A6990",
             "#00AFBB", "#FC4E07", "#9999FF", "#FF9326",
             "#984EA3", "#F781BF", "#B3B3B3",
             "#CCCCCC", "#666666", "#01665E", "#542788")
     if(x < length(mycolor)){
         res <- mycolor[seq_len(x)]
     }else{
-        res <- c(mycolor, sample(colors(), x, replace = FALSE))
+        res <- c(mycolor, sample(colors(), x-length(mycolor), replace = FALSE))
     }
     return(res)
 }
