@@ -2,7 +2,7 @@ Package: VennDetail
 Type: Package
 Title: A package for visualization and extract details
 Version: 1.1.2
-Author: Kai Guo, Brett McGregor
+Author: Kai Guo, Brett McGregor, James Porter, and Junguk Hur
 Maintainer: Kai Guo <guokai8@gmail.com>
 Description: A set of functions to generate high-resolution Venn,Vennpie plot,extract and combine details of these subsets with user datasets in data frame is available.
 License: GPL-2
