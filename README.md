@@ -1,4 +1,11 @@
 # VennDetail
+[![Project Status: Active - The project has reached a stable, usable
+state and is being actively
+developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![Bioc](http://www.bioconductor.org/shields/years-in-bioc/VennDetail.svg)](https://www.bioconductor.org/packages/devel/bioc/html/VennDetail.html#since)
+[![](https://img.shields.io/badge/devel%20version-1.1.2-green.svg)](https://github.com/guokai8/VennDetail)
+[![platform](http://www.bioconductor.org/shields/availability/3.10/VennDetail.svg)](https://www.bioconductor.org/packages/devel/bioc/html/VennDetail.html#archives)
+[![BuildStatus](http://www.bioconductor.org/shields/build/devel/bioc/VennDetail.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/VennDetail/)
 
 __VennDetail__ An R package for visualizing and extracting details of multi-sets 
 intersection  
