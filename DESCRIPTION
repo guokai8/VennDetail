@@ -21,10 +21,7 @@ Depends:
     R (>= 4.0.0)
 Imports:
     dplyr,
-    DT,
-    methods,
-    ggplot2,
-    grDevices,
+    DTices,
     magrittr, 
     patchwork,
     plotly,
