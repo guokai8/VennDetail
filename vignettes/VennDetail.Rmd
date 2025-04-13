@@ -1,0 +1,170 @@
+---
+title: "The VennDetail package"
+author:
+- name: Kai Guo, Brett McGregor, James Porter, and Junguk Hur
+  affiliation: 
+  - Biomedical Sciences, University of North Dakota
+date: "`r Sys.Date()`"   
+output:
+  html_document:
+    df_print: paged
+  word_document:
+    toc: yes
+    toc_depth: '6'
+  rmarkdown::html_vignette: default
+  pdf_document:
+    toc: yes
+    toc_depth: 6
+vignette: |
+  \usepackage[utf8]{inputenc}
+  %\VignetteIndexEntry{VennDetail}
+  %\VignetteEngine{knitr::knitr} 
+---
+__VennDetail__ An R package for visualizing and extracting details of multi-sets 
+intersection  
+
+## 1. Introduction
+
+Visualizing and extracting unique (disjoint) or overlapping subsets of multiple 
+gene datasets are a frequently performed task for bioinformatics. Although 
+various packages and web applications are available, no R package offering 
+functions to extract and combine details of these subsets with user datasets in 
+data frame is available. Moreover, graphical visualization is usually limited to
+six or less gene datasets and a novel method is required to properly show the 
+subset details.We have developed __VennDetail__, an R package to generate 
+high-quality Venn-Pie charts and to allow extraction of subset details from 
+input datasets.  
+
+## 2. Software Usage
+### 2.1 Installation
+The package can be installed as
+``` {r install,eval = FALSE}
+if (!requireNamespace("BiocManager"))
+    install.packages("BiocManager")
+`BiocManager::install("VennDetail")
+``` 
+### 2.2 Data Input
+```{r load, results = 'hide', message = FALSE}
+library(VennDetail)
+data(T2DM)
+```
+T2DM data include three sets of differentially expressed genes (DEGs) from the
+publication by _Hinder et al_ [1]. The three DEG datasets were obtained in three 
+different tissues, kidney Cortex, kidney glomerula, and sciatic nerve, by 
+comparing db/db diabetic mice and db/db mice with pioglitazone treatment. 
+Differential expression was determined by using Cuffdiff with a false discovery 
+rate (FDR) < 0.05.    
+
+### 2.3 Quick Tour
+``` {r quick} 
+ven <- venndetail(list(Cortex = T2DM$Cortex$Entrez, SCN = T2DM$SCN$Entrez,
+                    Glom = T2DM$Glom$Entrez))
+```  
+_VennDetail_ supports three different types of Venn diagram display formats
+```  {r fig1, fig.width = 6, fig.height = 5, fig.align = "center"}
+##traditional venn diagram
+plot(ven)
+```
+
+```  {r fig2, fig.width = 6, fig.height = 5, fig.align = "center"}
+##Venn-Pie format
+plot(ven, type = "vennpie")
+```
+
+```  {r fig3, fig.width = 6, fig.height = 5, fig.align = "center"}
+##Upset format
+plot(ven, type = "upset")
+```   
+
+### 2.4 Main Functions
+--  _venndetail_ uses a list of vectors as input to construct the shared or 
+disjoint subsets _Venn_ object. _venndetail_ accepts a list of vector as input
+and returns a _Venn_ object for the following analysis. Users can also use _merge_
+function to merge two _Venn_ objects together to save time.
+
+-- _plot_ generates figures with different layouts with _type_ parameter. _plot_ 
+function also provides lots of parameters for users to modify the figures. 
+
+-- _getSet_ function provides a way to extract subsets from the main result along 
+with any available annotations. The parameter _subset_ asks the users to give the 
+subset names to extract. It accepts a vector of subset names. Here, we will show
+how the DEGs shared by all three tissues as well as those that are only included
+by SCN tissue can be extracted.
+```{r get}
+## List the subsets name
+detail(ven) 
+head(getSet(ven, subset = c("Shared", "SCN")), 10)
+```    
+-- _result_ function can be used to extract and export all of the subsets 
+for further processing. We currently support two different formats of result 
+(long and wide formats).
+```{r result}
+## long format: the first column lists the subsets name, and the second column
+## shows the genes included in the subsets
+head(result(ven))
+## wide format: the first column lists all the genes, the following columns
+## display the groups name (three tissues) and the last column is the total 
+## number of the gene shared by groups.
+head(result(ven, wide = TRUE))
+```     
+
+-- _vennpie_ creates a Venn-pie diagram with unique or common subsets in 
+multiple ways such as highlighting unique or shared subsets. The following 
+example illustrates how to show the unique subsets on the venn-pie plots.
+```{r fig4, fig.width = 6, fig.height = 5, fig.align = "center"}
+vennpie(ven, any = 1, revcolor = "lightgrey")
+```
+The parameters _any_ and _group_ provide two different ways to highlight the 
+subsets. _any_ determines the subsets to show up in the number of groups 
+(1: those included in just one group; 2: those shared by any two groups). 
+_group_ asks users to specify the subsets to be highlighted. Users may check 
+the sets name by using _detail_ function.
+Since the example datasets used in this vignette include only a small number of 
+shared genes all across three sets (n=8), it may be a little hard to see the 
+shared subset (grey), particularly in the Cortex group (the inner-most 
+circle).
+.
+```{r fig5, fig.width = 6, fig.height = 5, fig.align = "center" }
+vennpie(ven, log = TRUE)
+```   
+When we have five datasets, we can use vennpie to show the sets 
+include elements from at least four datasets. Below show the reults with five 
+datasets as input. 
+```{r fig6, fig.width = 6, fig.height = 5, fig.align = "center" }
+set.seed(123)
+A <- sample(1:1000, 400, replace = FALSE)
+B <- sample(1:1000, 600, replace = FALSE)
+C <- sample(1:1000, 350, replace = FALSE)
+D <- sample(1:1000, 550, replace = FALSE)
+E <- sample(1:1000, 450, replace = FALSE)
+venn <- venndetail(list(A = A, B = B, C= C, D = D, E = E))
+vennpie(venn, min = 4)
+```
+-- _getFeature_ allows users to combine the details of any or all subsets from 
+the main result with users’ other datasets, containing a list of data frames, 
+and to export the combined data as a data frame. In the following example, we 
+will demonstrate how to add other available annotation in the input data (T2DM)
+such as log2FC and FDR values for the shared genes among these three tissues.
+```{r getfeature}
+head(getFeature(ven, subset = "Shared", rlist = T2DM))
+```
+-- _dplot_ shows the details of these subsets with bar-plot. 
+
+```{r fig7, fig.width = 6, fig.height = 5, fig.align = "center"}
+dplot(ven, order = TRUE, textsize = 4)
+```    
+
+### 2.5 Shiny web app
+A shiny web application is here: 
+[VennDetail](http://hurlab.med.und.edu/VennDetail/) 
+Note: Only support five input datasets now
+## 3 Contact information
+
+For any questions please contact guokai8@gmail.com    
+
+## 4 Reference
+[1] Hinder LM, Park M, Rumora AE, Hur J, Eichinger F, Pennathur S, Kretzler M, 
+Brosius FC 3rd, Feldman EL.Comparative RNA-Seq transcriptome analyses reveal 
+distinct metabolic pathways in diabetic nerve and kidney disease.
+_J Cell Mol Med._ 2017 Sep;21(9):2140-2152. doi: 10.1111/jcmm.13136. Epub 
+2017 Mar 8.
