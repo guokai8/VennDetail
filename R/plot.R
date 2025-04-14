@@ -9,7 +9,6 @@
 #' @param width Width of the saved plot (default: 8)
 #' @param height Height of the saved plot (default: 6)
 #' @param dpi Resolution in dots per inch (default: 300)
-#' @param ... Additional arguments passed to the specific plotting function
 #'
 #' @section Parameters for Traditional Venn Diagram (type = "venn"):
 #' \describe{
@@ -102,6 +101,7 @@
 #'   \item{ylabel}{Optional y-axis label}
 #' }
 #'
+#' @param ... Additional arguments passed to the specific plotting function
 #' @return A ggplot2 or plotly object
 #' @method plot Venn
 #' @author Kai Guo
@@ -147,19 +147,213 @@
 #' if(interactive()) {
 #'   plot(res, type = "venn", interactive = TRUE)
 #' }
-plot.Venn <- function(x, type = "venn", title = NULL, interactive = FALSE,
-                      filename = NULL, width = 8, height = 6, dpi = 300, ...) {
+plot.Venn <- function(
+    x,
+    type = "venn",
+    title = NULL,
+    interactive = FALSE,
+    filename = NULL,
+    width = 8,
+    height = 6,
+    dpi = 300,
+
+    # Parameters for venn diagram
+    fill = NULL,
+    alpha = 0.5,
+    labels = TRUE,
+    counts = TRUE,
+    showNumbers = TRUE,
+    numberSize = 4,
+    numberColor = "black",
+    labelSize = 4,
+    labelColor = "black",
+    borderCol = FALSE,
+    fillCol = TRUE,
+    fixedCoords = TRUE,
+    xlim = c(0, 1),
+    ylim = c(0, 1),
+    show_percentages = TRUE,
+    show_unique_only = FALSE,
+    scaled = FALSE,
+
+    # Parameters for vennpie
+    subset = NULL,
+    top = 31,
+    min = 0,
+    color = NULL,
+    revcolor = "lightgrey",
+    any = NULL,
+    show.number = TRUE,
+    show.x = TRUE,
+    sep = "_",
+    log = FALSE,
+    base = NULL,
+    percentage = FALSE,
+
+    # Parameters for upset plot
+    nintersects = 40,
+    min_size = 1,
+    sets_bar_color = NULL,
+    main_bar_color = "steelblue",
+    point_size = 3,
+    line_size = 1,
+    show_numbers = TRUE,
+    sort_intersections_by = "freq",
+    sort_sets_by = "size",
+    sort_sets_decreasing = TRUE,
+    custom_sets_order = NULL,
+    sort_intersections_decreasing = TRUE,
+    custom_intersections_order = NULL,
+    intersection_color = "black",
+    highlight_intersections = NULL,
+    highlight_color = "darkorange",
+    empty_point_size = 1.5,
+    bar_width = 0.7,
+    text_angle = 0,
+    text_size = 10,
+    set_label_size = 3,
+    intersection_label_size = 3,
+    point_outline_color = "black",
+    point_stroke = 0.3,
+    set_size_show_values = TRUE,
+    intersection_size_show_values = TRUE,
+    show_empty_intersections = FALSE,
+    show_set_labels = TRUE,
+    plot_margin = 0.5,
+    height_ratio = 0.7,
+    width_ratio = 0.3,
+    bar_offset = -0.01,
+    set_text_size = 10,
+    intersection_title = "Intersection Size",
+    set_size_title = "Set Size",
+    matrix_point_shape = 21,
+    number_color_threshold = 0.75,
+    number_colors = c(on_bar="black", off_bar="black"),
+    theme_params = list(
+      background_color = "white",
+      grid_color = "grey92",
+      axis_text_color = "black",
+      use_grid = TRUE,
+      border_color = NA
+    ),
+    return_data = FALSE,
+
+    # Parameters for bar plot
+    order = FALSE,
+    textsize = 5,
+    theme = ggplot2::theme_light(),
+    xlabel = NULL,
+    ylabel = NULL,
+
+    ...
+) {
   # Create the plot based on the type
-  p <- switch(type,
-              venn = vennDiagram(x, title = title, interactive = interactive, ...),
-              vennpie = vennpie(x, title = title, interactive = interactive, ...),
-              upset = upsetPlot(x, title = title, interactive = interactive, ...),
-              bar = dplot(x, title = title, ...),
-              stop("Unsupported plot type: ", type))
+  p <- switch(
+    type,
+    venn = vennDiagram(
+      x,
+      title = title,
+      interactive = interactive,
+      fill = fill,
+      alpha = alpha,
+      labels = labels,
+      counts = counts,
+      showNumbers = showNumbers,
+      numberSize = numberSize,
+      numberColor = numberColor,
+      labelSize = labelSize,
+      labelColor = labelColor,
+      borderCol = borderCol,
+      fillCol = fillCol,
+      fixedCoords = fixedCoords,
+      xlim = xlim,
+      ylim = ylim,
+      show_percentages = show_percentages,
+      show_unique_only = show_unique_only,
+      scaled = scaled,
+      ...
+    ),
+    vennpie = vennpie(
+      x,
+      title = title,
+      interactive = interactive,
+      subset = subset,
+      top = top,
+      min = min,
+      color = color,
+      revcolor = revcolor,
+      any = any,
+      show.number = show.number,
+      show.x = show.x,
+      sep = sep,
+      log = log,
+      base = base,
+      percentage = percentage,
+      ...
+    ),
+    upset = upsetPlot(
+      x,
+      title = title,
+      interactive = interactive,
+      nintersects = nintersects,
+      min_size = min_size,
+      sets_bar_color = sets_bar_color,
+      main_bar_color = main_bar_color,
+      point_size = point_size,
+      line_size = line_size,
+      show_numbers = show_numbers,
+      sort_intersections_by = sort_intersections_by,
+      sort_sets_by = sort_sets_by,
+      sort_sets_decreasing = sort_sets_decreasing,
+      custom_sets_order = custom_sets_order,
+      sort_intersections_decreasing = sort_intersections_decreasing,
+      custom_intersections_order = custom_intersections_order,
+      intersection_color = intersection_color,
+      highlight_intersections = highlight_intersections,
+      highlight_color = highlight_color,
+      empty_point_size = empty_point_size,
+      bar_width = bar_width,
+      text_angle = text_angle,
+      text_size = text_size,
+      set_label_size = set_label_size,
+      intersection_label_size = intersection_label_size,
+      point_outline_color = point_outline_color,
+      point_stroke = point_stroke,
+      set_size_show_values = set_size_show_values,
+      intersection_size_show_values = intersection_size_show_values,
+      show_empty_intersections = show_empty_intersections,
+      show_set_labels = show_set_labels,
+      plot_margin = plot_margin,
+      height_ratio = height_ratio,
+      width_ratio = width_ratio,
+      bar_offset = bar_offset,
+      set_text_size = set_text_size,
+      intersection_title = intersection_title,
+      set_size_title = set_size_title,
+      matrix_point_shape = matrix_point_shape,
+      number_color_threshold = number_color_threshold,
+      number_colors = number_colors,
+      theme_params = theme_params,
+      return_data = return_data,
+      ...
+    ),
+    bar = dplot(
+      x,
+      title = title,
+      order = order,
+      textsize = textsize,
+      color = color,
+      theme = theme,
+      xlabel = xlabel,
+      ylabel = ylabel,
+      ...
+    ),
+    stop("Unsupported plot type: ", type)
+  )
 
   # Save the plot if filename is provided
   if (!is.null(filename)) {
-    ggsave(p, filename = filename, width = width, height = height, dpi = dpi)
+    ggplot2::ggsave(p, filename = filename, width = width, height = height, dpi = dpi)
   }
 
   return(p)
