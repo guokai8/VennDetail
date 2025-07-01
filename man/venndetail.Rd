@@ -2,43 +2,58 @@
 % Please edit documentation in R/venndetail.R
 \name{venndetail}
 \alias{venndetail}
-\title{Extract shared and unique subsets}
+\title{Create a Venn object for set analysis}
 \usage{
-venndetail(x, sep = "_", abbr = FALSE, minlength = 3,
-  abbr.method = "both side")
+venndetail(
+  x,
+  sep = "_",
+  abbr = FALSE,
+  minlength = 3,
+  abbr.method = "both.sides",
+  verbose = FALSE
+)
 }
 \arguments{
-\item{x}{A list of variables with group names.}
+\item{x}{A list of vectors with group names}
 
-\item{sep}{symbol character used when concatenating group names into subset
-names (default: ‘_’).}
+\item{sep}{Symbol character used when concatenating group names into subset names
+(default: '_')}
 
-\item{abbr}{Boolean indicating whether to abbreviate subset names
-(default: FALSE).}
+\item{abbr}{Logical: abbreviate subset names? Default: FALSE}
 
-\item{minlength}{Minmal length for the subset name.}
+\item{minlength}{Minimal length for abbreviated subset names. Default: 3}
 
-\item{abbr.method}{a character string specifying the method used.
-Partial matches allowed. (default: both side).}
+\item{abbr.method}{Method for abbreviation: "both.sides", "left.sides", or "right.sides"}
+
+\item{verbose}{Logical: show progress messages? Default: FALSE}
 }
 \value{
-venn object and figures
+A Venn object
 }
 \description{
-Extracts shared and unique elements from groups provided to
-the function.This base function will create a formal class venn object and
-can also graphically plot the amount of objects in each group. The plot will
-be in the form of a traditional venn diagram as default.And users can also
-use vennpie or upset methods to display the result.
-}
-\details{
-Extract shared and unique subsets
+Extracts shared and unique elements from multiple sets and creates
+  a Venn object for analysis and visualization
 }
 \examples{
+# Create a Venn object with three sets
 A <- sample(1:100, 40, replace = FALSE)
 B <- sample(1:100, 60, replace = FALSE)
 C <- sample(1:100, 40, replace = FALSE)
 res <- venndetail(list(A = A, B = B, C = C))
+
+# Examine the results
+summary(res)
+
+# Plot the results
+plot(res, type = "venn")
+
+# With abbreviated set names
+sets <- list(
+  LongNameGroup1 = sample(1:100, 40),
+  LongNameGroup2 = sample(1:100, 50),
+  LongNameGroup3 = sample(1:100, 45)
+)
+res <- venndetail(sets, abbr = TRUE, minlength = 4)
 }
 \author{
 Kai Guo

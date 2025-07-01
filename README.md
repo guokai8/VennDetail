@@ -2,7 +2,7 @@
 
 __VennDetail__ An R package for visualizing and extracting details of multi-sets 
 intersection  
-![](venn.png)
+![Venn visualizations](man/figures/venn.png)
 
 ## Description
 
