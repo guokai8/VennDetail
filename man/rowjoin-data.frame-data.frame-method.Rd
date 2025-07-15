@@ -4,7 +4,7 @@
 \alias{rowjoin,data.frame,data.frame-method}
 \title{Join data.frames by row names or specified columns}
 \usage{
-\S4method{rowjoin}{data.frame,data.frame}(x, y, fun = "full_join", by = NULL)
+\S4method{rowjoin}{data.frame,data.frame}(x, y, fun = "full_join")
 }
 \arguments{
 \item{x}{First data.frame}

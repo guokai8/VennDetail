@@ -4,8 +4,7 @@
 \alias{merge.Venn}
 \title{Merge two or more venndetail obejcts}
 \usage{
-\method{merge}{Venn}(x, y, ignore.case = FALSE, useupper = TRUE,
-  plot = FALSE, ...)
+\method{merge}{Venn}(x, y, ignore.case = FALSE, useupper = TRUE, plot = FALSE, ...)
 }
 \arguments{
 \item{x}{Venn object}

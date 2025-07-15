@@ -17,10 +17,7 @@
   sep = "_",
   log = FALSE,
   base = NULL,
-  percentage = FALSE,
-  title = NULL,
-  interactive = FALSE,
-  ...
+  percentage = FALSE
 )
 }
 \arguments{

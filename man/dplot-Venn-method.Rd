@@ -4,16 +4,7 @@
 \alias{dplot,Venn-method}
 \title{Create a bar plot of subset counts}
 \usage{
-\S4method{dplot}{Venn}(
-  object,
-  order = FALSE,
-  textsize = 5,
-  color = NULL,
-  theme = theme_light(),
-  title = NULL,
-  xlabel = NULL,
-  ylabel = NULL
-)
+\S4method{dplot}{Venn}(object, order = FALSE, textsize = 5)
 }
 \arguments{
 \item{object}{A Venn object}

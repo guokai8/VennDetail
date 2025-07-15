@@ -1,7 +1,7 @@
 Package: VennDetail
 Type: Package
 Title: Comprehensive Visualization and Analysis of Multi-Set Intersections
-Version: 1.25.1
+Version: 1.25.2
 Date: 2025-07-01
 Authors@R: c(
     person("Kai", "Guo", email = "guokai8@gmail.com", role = c("aut", "cre")),
