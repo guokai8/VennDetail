@@ -2,22 +2,14 @@
 title: "The VennDetail package"
 author: "Kai Guo, Brett McGregor, James Porter, and Junguk Hur"
 affiliation: "Biomedical Sciences, University of North Dakota"
-date: "`r Sys.Date()`"   
-output:
-  html_document:
-    df_print: paged
-  word_document:
-    toc: true
-    toc_depth: 6
-  rmarkdown::html_vignette: default
-  pdf_document:
-    toc: true
-    toc_depth: 6
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{VennDetail}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+
 __VennDetail__ An R package for visualizing and extracting details of multi-sets 
 intersection  
 
