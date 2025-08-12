@@ -28,10 +28,10 @@ input datasets.
 ## 2. Software Usage
 ### 2.1 Installation
 The package can be installed as
-``` {r install,eval = FALSE}
+``` {r install, eval = FALSE}
 if (!requireNamespace("BiocManager"))
     install.packages("BiocManager")
-`BiocManager::install("VennDetail")
+BiocManager::install("VennDetail")
 ``` 
 ### 2.2 Data Input
 ```{r load, results = 'hide', message = FALSE}
@@ -131,7 +131,7 @@ venn <- venndetail(list(A = A, B = B, C= C, D = D, E = E))
 vennpie(venn, min = 4)
 ```
 -- _getFeature_ allows users to combine the details of any or all subsets from 
-the main result with users’ other datasets, containing a list of data frames, 
+the main result with users' other datasets, containing a list of data frames, 
 and to export the combined data as a data frame. In the following example, we 
 will demonstrate how to add other available annotation in the input data (T2DM)
 such as log2FC and FDR values for the shared genes among these three tissues.
