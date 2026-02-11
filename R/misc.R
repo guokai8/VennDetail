@@ -86,6 +86,123 @@ setMethod("result", signature = (object="Venn"), function(object, wide = FALSE){
 setMethod("detail", signature = (object="Venn"), function(object){
     object@detail
 })
+<<<<<<< HEAD
+=======
+##' @method plot Venn
+##' @title Plot Venn object
+##' @description The plot function allows users to graphically display the
+##' groups and overlap between groups in their venn class object through a
+##' variety of graph types such as a bar plot, traditional venn,
+##' or venn pie chart.
+##' @rdname plot
+##' @return different type of graphics based on user chose
+##' @importFrom VennDiagram venn.diagram
+##' @importFrom UpSetR upset
+##' @param x Venn object
+##' @param cex A numerical value giving the text size for venndiagram
+##' @param margin Number giving the amount of whitespace around the diagram in
+##' grid units
+##' @param type Use venn, vennpie or upset (default: venn)
+##' @param filename Filename for output figure.
+##' @param col Character vector giving the color of the circles.
+##' @param mycol Character vector giving the filled color for
+##' VennDiagram circles.
+##' @param cat.cex Numeric vector giving the size of the category names.
+##' @param alpha A number giving the transparency value.
+##' @param cat.fontface A character giving the fontface (font style) for
+##' category name.
+##' @param abbr Boolean indicating whether to abbreviate subset names
+##' (default: FALSE).
+##' @param minlength Minmal length for the subset name.
+##' @param text.scale Numeric vector of text sizes for upset diagram
+##' (ylab, yaxis, xlab, subset name, xaxis, insection).
+##' @param abbr.method a character string specifying the method used.
+##' Partial matches allowed. (default: both side).
+##' @param piecolor Character vector giving the colors of the subsets(vennpie).
+##' @param revcolor Character giving the color for the non-selected
+##' subsets(vennpie).
+##' @param show.number Boolean indicating whether to display the
+##' element numbers of the subsets or not (default: TRUE)(vennpie).
+##' @param log Boolean indicating whether to transform the data in
+##' log scale(vennpie).
+##' @param base Base value for log transformation(vennpie).
+##' @param sep Character string used to separate the terms when concatenating
+##' group names into new column names (colnames)(vennpie).
+##' @param percentage Boolean indicating whether to display subset percentages
+##' (default: FALSE)(vennpie).
+##' @param show.x Boolean indicating whether to show subset labels outside the
+##' circle (default: TRUE)(vennpie).
+##' @param any Number to indicate selected subsets, such as 1 means any unique
+##' subsets, 2 means any subsets shared by two groups(vennpie).
+##' @param sets.x.label x-axis label (upset)
+##' @param mainbar.y.label y-axis label (upset)
+##' @param nintersects Number of intersections to plot. If subset to NA, all
+##' intersections will be plotted.
+##' @param ... further arguments passed to or from other methods
+##' @inheritParams UpSetR::upset
+##' @examples
+##' A <- sample(1:100, 40, replace = FALSE)
+##' B <- sample(1:100, 60, replace = FALSE)
+##' C <- sample(1:100, 40, replace = FALSE)
+##' res <- venndetail(list(A = A, B = B, C = C))
+##' plot(res, type = "venn")
+##' @export
+##' @author Kai Guo
+plot.Venn <- function(x, type = "venn", col = "black", sep = "_",
+                    mycol = c("dodgerblue", "goldenrod1", "darkorange1",
+                    "seagreen3", "orchid3"),cat.cex = 1.5, alpha = 0.5, cex = 2,
+                    cat.fontface = "bold",
+                    margin = 0.05, text.scale = c(1.5, 1.5, 1.5, 1.5, 1.5, 1.5),
+                    filename = NULL, piecolor = NULL, revcolor = "lightgrey",
+                    any = NULL, show.number = TRUE, show.x = TRUE, log = FALSE,
+                    base = NULL, percentage = FALSE, sets.x.label = "Set Size",
+                    mainbar.y.label = "Intersection Size", nintersects = 40,
+                    abbr= FALSE, abbr.method = "both.sides", minlength = 3, ...)
+{
+    result <- x
+    x <- x@input
+    if(type == "venn"&&length(x) <= 5){
+    #require(VennDiagram)
+        n <- length(x)
+        ## don't generate log, except on warning / error.
+        othresh <- futile.logger::flog.threshold()
+        futile.logger::flog.threshold(futile.logger::WARN)
+        on.exit(futile.logger::flog.threshold(othresh))
+        p <- venn.diagram(x, filename = filename,
+                    col = col,
+                    fill = mycol[seq_len(n)],
+                    alpha = alpha,
+                    cex = cex,
+                    cat.col = mycol[seq_len(n)],
+                    cat.cex = cat.cex,
+                    cat.fontface = cat.fontface,
+                    #cat.pos=cat.pos,
+                    #cat.dist=cat.dist,
+                    margin = margin)
+        grid.draw(p)
+    }
+    if(length(x) > 5 & type != "upset"){
+        type <- "vennpie"
+    }
+    if(type == "vennpie"){
+        print(vennpie(result, sep = sep, color = piecolor, revcolor = revcolor,
+        any = any, show.number = show.number, show.x = show.x, log = log,
+        base = base, percentage = percentage))
+    }
+    if(type == "upset"){
+        if(length(x) <= 5){
+            upset(fromList(x), nsets = length(x), sets.x.label = sets.x.label,
+            mainbar.y.label = mainbar.y.label, nintersects = nintersects,
+            point.size = 5, sets.bar.color = mycol[seq_along(x)],
+            text.scale = text.scale)
+        }else{
+            upset(fromList(x), nsets = length(x), sets.x.label = sets.x.label,
+            mainbar.y.label = mainbar.y.label, nintersects = nintersects,
+            point.size = 5, sets.bar.color = setcolor(length(x)),
+            text.scale = text.scale)
+        }
+    }
+>>>>>>> 47c1e0a (Add files via upload)
 
 ##' make table for venndetail
 ##' modified from make.truth.table (VennDiagram)
