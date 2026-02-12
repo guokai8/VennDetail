@@ -14,6 +14,11 @@ Description: A comprehensive package for visualizing multi-set intersections and
     traditional Venn diagrams, Venn-pie plots, and UpSet-style plots. It provides functions to 
     extract and combine subset details with user datasets in various formats. The package is 
     particularly useful for bioinformatics applications but can be used for any multi-set analysis.
+Title: A package for visualization and extract details
+Version: 1.9.1
+Author: Kai Guo, Brett McGregor, James Porter, and Junguk Hur
+Maintainer: Kai Guo <guokai8@gmail.com>
+Description: A set of functions to generate high-resolution Venn,Vennpie plot,extract and combine details of these subsets with user datasets in data frame is available.
 License: GPL-2
 Encoding: UTF-8
 LazyData: true

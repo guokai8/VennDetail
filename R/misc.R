@@ -86,10 +86,7 @@ setMethod("result", signature = (object="Venn"), function(object, wide = FALSE){
 setMethod("detail", signature = (object="Venn"), function(object){
     object@detail
 })
-<<<<<<< HEAD
-=======
 ##' @method plot Venn
-##' @title Plot Venn object
 ##' @description The plot function allows users to graphically display the
 ##' groups and overlap between groups in their venn class object through a
 ##' variety of graph types such as a bar plot, traditional venn,
@@ -202,7 +199,6 @@ plot.Venn <- function(x, type = "venn", col = "black", sep = "_",
             text.scale = text.scale)
         }
     }
->>>>>>> 47c1e0a (Add files via upload)
 
 ##' make table for venndetail
 ##' modified from make.truth.table (VennDiagram)
