@@ -1,28 +1,32 @@
 Package: VennDetail
 Type: Package
 Title: Comprehensive Visualization and Analysis of Multi-Set Intersections
-Version: 1.23.0
-Date: 2024-10-30
+Version: 1.27.0
+Date: 2025-07-01
 Authors@R: c(
     person("Kai", "Guo", email = "guokai8@gmail.com", role = c("aut", "cre")),
-    person("Brett", "McGregor", role = "aut")
+    person("Brett", "McGregor", role = "aut"),
+    person("James", "Porter", role = "aut"),
+    person("Junguk", "Hur", role = "aut")
   )
 Description: A comprehensive package for visualizing multi-set intersections and extracting 
     detailed subset information. VennDetail generates high-resolution visualizations including 
     traditional Venn diagrams, Venn-pie plots, and UpSet-style plots. It provides functions to 
     extract and combine subset details with user datasets in various formats. The package is 
     particularly useful for bioinformatics applications but can be used for any multi-set analysis.
+Title: A package for visualization and extract details
+Version: 1.9.1
+Author: Kai Guo, Brett McGregor, James Porter, and Junguk Hur
+Maintainer: Kai Guo <guokai8@gmail.com>
+Description: A set of functions to generate high-resolution Venn,Vennpie plot,extract and combine details of these subsets with user datasets in data frame is available.
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
 Depends:
-    R (>= 4.0.0),
+    R (>= 4.0.0)
 Imports:
     dplyr,
-    DT,
-    methods,
-    ggplot2,
-    grDevices,
+    DTices,
     magrittr, 
     patchwork,
     plotly,
@@ -36,21 +40,15 @@ Imports:
     utils
 Suggests:
     knitr,
+    rmarkdown,
+    testthat (>= 3.0.0),
     markdown,
     RColorBrewer,
-    rmarkdown,
-    rstudioapi,
-    testthat (>= 3.0.0)
+    rstudioapi
 VignetteBuilder: knitr
 URL: https://github.com/guokai8/VennDetail
 BugReports: https://github.com/guokai8/VennDetail/issues
 Roxygen: list(roclets = c("namespace", "rd"))
 RoxygenNote: 7.3.2
 biocViews: DataRepresentation, GraphAndNetwork, Visualization, Software
-Packaged: 2024-10-30 03:22:05 UTC; biocbuild
-git_url: https://git.bioconductor.org/packages/VennDetail
-git_branch: RELEASE_3_20
-git_last_commit: 7a17508
-git_last_commit_date: 2024-10-29
-Repository: Bioconductor
-NeedsCompilation: no
+
