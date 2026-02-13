@@ -26,7 +26,6 @@ Depends:
     R (>= 4.0.0)
 Imports:
     dplyr,
-    DTices,
     magrittr, 
     patchwork,
     plotly,
