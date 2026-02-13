@@ -199,6 +199,7 @@ plot.Venn <- function(x, type = "venn", col = "black", sep = "_",
             text.scale = text.scale)
         }
     }
+}
 
 ##' make table for venndetail
 ##' modified from make.truth.table (VennDiagram)
@@ -418,3 +419,4 @@ setcolor<-function(x){
     }
     return(res)
 }
+
