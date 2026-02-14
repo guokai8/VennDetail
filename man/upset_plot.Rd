@@ -151,7 +151,7 @@ sets <- list(
   "Set C" = c(20:50, 90:110),
   "Set D" = c(10:40, 80:120)
 )
-upset_plot(sets, bar_offset = -0.02)
+upset_plot(sets)
 
 # With highlighting
 upset_plot(sets,
