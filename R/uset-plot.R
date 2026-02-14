@@ -295,6 +295,8 @@ setMethod("upsetPlot", signature("Venn"), function(object,
 #' @importFrom tidyr pivot_longer
 #' @importFrom stats setNames
 #' @importFrom patchwork plot_layout plot_annotation plot_spacer
+#' @importFrom grid grid.newpage pushViewport viewport grid.layout grid.draw popViewport unit.c gTree gList
+#' @importFrom gridExtra arrangeGrob
 #' @importFrom plotly ggplotly
 #' @importFrom methods is slot
 #' @importFrom grDevices colorRampPalette
@@ -309,7 +311,7 @@ setMethod("upsetPlot", signature("Venn"), function(object,
 #'   "Set C" = c(20:50, 90:110),
 #'   "Set D" = c(10:40, 80:120)
 #' )
-#' upset_plot(sets, bar_offset = -0.02)
+#' upset_plot(sets)
 #'
 #' # With highlighting
 #' upset_plot(sets,
@@ -670,7 +672,7 @@ upset_plot <- function(data_list,
       geom_line(
         data = line_data,
         aes(x = x_pos, y = y_pos),
-        size = line_size,
+        linewidth = line_size,
         color = line_color
       )
   }
@@ -771,34 +773,125 @@ upset_plot <- function(data_list,
       )
   }
 
-  # Create an empty plot for the top-left corner
-  empty_plot <- plot_spacer()
+ # ---- Use gtable-based alignment like UpSetR ----
+  # Convert ggplots to gtables for precise alignment
+  intersection_gtable <- ggplot_gtable(ggplot_build(intersection_plot))
+  matrix_gtable <- ggplot_gtable(ggplot_build(matrix_plot))
+  set_size_gtable <- ggplot_gtable(ggplot_build(set_size_plot))
 
-  # Use patchwork for layout management
-  # First create the top row
-  top_row <- empty_plot + intersection_plot +
-    plot_layout(widths = c(width_ratio+bar_offset/2, 1-width_ratio-bar_offset/2))
+  # Synchronize widths: intersection bars should align with matrix dots
+  # This is the key alignment step from UpSetR
+  intersection_gtable$widths <- matrix_gtable$widths
 
-  # Then create the bottom row
-  bottom_row <- set_size_plot + matrix_plot +
-    plot_layout(widths = c(width_ratio, 1-width_ratio))
+  # Synchronize heights: matrix rows should align with set size bars
+  matrix_gtable$heights <- set_size_gtable$heights
 
-  # Combine the rows
-  combined_plot <- top_row / bottom_row +
-    plot_layout(heights = c(1-height_ratio, height_ratio))
+  # Calculate layout dimensions (using 100-unit grid like UpSetR)
+  size_plot_height <- round((1 - height_ratio) * 100)
+  matrix_bottom <- 100
+  size_bar_right <- round(width_ratio * 100)
+  matrix_left <- size_bar_right + 1
+  matrix_right <- 100
+
+  # Helper function for viewport layout (same as UpSetR)
+  vplayout <- function(x, y) {
+    viewport(layout.pos.row = x, layout.pos.col = y)
+  }
+
+  # Create the combined grob following UpSetR's approach exactly:
+  # Combine intersection bars + matrix (they share widths) and draw set size separately
+  main_and_matrix <- arrangeGrob(
+    intersection_gtable,
+    matrix_gtable,
+    heights = c(1 - height_ratio, height_ratio)
+  )
+
+  # Create a custom grob that draws using viewports like UpSetR
+  make_upset_grob <- function() {
+    # Return a gTree that contains all the plotting instructions
+    gTree(
+      children = gList(),
+      intersection_gtable = intersection_gtable,
+      matrix_gtable = matrix_gtable,
+      set_size_gtable = set_size_gtable,
+      main_and_matrix = main_and_matrix,
+      size_plot_height = size_plot_height,
+      size_bar_right = size_bar_right,
+      matrix_left = matrix_left,
+      matrix_right = matrix_right,
+      matrix_bottom = matrix_bottom,
+      height_ratio = height_ratio,
+      cl = "upset_grob"
+    )
+  }
+
+  combined_grob <- make_upset_grob()
 
   # Return just the plot or the full data based on return_data parameter
   if (return_data) {
     return(list(
-      plot = combined_plot,
+      plot = combined_grob,
       intersection_plot = intersection_plot,
       matrix_plot = matrix_plot,
       set_size_plot = set_size_plot,
+      intersection_gtable = intersection_gtable,
+      matrix_gtable = matrix_gtable,
+      set_size_gtable = set_size_gtable,
       intersection_data = pattern_df,
       set_sizes = set_size_df,
       set_colors = sets_bar_colors
     ))
   } else {
-    return(combined_plot)
+    return(combined_grob)
   }
+}
+
+#' @title Draw method for upset_grob objects
+#' @description Internal method to draw upset_grob using grid viewports
+#' @param x An upset_grob object
+#' @param recording Logical for recording
+#' @return Draws the upset plot
+#' @export
+#' @importFrom grid grid.draw pushViewport popViewport viewport grid.layout gTree gList makeContent
+#' @importFrom gridExtra arrangeGrob
+#' @keywords internal
+makeContent.upset_grob <- function(x) {
+  # This is called when the grob is drawn
+  # We don't modify content here, drawing is handled by grid.draw
+  x
+}
+
+#' Print method for upset_grob objects
+#' @param x An upset_grob object
+#' @param ... Additional arguments (ignored)
+#' @return Invisibly returns the input object
+#' @export
+#' @importFrom grid grid.draw grid.newpage pushViewport popViewport viewport grid.layout
+#' @importFrom gridExtra arrangeGrob
+print.upset_grob <- function(x, ...) {
+  grid.newpage()
+
+  # Set up the grid layout (100x100 like UpSetR)
+  pushViewport(viewport(layout = grid.layout(100, 100)))
+
+  # Helper for viewport layout
+  vplayout <- function(row, col) {
+    viewport(layout.pos.row = row, layout.pos.col = col)
+  }
+
+  # Draw main bar + matrix (right side) using arrangeGrob for vertical stacking
+  vp <- vplayout(1:x$matrix_bottom, x$matrix_left:x$matrix_right)
+  pushViewport(vp)
+  grid.draw(x$main_and_matrix)
+  popViewport()
+
+  # Draw set size bars (bottom left)
+  vp <- vplayout((x$size_plot_height + 1):x$matrix_bottom, 1:x$size_bar_right)
+  pushViewport(vp)
+  grid.draw(x$set_size_gtable)
+  popViewport()
+
+  popViewport()  # Pop the main layout viewport
+
+  invisible(x)
 }
