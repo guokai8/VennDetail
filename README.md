@@ -1,4 +1,10 @@
 # VennDetail
+[![Project Status: Active - The project has reached a stable, usable
+state and is being actively
+developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![Bioc](http://www.bioconductor.org/shields/years-in-bioc/VennDetail.svg)](https://www.bioconductor.org/packages/devel/bioc/html/VennDetail.html#since)
+[![platform](http://www.bioconductor.org/shields/availability/3.10/VennDetail.svg)](https://www.bioconductor.org/packages/devel/bioc/html/VennDetail.html#archives)
+[![BuildStatus](http://www.bioconductor.org/shields/build/devel/bioc/VennDetail.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/VennDetail/)
 
 __VennDetail__ An R package for visualizing and extracting details of multi-sets 
 intersection  
@@ -19,6 +25,8 @@ charts and to allow extraction of subset details from input datasets.
 ``` 
 library(devtools)    
 install_github("guokai8/VennDetail")
+##Or install from Bioconductor
+BiocManager::install("VennDetail")
 ``` 
 ## Getting started
 ```  
