@@ -1,8 +1,8 @@
 ##' @name dplot
 ##' @rdname dplot
-##' @method dplot Venn
+##' @aliases dplot,Venn-method
 ##' @importFrom ggplot2 ggplot
-##' @importFrom ggplot2 aes_
+##' @importFrom ggplot2 aes
 ##' @importFrom ggplot2 geom_bar
 ##' @importFrom ggplot2 element_text
 ##' @importFrom ggplot2 theme
@@ -28,11 +28,11 @@ setMethod("dplot", signature = (object="Venn"), function(object, order = FALSE,
     if(isTRUE(order)){
         df$Group <- factor(df$Group, levels = df$Group[order(df$Detail)])
     }
-    p <- ggplot(df, aes_(~Group, ~Detail, fill = ~Group)) +
+    p <- ggplot(df, aes(Group, Detail, fill = Group)) +
         geom_bar(stat = "identity") + scale_fill_manual(values = color) +
         theme_light(base_size = 12) + theme(axis.text.x =
         element_text(angle = 90)) + labs(fill = "Subset") +
-        geom_text(aes_(label = ~Detail), vjust = -0.3, size = textsize) +
+        geom_text(aes(label = Detail), vjust = -0.3, size = textsize) +
         ylim(0, max(df$Detail) + 1)
     p
 })
@@ -43,7 +43,7 @@ setMethod("dplot", signature = (object="Venn"), function(object, order = FALSE,
 ##' @title getSet function provides a way to extract subsets
 ##' @description getSet function provides a way to extract subsets from
 ##' venndetail object
-##' @importFrom dplyr filter_
+##' @importFrom dplyr filter
 ##' @importFrom magrittr %>%
 ##' @param object Venn object
 ##' @param subset Character vector giving the subset names
@@ -64,15 +64,15 @@ setMethod("getSet", signature = (object="Venn"), function(object, subset = NULL,
         min = 0, wide = FALSE){
     res <- result(object, wide = TRUE)
     dd <- object@result
-    rhs <- res%>%filter_(~SharedSets >= min)
+    rhs <- res%>%filter(SharedSets >= min)
     if(is.null(subset)){
         subset <- names(detail(object))
     }
-    lhs <- dd%>%filter_(~Subset %in% subset)
+    lhs <- dd%>%filter(Subset %in% subset)
     if(isTRUE(wide)){
-        out <- rhs%>%filter_(~Detail %in% lhs$Detail)
+        out <- rhs%>%filter(Detail %in% lhs$Detail)
     }else{
-        out <- lhs%>%filter_(~Detail %in% rhs$Detail)
+        out <- lhs%>%filter(Detail %in% rhs$Detail)
     }
     return(out)
 })

@@ -1,29 +1,53 @@
+##' @title Return the first or last parts of a Venn object
+##' @description Methods to extract the first or last parts of a Venn object's result slot.
 ##' @importFrom utils head
 ##' @method head Venn
 ##' @param x Venn object
 ##' @param n number of rows to display
 ##' @param ... other arguments ignored (for compatibility with generic)
+##' @return A data.frame with the first n rows
 ##' @export
 head.Venn <- function(x, n = 6L, ...){
     head(x@result, n, ...)
 }
+
+##' @rdname head.Venn
 ##' @importFrom utils tail
 ##' @method tail Venn
+##' @return A data.frame with the last n rows
 ##' @export
 tail.Venn <- function(x, n = 6L, ...){
     tail(x@result, n, ...)
 }
+
+##' @title Get dimensions of a Venn object
+##' @description Returns the dimensions of the result slot in a Venn object.
 ##' @method dim Venn
+##' @param x Venn object
+##' @return Integer vector of length 2 (rows, columns)
 ##' @export
 dim.Venn <- function(x) {
     dim(x@result)
 }
+
+##' @title Subset a Venn object
+##' @description Extract elements from the result slot of a Venn object using bracket notation.
 ##' @method [ Venn
+##' @param x Venn object
+##' @param i Row indices
+##' @param j Column indices
+##' @return Subset of the result data.frame
 ##' @export
 `[.Venn` <- function(x, i, j) {
     x@result[i, j]
 }
+
+##' @title Extract column from a Venn object
+##' @description Extract a column from the result slot of a Venn object using $ notation.
 ##' @method $ Venn
+##' @param x Venn object
+##' @param name Column name to extract
+##' @return Vector containing the specified column
 ##' @export
 `$.Venn` <- function(x, name) {
     x@result[, name]
@@ -131,7 +155,7 @@ make.subset  <- function(x, sep = "_"){
 }
 ##' @title Give first colname as RowNxyz
 ##' @importFrom magrittr %>%
-##' @importFrom dplyr select_
+##' @importFrom dplyr select
 ##' @importFrom dplyr everything
 ##' @param x data frame
 ##' @return return data frame with the first colnames change to "RowNxyz"
@@ -141,7 +165,7 @@ make.subset  <- function(x, sep = "_"){
     }else{
         colnames(x)[which(grepl("RowNxyz", colnames(x)))] <- "RowNxyz"
     }
-    return(x%>%select_("RowNxyz", 'everything()'))
+    return(x%>%select(RowNxyz, everything()))
 }
 
 .pasten <- function(x, name, sep = "_"){
@@ -276,15 +300,17 @@ setMethod("rowjoin", signature(x = "data.frame", y = "data.frame"),
 ##' @description Setcolor will provide a list of color vectors based on
 ##' the number used as an input.
 ##' @importFrom grDevices colors
-##' @param x Number of color
+##' @param n Number of colors needed
+##' @param palette Type of palette: "default", "categorical", "sequential", or "diverging"
 ##' @return color vector
 ##' @examples
 ##' mycol <- setcolor(10)
 ##' mycol
 ##' @export
 ##' @author Kai Guo
-setcolor<-function(x){
-    mycolor =c("#A6CEE3", "#1F78B4", "#B2DF8A", "#33A02C", "#FB9A99", "#E31A1C",
+setcolor <- function(n, palette = "default") {
+  if (palette == "default") {
+    mycolor <- c("#A6CEE3", "#1F78B4", "#B2DF8A", "#33A02C", "#FB9A99", "#E31A1C",
             "#1B9E77", "brown", "#7570B3", "#E7298A", "#7FC97F", "#A6761D",
             "#BEAED4", "#FDC086", "chartreuse1", "cyan3", "purple","pink4",
             "cyan", "royalblue", "violet", "springgreen2", "gold3",
@@ -298,11 +324,47 @@ setcolor<-function(x){
             "#00AFBB", "#FC4E07", "#9999FF", "#FF9326",
             "#984EA3", "#F781BF", "#B3B3B3",
             "#CCCCCC", "#666666", "#01665E", "#542788")
-    if(x < length(mycolor)){
-        res <- mycolor[seq_len(x)]
+    if(n <= length(mycolor)){
+        res <- mycolor[seq_len(n)]
     }else{
-        res <- c(mycolor, sample(colors(), x-length(mycolor), replace = FALSE))
+        res <- c(mycolor, sample(colors(), n-length(mycolor), replace = FALSE))
     }
     return(res)
+  } else if (palette == "categorical") {
+    categorical_colors <- c(
+      "#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00", "#FFFF33",
+      "#A65628", "#F781BF", "#999999", "#66C2A5", "#FC8D62", "#8DA0CB",
+      "#E78AC3", "#A6D854", "#FFD92F", "#E5C494", "#B3B3B3", "#8DD3C7",
+      "#FFFFB3", "#BEBADA", "#FB8072", "#80B1D3", "#FDB462", "#B3DE69",
+      "#FCCDE5", "#D9D9D9", "#BC80BD", "#CCEBC5", "#FFED6F"
+    )
+    if (n <= length(categorical_colors)) {
+      return(categorical_colors[1:n])
+    } else {
+      return(c(categorical_colors, sample(colors(), n - length(categorical_colors), replace = FALSE)))
+    }
+  } else if (palette == "sequential") {
+    sequential_blues <- c(
+      "#F7FBFF", "#DEEBF7", "#C6DBEF", "#9ECAE1", "#6BAED6",
+      "#4292C6", "#2171B5", "#08519C", "#08306B"
+    )
+    if (n <= length(sequential_blues)) {
+      return(sequential_blues[1:n])
+    } else {
+      return(rep(sequential_blues, length.out = n))
+    }
+  } else if (palette == "diverging") {
+    diverging_colors <- c(
+      "#67001F", "#B2182B", "#D6604D", "#F4A582", "#FDDBC7",
+      "#F7F7F7", "#D1E5F0", "#92C5DE", "#4393C3", "#2166AC", "#053061"
+    )
+    if (n <= length(diverging_colors)) {
+      return(diverging_colors[1:n])
+    } else {
+      return(rep(diverging_colors, length.out = n))
+    }
+  } else {
+    stop("Unknown palette: ", palette)
+  }
 }
 

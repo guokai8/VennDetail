@@ -849,7 +849,6 @@ upset_plot <- function(data_list,
 #' @title Draw method for upset_grob objects
 #' @description Internal method to draw upset_grob using grid viewports
 #' @param x An upset_grob object
-#' @param recording Logical for recording
 #' @return Draws the upset plot
 #' @export
 #' @importFrom grid grid.draw pushViewport popViewport viewport grid.layout gTree gList makeContent

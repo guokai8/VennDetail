@@ -2,6 +2,7 @@
 % Please edit documentation in R/AllGenerics.R, R/dplot.R
 \name{dplot}
 \alias{dplot}
+\alias{dplot,Venn-method}
 \title{Create a bar plot of subset counts}
 \usage{
 dplot(

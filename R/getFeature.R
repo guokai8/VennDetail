@@ -1,13 +1,14 @@
-##' @name getFeature Venn
+##' @name getFeature
 ##' @title getFeature provides a way to combine list of user supplied data
 ##' frames with Venn object
 ##' @description GetFeature allows users to extract subsets from venn object
 ##' into a table format along with accompanying information from the data frames
 ##' provided in the rlist argument
 ##' @rdname getFeature
+##' @aliases getFeature,Venn-method
 ##' @return data.frame with subsets information and details from the user
 ##' supplied data frame
-##' @importFrom dplyr filter_
+##' @importFrom dplyr filter
 ##' @importFrom dplyr left_join
 ##' @importFrom dplyr full_join
 ##' @importFrom dplyr right_join
@@ -45,10 +46,10 @@ setMethod("getFeature", signature = (object="Venn"), function(object, subset,
     if(missing(subset)){
         subset <- unique(dd$Subset)
     }
-    lhs <- dd%>%filter_(~Subset %in% subset)
+    lhs <- dd%>%filter(Subset %in% subset)
     lhs$Detail <- as.character(lhs$Detail)
     if(isTRUE(wide)){
-        lhs <- wd %>% filter_(~Detail %in% lhs$Detail)
+        lhs <- wd %>% filter(Detail %in% lhs$Detail)
     }
     if(isFALSE(userowname)){
         if(is.null(gind)){

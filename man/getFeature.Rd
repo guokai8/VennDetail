@@ -2,7 +2,7 @@
 % Please edit documentation in R/AllGenerics.R, R/getFeature.R
 \name{getFeature}
 \alias{getFeature}
-\alias{getFeature Venn}
+\alias{getFeature,Venn-method}
 \title{Extract feature data for specific subsets}
 \usage{
 getFeature(

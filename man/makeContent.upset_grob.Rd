@@ -8,8 +8,6 @@
 }
 \arguments{
 \item{x}{An upset_grob object}
-
-\item{recording}{Logical for recording}
 }
 \value{
 Draws the upset plot

@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{as.data.frame.Venn}
 \alias{as.data.frame.Venn}
-\title{Convert a Venn object to a data frame}
+\title{Utility functions for VennDetail package}
 \usage{
 \method{as.data.frame}{Venn}(x, ...)
 }
@@ -15,6 +15,8 @@
 A data frame with subset information
 }
 \description{
+Internal utility functions for the VennDetail package
+
 Converts a Venn object to a data frame for easier manipulation
 }
 \examples{
