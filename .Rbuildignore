@@ -1,2 +1,9 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^doc$
+^Meta$
+^\.claude$
+^_config\.yml$
+^venn\.png$
+^CLAUDE\.md$
+^\.DS_Store$
