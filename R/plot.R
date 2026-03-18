@@ -388,6 +388,12 @@ summary.Venn <- function(object, ...) {
 #' @importFrom methods show
 #' @exportMethod show
 #' @author Kai Guo
+#' @examples
+#' A <- sample(1:100, 40, replace = FALSE)
+#' B <- sample(1:100, 60, replace = FALSE)
+#' C <- sample(1:100, 40, replace = FALSE)
+#' res <- venndetail(list(A = A, B = B, C = C))
+#' res
 setMethod("show", signature = (object="Venn"), function(object) {
   cat("=== Venn Diagram Details ===\n")
   cat("Input groups:", paste(object@GroupNames, collapse = ", "), "\n")

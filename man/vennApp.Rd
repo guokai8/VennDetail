@@ -20,7 +20,7 @@ A Shiny app object (invisibly)
 Creates a Shiny app for interactive exploration of Venn diagrams
 }
 \examples{
-\dontrun{
+\donttest{
 # Create a Venn object
 A <- sample(1:100, 40, replace = FALSE)
 B <- sample(1:100, 60, replace = FALSE)

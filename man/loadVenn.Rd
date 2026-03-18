@@ -16,13 +16,12 @@ A Venn object
 Loads a Venn object from an RDS file
 }
 \examples{
-\dontrun{
-# Load a saved Venn object
-res <- loadVenn("my_venn.rds")
-
-# Plot the loaded object
-plot(res)
-}
+A <- sample(1:100, 40, replace = FALSE)
+B <- sample(1:100, 60, replace = FALSE)
+res <- venndetail(list(A = A, B = B))
+tmp <- tempfile(fileext = ".rds")
+saveVenn(res, tmp)
+res2 <- loadVenn(tmp)
 }
 \author{
 Kai Guo

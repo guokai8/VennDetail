@@ -39,15 +39,11 @@ A new Venn object
 Constructor function for creating Venn objects with validation
 }
 \examples{
-\dontrun{
 A <- sample(1:100, 40, replace = FALSE)
 B <- sample(1:100, 60, replace = FALSE)
-raw <- c(A = 40, B = 60)
-groups <- c("A", "B")
-# Create a new Venn object manually (normally done by venndetail function)
-venn_obj <- newVenn(input = list(A = A, B = B), raw = raw,
-                    GroupNames = groups, ...)
-}
+# Normally use venndetail() instead of newVenn() directly
+res <- venndetail(list(A = A, B = B))
+# newVenn is used internally
 }
 \author{
 Kai Guo

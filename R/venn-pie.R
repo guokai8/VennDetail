@@ -272,6 +272,14 @@ setMethod("vennpie", signature = (object="Venn"), function(object,
 #' @importFrom plotly plot_ly layout add_annotations
 #' @author Kai Guo
 #' @export
+#' @examples
+#' \donttest{
+#' A <- sample(1:100, 40, replace = FALSE)
+#' B <- sample(1:100, 60, replace = FALSE)
+#' C <- sample(1:100, 40, replace = FALSE)
+#' res <- venndetail(list(A = A, B = B, C = C))
+#' p <- create_interactive_vennpie(res)
+#' }
 create_interactive_vennpie <- function(object, subset = NULL, any = NULL,
                                        color = NULL, revcolor = "lightgrey",
                                        title = NULL) {

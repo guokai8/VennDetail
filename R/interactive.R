@@ -16,7 +16,7 @@
 #' @importFrom htmlwidgets saveWidget
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Create a Venn object
 #' A <- sample(1:100, 40, replace = FALSE)
 #' B <- sample(1:100, 60, replace = FALSE)

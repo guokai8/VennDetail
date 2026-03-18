@@ -7,3 +7,5 @@
 ^venn\.png$
 ^CLAUDE\.md$
 ^\.DS_Store$
+VennDetail.BiocCheck
+VennDetail.Rcheck/

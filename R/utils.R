@@ -225,15 +225,12 @@ dim.Venn <- function(x) {
 #' @author Kai Guo
 #' @export
 #' @examples
-#' \dontrun{
-#' # Create a Venn object
 #' A <- sample(1:100, 40, replace = FALSE)
 #' B <- sample(1:100, 60, replace = FALSE)
 #' res <- venndetail(list(A = A, B = B))
-#'
-#' # Save to a file
-#' saveVenn(res, "my_venn.rds")
-#' }
+#' tmp <- tempfile(fileext = ".rds")
+#' saveVenn(res, tmp)
+#' file.exists(tmp)
 saveVenn <- function(object, file) {
   # Validate input
   if (!is(object, "Venn")) {
@@ -254,13 +251,12 @@ saveVenn <- function(object, file) {
 #' @author Kai Guo
 #' @export
 #' @examples
-#' \dontrun{
-#' # Load a saved Venn object
-#' res <- loadVenn("my_venn.rds")
-#'
-#' # Plot the loaded object
-#' plot(res)
-#' }
+#' A <- sample(1:100, 40, replace = FALSE)
+#' B <- sample(1:100, 60, replace = FALSE)
+#' res <- venndetail(list(A = A, B = B))
+#' tmp <- tempfile(fileext = ".rds")
+#' saveVenn(res, tmp)
+#' res2 <- loadVenn(tmp)
 loadVenn <- function(file) {
   # Load the object
   object <- readRDS(file)

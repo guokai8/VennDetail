@@ -143,6 +143,12 @@ setGeneric("getFeature", function(object, subset, rlist, userowname = TRUE,
 #' @return A ggplot2 or plotly object
 #' @author Kai Guo
 #' @export
+#' @examples
+#' A <- sample(1:100, 40, replace = FALSE)
+#' B <- sample(1:100, 60, replace = FALSE)
+#' C <- sample(1:100, 40, replace = FALSE)
+#' res <- venndetail(list(A = A, B = B, C = C))
+#' vennpie(res)
 setGeneric("vennpie", function(object, subset = NULL, top = 31,
                                min = 0, color = NULL, revcolor = "lightgrey",
                                any = NULL, show.number = TRUE, show.x = TRUE,
@@ -203,6 +209,12 @@ setGeneric("getSet", function(object, subset = NULL, min = 0, wide = FALSE)
 #' @return A ggplot2 or plotly object
 #' @author Kai Guo
 #' @export
+#' @examples
+#' A <- sample(1:100, 40, replace = FALSE)
+#' B <- sample(1:100, 60, replace = FALSE)
+#' C <- sample(1:100, 40, replace = FALSE)
+#' res <- venndetail(list(A = A, B = B, C = C))
+#' vennDiagram(res)
 setGeneric("vennDiagram", function(object,
                                    fill = NULL,
                                    alpha = 0.5,

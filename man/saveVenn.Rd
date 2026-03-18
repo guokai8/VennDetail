@@ -18,15 +18,12 @@ The file name (invisibly)
 Saves a Venn object to an RDS file for later use
 }
 \examples{
-\dontrun{
-# Create a Venn object
 A <- sample(1:100, 40, replace = FALSE)
 B <- sample(1:100, 60, replace = FALSE)
 res <- venndetail(list(A = A, B = B))
-
-# Save to a file
-saveVenn(res, "my_venn.rds")
-}
+tmp <- tempfile(fileext = ".rds")
+saveVenn(res, tmp)
+file.exists(tmp)
 }
 \author{
 Kai Guo

@@ -14,7 +14,7 @@
 #' @exportClass Venn
 #' @author Kai Guo
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' A <- sample(1:100, 40, replace = FALSE)
 #' B <- sample(1:100, 60, replace = FALSE)
 #' C <- sample(1:100, 40, replace = FALSE)
@@ -76,15 +76,11 @@ setClass("Venn",
 #' @author Kai Guo
 #' @export
 #' @examples
-#' \dontrun{
 #' A <- sample(1:100, 40, replace = FALSE)
 #' B <- sample(1:100, 60, replace = FALSE)
-#' raw <- c(A = 40, B = 60)
-#' groups <- c("A", "B")
-#' # Create a new Venn object manually (normally done by venndetail function)
-#' venn_obj <- newVenn(input = list(A = A, B = B), raw = raw,
-#'                     GroupNames = groups, ...)
-#' }
+#' # Normally use venndetail() instead of newVenn() directly
+#' res <- venndetail(list(A = A, B = B))
+#' # newVenn is used internally
 newVenn <- function(input, raw, sep = "_", GroupNames, result, detail, wide, metadata = list()) {
   obj <- new("Venn",
              input = input,

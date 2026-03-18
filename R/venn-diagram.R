@@ -141,7 +141,7 @@ setMethod("vennDiagram", signature("Venn"), function(object,
   overlap <- setlist
   for (i in 1:length(setlist)) { # i is not used in the loop; it is just a counter
     overlap <- lapply(setlist, function(x) lapply(overlap, function(y) x[x %in% y])) # find overlap between everything vs. everything
-    overlap <- unlist(overlap, recursive = F)
+    overlap <- unlist(overlap, recursive = FALSE)
     betterNames <- sapply(names(overlap), function(x) paste(sort(unique(unlist(strsplit(x, "\\.")))), collapse = ".")) # a list of re-sorted item names (so that redundant comparisons have the same name, e.g. a.b & b.a become a.b & a.b)
     names(overlap) <- betterNames
     overlap <- overlap[!duplicated(names(overlap))] # remove redundant comparisons
@@ -150,7 +150,7 @@ setMethod("vennDiagram", signature("Venn"), function(object,
   ##
   contents <- sapply(overlap, function(x) paste(x, collapse = ","))
   sizes <- sapply(overlap, length)
-  groups <- unlist(lapply(betterNames, function(x) strsplit(x, "\\.")), recursive = F)
+  groups <- unlist(lapply(betterNames, function(x) strsplit(x, "\\.")), recursive = FALSE)
 
   overlap2 <- overlap
   for (i in length(setlist):1) {
