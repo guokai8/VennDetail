@@ -77,6 +77,14 @@ A ggplot2 or plotly object
 \description{
 Creates a traditional Venn diagram for 2-5 sets
 }
+\examples{
+A <- sample(1:100, 40, replace = FALSE)
+B <- sample(1:100, 60, replace = FALSE)
+C <- sample(1:100, 40, replace = FALSE)
+res <- venndetail(list(A = A, B = B, C = C))
+vennDiagram(res)
+vennDiagram(res, fill = c("red", "blue", "green"), alpha = 0.3)
+}
 \author{
 Kai Guo
 }

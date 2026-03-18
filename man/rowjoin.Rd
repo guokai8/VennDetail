@@ -10,24 +10,19 @@ rowjoin(x, y, fun = "full_join", by = NULL)
 \S4method{rowjoin}{data.frame,data.frame}(x, y, fun = "full_join")
 }
 \arguments{
-\item{x}{data.frame x}
+\item{x}{First data.frame}
 
-\item{y}{data.frame y}
+\item{y}{Second data.frame}
 
-\item{fun}{Different join format: left_join, full_join, right_join
-(default:full_join)}
+\item{fun}{Join function to use: "full_join", "left_join", "right_join", etc.}
 
 \item{by}{Optional vector of column names to join by}
 }
 \value{
 A joined data.frame
-
-dataframe with join results
 }
 \description{
 Joins two data.frames using various join methods
-
-join two dataframes by rownames
 }
 \examples{
 library(dplyr)
@@ -41,14 +36,6 @@ rownames(dB) <- B
 result <- rowjoin(dA, dB)
 # Left join by row names
 result <- rowjoin(dA, dB, fun = "left_join")
-library(dplyr)
-A <- sample(1:100, 40, replace = FALSE)
-B <- sample(1:100, 60, replace = FALSE)
-dA <- data.frame(A = A, "FC" = rnorm(40))
-dB <- data.frame(B = B, "FC" = rnorm(60))
-rownames(dA) <- A
-rownames(dB) <- B
-rowjoin(dA, dB)
 }
 \author{
 Kai Guo

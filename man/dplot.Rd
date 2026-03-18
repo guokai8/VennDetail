@@ -2,6 +2,7 @@
 % Please edit documentation in R/AllGenerics.R, R/dplot.R
 \name{dplot}
 \alias{dplot}
+\alias{dplot,Venn-method}
 \title{Create a bar plot of subset counts}
 \usage{
 dplot(
@@ -15,14 +16,23 @@ dplot(
   ylabel = NULL
 )
 
-\S4method{dplot}{Venn}(object, order = FALSE, textsize = 5)
+\S4method{dplot}{Venn}(
+  object,
+  order = FALSE,
+  textsize = 5,
+  color = NULL,
+  theme = ggplot2::theme_light(),
+  title = NULL,
+  xlabel = NULL,
+  ylabel = NULL
+)
 }
 \arguments{
-\item{object}{Venn object}
+\item{object}{A Venn object}
 
-\item{order}{Boolean indicating whether to sort the bar (default: FALSE).}
+\item{order}{Logical: should bars be ordered by count? Default: FALSE}
 
-\item{textsize}{Numeric vector giving the text size above the bar.}
+\item{textsize}{Numeric: size of text labels above bars. Default: 5}
 
 \item{color}{Optional vector of colors for the bars}
 
@@ -41,11 +51,6 @@ A ggplot2 object
 Creates a bar plot showing counts for each subset
 }
 \examples{
-A <- sample(1:100, 40, replace = FALSE)
-B <- sample(1:100, 60, replace = FALSE)
-C <- sample(1:100, 40, replace = FALSE)
-res <- venndetail(list(A = A, B = B, C = C))
-dplot(res, order = TRUE, textsize = 3)
 A <- sample(1:100, 40, replace = FALSE)
 B <- sample(1:100, 60, replace = FALSE)
 C <- sample(1:100, 40, replace = FALSE)

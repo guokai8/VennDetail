@@ -2,7 +2,7 @@
 % Please edit documentation in R/AllGenerics.R, R/getFeature.R
 \name{getFeature}
 \alias{getFeature}
-\alias{getFeature Venn}
+\alias{getFeature,Venn-method}
 \title{Extract feature data for specific subsets}
 \usage{
 getFeature(
@@ -26,38 +26,25 @@ getFeature(
 )
 }
 \arguments{
-\item{object}{Venn object}
+\item{object}{A Venn object}
 
-\item{subset}{Character vector giving the names of the user-defined
-subset to extract}
+\item{subset}{Character vector of subset names to extract}
 
-\item{rlist}{List of user-supplied data frames to combine with
-venndetail result}
+\item{rlist}{List of user-supplied data frames}
 
-\item{userowname}{Boolean indicating whether to use row names to join
-data frames or not (default: TRUE)}
+\item{userowname}{Logical: use row names for joining? Default: TRUE}
 
-\item{gind}{Column name or index of each user-supplied data.frame to
-use to join data frames(valid only when userowname=FALSE)}
+\item{gind}{Column names or indices to use for joining if userowname=FALSE}
 
-\item{sep}{Character string used to separate the terms when concatenating
-group names into
-new separation character for new column names in the resulting data frame}
+\item{sep}{Character used to separate group names in column names}
 
-\item{wide}{Boolean indicating whether to use wide format(default:FALSE)}
+\item{wide}{Logical: return results in wide format? Default: FALSE}
 }
 \value{
 A data.frame combining subset information with user data
-
-data.frame with subsets information and details from the user
-supplied data frame
 }
 \description{
 Combines subset information with user-supplied data frames
-
-GetFeature allows users to extract subsets from venn object
-into a table format along with accompanying information from the data frames
-provided in the rlist argument
 }
 \examples{
 A <- sample(1:100, 40, replace = FALSE)
@@ -71,15 +58,6 @@ features <- getFeature(res, subset = "Shared",
                      rlist = list(dA, dB, dC),
                      userowname = FALSE,
                      gind = rep(1, 3))
-A <- sample(1:100, 40, replace = FALSE)
-B <- sample(1:100, 60, replace = FALSE)
-C <- sample(1:100, 40, replace = FALSE)
-dA <- data.frame(A = A, "FC" = rnorm(40))
-dB <- data.frame(B = B, "FC" = rnorm(60))
-dC <- data.frame(C = C, "FC" = rnorm(40))
-res <- venndetail(list(A = A, B = B, C = C))
-rhs <- getFeature(res, subset = "Shared", rlist = list(dA, dB, dC),
-   userowname= FALSE, gind = rep(1, 3))
 }
 \author{
 Kai Guo

@@ -48,6 +48,8 @@ setGeneric("detail", function(object)
 #' @param ylabel Optional y-axis label
 #' @return A ggplot2 object
 #' @author Kai Guo
+#' @importFrom ggplot2 ggplot aes geom_bar element_text theme theme_light geom_text ylim ggtitle xlab ylab labs scale_fill_manual
+#' @importFrom rlang .data
 #' @export
 #' @examples
 #' A <- sample(1:100, 40, replace = FALSE)
@@ -82,6 +84,7 @@ setGeneric("dplot", function(object, order = FALSE, textsize = 5,
 #' result <- rowjoin(dA, dB)
 #' # Left join by row names
 #' result <- rowjoin(dA, dB, fun = "left_join")
+#' @importFrom dplyr full_join left_join right_join anti_join semi_join
 setGeneric("rowjoin", function(x, y, fun = "full_join", by = NULL)
   standardGeneric("rowjoin")
 )
@@ -97,6 +100,10 @@ setGeneric("rowjoin", function(x, y, fun = "full_join", by = NULL)
 #' @param wide Logical: return results in wide format? Default: FALSE
 #' @return A data.frame combining subset information with user data
 #' @author Kai Guo
+#' @importFrom dplyr filter left_join full_join right_join
+#' @importFrom rlang .data
+#' @importFrom tibble rownames_to_column
+#' @importFrom magrittr %>%
 #' @export
 #' @examples
 #' A <- sample(1:100, 40, replace = FALSE)
@@ -153,6 +160,8 @@ setGeneric("vennpie", function(object, subset = NULL, top = 31,
 #' @param wide Logical: return results in wide format? Default: FALSE
 #' @return A data.frame with elements from the specified subsets
 #' @author Kai Guo
+#' @importFrom dplyr filter
+#' @importFrom magrittr %>%
 #' @export
 #' @examples
 #' A <- sample(1:100, 40, replace = FALSE)
@@ -277,13 +286,12 @@ setGeneric("vennDiagram", function(object,
 #'   "Set D" = c(10:40, 80:120)
 #' )
 #' ven <- venndetail(sets)
-#' upsetPlot(ven, bar_offset = -0.02)
+#' upsetPlot(ven)
 #'
 #' # With highlighting
 #' upsetPlot(ven,
 #'           highlight_intersections = c(1, 2),
-#'           highlight_color = "darkorange",
-#'           bar_offset = -0.02)
+#'           highlight_color = "darkorange")
 #'
 #' @export
 setGeneric("upsetPlot", function(object, nintersects = 40,

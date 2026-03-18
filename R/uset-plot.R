@@ -47,10 +47,12 @@
 #' @param return_data Whether to return the data along with the plot (default: FALSE)
 #' @return A ggplot object or a combined grid layout
 #' @import ggplot2
-#' @importFrom dplyr filter select group_by_all summarise arrange pull if_else
+#' @importFrom dplyr filter select across summarise arrange pull if_else group_by left_join
 #' @importFrom tidyr pivot_longer
+#' @importFrom tidyselect everything all_of
 #' @importFrom stats setNames
-#' @importFrom patchwork plot_layout plot_annotation plot_spacer
+#' @importFrom grid gTree gList viewport
+#' @importFrom gridExtra arrangeGrob
 #' @importFrom plotly ggplotly subplot layout
 #' @importFrom methods is slot
 #' @importFrom grDevices colorRampPalette
@@ -65,13 +67,12 @@
 #'   "Set D" = c(10:40, 80:120)
 #' )
 #' ven <- venndetail(sets)
-#' upsetPlot(ven, bar_offset = -0.02)
+#' upsetPlot(ven)
 #'
 #' # With highlighting
 #' upsetPlot(ven,
 #'           highlight_intersections = c(1, 2),
-#'           highlight_color = "darkorange",
-#'           bar_offset = -0.02)
+#'           highlight_color = "darkorange")
 #'
 setMethod("upsetPlot", signature("Venn"), function(object,
                                                    nintersects = 40,
@@ -171,12 +172,9 @@ setMethod("upsetPlot", signature("Venn"), function(object,
     return_data = TRUE  # Always return data for interactive mode support
   )
 
-  # Add title if specified
+  # Add title if specified (title is handled at the grid level for grob output)
   if (!is.null(title)) {
-    # If using patchwork, we need to add the title to the combined plot
-    if (requireNamespace("patchwork", quietly = TRUE)) {
-      result$plot <- result$plot + patchwork::plot_annotation(title = title)
-    }
+    result$title <- title
   }
 
   # Make interactive if requested
@@ -186,7 +184,7 @@ setMethod("upsetPlot", signature("Venn"), function(object,
       return(result$plot)
     }
 
-    # For upset plots, we need a different approach because patchwork doesn't convert well
+    # For upset plots, we need a different approach for interactive conversion
     # Create separate plotly objects for each component
     try({
       int_plot <- plotly::ggplotly(result$intersection_plot)
@@ -285,16 +283,18 @@ setMethod("upsetPlot", signature("Venn"), function(object,
 #' @param theme_params List of theme parameters for customization (default: list of defaults)
 #' @param return_data Whether to return the data along with the plot (default: FALSE)
 #'
-#' @return If return_data=FALSE, returns the patchwork plot object.
+#' @return If return_data=FALSE, returns the upset grob object.
 #'         If return_data=TRUE, returns a list containing the plot and component data.
 #'
 #' @importFrom magrittr %>%
 #' @import ggplot2
-#' @importFrom dplyr n desc group_by
-#' @importFrom dplyr filter select group_by_all summarise arrange pull if_else
+#' @importFrom dplyr n desc group_by left_join
+#' @importFrom dplyr filter select across summarise arrange pull if_else
 #' @importFrom tidyr pivot_longer
+#' @importFrom tidyselect everything all_of
 #' @importFrom stats setNames
-#' @importFrom patchwork plot_layout plot_annotation plot_spacer
+#' @importFrom grid gTree gList viewport
+#' @importFrom gridExtra arrangeGrob
 #' @importFrom plotly ggplotly
 #' @importFrom methods is slot
 #' @importFrom grDevices colorRampPalette
@@ -309,13 +309,12 @@ setMethod("upsetPlot", signature("Venn"), function(object,
 #'   "Set C" = c(20:50, 90:110),
 #'   "Set D" = c(10:40, 80:120)
 #' )
-#' upset_plot(sets, bar_offset = -0.02)
+#' upset_plot(sets)
 #'
 #' # With highlighting
 #' upset_plot(sets,
 #'           highlight_intersections = c(1, 2),
-#'           highlight_color = "darkorange",
-#'           bar_offset = -0.02)
+#'           highlight_color = "darkorange")
 #'
 #' # Custom colors
 #' set_colors <- c("Set A" = "blue", "Set B" = "green",
@@ -439,7 +438,7 @@ upset_plot <- function(data_list,
   # Generate all possible intersections by grouping and counting
   pattern_df <- membership_df %>%
     select(-element) %>%
-    group_by_all() %>%
+    group_by(across(everything())) %>%
     summarise(size = n(), .groups = "drop")
 
   # Filter out empty intersection (all zeros) unless explicitly requested
@@ -670,7 +669,7 @@ upset_plot <- function(data_list,
       geom_line(
         data = line_data,
         aes(x = x_pos, y = y_pos),
-        size = line_size,
+        linewidth = line_size,
         color = line_color
       )
   }
@@ -771,34 +770,100 @@ upset_plot <- function(data_list,
       )
   }
 
-  # Create an empty plot for the top-left corner
-  empty_plot <- plot_spacer()
+  # Build gtables for precise layout alignment
+  intersection_gtable <- ggplot_gtable(ggplot_build(intersection_plot))
+  matrix_gtable <- ggplot_gtable(ggplot_build(matrix_plot))
+  set_size_gtable <- ggplot_gtable(ggplot_build(set_size_plot))
 
-  # Use patchwork for layout management
-  # First create the top row
-  top_row <- empty_plot + intersection_plot +
-    plot_layout(widths = c(width_ratio+bar_offset/2, 1-width_ratio-bar_offset/2))
+  # Synchronize widths and heights between panels
+  intersection_gtable$widths <- matrix_gtable$widths
+  matrix_gtable$heights <- set_size_gtable$heights
 
-  # Then create the bottom row
-  bottom_row <- set_size_plot + matrix_plot +
-    plot_layout(widths = c(width_ratio, 1-width_ratio))
+  # Calculate layout dimensions
+  size_plot_height <- round((1 - height_ratio) * 100)
+  matrix_bottom <- 100
+  size_bar_right <- round(width_ratio * 100)
+  matrix_left <- size_bar_right + 1
+  matrix_right <- 100
 
-  # Combine the rows
-  combined_plot <- top_row / bottom_row +
-    plot_layout(heights = c(1-height_ratio, height_ratio))
+  vplayout <- function(x, y) {
+    viewport(layout.pos.row = x, layout.pos.col = y)
+  }
+
+  # Combine intersection and matrix plots vertically
+  main_and_matrix <- arrangeGrob(intersection_gtable, matrix_gtable,
+      heights = c(1 - height_ratio, height_ratio))
+
+  # Create a grob tree for the combined plot
+  make_upset_grob <- function() {
+    gTree(children = gList(),
+        intersection_gtable = intersection_gtable,
+        matrix_gtable = matrix_gtable,
+        set_size_gtable = set_size_gtable,
+        main_and_matrix = main_and_matrix,
+        size_plot_height = size_plot_height,
+        size_bar_right = size_bar_right,
+        matrix_left = matrix_left,
+        matrix_right = matrix_right,
+        matrix_bottom = matrix_bottom,
+        height_ratio = height_ratio,
+        cl = "upset_grob")
+  }
+  combined_grob <- make_upset_grob()
 
   # Return just the plot or the full data based on return_data parameter
   if (return_data) {
     return(list(
-      plot = combined_plot,
+      plot = combined_grob,
       intersection_plot = intersection_plot,
       matrix_plot = matrix_plot,
       set_size_plot = set_size_plot,
+      intersection_gtable = intersection_gtable,
+      matrix_gtable = matrix_gtable,
+      set_size_gtable = set_size_gtable,
       intersection_data = pattern_df,
       set_sizes = set_size_df,
       set_colors = sets_bar_colors
     ))
   } else {
-    return(combined_plot)
+    return(combined_grob)
   }
+}
+
+#' @importFrom grid grid.newpage pushViewport viewport grid.draw popViewport grid.layout unit
+#' @export
+print.upset_grob <- function(x, ...) {
+  grid.newpage()
+
+  main_layout <- grid.layout(
+    nrow = 2, ncol = 2,
+    widths = unit(c(x$size_bar_right, 100 - x$size_bar_right), "null"),
+    heights = unit(c(1 - x$height_ratio, x$height_ratio), "null")
+  )
+
+  pushViewport(viewport(layout = main_layout))
+
+  # Top-right: intersection plot
+  pushViewport(viewport(layout.pos.row = 1, layout.pos.col = 2))
+  grid.draw(x$intersection_gtable)
+  popViewport()
+
+  # Bottom-left: set size plot
+  pushViewport(viewport(layout.pos.row = 2, layout.pos.col = 1))
+  grid.draw(x$set_size_gtable)
+  popViewport()
+
+  # Bottom-right: matrix plot
+  pushViewport(viewport(layout.pos.row = 2, layout.pos.col = 2))
+  grid.draw(x$matrix_gtable)
+  popViewport()
+
+  popViewport()
+  invisible(x)
+}
+
+#' @importFrom grid grid.newpage grid.draw
+#' @export
+plot.upset_grob <- function(x, ...) {
+  print(x, ...)
 }

@@ -94,8 +94,7 @@
 \arguments{
 \item{x}{A Venn object}
 
-\item{type}{Type of plot: "venn" (traditional Venn diagram), "vennpie" (pie-chart style),
-"upset" (UpSet plot), or "bar" (bar plot of subset sizes)}
+\item{type}{Type of plot: "venn", "vennpie", "upset", or "bar"}
 
 \item{title}{Optional plot title}
 
@@ -109,6 +108,154 @@
 
 \item{dpi}{Resolution in dots per inch (default: 300)}
 
+\item{fill}{Colors for filling the circles (venn)}
+
+\item{alpha}{Transparency level (0-1), default: 0.5 (venn)}
+
+\item{labels}{Logical: show set labels? Default: TRUE (venn)}
+
+\item{counts}{Logical: show counts? Default: TRUE (venn)}
+
+\item{showNumbers}{Logical: show counts/percentages? Default: TRUE (venn)}
+
+\item{numberSize}{Size of count labels, default: 4 (venn)}
+
+\item{numberColor}{Color of count labels, default: "black" (venn)}
+
+\item{labelSize}{Size of set labels, default: 4 (venn)}
+
+\item{labelColor}{Color of set labels, default: "black" (venn)}
+
+\item{borderCol}{Logical: color borders? Default: FALSE (venn)}
+
+\item{fillCol}{Logical: fill circles? Default: TRUE (venn)}
+
+\item{fixedCoords}{Logical: fixed coordinates? Default: TRUE (venn)}
+
+\item{xlim}{X axis limits, default: c(0, 1) (venn)}
+
+\item{ylim}{Y axis limits, default: c(0, 1) (venn)}
+
+\item{show_percentages}{Logical: show percentages? Default: TRUE (venn)}
+
+\item{show_unique_only}{Logical: unique only? Default: FALSE (venn)}
+
+\item{scaled}{Logical: scale by size? Default: FALSE (venn)}
+
+\item{subset}{Character vector of subset names (vennpie)}
+
+\item{top}{Max subsets to display, default: 31 (vennpie)}
+
+\item{min}{Min sets an element must be in, default: 0 (vennpie/upset)}
+
+\item{color}{Optional colors vector (vennpie/bar)}
+
+\item{revcolor}{Color for non-highlighted subsets, default: "lightgrey" (vennpie)}
+
+\item{any}{Highlight subsets shared by exactly this many sets (vennpie)}
+
+\item{show.number}{Logical: show counts in labels? Default: TRUE (vennpie)}
+
+\item{show.x}{Logical: show subset labels? Default: TRUE (vennpie)}
+
+\item{sep}{Separator for subset names, default: "_" (vennpie)}
+
+\item{log}{Logical: log scale? Default: FALSE (vennpie)}
+
+\item{base}{Base for log transformation (vennpie)}
+
+\item{percentage}{Logical: show percentages? Default: FALSE (vennpie)}
+
+\item{nintersects}{Max intersections to show, default: 40 (upset)}
+
+\item{min_size}{Min intersection size, default: 1 (upset)}
+
+\item{sets_bar_color}{Colors for set size bars (upset)}
+
+\item{main_bar_color}{Color for intersection bars, default: "steelblue" (upset)}
+
+\item{point_size}{Size of matrix points, default: 3 (upset)}
+
+\item{line_size}{Width of matrix lines, default: 1 (upset)}
+
+\item{show_numbers}{Logical: show counts on bars? Default: TRUE (upset)}
+
+\item{sort_intersections_by}{Sort by "freq", "degree", or "custom" (upset)}
+
+\item{sort_sets_by}{Sort sets by "size", "name", or "custom" (upset)}
+
+\item{sort_sets_decreasing}{Sort sets decreasing? Default: TRUE (upset)}
+
+\item{custom_sets_order}{Custom set order (upset)}
+
+\item{sort_intersections_decreasing}{Sort intersections decreasing? Default: TRUE (upset)}
+
+\item{custom_intersections_order}{Custom intersection order (upset)}
+
+\item{intersection_color}{Color for dots/lines, default: "black" (upset)}
+
+\item{highlight_intersections}{IDs to highlight (upset)}
+
+\item{highlight_color}{Highlight color, default: "darkorange" (upset)}
+
+\item{empty_point_size}{Size of empty points, default: 1.5 (upset)}
+
+\item{bar_width}{Width of bars, default: 0.7 (upset)}
+
+\item{text_angle}{Text label angle, default: 0 (upset)}
+
+\item{text_size}{Text size, default: 10 (upset)}
+
+\item{set_label_size}{Set size label size, default: 3 (upset)}
+
+\item{intersection_label_size}{Intersection label size, default: 3 (upset)}
+
+\item{point_outline_color}{Point outline color, default: "black" (upset)}
+
+\item{point_stroke}{Point outline width, default: 0.3 (upset)}
+
+\item{set_size_show_values}{Show set size values? Default: TRUE (upset)}
+
+\item{intersection_size_show_values}{Show intersection values? Default: TRUE (upset)}
+
+\item{show_empty_intersections}{Show empty intersections? Default: FALSE (upset)}
+
+\item{show_set_labels}{Show set labels? Default: TRUE (upset)}
+
+\item{plot_margin}{Plot margin in cm, default: 0.5 (upset)}
+
+\item{height_ratio}{Matrix to total height ratio, default: 0.7 (upset)}
+
+\item{width_ratio}{Set size to total width ratio, default: 0.3 (upset)}
+
+\item{bar_offset}{Horizontal bar offset, default: -0.01 (upset)}
+
+\item{set_text_size}{Set label size, default: 10 (upset)}
+
+\item{intersection_title}{Intersection plot title (upset)}
+
+\item{set_size_title}{Set size plot title (upset)}
+
+\item{matrix_point_shape}{Point shape, default: 21 (upset)}
+
+\item{number_color_threshold}{Color switch threshold, default: 0.75 (upset)}
+
+\item{number_colors}{Named color vector for bar labels (upset)}
+
+\item{theme_params}{List of theme parameters (upset)}
+
+\item{return_data}{Return data with plot? Default: FALSE (upset)}
+
+\item{order}{Logical: order bars by count? Default: FALSE (bar)}
+
+\item{textsize}{Text label size, default: 5 (bar)}
+
+\item{theme}{ggplot2 theme, default: theme_light() (bar)}
+
+\item{xlabel}{X-axis label (bar)}
+
+\item{ylabel}{Y-axis label (bar)}
+
 \item{...}{Additional arguments passed to the specific plotting function}
 }
 \value{
@@ -117,105 +264,6 @@ A ggplot2 or plotly object
 \description{
 Unified plotting function for Venn objects that supports multiple visualization types
 }
-\section{Parameters for Traditional Venn Diagram (type = "venn")}{
-
-\describe{
-  \item{fill}{Colors for filling the circles}
-  \item{alpha}{Transparency level for the circles (0-1), default: 0.5}
-  \item{labels}{Logical: show set labels? Default: TRUE}
-  \item{counts}{Logical: show counts? Default: TRUE}
-  \item{showNumbers}{Logical: whether to show counts and percentages in each region, default: TRUE}
-  \item{numberSize}{Size of the count labels, default: 4}
-  \item{numberColor}{Color of the count labels, default: "black"}
-  \item{labelSize}{Size of the set labels, default: 4}
-  \item{labelColor}{Color of the set labels, default: "black"}
-  \item{borderCol}{Logical: whether to color the borders of circles, default: FALSE}
-  \item{fillCol}{Logical: whether to fill circles with colors, default: TRUE}
-  \item{fixedCoords}{Logical: whether to use fixed coordinates, default: TRUE}
-  \item{xlim}{Vector with 2 numbers, x axis limits for the venn diagram, default: c(0, 1)}
-  \item{ylim}{Vector with 2 numbers, y axis limits for the venn diagram, default: c(0, 1)}
-  \item{show_percentages}{Logical: show percentages alongside counts? Default: TRUE}
-  \item{show_unique_only}{Logical: show counts only for unique elements? Default: FALSE}
-  \item{scaled}{Logical: scale circles by set size? Default: FALSE}
-}
-}
-
-\section{Parameters for Venn-Pie Plot (type = "vennpie")}{
-
-\describe{
-  \item{subset}{Character vector of subset names to highlight}
-  \item{top}{Maximum number of subsets to display, default: 31}
-  \item{min}{Minimum number of sets an element must be in, default: 0}
-  \item{color}{Optional vector of colors for the subsets}
-  \item{revcolor}{Color for non-highlighted subsets, default: "lightgrey"}
-  \item{any}{Highlight subsets shared by exactly this many sets}
-  \item{show.number}{Logical: show counts in labels? Default: TRUE}
-  \item{show.x}{Logical: show subset labels? Default: TRUE}
-  \item{sep}{Character separator for subset names, default: "_"}
-  \item{log}{Logical: use log scale for counts? Default: FALSE}
-  \item{base}{Base for log transformation if log=TRUE}
-  \item{percentage}{Logical: show percentages instead of counts? Default: FALSE}
-}
-}
-
-\section{Parameters for UpSet Plot (type = "upset")}{
-
-\describe{
-  \item{nintersects}{Maximum number of intersections to show, default: 40}
-  \item{min_size}{Minimum intersection size to include, default: 1}
-  \item{sets_bar_color}{Colors for the set size bars}
-  \item{main_bar_color}{Color for the intersection size bars, default: "steelblue"}
-  \item{point_size}{Size of points in the matrix, default: 3}
-  \item{line_size}{Width of lines in the matrix, default: 1}
-  \item{show_numbers}{Logical: show counts on bars? Default: TRUE}
-  \item{sort_intersections_by}{How to sort intersections: "freq" (default), "degree", or "custom"}
-  \item{sort_sets_by}{How to sort sets: "size" (default), "name", or "custom"}
-  \item{sort_sets_decreasing}{Whether to sort sets in decreasing order, default: TRUE}
-  \item{custom_sets_order}{Custom order for sets if sort_sets_by="custom"}
-  \item{sort_intersections_decreasing}{Whether to sort intersections in decreasing order, default: TRUE}
-  \item{custom_intersections_order}{Custom order for intersections if sort_intersections_by="custom"}
-  \item{intersection_color}{Color for intersection dots and lines, default: "black"}
-  \item{highlight_intersections}{Vector of intersection IDs to highlight}
-  \item{highlight_color}{Color for highlighted intersections, default: "darkorange"}
-  \item{empty_point_size}{Size of empty points in the matrix, default: 1.5}
-  \item{bar_width}{Width of bars (0-1 scale), default: 0.7}
-  \item{text_angle}{Angle for text labels, default: 0}
-  \item{text_size}{Size of text in the plot, default: 10}
-  \item{set_label_size}{Size of set size labels, default: 3}
-  \item{intersection_label_size}{Size of intersection size labels, default: 3}
-  \item{point_outline_color}{Color for the outline of points, default: "black"}
-  \item{point_stroke}{Width of point outline, default: 0.3}
-  \item{set_size_show_values}{Whether to show set size values, default: TRUE}
-  \item{intersection_size_show_values}{Whether to show intersection size values, default: TRUE}
-  \item{show_empty_intersections}{Whether to show empty intersections, default: FALSE}
-  \item{show_set_labels}{Whether to show set labels, default: TRUE}
-  \item{plot_margin}{Margin around the plots in cm, default: 0.5}
-  \item{height_ratio}{Ratio of matrix to total height, default: 0.7}
-  \item{width_ratio}{Ratio of set size to total width, default: 0.3}
-  \item{bar_offset}{Horizontal offset for top bars, default: -0.01}
-  \item{set_text_size}{Size of set labels, default: 10}
-  \item{intersection_title}{Title for the intersection size plot, default: "Intersection Size"}
-  \item{set_size_title}{Title for the set size plot, default: "Set Size"}
-  \item{matrix_point_shape}{Shape of the dots in the matrix (21=filled circle), default: 21}
-  \item{number_color_threshold}{Fraction of max value where number color switches, default: 0.75}
-  \item{number_colors}{Named vector with colors for labels on/off bars, default: c(on_bar="black", off_bar="black")}
-  \item{theme_params}{List of theme parameters for customization}
-  \item{return_data}{Whether to return the data along with the plot, default: FALSE}
-}
-}
-
-\section{Parameters for Bar Plot (type = "bar")}{
-
-\describe{
-  \item{order}{Logical: should bars be ordered by count? Default: FALSE}
-  \item{textsize}{Numeric: size of text labels above bars, default: 5}
-  \item{color}{Optional vector of colors for the bars}
-  \item{theme}{The ggplot2 theme to use, default: theme_light()}
-  \item{xlabel}{Optional x-axis label}
-  \item{ylabel}{Optional y-axis label}
-}
-}
-
 \examples{
 # Create a Venn object
 A <- sample(1:100, 40, replace = FALSE)

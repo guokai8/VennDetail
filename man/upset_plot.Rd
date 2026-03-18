@@ -136,7 +136,7 @@ upset_plot(
 \item{return_data}{Whether to return the data along with the plot (default: FALSE)}
 }
 \value{
-If return_data=FALSE, returns the patchwork plot object.
+If return_data=FALSE, returns the upset grob object.
         If return_data=TRUE, returns a list containing the plot and component data.
 }
 \description{
@@ -151,13 +151,12 @@ sets <- list(
   "Set C" = c(20:50, 90:110),
   "Set D" = c(10:40, 80:120)
 )
-upset_plot(sets, bar_offset = -0.02)
+upset_plot(sets)
 
 # With highlighting
 upset_plot(sets,
           highlight_intersections = c(1, 2),
-          highlight_color = "darkorange",
-          bar_offset = -0.02)
+          highlight_color = "darkorange")
 
 # Custom colors
 set_colors <- c("Set A" = "blue", "Set B" = "green",

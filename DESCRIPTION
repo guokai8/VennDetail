@@ -1,8 +1,8 @@
 Package: VennDetail
 Type: Package
 Title: Comprehensive Visualization and Analysis of Multi-Set Intersections
-Version: 1.26.0
-Date: 2025-07-01
+Version: 1.27.0
+Date: 2025-07-14
 Authors@R: c(
     person("Kai", "Guo", email = "guokai8@gmail.com", role = c("aut", "cre")),
     person("Brett", "McGregor", role = "aut")
@@ -22,9 +22,10 @@ Imports:
     DT,
     methods,
     ggplot2,
+    grid,
+    gridExtra,
     grDevices,
     magrittr, 
-    patchwork,
     plotly,
     purrr,
     rlang,
@@ -32,6 +33,7 @@ Imports:
     stats,
     tibble,
     tidyr,
+    tidyselect,
     htmlwidgets,
     utils
 Suggests:
@@ -45,7 +47,7 @@ VignetteBuilder: knitr
 URL: https://github.com/guokai8/VennDetail
 BugReports: https://github.com/guokai8/VennDetail/issues
 Roxygen: list(roclets = c("namespace", "rd"))
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 biocViews: DataRepresentation, GraphAndNetwork, Visualization, Software
 Packaged: 2024-10-30 03:22:05 UTC; biocbuild
 git_url: https://git.bioconductor.org/packages/VennDetail

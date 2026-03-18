@@ -4,3 +4,6 @@
 .Ruserdata
 /doc/
 /Meta/
+VennDetail.Rcheck/
+VennDetail.BiocCheck/
+*.tar.gz

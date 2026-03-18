@@ -153,13 +153,12 @@ sets <- list(
   "Set D" = c(10:40, 80:120)
 )
 ven <- venndetail(sets)
-upsetPlot(ven, bar_offset = -0.02)
+upsetPlot(ven)
 
 # With highlighting
 upsetPlot(ven,
           highlight_intersections = c(1, 2),
-          highlight_color = "darkorange",
-          bar_offset = -0.02)
+          highlight_color = "darkorange")
 
 }
 \author{

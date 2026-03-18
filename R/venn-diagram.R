@@ -32,6 +32,13 @@
 #' @importFrom methods is slot
 #' @author Kai Guo
 #' @export
+#' @examples
+#' A <- sample(1:100, 40, replace = FALSE)
+#' B <- sample(1:100, 60, replace = FALSE)
+#' C <- sample(1:100, 40, replace = FALSE)
+#' res <- venndetail(list(A = A, B = B, C = C))
+#' vennDiagram(res)
+#' vennDiagram(res, fill = c("red", "blue", "green"), alpha = 0.3)
 setMethod("vennDiagram", signature("Venn"), function(object,
                                                      fill = NULL,
                                                      alpha = 0.5,

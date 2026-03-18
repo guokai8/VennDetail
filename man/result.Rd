@@ -19,9 +19,6 @@ A data.frame containing subset information
 }
 \description{
 Retrieves results from a Venn object in long or wide format
-
-Result will return output in a table format including the
-contents of the subsets included in the venndetail object
 }
 \examples{
 A <- sample(1:100, 40, replace = FALSE)
@@ -32,11 +29,6 @@ res <- venndetail(list(A = A, B = B, C = C))
 result_long <- result(res)
 # Get results in wide format
 result_wide <- result(res, wide = TRUE)
-A <- sample(1:100, 40, replace = FALSE)
-B <- sample(1:100, 60, replace = FALSE)
-C <- sample(1:100, 40, replace = FALSE)
-res <- venndetail(list(A = A, B = B, C = C))
-result <- result(res)
 }
 \author{
 Kai Guo

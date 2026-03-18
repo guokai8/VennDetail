@@ -17,16 +17,8 @@ A named numeric vector with counts for each subset
 }
 \description{
 Returns a named numeric vector with counts for each subset
-
-The objective of this function is to summarizes the overlaps
-across groups identified by venndetail without creating diagram.
 }
 \examples{
-A <- sample(1:100, 40, replace = FALSE)
-B <- sample(1:100, 60, replace = FALSE)
-C <- sample(1:100, 40, replace = FALSE)
-res <- venndetail(list(A = A, B = B, C = C))
-detail(res)
 A <- sample(1:100, 40, replace = FALSE)
 B <- sample(1:100, 60, replace = FALSE)
 C <- sample(1:100, 40, replace = FALSE)
