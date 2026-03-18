@@ -2,9 +2,9 @@
 .Rhistory
 .RData
 .Ruserdata
+.DS_Store
 /doc/
 /Meta/
 VennDetail.Rcheck/
 VennDetail.BiocCheck/
 *.tar.gz
-VennDetail.BiocCheck/
